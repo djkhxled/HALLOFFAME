@@ -2,12 +2,39 @@
   "rank": 1,
   "slug": "deimos",
   "name": "Deimos",
-  "tagline": "Nearly three minutes of highly percise gameplay. The cutting edge of what a level can hold.",
+  "tagline": "Nearly three minutes of highly precise gameplay. The cutting edge of what a level can hold.",
   "published": true,
   "facts": {
     "creators": [
       "ItsHybrid",
-      "and more"
+      "Antares",
+      "Smokes",
+      "Platnuu",
+      "Tygrysek",
+      "GrenadeofTacos",
+      "Juhou",
+      "Cersia",
+      "Isane",
+      "alkali",
+      "Endlevel",
+      "GDSkele",
+      "PokeChatt",
+      "Zipixbox",
+      "Enixy",
+      "Killa",
+      "Licen",
+      "River",
+      "Polli",
+      "Deadlox",
+      "Lieb",
+      "ryamu",
+      "Wesp",
+      "Parallax",
+      "loltad",
+      "Pocke",
+      "Maxfs",
+      "GD Iris",
+      "Yonaka"
     ],
     "host": "ItsHybrid",
     "verifier": "Doggie",
@@ -27,7 +54,8 @@
     "note": "The sequel to the 1.9/2.0 extreme demon Phobos. Not to be confused with the unrelated Deimos by EndLevel.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Deimos_(ItsHybrid)",
-      "https://pointercrate.com/demonlist/"
+      "https://pointercrate.com/demonlist/",
+      "https://pointercrate.com/api/v2/demons/516/"
     ]
   },
   "theme": {
@@ -47,9 +75,36 @@
     ]
   },
   "voice": {
-    "hook": "Number one, and it isn't close.",
-    "why": "<p>Deimos sits at the top of this list because it never lets up and never loses the plot. Three minutes is an absurd amount of time to hold a level together at this difficulty, and most mega-collabs at this scale end up feeling like a compilation &mdash; a dozen creators each doing their own thing, stapled together. Deimos doesn't. It reads as one continuous idea from start to finish.</p><p>The Phobos lineage matters too. Following up a level that defined an era is a trap, and it would have been easy to make something louder and call it a sequel. Instead it earned the name.</p>",
-    "draftedByClaude": true
+    "hook": "Truly my favorite extreme demon in the game.",
+    "why": "<p>Deimos is truly my favorite extreme demon in the game. All the different decoration parts seem to go so well with each other despite being created by nearly 30 players.</p><p>I think we need to start with the song, which is of course &ldquo;Deimos&rdquo; by Solkrieg. This song is honestly a masterpiece, plain and simple. It truly stands out to the average person because it merges classical compositional frameworks, dating back to the Baroque and Classical eras, with modern dubstep production techniques. The use of tension in this song is amazing. From the very beginning all the way up until 30%, where the first drop begins, the song never ceases to build up and add new instruments, and the level never ceases to intensify.</p><p>After the first drop is where the level truly shines. The break in the middle, before the second drop, may look like a boring part of the level, but I think it is where it gains its character. You have just been worn out by very intense gameplay for the past minute and a half, and now you get a break &mdash; a break that you know will not last long, but that you need to get through to get yourself to the end of the level.</p><p>When the second drop begins, the song, rather than just relying on sheer volume, uses negative space for maximum impact. By briefly stripping away the drums and leaving only a vocal track right before the drop, it creates a feeling of breaking through a wall, which I think perfectly describes the end of the level.</p><p>The level keeps throwing things at you and stays intense until the very end, which I think is amazing and something not a lot of levels do now. The final dual &mdash; a classic piece of gameplay taking heavy inspiration from the unnerfed Phobos last dual &mdash; is just an amazing way to end the perfect level. Deimos truly encapsulates a full story and journey through an insane level, and that is why I think it is my favorite extreme of all time.</p>",
+    "draftedByClaude": false,
+    "arc": [
+      {
+        "label": "The build",
+        "at": "0%",
+        "note": "Never stops adding instruments. The level intensifies with it."
+      },
+      {
+        "label": "First drop",
+        "at": "30%",
+        "note": "The tension finally breaks."
+      },
+      {
+        "label": "The break",
+        "at": null,
+        "note": "Looks like dead air. It is where the level gains its character."
+      },
+      {
+        "label": "Second drop",
+        "at": null,
+        "note": "Drums stripped, one vocal, then through the wall."
+      },
+      {
+        "label": "The final dual",
+        "at": null,
+        "note": "Heavy inspiration from the unnerfed Phobos last dual."
+      }
+    ]
   },
   "media": {
     "video": {
