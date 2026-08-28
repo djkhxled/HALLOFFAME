@@ -2,7 +2,6 @@
 <defs>
 <linearGradient id="tw-bg" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0%" stop-color="#061c34"/><stop offset="52%" stop-color="#04121f"/><stop offset="100%" stop-color="#020a12"/></linearGradient>
 <linearGradient id="tw-blockfill" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2f9ff0" stop-opacity="0.88"/><stop offset="52%" stop-color="#1560b8" stop-opacity="0.82"/><stop offset="100%" stop-color="#0a2f66" stop-opacity="0.88"/></linearGradient>
-<linearGradient id="tw-trail" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff2f6b" stop-opacity="0"/><stop offset="30%" stop-color="#ff2f6b"/><stop offset="100%" stop-color="#ff8fb0"/></linearGradient>
 <radialGradient id="tw-core" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="40%" stop-color="#4fd8ff"/><stop offset="100%" stop-color="#0b5f9e"/></radialGradient>
 <radialGradient id="tw-amb" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2ac9ff" stop-opacity="0.5"/><stop offset="100%" stop-color="#2ac9ff" stop-opacity="0"/></radialGradient>
 <linearGradient id="tw-foam" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#eafdff"/><stop offset="46%" stop-color="#7fe4ff"/><stop offset="100%" stop-color="#1a86c8"/></linearGradient>
@@ -32,12 +31,6 @@
 <use href="#tw-saw" transform="translate(1120 520) scale(0.86)"/>
 <use href="#tw-saw" transform="translate(1490 860) scale(1.1)"/>
 <use href="#tw-saw" transform="translate(250 560) scale(0.66)"/>
-<g>
-<path d="M-60 760 L200 470 L330 640" fill="none" stroke="url(#tw-trail)" stroke-width="26" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
-<path d="M-60 760 L200 470 L330 640" fill="none" stroke="#ffd9e4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M-60 760 L200 470 L330 640" fill="none" stroke="#ff2f6b" stroke-width="44" stroke-linejoin="round" opacity="0.28" filter="url(#tw-soft)"/>
-<g transform="translate(348 664) rotate(52)"><path d="M-34 -26 L46 0 L-34 26 L-18 0 Z" fill="#ff2f6b"/><path d="M-34 -26 L46 0 L-34 26 L-18 0 Z" fill="none" stroke="#ffd9e4" stroke-width="4"/><path d="M-16 -10 L20 0 L-16 10 L-8 0 Z" fill="#2a0410"/></g>
-</g>
 <rect x="880" y="470" width="15" height="15" fill="#eafcff" opacity="0.85"/>
 <rect x="899" y="451" width="15" height="15" fill="#eafcff" opacity="0.71"/>
 <rect x="918" y="432" width="15" height="15" fill="#eafcff" opacity="0.57"/>
