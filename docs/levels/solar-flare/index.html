@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en" data-level="solar-flare" data-signature="ignite">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solar Flare — #7 · Baylor&#x27;s Hall of Extremes</title>
+<meta name="description" content="Nine Circles rebuilt as a sun — gold, geometry, and a smiling star called Janet.">
+<meta property="og:title" content="Solar Flare — #7 · Baylor&#x27;s Hall of Extremes">
+<meta property="og:description" content="Nine Circles rebuilt as a sun — gold, geometry, and a smiling star called Janet.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<style>:root{--field:#0d0500;--ink:#fff1da;--muted:#cf9b62;--accent:#ffa018;--accent2:#ffe459;}</style><link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet"><style>[data-level="solar-flare"] .hero__title{font-size:clamp(2.75rem, 11.1vw, 15rem)}</style><link rel="stylesheet" href="/assets/css/levels/solar-flare.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="texture texture--ember" aria-hidden="true"></div>
+<main id="main" class="site-main">
+<section class="hero page" data-motion>
+  <p class="hero__eyebrow"><span class="level-hero__rank">Rank 7 of 25</span></p>
+  <div class="hero__art" aria-hidden="true"><svg class="art art--solarflare" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A blazing sun disc with radiating blades, spoked medallions and gold geometry on near-black">
+  <defs>
+    <radialGradient id="sf-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffdf2"/>
+      <stop offset="26%" stop-color="#ffe459"/>
+      <stop offset="58%" stop-color="#ffa018"/>
+      <stop offset="86%" stop-color="#e04a06"/>
+      <stop offset="100%" stop-color="#6d1a02"/>
+    </radialGradient>
+    <radialGradient id="sf-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffa018" stop-opacity="0.5"/>
+      <stop offset="46%" stop-color="#e04a06" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#e04a06" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sf-blade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe459" stop-opacity="0.85"/>
+      <stop offset="60%" stop-color="#ff7a08" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ff7a08" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="sf-gold" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#ffd066"/>
+      <stop offset="45%" stop-color="#e8830f"/>
+      <stop offset="100%" stop-color="#7a2f04"/>
+    </linearGradient>
+    <linearGradient id="sf-vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d0500" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#0d0500" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#0d0500" stop-opacity="0.92"/>
+    </linearGradient>
+    <filter id="sf-soft"><feGaussianBlur stdDeviation="12"/></filter>
+    <filter id="sf-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.84" numOctaves="4"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="#0d0500"/>
+  <ellipse cx="800" cy="420" rx="820" ry="520" fill="url(#sf-halo)"/>
+
+  <!-- Radiating blades from the sun, alternating length -->
+  <g transform="translate(800 400)">
+    <g fill="url(#sf-blade)">
+      <path d="M0 0 L-46 -560 L46 -560 Z"/>
+      <path d="M0 0 L280 -486 L326 -406 Z" opacity="0.8"/>
+      <path d="M0 0 L486 -280 L406 -326 Z" opacity="0.7"/>
+      <path d="M0 0 L560 -46 L560 46 Z" opacity="0.85"/>
+      <path d="M0 0 L486 280 L406 326 Z" opacity="0.7"/>
+      <path d="M0 0 L280 486 L326 406 Z" opacity="0.6"/>
+      <path d="M0 0 L46 560 L-46 560 Z" opacity="0.55"/>
+      <path d="M0 0 L-280 486 L-326 406 Z" opacity="0.6"/>
+      <path d="M0 0 L-486 280 L-406 326 Z" opacity="0.7"/>
+      <path d="M0 0 L-560 46 L-560 -46 Z" opacity="0.85"/>
+      <path d="M0 0 L-486 -280 L-406 -326 Z" opacity="0.7"/>
+      <path d="M0 0 L-280 -486 L-326 -406 Z" opacity="0.8"/>
+    </g>
+    <!-- thin secondary rays between the blades -->
+    <g stroke="#ffe459" stroke-width="2" opacity="0.34" fill="none">
+      <path d="M0 0 L-160 -540"/><path d="M0 0 L160 -540"/>
+      <path d="M0 0 L400 -400"/><path d="M0 0 L540 -160"/>
+      <path d="M0 0 L540 160"/><path d="M0 0 L400 400"/>
+      <path d="M0 0 L160 540"/><path d="M0 0 L-160 540"/>
+      <path d="M0 0 L-400 400"/><path d="M0 0 L-540 160"/>
+      <path d="M0 0 L-540 -160"/><path d="M0 0 L-400 -400"/>
+    </g>
+  </g>
+
+  <!-- Aztec-style border bands, top and bottom -->
+  <g fill="none" stroke="#e8830f" stroke-width="5" opacity="0.55">
+    <path d="M0 42 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34
+             h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h100"/>
+    <path d="M0 858 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34
+             h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h60 v-34 h60 v34 h100"/>
+  </g>
+  <g fill="#ffa018" opacity="0.4">
+    <rect x="60" y="20" width="16" height="16"/><rect x="220" y="20" width="16" height="16"/>
+    <rect x="380" y="20" width="16" height="16"/><rect x="540" y="20" width="16" height="16"/>
+    <rect x="700" y="20" width="16" height="16"/><rect x="860" y="20" width="16" height="16"/>
+    <rect x="1020" y="20" width="16" height="16"/><rect x="1180" y="20" width="16" height="16"/>
+    <rect x="1340" y="20" width="16" height="16"/><rect x="1500" y="20" width="16" height="16"/>
+  </g>
+
+  <!-- The sun -->
+  <g transform="translate(800 400)">
+    <circle r="230" fill="#ffa018" opacity="0.28" filter="url(#sf-soft)"/>
+    <circle r="150" fill="url(#sf-core)"/>
+    <circle r="150" fill="none" stroke="#ffe459" stroke-width="4" opacity="0.85"/>
+    <circle r="176" fill="none" stroke="#ffa018" stroke-width="2.4" opacity="0.55"/>
+    <circle r="204" fill="none" stroke="#e8830f" stroke-width="1.6" opacity="0.35"/>
+    <!-- corona teeth around the disc -->
+    <g fill="#ffe459" opacity="0.8">
+      <path d="M0 -150 L18 -204 L-18 -204 Z"/>
+      <path d="M106 -106 L152 -146 L127 -171 Z"/>
+      <path d="M150 0 L204 18 L204 -18 Z"/>
+      <path d="M106 106 L152 146 L127 171 Z"/>
+      <path d="M0 150 L18 204 L-18 204 Z"/>
+      <path d="M-106 106 L-152 146 L-127 171 Z"/>
+      <path d="M-150 0 L-204 18 L-204 -18 Z"/>
+      <path d="M-106 -106 L-152 -146 L-127 -171 Z"/>
+    </g>
+    <!-- turbulence inside the disc -->
+    <g fill="none" stroke="#fff3c4" opacity="0.34">
+      <path d="M-104 -30 q 52 -46 104 0 t 104 0" stroke-width="4"/>
+      <path d="M-110 26 q 56 46 110 0 t 110 0" stroke-width="3.2"/>
+      <path d="M-72 78 q 40 -32 78 0" stroke-width="2.6"/>
+    </g>
+  </g>
+
+  <!-- Spoked medallions, like gears -->
+  <g>
+    <g transform="translate(268 216)">
+      <circle r="66" fill="none" stroke="#ffa018" stroke-width="7" opacity="0.85"/>
+      <circle r="40" fill="#3a1102"/>
+      <circle r="15" fill="#ffe459"/>
+      <circle r="15" fill="#fff8dc" opacity="0.6"/>
+      <g fill="#e8830f">
+        <path d="M0 -66 L14 -96 L-14 -96 Z"/><path d="M47 -47 L74 -70 L54 -90 Z"/>
+        <path d="M66 0 L96 14 L96 -14 Z"/><path d="M47 47 L74 70 L54 90 Z"/>
+        <path d="M0 66 L14 96 L-14 96 Z"/><path d="M-47 47 L-74 70 L-54 90 Z"/>
+        <path d="M-66 0 L-96 14 L-96 -14 Z"/><path d="M-47 -47 L-74 -70 L-54 -90 Z"/>
+      </g>
+      <g fill="#8a3505">
+        <circle cx="0" cy="-27" r="7"/><circle cx="23" cy="14" r="7"/><circle cx="-23" cy="14" r="7"/>
+      </g>
+      <circle r="86" fill="#ffa018" opacity="0.14" filter="url(#sf-soft)"/>
+    </g>
+
+    <g transform="translate(1364 626)">
+      <circle r="76" fill="none" stroke="#ffa018" stroke-width="8" opacity="0.85"/>
+      <circle r="46" fill="#3a1102"/>
+      <circle r="17" fill="#ffe459"/>
+      <g fill="#e8830f">
+        <path d="M0 -76 L16 -110 L-16 -110 Z"/><path d="M54 -54 L84 -80 L62 -102 Z"/>
+        <path d="M76 0 L110 16 L110 -16 Z"/><path d="M54 54 L84 80 L62 102 Z"/>
+        <path d="M0 76 L16 110 L-16 110 Z"/><path d="M-54 54 L-84 80 L-62 102 Z"/>
+        <path d="M-76 0 L-110 16 L-110 -16 Z"/><path d="M-54 -54 L-84 -80 L-62 -102 Z"/>
+      </g>
+      <g fill="#8a3505">
+        <circle cx="0" cy="-31" r="8"/><circle cx="27" cy="16" r="8"/><circle cx="-27" cy="16" r="8"/>
+      </g>
+      <circle r="98" fill="#ffa018" opacity="0.14" filter="url(#sf-soft)"/>
+    </g>
+
+    <g transform="translate(1188 214)" opacity="0.8">
+      <circle r="44" fill="none" stroke="#ffa018" stroke-width="6"/>
+      <circle r="24" fill="#3a1102"/>
+      <circle r="10" fill="#ffe459"/>
+      <g fill="#e8830f">
+        <path d="M0 -44 L11 -66 L-11 -66 Z"/><path d="M31 -31 L50 -48 L36 -62 Z"/>
+        <path d="M44 0 L66 11 L66 -11 Z"/><path d="M31 31 L50 48 L36 62 Z"/>
+        <path d="M0 44 L11 66 L-11 66 Z"/><path d="M-31 31 L-50 48 L-36 62 Z"/>
+        <path d="M-44 0 L-66 11 L-66 -11 Z"/><path d="M-31 -31 L-50 -48 L-36 -62 Z"/>
+      </g>
+    </g>
+
+    <g transform="translate(430 720)" opacity="0.7">
+      <circle r="36" fill="none" stroke="#ffa018" stroke-width="5"/>
+      <circle r="18" fill="#3a1102"/>
+      <circle r="8" fill="#ffe459"/>
+      <g fill="#e8830f">
+        <path d="M0 -36 L9 -54 L-9 -54 Z"/><path d="M25 -25 L40 -39 L29 -50 Z"/>
+        <path d="M36 0 L54 9 L54 -9 Z"/><path d="M25 25 L40 39 L29 50 Z"/>
+        <path d="M0 36 L9 54 L-9 54 Z"/><path d="M-25 25 L-40 39 L-29 50 Z"/>
+        <path d="M-36 0 L-54 9 L-54 -9 Z"/><path d="M-25 -25 L-40 -39 L-29 -50 Z"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Gold chevron stacks, left and right -->
+  <g fill="none" stroke="url(#sf-gold)" stroke-width="14" opacity="0.75">
+    <path d="M-20 250 L110 120 L240 250"/>
+    <path d="M-20 320 L110 190 L240 320" stroke-width="9"/>
+    <path d="M-20 384 L110 254 L240 384" stroke-width="6"/>
+    <path d="M1620 560 L1490 430 L1360 560"/>
+    <path d="M1620 630 L1490 500 L1360 630" stroke-width="9"/>
+    <path d="M1620 694 L1490 564 L1360 694" stroke-width="6"/>
+  </g>
+
+  <!-- Diamond with a checkered core -->
+  <g transform="translate(1108 452) rotate(45)">
+    <rect x="-62" y="-62" width="124" height="124" fill="#2a0d01" stroke="#e8830f" stroke-width="6"/>
+    <g fill="#ffe459">
+      <rect x="-36" y="-36" width="18" height="18"/><rect x="0" y="-36" width="18" height="18"/>
+      <rect x="-18" y="-18" width="18" height="18"/><rect x="18" y="-18" width="18" height="18"/>
+      <rect x="-36" y="0" width="18" height="18"/><rect x="0" y="0" width="18" height="18"/>
+      <rect x="-18" y="18" width="18" height="18"/><rect x="18" y="18" width="18" height="18"/>
+    </g>
+  </g>
+
+  <!-- Floating shards -->
+  <g fill="#ffb43a">
+    <path d="M596 208 L624 262 L568 262 Z" opacity="0.85"/>
+    <path d="M1004 696 L1032 750 L976 750 Z" opacity="0.8"/>
+    <path d="M336 466 L358 508 L314 508 Z" opacity="0.7"/>
+    <path d="M1284 356 L1306 398 L1262 398 Z" opacity="0.65"/>
+    <path d="M694 780 L712 814 L676 814 Z" opacity="0.6"/>
+  </g>
+
+  <!-- Ember motes -->
+  <g fill="#ffe459">
+    <circle cx="220" cy="420" r="3.4" opacity="0.8"/><circle cx="470" cy="330" r="2.4" opacity="0.6"/>
+    <circle cx="640" cy="560" r="3" opacity="0.7"/><circle cx="980" cy="280" r="2.6" opacity="0.6"/>
+    <circle cx="1220" cy="500" r="3.2" opacity="0.7"/><circle cx="1450" cy="330" r="2.4" opacity="0.55"/>
+    <circle cx="300" cy="640" r="2.8" opacity="0.6"/><circle cx="860" cy="700" r="2.2" opacity="0.5"/>
+    <circle cx="1520" cy="760" r="3" opacity="0.6"/><circle cx="120" cy="760" r="2.6" opacity="0.55"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#sf-vig)"/>
+  <rect width="1600" height="900" filter="url(#sf-grain)" opacity="0.14"/>
+</svg>
+</div>
+  <h1 class="hero__title level-hero__title">Solar Flare</h1>
+  <div class="hero__foot">
+    <p>Linear, Rynoxious</p>
+    <p class="hero__lede">Nine Circles rebuilt as a sun — gold, geometry, and a smiling star called Janet.</p>
+    <p class="hero__meta-r">Verified by swiborg · 2023</p>
+    <div class="hero__rule"></div>
+  </div>
+</section>
+
+<section class="sig sig--ignite" data-sig="ignite" aria-labelledby="ignite-h">
+  <h2 id="ignite-h" class="visually-hidden">Solar Flare — ignition</h2>
+
+  <div class="ignite__rays" data-rays data-motion aria-hidden="true"></div>
+  <div class="ignite__core" data-core data-motion aria-hidden="true"></div>
+
+  <div class="ignite__cog ignite__cog--1" data-cog data-motion aria-hidden="true"></div>
+  <div class="ignite__cog ignite__cog--2" data-cog-rev data-motion aria-hidden="true"></div>
+  <div class="ignite__cog ignite__cog--3" data-cog data-motion aria-hidden="true"></div>
+
+  <div class="ignite__copy page">
+    <p class="eyebrow" data-ignite-line data-motion>Solar Circles, buffed past recognition</p>
+    <p class="ignite__line" data-ignite-line data-motion>Nine Circles,<br>as a star</p>
+    <p class="ignite__sub measure" data-ignite-line data-motion>
+      A collaboration by Linear and Rynoxious, verified by swiborg on
+      29 April 2023. The smiling sun inside the level is named Janet.
+    </p>
+  </div>
+</section>
+
+
+<section class="section page" aria-labelledby="stats-h">
+  <h2 id="stats-h" class="eyebrow">The record</h2>
+  <dl class="statblock"><div class="statblock__row"><dt class="statblock__key">Host</dt><dd class="statblock__val">Linear</dd></div><div class="statblock__row"><dt class="statblock__key">Creators</dt><dd class="statblock__val">Linear, Rynoxious</dd></div><div class="statblock__row"><dt class="statblock__key">Verifier</dt><dd class="statblock__val">swiborg</dd></div><div class="statblock__row"><dt class="statblock__key">Verified</dt><dd class="statblock__val">2023-04-29</dd></div><div class="statblock__row"><dt class="statblock__key">Attempts</dt><dd class="statblock__val"><span class="nil" aria-label="not known">&mdash;</span></dd></div><div class="statblock__row"><dt class="statblock__key">Rated</dt><dd class="statblock__val"><span class="nil" aria-label="not known">&mdash;</span></dd></div><div class="statblock__row"><dt class="statblock__key">Level ID</dt><dd class="statblock__val">90390075</dd></div><div class="statblock__row"><dt class="statblock__key">Objects</dt><dd class="statblock__val"><span class="nil" aria-label="not known">&mdash;</span></dd></div><div class="statblock__row"><dt class="statblock__key">Length</dt><dd class="statblock__val"><span class="nil" aria-label="not known">&mdash;</span></dd></div><div class="statblock__row"><dt class="statblock__key">GD version</dt><dd class="statblock__val">2.1</dd></div><div class="statblock__row"><dt class="statblock__key">Peak rank</dt><dd class="statblock__val"><span class="nil" aria-label="not known">&mdash;</span></dd></div><div class="statblock__row"><dt class="statblock__key">Song</dt><dd class="statblock__val"><span class="nil" aria-label="not known">&mdash;</span></dd></div></dl>
+</section>
+
+<section class="section page">
+  <section class="voice" aria-labelledby="voice-h"><h2 id="voice-h" class="eyebrow">Why it&rsquo;s here</h2><p class="voice__hook">A Nine Circles level that became a sun.</p><div class="voice__body measure"><p>Solar Flare takes the most overdone format in the game and makes it feel enormous. It's a remake of Solar Circles, buffed to the point of being a different level entirely, and every part of it is built around one idea &mdash; heat.</p><p>The gold is what sells it. Most levels that go for orange end up muddy; this one keeps the blacks genuinely black so the gold reads as light rather than paint. And it has a smiling sun named Janet in it, which I think about more than I should.</p></div><p class="voice__drafted">Drafted placeholder &mdash; not yet in Baylor&rsquo;s words.</p></section>
+</section>
+
+<section class="section page">
+  
+  
+</section>
+
+<div class="page">
+  <nav class="ranknav" aria-label="Rank navigation"><a class="ranknav__link ranknav__link--prev" href="/levels/tidal-wave/"><span class="ranknav__dir">Previous</span><span class="ranknav__rank">#6</span><span class="ranknav__name">Tidal Wave</span></a><a class="ranknav__home" href="/">All 25</a><a class="ranknav__link ranknav__link--next" href="/levels/slaughterhouse/"><span class="ranknav__dir">Next</span><span class="ranknav__rank">#8</span><span class="ranknav__name">Slaughterhouse</span></a></nav>
+</div>
+
+<div class="section page">
+  <section class="sources" aria-labelledby="sources-h"><h2 id="sources-h" class="eyebrow">Sources</h2><ul><li><a href="https://geometrydash.wiki.gg/wiki/Solar_Flare" rel="nofollow noopener" target="_blank">https://geometrydash.wiki.gg/wiki/Solar_Flare</a></li><li><a href="https://geometry-dash-fan.fandom.com/wiki/Solar_Flare" rel="nofollow noopener" target="_blank">https://geometry-dash-fan.fandom.com/wiki/Solar_Flare</a></li></ul></section>
+</div>
+
+</main>
+<footer class="site-foot">
+  <div class="page">
+    <p>A fan project. Unaffiliated with RobTop Games. All levels and songs belong to their creators.</p>
+    <p>Built by hand · no trackers · nothing loads from YouTube until you press play.</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="/assets/js/scroll.js" defer></script>
+<script src="/assets/js/media.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* Solar Flare — rank 7. Molten gold on near-black. */
+
+[data-level="solar-flare"] {
+  --font-display: "Bungee", "Impact", sans-serif;
+  --rule-colour: color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+[data-level="solar-flare"] .hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.02;
+  background: linear-gradient(
+    174deg,
+    #fffdf2 0%, #ffe459 24%, #ffa018 56%, #c25406 84%, #6d1a02 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* beveled: a bright lip above, a burnt shadow below, heat all round */
+  filter:
+    drop-shadow(0 -1px 0 #fff3c4)
+    drop-shadow(0 2px 0 #6d1a02)
+    drop-shadow(0 0 2.4rem color-mix(in srgb, var(--accent) 65%, transparent));
+}
+
+[data-level="solar-flare"] .hero__eyebrow,
+[data-level="solar-flare"] .hero__foot p {
+  text-shadow: 0 0 0.9rem #0d0500, 0 0 1.8rem #0d0500;
+}
+
+[data-level="solar-flare"] .voice__hook {
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  line-height: 1.1;
+}
+
+/* ignite set-piece ------------------------------------------------------- */
+
+.sig--ignite {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--rule-colour);
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 46%,
+    #2a0e01 0%,
+    #0d0500 72%
+  );
+}
+
+.ignite__core {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  translate: -50% -50%;
+  width: min(40vmin, 24rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fffdf2 0%, #ffe459 26%, #ffa018 58%, #e04a06 86%, #6d1a02 100%
+  );
+  box-shadow:
+    0 0 7rem color-mix(in srgb, var(--accent) 70%, transparent),
+    0 0 16rem color-mix(in srgb, var(--accent) 40%, transparent);
+  pointer-events: none;
+}
+
+/* The corona: conic blades opening out from behind the disc. */
+.ignite__rays {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  translate: -50% -50%;
+  width: min(130vmin, 80rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--accent2) 34%, transparent) 0deg 3deg,
+    transparent 3deg 15deg
+  );
+  mask-image: radial-gradient(circle, transparent 18%, #000 32%, transparent 74%);
+  pointer-events: none;
+}
+
+.ignite__cog {
+  position: absolute;
+  width: 20vmin;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 0.9vmin solid color-mix(in srgb, var(--accent) 72%, transparent);
+  pointer-events: none;
+}
+
+.ignite__cog::before {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: #3a1102;
+  box-shadow: inset 0 0 0 0.5vmin color-mix(in srgb, var(--accent2) 60%, transparent);
+}
+
+.ignite__cog::after {
+  content: "";
+  position: absolute;
+  inset: -14%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--accent) 80%, transparent) 0deg 6deg,
+    transparent 6deg 45deg
+  );
+  mask-image: radial-gradient(circle, transparent 52%, #000 56%, #000 72%, transparent 74%);
+}
+
+.ignite__cog--1 { left: 8%;  top: 14%; }
+.ignite__cog--2 { right: 10%; bottom: 12%; width: 26vmin; }
+.ignite__cog--3 { right: 16%; top: 18%; width: 14vmin; opacity: 0.75; }
+
+.ignite__copy {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.ignite__line {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6.4vw, 5.4rem);
+  line-height: 1.06;
+  margin: 0 0 var(--space-5);
+  background: linear-gradient(174deg, #fffdf2 0%, #ffe459 34%, #ffa018 78%, #a33804 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 0 #4d1201) drop-shadow(0 0 2rem rgba(255, 160, 24, 0.6));
+}
+
+.ignite__sub {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--ink);
+  line-height: 1.7;
+  margin-inline: auto;
+  text-shadow: 0 0 1.5rem #0d0500, 0 0 2.6rem #0d0500;
+}

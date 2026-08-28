@@ -277,10 +277,122 @@
       );
   }
 
+  /* Signature: surge — the wave rears and the water pans past. --------- */
+  function surge() {
+    var stage = document.querySelector("[data-sig='surge']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=190%",
+        scrub: 0.8,
+        pin: true,
+      },
+    });
+
+    tl.fromTo(
+      stage.querySelector("[data-swell]"),
+      { yPercent: 34, scale: 1.16 },
+      { yPercent: -8, scale: 1, ease: "none" },
+      0
+    )
+      .to(stage.querySelectorAll("[data-current='a']"), { xPercent: -30, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-current='b']"), { xPercent: 22, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-foam]"), { xPercent: -46, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelectorAll("[data-surge-line]"),
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.2, ease: "power2.out" },
+        0.12
+      );
+  }
+
+  /* Signature: ignite — exposure ramps and the corona opens. ------------ */
+  function ignite() {
+    var stage = document.querySelector("[data-sig='ignite']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=190%",
+        scrub: 0.75,
+        pin: true,
+      },
+    });
+
+    tl.fromTo(
+      stage.querySelector("[data-core]"),
+      { scale: 0.42, opacity: 0.5 },
+      { scale: 1.15, opacity: 1, ease: "none" },
+      0
+    )
+      .fromTo(
+        stage.querySelector("[data-rays]"),
+        { scale: 0.6, opacity: 0, rotate: -22 },
+        { scale: 1.3, opacity: 0.9, rotate: 14, ease: "none" },
+        0
+      )
+      .to(stage.querySelectorAll("[data-cog]"), { rotate: 150, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-cog-rev]"), { rotate: -120, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelectorAll("[data-ignite-line]"),
+        { opacity: 0, y: 26 },
+        { opacity: 1, y: 0, stagger: 0.2, ease: "power2.out" },
+        0.15
+      );
+  }
+
+  /* Signature: pulse — the whole frame breathes, hard and on beat. ------ */
+  function pulse() {
+    var stage = document.querySelector("[data-sig='pulse']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=180%",
+        scrub: 0.6,
+        pin: true,
+      },
+    });
+
+    tl.fromTo(
+      stage.querySelector("[data-loom]"),
+      { scale: 0.72, opacity: 0.35 },
+      { scale: 1.08, opacity: 1, ease: "none" },
+      0
+    )
+      .fromTo(
+        stage.querySelectorAll("[data-pulse-line]"),
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, stagger: 0.2, ease: "power2.out" },
+        0.18
+      );
+
+    /* the heartbeat itself is time-based, not scroll-based */
+    gsap.to(stage.querySelectorAll("[data-beat]"), {
+      opacity: 0.95,
+      scale: 1.06,
+      duration: 0.42,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+      transformOrigin: "50% 50%",
+    });
+  }
+
   reveals();
   countdown();
 
   var sig = document.documentElement.dataset.signature;
+  if (sig === "surge") surge();
+  if (sig === "ignite") ignite();
+  if (sig === "pulse") pulse();
   if (sig === "orbit") orbit();
   if (sig === "eclipse") eclipse();
   if (sig === "glitch-assemble") glitchAssemble();
