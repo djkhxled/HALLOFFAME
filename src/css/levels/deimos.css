@@ -28,9 +28,20 @@
     drop-shadow(0 0 1.6rem color-mix(in srgb, var(--accent) 55%, transparent));
 }
 
+/* The rank sits over the eclipse, which is the brightest thing on the page.
+   Full ink plus a heavy halo, or it vanishes into the disc. */
 [data-level="deimos"] .hero__eyebrow,
 [data-level="deimos"] .hero__foot p {
-  text-shadow: 0 0 0.9rem #0a0506, 0 0 1.6rem #0a0506;
+  color: var(--ink);
+  text-shadow:
+    0 0 0.5rem #0a0506,
+    0 0 1rem #0a0506,
+    0 0 2rem rgba(10, 5, 6, 0.95),
+    0 0 3.4rem rgba(10, 5, 6, 0.8);
+}
+
+[data-level="deimos"] .level-hero__rank {
+  color: #ffb27a;
 }
 
 [data-level="deimos"] .texture--grain::after {
