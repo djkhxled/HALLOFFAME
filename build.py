@@ -99,6 +99,8 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
             "meta_right": right,
             "bespoke_html": bespoke_html,
             "statblock_html": render.statblock_html(level.get("facts")),
+            "roster_html": render.roster_html(level.get("facts")),
+            "arc_html": render.arc_html(level.get("voice")),
             "voice_html": render.voice_html(level.get("voice")),
             "video_html": render.video_html(media, level["name"]),
             "player_html": render.player_html(level.get("facts")),

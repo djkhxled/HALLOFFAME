@@ -54,9 +54,20 @@ def _fact(value) -> str:
     return esc(value)
 
 
+ROSTER_MIN = 7  # below this a roster reads fine inline in the stat block
+
+
+def _creators_cell(creators):
+    """A 29-name roster destroys the stat grid; show the count and let
+    roster_html carry the names."""
+    if isinstance(creators, list) and len(creators) >= ROSTER_MIN:
+        return f"{len(creators)} creators"
+    return creators
+
+
 STAT_ROWS = [
     ("Host", lambda f: f.get("host")),
-    ("Creators", lambda f: f.get("creators")),
+    ("Creators", lambda f: _creators_cell(f.get("creators"))),
     ("Verifier", lambda f: f.get("verifier")),
     ("Verified", lambda f: f.get("verifiedDate")),
     ("Attempts", lambda f: f.get("attempts")),
@@ -111,6 +122,51 @@ def sources_html(facts: dict) -> str:
     )
 
 
+def roster_html(facts: dict) -> str:
+    """The full credit list, for collabs too large to sit in the stat block."""
+    creators = (facts or {}).get("creators") or []
+    if not isinstance(creators, list) or len(creators) < ROSTER_MIN:
+        return ""
+    names = "".join(f"<li>{esc(n)}</li>" for n in creators)
+    return (
+        '<section class="roster" aria-labelledby="roster-h">'
+        '<h2 id="roster-h" class="eyebrow">Everyone who built it</h2>'
+        f'<ol class="roster__list">{names}</ol></section>'
+    )
+
+
+def arc_html(voice: dict) -> str:
+    """An optional reading of how the level moves, in order.
+
+    Stops carry no timings unless the record states one, because the only
+    sourced marker is whatever Baylor named himself.
+    """
+    stops = (voice or {}).get("arc") or []
+    if not stops:
+        return ""
+    items = []
+    for stop in stops:
+        mark = stop.get("at")
+        mark_html = (
+            f'<span class="arc__at">{esc(mark)}</span>' if mark
+            else '<span class="arc__at arc__at--none" aria-hidden="true"></span>'
+        )
+        items.append(
+            '<li class="arc__stop">'
+            f'{mark_html}'
+            f'<span class="arc__label">{esc(stop["label"])}</span>'
+            f'<span class="arc__note">{esc(stop.get("note", ""))}</span>'
+            "</li>"
+        )
+    return (
+        '<section class="arc section page" aria-labelledby="arc-h">'
+        '<h2 id="arc-h" class="eyebrow">The shape of it</h2>'
+        f'<ol class="arc__track">{"".join(items)}</ol>'
+        '<p class="arc__caveat">Baylor&rsquo;s reading of the level, not a '
+        "sourced breakdown.</p></section>"
+    )
+
+
 def voice_html(voice: dict) -> str:
     voice = voice or {}
     body = voice.get("why") or ""
@@ -122,7 +178,8 @@ def voice_html(voice: dict) -> str:
     parts.append('<h2 id="voice-h" class="eyebrow">Why it&rsquo;s here</h2>')
     if hook:
         parts.append(f'<p class="voice__hook">{esc(hook)}</p>')
-    parts.append(f'<div class="voice__body measure">{body}</div>')
+    long = " class=\"voice__body measure voice__body--long\"" if len(body) > 1800 else ' class="voice__body measure"'
+    parts.append(f'<div{long}>{body}</div>')
     if drafted:
         parts.append(
             '<p class="voice__drafted">Drafted placeholder &mdash; '
