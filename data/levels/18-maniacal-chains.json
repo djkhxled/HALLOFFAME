@@ -1,0 +1,50 @@
+{
+  "rank": 18,
+  "slug": "maniacal-chains",
+  "name": "Maniacal Chains",
+  "tagline": "Restraint as a design principle, then abandoned.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "LordDivinity"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#08070a",
+      "ink": "#f1eef4",
+      "muted": "#a096ac",
+      "accent": "#b06bff"
+    },
+    "texture": "grain",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

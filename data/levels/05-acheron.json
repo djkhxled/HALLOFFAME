@@ -1,0 +1,52 @@
+{
+  "rank": 5,
+  "slug": "acheron",
+  "name": "Acheron",
+  "tagline": "The middle chapter of Riot's descent into hell.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "ryamu",
+      "Riot",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#0d0503",
+      "ink": "#ffeee4",
+      "muted": "#c39684",
+      "accent": "#ff5c1a"
+    },
+    "texture": "ember",
+    "signature": "descend",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

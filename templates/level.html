@@ -1,0 +1,35 @@
+<section class="hero page" data-motion>
+  <p class="hero__eyebrow"><span class="level-hero__rank">Rank {{ rank }} of 25</span></p>
+  <div class="hero__art" aria-hidden="true">{{ art_html }}</div>
+  <h1 class="hero__title level-hero__title">{{ name }}</h1>
+  <div class="hero__foot">
+    <p>{{ meta_left }}</p>
+    <p class="hero__lede">{{ tagline }}</p>
+    <p class="hero__meta-r">{{ meta_right }}</p>
+    <div class="hero__rule"></div>
+  </div>
+</section>
+
+{{ bespoke_html }}
+
+<section class="section page" aria-labelledby="stats-h">
+  <h2 id="stats-h" class="eyebrow">The record</h2>
+  {{ statblock_html }}
+</section>
+
+<section class="section page">
+  {{ voice_html }}
+</section>
+
+<section class="section page">
+  {{ video_html }}
+  {{ player_html }}
+</section>
+
+<div class="page">
+  {{ ranknav_html }}
+</div>
+
+<div class="section page">
+  {{ sources_html }}
+</div>

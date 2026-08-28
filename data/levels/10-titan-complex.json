@@ -1,0 +1,50 @@
+{
+  "rank": 10,
+  "slug": "titan-complex",
+  "name": "Titan Complex",
+  "tagline": "Built like a machine that was never meant to be entered.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "TCTeam"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#05090d",
+      "ink": "#e8f1f8",
+      "muted": "#8ea4b8",
+      "accent": "#4dc3ff"
+    },
+    "texture": "chrome",
+    "signature": "fracture",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

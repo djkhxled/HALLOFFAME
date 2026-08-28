@@ -1,0 +1,53 @@
+{
+  "rank": 19,
+  "slug": "antarctic-lights",
+  "name": "Antarctic Lights",
+  "tagline": "Cold, and quietly spectacular.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "Declan",
+      "SkyJax",
+      "Tolstyh",
+      "Arcturus"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#03090e",
+      "ink": "#e8f6fb",
+      "muted": "#8ab3c2",
+      "accent": "#5ff0c8"
+    },
+    "texture": "snow",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

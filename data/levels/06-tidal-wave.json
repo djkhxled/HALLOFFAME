@@ -1,0 +1,50 @@
+{
+  "rank": 6,
+  "slug": "tidal-wave",
+  "name": "Tidal Wave",
+  "tagline": "Three minutes of wave, and nowhere to hide.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "OniLink"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#02080f",
+      "ink": "#e6f4ff",
+      "muted": "#7fa8c4",
+      "accent": "#22a7ff"
+    },
+    "texture": "caustics",
+    "signature": "surge",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

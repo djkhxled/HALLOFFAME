@@ -1,0 +1,57 @@
+{
+  "rank": 2,
+  "slug": "nhelv",
+  "name": "Nhelv",
+  "tagline": "A level built to be the music video for its own song — and widely held to be the best-decorated extreme demon ever made.",
+  "published": true,
+  "facts": {
+    "creators": ["SrGuillester", "notlsa", "DienID"],
+    "host": "SrGuillester",
+    "verifier": "SrGuillester",
+    "verifiedDate": "2021-04-14",
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": "68353244",
+    "objects": null,
+    "length": null,
+    "gdVersion": "2.1",
+    "song": {
+      "name": "Nhelv",
+      "artist": "Silentroom",
+      "newgroundsId": "812038"
+    },
+    "peakRank": null,
+    "note": "Decoration is modelled on the official music video for Silentroom's 'Nhelv'.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Nhelv",
+      "https://geometry-dash-fan.fandom.com/wiki/SrGuillester"
+    ]
+  },
+  "theme": {
+    "tier": "bespoke",
+    "palette": {
+      "field": "#08060f",
+      "ink": "#f3eeff",
+      "muted": "#a99cc4",
+      "accent": "#b98cff",
+      "accent2": "#4ae0ff"
+    },
+    "texture": "scanline",
+    "signature": "glitch-assemble",
+    "mood": "Violet and cyan, hard-edged, strobing. Everything arrives in slices and snaps into alignment on the beat."
+  },
+  "voice": {
+    "hook": "The level that made decoration the point.",
+    "why": "<p>Nhelv is here for how it looks, and I don't think that needs defending. It took the official music video for Silentroom's track and rebuilt it inside Geometry Dash, and the result still gets used as the benchmark for what level design can be years later.</p><p>What gets me is the restraint. It would have been easy to make this a wall of effects. Instead every flash is timed to something, and when the level goes quiet it actually goes quiet. Plenty of levels are harder. Very few are this composed.</p>",
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {
+      "youtubeId": "COwxEJubd-8",
+      "title": "\"Nhelv\" by SrGuillester & more",
+      "channel": "YouTube"
+    },
+    "art": "src/art/nhelv.svg",
+    "images": []
+  }
+}

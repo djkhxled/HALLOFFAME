@@ -1,0 +1,51 @@
+{
+  "rank": 16,
+  "slug": "bloodlust",
+  "name": "Bloodlust",
+  "tagline": "The one that taught a generation what an extreme demon was.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "Manix648",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#0a0202",
+      "ink": "#ffe7e7",
+      "muted": "#bd8080",
+      "accent": "#ff1f1f"
+    },
+    "texture": "ember",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

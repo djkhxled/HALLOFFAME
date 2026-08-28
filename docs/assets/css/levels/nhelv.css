@@ -1,0 +1,108 @@
+/* Nhelv — rank 2. Violet and cyan, hard slices, strobe on the beat. */
+
+[data-level="nhelv"] .hero__title {
+  letter-spacing: -0.05em;
+  text-shadow:
+    0.06em 0 0 color-mix(in srgb, var(--accent) 55%, transparent),
+    -0.06em 0 0 color-mix(in srgb, var(--accent2) 45%, transparent);
+}
+
+[data-level="nhelv"] .hero__art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--accent2) 7%, transparent) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+/* glitch-assemble set-piece --------------------------------------------- */
+
+.sig--glitch {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--rule-colour);
+}
+
+.glitch__stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  pointer-events: none;
+}
+
+.glitch__slice {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch__slice::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--accent) 42%, transparent) 22%,
+      color-mix(in srgb, var(--accent2) 38%, transparent) 58%,
+      transparent 100%
+    );
+  opacity: 0.5;
+  clip-path: polygon(0 38%, 100% 32%, 100% 62%, 0 68%);
+}
+
+.glitch__slice:nth-child(odd)::before {
+  clip-path: polygon(0 30%, 100% 40%, 100% 66%, 0 58%);
+  opacity: 0.34;
+}
+
+.glitch__flick {
+  position: absolute;
+  display: block;
+  opacity: 0.12;
+}
+
+.glitch__flick--a {
+  left: 12%;
+  top: 22%;
+  width: 18vmin;
+  height: 2px;
+  background: var(--accent2);
+}
+
+.glitch__flick--b {
+  right: 16%;
+  top: 54%;
+  width: 24vmin;
+  height: 2px;
+  background: var(--accent);
+}
+
+.glitch__flick--c {
+  left: 38%;
+  bottom: 18%;
+  width: 12vmin;
+  height: 2px;
+  background: var(--accent2);
+}
+
+.glitch__copy {
+  position: relative;
+  z-index: 2;
+}
+
+.glitch__line {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}

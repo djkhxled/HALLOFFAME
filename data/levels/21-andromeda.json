@@ -1,0 +1,50 @@
+{
+  "rank": 21,
+  "slug": "andromeda",
+  "name": "Andromeda",
+  "tagline": "A galaxy you are asked to cross on foot.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "Insxne"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#06081a",
+      "ink": "#eceeff",
+      "muted": "#9295c4",
+      "accent": "#7c7dff"
+    },
+    "texture": "starfield",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

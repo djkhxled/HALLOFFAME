@@ -1,0 +1,59 @@
+/* tokens.css — the shared skeleton. Never varies per level.
+   Only the theme-surface variables at the top are overridden by level CSS. */
+
+:root {
+  /* Theme surface — neutral defaults, overridden per level. */
+  --field: #06070b;
+  --ink: #f2f2f4;
+  --muted: #9b9ba6;
+  --accent: #d8d8e0;
+  --accent2: #8a8a96;
+
+  /* Type families */
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Fluid type scale */
+  --step--2: clamp(0.69rem, 0.67rem + 0.10vw, 0.75rem);
+  --step--1: clamp(0.83rem, 0.80rem + 0.15vw, 0.94rem);
+  --step-0: clamp(1rem, 0.96rem + 0.22vw, 1.13rem);
+  --step-1: clamp(1.2rem, 1.14rem + 0.31vw, 1.41rem);
+  --step-2: clamp(1.44rem, 1.35rem + 0.44vw, 1.76rem);
+  --step-3: clamp(1.73rem, 1.60rem + 0.62vw, 2.20rem);
+  --step-4: clamp(2.07rem, 1.89rem + 0.89vw, 2.75rem);
+  --step-5: clamp(2.49rem, 2.23rem + 1.27vw, 3.43rem);
+  --step-6: clamp(2.99rem, 2.62rem + 1.80vw, 4.29rem);
+  --step-7: clamp(3.58rem, 3.08rem + 2.53vw, 5.36rem);
+  --step-8: clamp(4.30rem, 3.60rem + 3.53vw, 6.71rem);
+
+  /* The hero word: deliberately larger than the scale. */
+  --display-hero: clamp(3.5rem, 17vw, 15rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 12rem;
+  --space-12: 16rem;
+
+  /* Structure */
+  --rule: 1px;
+  --rule-colour: color-mix(in srgb, var(--ink) 22%, transparent);
+  --measure: 62ch;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --page-max: 90rem;
+
+  /* Motion */
+  --dur-fast: 140ms;
+  --dur: 320ms;
+  --dur-slow: 720ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}

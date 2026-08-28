@@ -1,0 +1,51 @@
+{
+  "rank": 3,
+  "slug": "the-yandere",
+  "name": "The Yandere",
+  "tagline": "Sweetness and menace wearing the same face.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "Dorami",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#12060c",
+      "ink": "#fbeef4",
+      "muted": "#c99bb2",
+      "accent": "#ff4f9a"
+    },
+    "texture": "grain",
+    "signature": "pulse",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

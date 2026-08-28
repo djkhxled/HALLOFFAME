@@ -1,0 +1,51 @@
+{
+  "rank": 8,
+  "slug": "slaughterhouse",
+  "name": "Slaughterhouse",
+  "tagline": "It was the hardest level in the game, and it looked the part.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "icedcave",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#0c0303",
+      "ink": "#ffe9e9",
+      "muted": "#c08585",
+      "accent": "#ff2d2d"
+    },
+    "texture": "grain",
+    "signature": "pulse",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

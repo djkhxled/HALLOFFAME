@@ -1,0 +1,50 @@
+{
+  "rank": 17,
+  "slug": "black-blizzard",
+  "name": "Black Blizzard",
+  "tagline": "A whiteout with teeth.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "KrmaL"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#070809",
+      "ink": "#f4f6f8",
+      "muted": "#a3a9b0",
+      "accent": "#dfe6ee"
+    },
+    "texture": "snow",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

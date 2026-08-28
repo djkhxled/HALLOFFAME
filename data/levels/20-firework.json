@@ -1,0 +1,50 @@
+{
+  "rank": 20,
+  "slug": "firework",
+  "name": "Firework",
+  "tagline": "Bright, brief, and gone before you've understood it.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "cherryteam"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#0b0610",
+      "ink": "#fdeef6",
+      "muted": "#bd94ac",
+      "accent": "#ff6bd6"
+    },
+    "texture": "grain",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}
