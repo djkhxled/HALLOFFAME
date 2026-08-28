@@ -15,6 +15,7 @@ SIGNATURES = frozenset(
         "pulse",
         "fracture",
         "flood",
+        "eclipse",
         "static",
     }
 )
