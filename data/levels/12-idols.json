@@ -6,28 +6,50 @@
   "published": true,
   "facts": {
     "creators": [
-      "Zafkiel7",
-      "and more"
+      "Zafkiel",
+      "Herdys",
+      "Hoshikido",
+      "GeometryTom",
+      "Auntex",
+      "Goyuki",
+      "Selun",
+      "SrGaton",
+      "Mefewe",
+      "Serponge",
+      "Marwec",
+      "Rustam",
+      "Dudex",
+      "Terron",
+      "xcy7",
+      "Evasium",
+      "Panman",
+      "Etzer",
+      "Namtar",
+      "Quasar"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "Zafkiel",
+    "verifier": "DoSh7t",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "48175126",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Idols",
+      "artist": "Virtual Riot",
+      "newgroundsId": null,
+      "nong": true
     },
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Idols",
-      "https://geometry-dash-fan.fandom.com/wiki/Idols"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Idols",
+      "https://pointercrate.com/demonlist/permalink/168/",
+      "https://gdbrowser.com/48175126"
+    ],
+    "note": "A twenty-creator mega-collaboration hosted by Zafkiel, blending 1.9, 2.0 and 2.1 design styles in one level."
   },
   "theme": {
     "tier": "themed",
@@ -47,9 +69,9 @@
     "displayFont": "\"Bungee\", sans-serif"
   },
   "voice": {
-    "hook": "Maximum saturation, zero restraint.",
-    "why": "<p>Idols is loud in a way almost nothing else manages without turning to mud. Magenta, yellow, cyan and green all fighting in the same frame, and it still reads cleanly.</p><p>It shouldn't work. It absolutely works.</p>",
-    "draftedByClaude": true
+    "hook": "Pure, unadulterated joy in megacollab form.",
+    "why": "<p>Idols is pure, unadulterated joy in the form of a Geometry Dash megacollab. Hosted by Zafkiel, it uses Virtual Riot's &ldquo;Idols&rdquo; to create one of the most perfectly synced, vibrant and energetic levels in the game's history.</p><p>Unlike the standard hell-themed extremes, this level is a massive explosion of colour, utilising 1.9, 2.0 and 2.1 design styles that somehow blend together into a cohesive, beautifully paced journey. The way the decoration pulses and shifts exactly with the EDM drops makes it incredibly satisfying to watch, and even more satisfying to play.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

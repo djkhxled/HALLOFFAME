@@ -6,27 +6,57 @@
   "published": true,
   "facts": {
     "creators": [
-      "TCTeam"
+      "TCTeam",
+      "Mactanow",
+      "Sebquero11",
+      "Vapen",
+      "jdfr03",
+      "GaidenHertuny",
+      "Licentious",
+      "MistFix",
+      "para",
+      "Keyblade",
+      "Hko",
+      "Isane",
+      "Brittank88",
+      "Arceus",
+      "Rustam",
+      "Dudex",
+      "Terron",
+      "xcy7",
+      "Evasium",
+      "Panman",
+      "Marwec",
+      "Etzer",
+      "Namtar",
+      "Quasar",
+      "Serponge",
+      "Mefewe",
+      "Zafkiel",
+      "Herdys"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "TCTeam",
+    "verifier": "MrDash",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "44022701",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "God Complex (Remix)",
+      "artist": "dj-Nate",
+      "newgroundsId": "723722"
     },
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Titan_Complex",
-      "https://geometry-dash-fan.fandom.com/wiki/Titan_Complex"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Titan_Complex",
+      "https://pointercrate.com/demonlist/permalink/85/",
+      "https://gdbrowser.com/44022701"
+    ],
+    "note": "A twenty-eight creator mega-collaboration hosted by TCTeam, built to demand competence in every game mode rather than leaning on wave or ship alone."
   },
   "theme": {
     "tier": "themed",
@@ -46,9 +76,9 @@
     "displayFont": "\"Kaushan Script\", cursive"
   },
   "voice": {
-    "hook": "Industrial, and completely airless.",
-    "why": "<p>Titan Complex is oppressive in a way I like. Deep red on black, saw shapes everywhere, structures that look load-bearing rather than decorative.</p><p>The script logo against all that machinery is a genuinely strange choice and it works.</p>",
-    "draftedByClaude": true
+    "hook": "A colossal fortress you have to dismantle.",
+    "why": "<p>Titan Complex is a monumental achievement in megacollab history. Hosted by TCTeam, the level feels like a colossal fortress that you have to slowly dismantle.</p><p>It is famous for its incredibly balanced but brutal difficulty, demanding mastery across every single game mode without leaning too heavily on just the wave or ship. The level's industrial, almost sci-fi mechanical aesthetic is flawlessly executed, and conquering it feels like taking down a massive, impenetrable boss.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

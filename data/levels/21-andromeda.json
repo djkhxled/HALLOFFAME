@@ -8,25 +8,28 @@
     "creators": [
       "Insxne"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "Insxne",
+    "verifier": "Taiago",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "114283297",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.2",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "omnipresent (AIM 2023)",
+      "artist": "WakerLink",
+      "newgroundsId": "1216127"
     },
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Andromeda",
-      "https://geometry-dash-fan.fandom.com/wiki/Andromeda"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Andromeda",
+      "https://pointercrate.com/demonlist/permalink/613/",
+      "https://gdbrowser.com/114283297"
+    ],
+    "note": "A solo level by Insxne, verified by Taiago."
   },
   "theme": {
     "tier": "themed",
@@ -46,9 +49,9 @@
     "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": "Violet tubing and one white core.",
-    "why": "<p>Andromeda gets the hardest thing about space themes right: it feels big. Most levels that try this end up looking like a screensaver.</p><p>The maze tubing winding through the dark gives it structure, and then that white burst in the middle gives it a centre.</p>",
-    "draftedByClaude": true
+    "hook": "The terrifying, empty scale of deep space.",
+    "why": "<p>Andromeda by Insxne captures the terrifying, empty scale of deep space. The theming leans heavily into cosmic visuals, creating an atmosphere that feels grand, isolated and expansive.</p><p>The sync is snappy, and the gameplay flows incredibly well for an extreme demon, utilising gravity shifts and dynamic movements to simulate the feeling of navigating through zero-G. It is a visually striking level that proves space themes can be just as intimidating as the classic hell themes.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

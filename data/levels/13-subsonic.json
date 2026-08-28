@@ -7,17 +7,26 @@
   "facts": {
     "creators": [
       "Viprin",
-      "and more"
+      "Rustam",
+      "Terron",
+      "xcy7",
+      "Evasium",
+      "Dudex",
+      "Panman",
+      "Marwec",
+      "Etzer",
+      "Namtar",
+      "Quasar"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "Viprin",
+    "verifier": "combi",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "33387622",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.0",
     "song": {
       "name": null,
       "artist": null,
@@ -25,9 +34,12 @@
     },
     "peakRank": null,
     "sources": [
-      "https://geometrydash.wiki.gg/wiki/Subsonic",
-      "https://geometry-dash-fan.fandom.com/wiki/Subsonic"
-    ]
+      "https://geometrydash.wiki.gg/wiki/SubSonic",
+      "https://geometry-dash-fan.fandom.com/wiki/SubSonic",
+      "https://pointercrate.com/demonlist/permalink/147/",
+      "https://gdbrowser.com/33387622"
+    ],
+    "note": "An eleven-creator Viprin collaboration, and part of the Sonic lineage that runs through Supersonic and Hypersonic."
   },
   "theme": {
     "tier": "themed",
@@ -47,9 +59,9 @@
     "displayFont": "\"Kaushan Script\", cursive"
   },
   "voice": {
-    "hook": "The template for everything after it.",
-    "why": "<p>Subsonic is on this list partly for what it started. Viprin's collabs set the shape that mega-collaborations still follow, and you can see the whole grammar here already.</p><p>The magenta-and-cyan look has been copied endlessly since. This is where a lot of people saw it first.</p>",
-    "draftedByClaude": true
+    "hook": "Speed pushed to the absolute brink.",
+    "why": "<p>Subsonic is an adrenaline rush that honours the legendary Sonic series &mdash; Supersonic, Hypersonic &mdash; by pushing the speed limits to the absolute brink. Hosted by Viprin, the level's pacing is its defining feature.</p><p>It constantly throws rapid portal transitions and blistering speed changes at you, requiring lightning-fast reflexes and intense muscle memory. The way the megacollab seamlessly stitches together different creators' parts while maintaining that distinct, high-octane Sonic identity makes it a classic extreme demon.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

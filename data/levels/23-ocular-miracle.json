@@ -7,17 +7,18 @@
   "facts": {
     "creators": [
       "Davphla",
-      "and more"
+      "GaidenHertuny",
+      "ZeroSR"
     ],
-    "host": null,
+    "host": "Davphla",
     "verifier": null,
     "verifiedDate": null,
-    "ratedDate": null,
+    "ratedDate": "2020-06-30",
     "attempts": null,
     "levelId": null,
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
       "name": null,
       "artist": null,
@@ -25,9 +26,10 @@
     },
     "peakRank": null,
     "sources": [
-      "https://geometrydash.wiki.gg/wiki/Ocular_Miracle",
-      "https://geometry-dash-fan.fandom.com/wiki/Ocular_Miracle"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Ocular_Miracle",
+      "https://geometrydash.wiki.gg/wiki/Ocular_Miracle"
+    ],
+    "note": "Too large to ship as one level. Davphla reworked it into three separate extremes — Reverie, Faith and Diligence — uploaded on 27 June 2020 to GaidenHertuny's, ZeroSR's and Davphla's accounts respectively, and all rated on 30 June 2020."
   },
   "theme": {
     "tier": "themed",
@@ -47,9 +49,9 @@
     "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": "Something is watching, and it is beautiful about it.",
-    "why": "<p>Ocular Miracle is the one that looks least like a Geometry Dash level. It looks like a book cover &mdash; a real painted planet, red nebula arcs, thin elegant type.</p><p>Everything else on this list shouts. This one doesn't, and it's still unmistakable.</p>",
-    "draftedByClaude": true
+    "hook": "The magnum opus of the Geometry Dash editor.",
+    "why": "<p>Ocular Miracle is the magnum opus of the Geometry Dash editor. Davphla and the team pushed the game's engine to the absolute breaking point, packing in so much stunning, hyper-detailed art that the level literally had to be split into three separate extremes &mdash; Reverie, Faith and Diligence &mdash; just so people could play it without their games crashing.</p><p>It is a sensory explosion of colour, cinematic transitions and breathtaking effects, serving as a monument to what the community's artists can achieve when they completely ignore technical limitations.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

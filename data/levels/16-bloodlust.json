@@ -7,28 +7,52 @@
   "facts": {
     "creators": [
       "Manix648",
-      "and more"
+      "knobbelboy",
+      "Namtar",
+      "Quasar",
+      "Rustam",
+      "Michigun",
+      "Etzer",
+      "Marwec",
+      "Dudex",
+      "Terron",
+      "xcy7",
+      "Evasium",
+      "Panman",
+      "Serponge",
+      "Mefewe",
+      "Zafkiel",
+      "Herdys",
+      "Auntex",
+      "Selun",
+      "Enlex",
+      "Eggnog",
+      "Pennutoh",
+      "Bianox",
+      "GDAllan"
     ],
     "host": "Manix648",
     "verifier": "knobbelboy",
     "verifiedDate": "2018-02-20",
     "ratedDate": null,
     "attempts": "121,296",
-    "levelId": null,
-    "objects": "170,739",
+    "levelId": "42584142",
+    "objects": null,
     "length": "2m 51s",
     "gdVersion": "2.0/2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "At the Speed of Light",
+      "artist": "Dimrain47",
+      "newgroundsId": "467339"
     },
     "peakRank": "#1 on the Demonlist",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Bloodlust",
-      "https://geometry-dash-fan.fandom.com/wiki/Bloodlust"
+      "https://geometry-dash-fan.fandom.com/wiki/Bloodlust",
+      "https://pointercrate.com/demonlist/permalink/161/",
+      "https://gdbrowser.com/42584142"
     ],
-    "note": "A buffed and extended remake of Bloodbath. Taken over by knobbelboy after the previous verifier stepped away."
+    "note": "A buffed and extended remake of Bloodbath, built by Manix648 and published and verified by knobbelboy after 121,296 attempts. He took the verification over when the previous verifier stepped away."
   },
   "theme": {
     "tier": "themed",
@@ -48,9 +72,9 @@
     "displayFont": "\"Cinzel\", serif"
   },
   "voice": {
-    "hook": "Bloodbath, reborn and sharpened.",
-    "why": "<p>Bloodlust is here for what it meant. It took Bloodbath &mdash; already the most famous level in the game &mdash; and rebuilt it harder, then sat at #1.</p><p>knobbelboy verified it himself after 121,296 attempts, having picked it up when the previous verifier stepped away. That number still stops me.</p>",
-    "draftedByClaude": true
+    "hook": "The ultimate realisation of the most famous level in GD history.",
+    "why": "<p>Bloodlust is the ultimate realisation of the most famous level in GD history. Manix648 took Riot's Bloodbath and transformed it into a sprawling, terrifying, apocalyptic extension that pushed the game to its limits.</p><p>But what truly makes Bloodlust immortal is knobbelboy's legendary verification journey. Taking over 120,000 attempts and suffering an utterly heartbreaking, viral death at 98%, his eventual victory remains one of the most hype moments the community has ever seen. The apocalyptic red-and-black aesthetic has never felt more earned.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

@@ -7,27 +7,50 @@
   "facts": {
     "creators": [
       "BIANOX",
-      "and more"
+      "Enlex",
+      "Eggnog",
+      "Marwec",
+      "Rustam",
+      "Pennutoh",
+      "Dudex",
+      "xander556",
+      "Terron",
+      "xcy7",
+      "Evasium",
+      "Panman",
+      "Michigun",
+      "Etzer",
+      "Namtar",
+      "Quasar",
+      "Serponge",
+      "Mefewe",
+      "Zafkiel",
+      "Herdys",
+      "Auntex",
+      "Selun"
     ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "host": "BIANOX",
+    "verifier": "Technical",
+    "verifiedDate": "2019-04-09",
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "52374843",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Sphere",
+      "artist": "Creo",
+      "newgroundsId": "739991"
     },
-    "peakRank": null,
+    "peakRank": "#1 on the Demonlist",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Zodiac",
-      "https://geometry-dash-fan.fandom.com/wiki/Zodiac"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Zodiac",
+      "https://pointercrate.com/demonlist/permalink/219/",
+      "https://gdbrowser.com/52374843"
+    ],
+    "note": "Reached #1 on the Demonlist, taking the position from Bloodlust. xander556 claimed the verification on 28 January 2019 and admitted on 11 June 2019 that he had hacked it; the title passed to Technical, who had beaten it legitimately on 9 April 2019. Published on xander556's account until it was moved to BIANOX's on 14 October 2021."
   },
   "theme": {
     "tier": "themed",
@@ -47,9 +70,9 @@
     "displayFont": "\"Cinzel\", serif"
   },
   "voice": {
-    "hook": "Twenty names on one chart.",
-    "why": "<p>Zodiac earns its place on scale and coherence at once. Twenty-odd creators, and it still holds a single idea from end to end.</p><p>The wheel motif gives every part somewhere to belong, which is exactly what enormous collabs usually lack.</p>",
-    "draftedByClaude": true
+    "hook": "An epic, sprawling odyssey.",
+    "why": "<p>Zodiac feels like an epic, sprawling odyssey. As a former Top 1 Demon, BIANOX and the team created a monumental three-minute journey set to Creo's &ldquo;Sphere.&rdquo; It is heavily segmented, with each creator bringing a distinct astrological theme and design to their part, yet the transitions are smooth enough that it feels like one massive, cohesive gauntlet.</p><p>The sheer intimidation factor of having to clear legendary choke points &mdash; like Enlex's infamous part, or Xander's brutal finale &mdash; makes passing Zodiac a true rite of passage for top players.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

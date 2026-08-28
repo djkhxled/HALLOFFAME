@@ -7,27 +7,36 @@
   "facts": {
     "creators": [
       "BoBoBoBoBoBoBo",
-      "and more"
+      "rWoomy",
+      "Gooseam",
+      "Geemi",
+      "EyeOfTheStorm",
+      "Eridani",
+      "BySelling",
+      "Serponge"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "BoBoBoBoBoBoBo",
+    "verifier": "nSwish",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "60978746",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "ThunderZone v2",
+      "artist": "Waterflame",
+      "newgroundsId": "638150"
     },
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/The_Golden",
-      "https://geometry-dash-fan.fandom.com/wiki/The_Golden"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/The_Golden",
+      "https://pointercrate.com/demonlist/permalink/274/",
+      "https://gdbrowser.com/60978746"
+    ],
+    "note": "An eight-creator collaboration hosted by BoBoBoBoBoBoBo (Bo) and verified by nSwish. A spiritual successor to El Dorado."
   },
   "theme": {
     "tier": "themed",
@@ -47,9 +56,9 @@
     "displayFont": "\"Cinzel\", serif"
   },
   "voice": {
-    "hook": "The most misleading title on the list.",
-    "why": "<p>The Golden isn't gold. It's a hard acid green over near-black, and that misdirection is half of why I like it.</p><p>Green is the hardest colour to make look good in this game &mdash; it goes muddy or radioactive almost every time. This one lands it.</p>",
-    "draftedByClaude": true
+    "hook": "A masterclass in atmospheric pressure.",
+    "why": "<p>The Golden is a masterclass in atmospheric pressure. Hosted by Bo and serving as a spiritual successor to El Dorado, it ditches the game's standard colour palettes for a suffocating, deeply overgrown jungle aesthetic of dark greens and golds.</p><p>The level is notoriously difficult, particularly in its completely unforgiving wave sections, and the visual clutter deliberately plays tricks on your eyes. When nSwish finally verified it, he conquered a level that felt less like a GD layout and more like a hostile, living environment.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

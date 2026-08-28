@@ -6,27 +6,41 @@
   "published": true,
   "facts": {
     "creators": [
-      "cherryteam"
+      "Trick",
+      "Buragoz",
+      "Konsi",
+      "Crouley",
+      "00Zero",
+      "Desumari",
+      "Realvet",
+      "Itami",
+      "Rustam",
+      "Dudex",
+      "Terron",
+      "Marwec"
     ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "host": "Trick",
+    "verifier": "Trick",
+    "verifiedDate": "2021-10-29",
     "ratedDate": null,
-    "attempts": null,
-    "levelId": null,
+    "attempts": "~234,000",
+    "levelId": "75206202",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Classical VIP",
+      "artist": "Rukkus",
+      "newgroundsId": "502268"
     },
-    "peakRank": null,
+    "peakRank": "#1 on the Demonlist (for 18 seconds)",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Firework",
-      "https://geometry-dash-fan.fandom.com/wiki/Firework"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Firework",
+      "https://pointercrate.com/demonlist/permalink/379/",
+      "https://gdbrowser.com/75206202"
+    ],
+    "note": "Verified by Trick after roughly 234,000 attempts. Rated the same day as Slaughterhouse and arcturus, it held #1 on the Demonlist for about 18 seconds — the shortest reign in the list's history — before Slaughterhouse passed it. Its difficulty rests almost entirely on tight timings rather than raw speed."
   },
   "theme": {
     "tier": "themed",
@@ -46,9 +60,9 @@
     "displayFont": "\"Cinzel\", serif"
   },
   "voice": {
-    "hook": "Brief, and very loud about it.",
-    "why": "<p>Firework is all edge and shine &mdash; chrome letters, red light, small tech detail scattered everywhere. It looks expensive.</p><p>It also doesn't outstay its welcome, which on this list is almost a novelty.</p>",
-    "draftedByClaude": true
+    "hook": "A hauntingly beautiful, rhythmic nightmare.",
+    "why": "<p>Firework is a hauntingly beautiful, rhythmic nightmare. It was locked in a legendary battle with Slaughterhouse for the Top 1 spot. Instead of typical extreme demon colours, Firework utilises a stunning, monochromatic greyscale aesthetic that makes it feel like an old, melancholic silent film.</p><p>The gameplay is obscenely difficult, packed with terrifyingly precise cube timings and straight-fly sections that demand absolute perfection. Trick's verification of this level solidified it as an elegant, brutally difficult masterpiece.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

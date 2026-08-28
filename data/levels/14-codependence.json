@@ -6,17 +6,44 @@
   "published": true,
   "facts": {
     "creators": [
-      "TCTeam"
+      "TCTeam",
+      "GaidenHertuny",
+      "para",
+      "Keyblade",
+      "Hko",
+      "Isane",
+      "Brittank88",
+      "Arceus",
+      "Mactanow",
+      "Sebquero11",
+      "Vapen",
+      "jdfr03",
+      "Licentious",
+      "MistFix",
+      "Rustam",
+      "Dudex",
+      "Terron",
+      "xcy7",
+      "Evasium",
+      "Panman",
+      "Marwec",
+      "Etzer",
+      "Namtar",
+      "Quasar",
+      "Serponge",
+      "Mefewe",
+      "Zafkiel",
+      "Herdys"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "TCTeam",
+    "verifier": "Pukklez",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "62556400",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
       "name": null,
       "artist": null,
@@ -25,8 +52,11 @@
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Codependence",
-      "https://geometry-dash-fan.fandom.com/wiki/Codependence"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Codependence",
+      "https://pointercrate.com/demonlist/permalink/511/",
+      "https://gdbrowser.com/62556400"
+    ],
+    "note": "Built for two players. Beating it solo — one hand on each icon — is the completion the community actually talks about."
   },
   "theme": {
     "tier": "themed",
@@ -46,9 +76,9 @@
     "displayFont": "\"Chakra Petch\", sans-serif"
   },
   "voice": {
-    "hook": "A level built as an argument with itself.",
-    "why": "<p>Codependence splits itself down the middle and makes the split the point. Red on top, cyan underneath, and the whole level lives on that tension.</p><p>Committing to one visual idea that hard is rare, and it's why this one sticks.</p>",
-    "draftedByClaude": true
+    "hook": "A level designed for two people, beaten by one.",
+    "why": "<p>Codependence is a mind-bending anomaly in the Geometry Dash community. Created by TCTeam, it is an incredibly brutal Extreme Demon designed specifically for two players, yet the ultimate flex in the community is to beat it entirely solo.</p><p>Controlling two separate icons with two hands through unsymmetrical, intensely difficult gameplay requires an almost inhuman level of brain-splitting coordination. It is a psychological and mechanical puzzle as much as it is a level, standing entirely in a league of its own.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

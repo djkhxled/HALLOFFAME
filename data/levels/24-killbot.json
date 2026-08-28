@@ -8,25 +8,28 @@
     "creators": [
       "Lithifusion"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "Lithifusion",
+    "verifier": "BoldStep",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "38754426",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Sweet Dreams",
+      "artist": "Rukkus",
+      "newgroundsId": "464120"
     },
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Killbot",
-      "https://geometry-dash-fan.fandom.com/wiki/Killbot"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Killbot",
+      "https://pointercrate.com/demonlist/permalink/211/",
+      "https://gdbrowser.com/38754426"
+    ],
+    "note": "A solo level by Lithifusion, verified by BoldStep. Formerly the hardest rated memory level, a title it lost to Nhelv."
   },
   "theme": {
     "tier": "themed",
@@ -46,9 +49,9 @@
     "displayFont": "\"Bungee\", sans-serif"
   },
   "voice": {
-    "hook": "Industrial, unfeeling, extremely good at its job.",
-    "why": "<p>Killbot goes for a colour pairing that should be unusable &mdash; saturated red against saturated green &mdash; and makes it feel violent instead of festive.</p><p>The art is painterly and messy in a game full of clean geometry, which is exactly why it stands out.</p>",
-    "draftedByClaude": true
+    "hook": "A computer virus turned into an Extreme Demon.",
+    "why": "<p>Killbot is what happens when you turn a computer virus into an Extreme Demon. Lithifusion crafted an absolute masterpiece of sensory overload; the level actively tries to blind, confuse and distract you with aggressive screen vomit, flashing warning signs and fake pathways.</p><p>Bold Step's verification was legendary because playing Killbot isn't just about mechanical skill &mdash; it is an intense memory test where you have to decipher the actual gameplay from a chaotic, glitching screen. It is one of the most uniquely themed levels ever made.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

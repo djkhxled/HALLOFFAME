@@ -7,27 +7,55 @@
   "facts": {
     "creators": [
       "Pennutoh",
-      "and more"
+      "Enlex",
+      "Eggnog",
+      "knobbelboy",
+      "Metalface221",
+      "Bianox",
+      "Zanna83",
+      "GDAllan",
+      "Pawe",
+      "Rustam",
+      "Dudex",
+      "Marwec",
+      "Terron",
+      "xcy7",
+      "Evasium",
+      "Panman",
+      "Michigun",
+      "Etzer",
+      "Namtar",
+      "Quasar",
+      "Serponge",
+      "Mefewe",
+      "Zafkiel",
+      "Herdys",
+      "Auntex",
+      "Selun"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "Pennutoh",
+    "verifier": "Golden",
     "verifiedDate": null,
     "ratedDate": null,
-    "attempts": null,
-    "levelId": null,
+    "attempts": "20,423",
+    "levelId": "55274070",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "FREEDOM DiVE",
+      "artist": "xi",
+      "newgroundsId": null,
+      "nong": true
     },
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Freedom08",
-      "https://geometry-dash-fan.fandom.com/wiki/Freedom08"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Freedom08",
+      "https://pointercrate.com/demonlist/permalink/90/",
+      "https://gdbrowser.com/55274070"
+    ],
+    "note": "The decorated evolution of Pennutoh's Spicy Layout #8, built out into a mega-collaboration of 26 creators. Golden verified it after 20,423 attempts. Every part is cut to xi's 'FREEDOM DiVE', which the level carries as a custom song."
   },
   "theme": {
     "tier": "themed",
@@ -47,9 +75,9 @@
     "displayFont": "\"Poppins\", sans-serif"
   },
   "voice": {
-    "hook": "Joy at an unreasonable speed.",
-    "why": "<p>Freedom08 is the one that doesn't look like a demon at all. Cream columns, soft pastels, open light &mdash; and then it plays like everything else here. That contrast is the whole appeal.</p><p>It's a reminder that this difficulty tier doesn't have to mean darkness and red. Somebody decided extreme demons could be pretty and just did it.</p>",
-    "draftedByClaude": true
+    "hook": "An absolute test of human endurance.",
+    "why": "<p>Freedom08 is an absolute test of human endurance and one of the most iconic XL extremes in the game. Hosted by Pennutoh and set to xi's legendary rhythm game anthem &ldquo;FREEDOM DiVE,&rdquo; it perfectly translates the song's chaotic 222-BPM energy into Geometry Dash.</p><p>The level is a masterclass in Pennutoh's signature flow-based gameplay; once you lock into the rhythm, the inputs feel like a beautifully choreographed, high-speed dance. Surviving over four minutes of relentless gameplay only to face the incredibly nerve-wracking final dual is a terrifying but exhilarating experience that cements this level as a stamina masterpiece.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},
