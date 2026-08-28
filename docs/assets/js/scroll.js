@@ -300,7 +300,8 @@
     )
       .to(stage.querySelectorAll("[data-current='a']"), { xPercent: -30, ease: "none" }, 0)
       .to(stage.querySelectorAll("[data-current='b']"), { xPercent: 22, ease: "none" }, 0)
-      .to(stage.querySelectorAll("[data-foam]"), { xPercent: -46, ease: "none" }, 0)
+      /* exactly one tile of the two-tile band, or the loop shows a seam */
+      .to(stage.querySelectorAll("[data-foam]"), { xPercent: -50, ease: "none" }, 0)
       .fromTo(
         stage.querySelectorAll("[data-surge-line]"),
         { opacity: 0, y: 30 },

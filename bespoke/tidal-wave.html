@@ -9,7 +9,82 @@
   <span class="surge__current surge__current--4" data-current="b" data-motion aria-hidden="true"></span>
   <span class="surge__current surge__current--5" data-current="a" data-motion aria-hidden="true"></span>
 
-  <span class="surge__foam" data-foam data-motion aria-hidden="true"></span>
+  <!-- The moving band: churning whitewater over the level's spiked
+       silhouette. Drawn once and used twice so it slides seamlessly. -->
+  <div class="surge__band" data-foam data-motion aria-hidden="true">
+    <svg viewBox="0 0 3200 300" preserveAspectRatio="none" focusable="false">
+      <defs>
+        <linearGradient id="tw-band-foam" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="26%" stop-color="#d9fbff"/>
+          <stop offset="62%" stop-color="#4fd8ff"/>
+          <stop offset="100%" stop-color="#0f77c4"/>
+        </linearGradient>
+        <linearGradient id="tw-band-beam" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#d9fbff" stop-opacity="0"/>
+          <stop offset="40%" stop-color="#d9fbff" stop-opacity="0.65"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </linearGradient>
+
+        <g id="tw-unit">
+          <!-- churning body -->
+          <rect x="0" y="96" width="1600" height="150" fill="url(#tw-band-foam)"/>
+          <!-- bumpy crest, on an 800 period so the repeat is not legible -->
+          <g fill="url(#tw-band-foam)">
+            <circle cx="0" cy="100" r="38"/><circle cx="80" cy="112" r="24"/><circle cx="160" cy="96" r="46"/><circle cx="240" cy="114" r="28"/>
+            <circle cx="320" cy="104" r="34"/><circle cx="400" cy="118" r="20"/><circle cx="480" cy="98" r="42"/><circle cx="560" cy="110" r="30"/>
+            <circle cx="640" cy="102" r="36"/><circle cx="720" cy="116" r="26"/><circle cx="800" cy="100" r="38"/><circle cx="880" cy="112" r="24"/>
+            <circle cx="960" cy="96" r="46"/><circle cx="1040" cy="114" r="28"/><circle cx="1120" cy="104" r="34"/><circle cx="1200" cy="118" r="20"/>
+            <circle cx="1280" cy="98" r="42"/><circle cx="1360" cy="110" r="30"/><circle cx="1440" cy="102" r="36"/><circle cx="1520" cy="116" r="26"/>
+            <circle cx="1600" cy="100" r="38"/>
+          </g>
+          <g fill="url(#tw-band-foam)" opacity="0.85">
+            <circle cx="40" cy="136" r="26"/><circle cx="120" cy="146" r="18"/><circle cx="200" cy="130" r="30"/><circle cx="280" cy="142" r="22"/>
+            <circle cx="360" cy="138" r="28"/><circle cx="440" cy="136" r="26"/><circle cx="520" cy="146" r="18"/><circle cx="600" cy="130" r="30"/>
+            <circle cx="680" cy="142" r="22"/><circle cx="760" cy="138" r="28"/><circle cx="840" cy="136" r="26"/><circle cx="920" cy="146" r="18"/>
+            <circle cx="1000" cy="130" r="30"/><circle cx="1080" cy="142" r="22"/><circle cx="1160" cy="138" r="28"/><circle cx="1240" cy="136" r="26"/>
+            <circle cx="1320" cy="146" r="18"/><circle cx="1400" cy="130" r="30"/><circle cx="1480" cy="142" r="22"/><circle cx="1560" cy="138" r="28"/>
+            <circle cx="1640" cy="136" r="26"/>
+          </g>
+          <!-- white spray riding the crest -->
+          <g fill="#ffffff" opacity="0.95">
+            <circle cx="40" cy="79" r="15"/><circle cx="196" cy="78" r="19"/><circle cx="360" cy="80" r="13"/><circle cx="516" cy="77" r="21"/>
+            <circle cx="680" cy="79" r="17"/><circle cx="840" cy="79" r="15"/><circle cx="996" cy="78" r="19"/><circle cx="1160" cy="80" r="13"/>
+            <circle cx="1316" cy="77" r="21"/><circle cx="1480" cy="79" r="17"/>
+          </g>
+          <!-- shards thrown out of the water -->
+          <g fill="#eafeff">
+            <path d="M120 76 L137 36 L154 76 Z"/><path d="M440 76 L454 42 L468 76 Z"/><path d="M760 76 L780 30 L800 76 Z"/>
+            <path d="M920 76 L937 36 L954 76 Z"/><path d="M1240 76 L1254 42 L1268 76 Z"/><path d="M1560 76 L1580 30 L1600 76 Z"/>
+          </g>
+          <g fill="#8fe8ff" opacity="0.9">
+            <path d="M268 82 L280 58 L292 82 Z"/><path d="M588 82 L598 62 L608 82 Z"/>
+            <path d="M1068 82 L1080 58 L1092 82 Z"/><path d="M1388 82 L1398 62 L1408 82 Z"/>
+          </g>
+          <!-- light shafts punching up through the foam -->
+          <g fill="url(#tw-band-beam)">
+            <rect x="392" y="0" width="16" height="220"/>
+            <rect x="1192" y="0" width="16" height="220"/>
+          </g>
+          <!-- the level's spiked silhouette along the bottom -->
+          <path fill="#071a2e" d="M0 300 L20 236 L40 300 L60 224 L80 300 L100 244 L120 300
+            L140 218 L160 300 L180 240 L200 300 L220 228 L240 300 L260 246 L280 300
+            L300 222 L320 300 L340 236 L360 300 L380 224 L400 300 L420 244 L440 300
+            L460 218 L480 300 L500 240 L520 300 L540 228 L560 300 L580 246 L600 300
+            L620 222 L640 300 L660 236 L680 300 L700 224 L720 300 L740 244 L760 300
+            L780 218 L800 300 L820 240 L840 300 L860 228 L880 300 L900 246 L920 300
+            L940 222 L960 300 L980 236 L1000 300 L1020 224 L1040 300 L1060 244 L1080 300
+            L1100 218 L1120 300 L1140 240 L1160 300 L1180 228 L1200 300 L1220 246 L1240 300
+            L1260 222 L1280 300 L1300 236 L1320 300 L1340 224 L1360 300 L1380 244 L1400 300
+            L1420 218 L1440 300 L1460 240 L1480 300 L1500 228 L1520 300 L1540 246 L1560 300
+            L1580 222 L1600 300 Z"/>
+        </g>
+      </defs>
+
+      <use href="#tw-unit" x="0"/>
+      <use href="#tw-unit" x="1600"/>
+    </svg>
+  </div>
 
   <div class="surge__copy page">
     <p class="eyebrow" data-surge-line data-motion>Three minutes, no rest</p>
