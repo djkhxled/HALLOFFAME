@@ -61,9 +61,15 @@
   position: relative;
 }
 
+/* .hero is a .page, so it carries the page max-width and the art was being
+   cut off at the gutters with a hard vertical edge on each side. Break the
+   art out to the full viewport. left/margin rather than a transform, so no
+   containing block is created for anything inside. */
 .hero__art {
   position: absolute;
-  inset: 0;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  margin-left: -50vw;
   z-index: -1;
   display: grid;
   place-items: center;
