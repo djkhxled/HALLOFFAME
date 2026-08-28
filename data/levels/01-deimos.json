@@ -5,7 +5,10 @@
   "tagline": "Nearly three minutes of mega-collab at the absolute edge of what a level can hold.",
   "published": true,
   "facts": {
-    "creators": ["ItsHybrid", "and more"],
+    "creators": [
+      "ItsHybrid",
+      "and more"
+    ],
     "host": "ItsHybrid",
     "verifier": "Doggie",
     "verifiedDate": "2023-08-05",
@@ -39,7 +42,9 @@
     "texture": "grain",
     "signature": "eclipse",
     "mood": "Gothic horror, not science fiction. A blood eclipse burning behind a ruined keep, blackened cliffs, bats, bone. Heavy grain over everything and an engraved-serif title lit like carved stone.",
-    "googleFonts": ["Cinzel:wght@400;600;800"]
+    "googleFonts": [
+      "Cinzel:wght@400;600;800"
+    ]
   },
   "voice": {
     "hook": "Number one, and it isn't close.",
@@ -52,7 +57,7 @@
       "title": "Deimos (Extreme Demon) by ItsHybrid & more",
       "channel": "YouTube"
     },
-    "art": "src/art/deimos.svg",
+    "art": "src/art/deimos.webp",
     "images": []
   }
 }
