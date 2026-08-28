@@ -125,6 +125,20 @@ class TestBuild(unittest.TestCase):
         self.assertNotIn("voice__drafted", html)
         self.assertIn("voice__body--long", html)
 
+    def test_snow_flakes_render_at_the_size_they_were_drawn(self):
+        """The flake tile must be painted 1:1. Setting background-size larger
+        than the SVG canvas scales every flake up to fill the tile, which is
+        how they ended up ~190px across and swamping the page."""
+        import re
+        css = (ROOT / "src" / "css" / "components.css").read_text(encoding="utf-8")
+        block = css[css.index(".texture--snow::after {"):]
+        block = block[: block.index("}")]
+        canvases = [int(w) for w in re.findall(r"svg[^)]*?width='(\d+)'", block)]
+        sizes = re.search(r"background-size:([^;]+);", block).group(1)
+        tiles = [int(t) for t in re.findall(r"(\d+)px \d+px", sizes)]
+        self.assertEqual(len(canvases), 2, "expected two flake layers")
+        self.assertEqual(canvases, tiles, "flake tiles are being scaled")
+
     def test_notes_are_not_published(self):
         self.assertFalse((DOCS / "superpowers").exists())
         self.assertFalse((DOCS / "specs").exists())
