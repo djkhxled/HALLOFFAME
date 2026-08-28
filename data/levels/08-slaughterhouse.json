@@ -46,12 +46,13 @@
       "accent": "#ff1a1a",
       "accent2": "#ff6a1a"
     },
-    "texture": "grain",
+    "texture": "ember",
     "signature": "pulse",
     "mood": "One enormous demon looming out of red darkness — spiked crown, pentagram brand, burning eyes, jagged jaw. Everything drawn in thin red line on black, breathing on the beat.",
     "googleFonts": [
       "Metal+Mania"
-    ]
+    ],
+    "textureMod": "pentagram"
   },
   "voice": {
     "hook": "Pure, unadulterated intimidation.",

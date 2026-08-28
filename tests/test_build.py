@@ -139,6 +139,31 @@ class TestBuild(unittest.TestCase):
         self.assertEqual(len(canvases), 2, "expected two flake layers")
         self.assertEqual(canvases, tiles, "flake tiles are being scaled")
 
+    def test_pentagrams_render_at_the_size_they_were_drawn(self):
+        """Same invariant as the snow flakes: tile painted 1:1."""
+        import re
+        css = (ROOT / "src" / "css" / "components.css").read_text(encoding="utf-8")
+        block = css[css.index(".texture--ember.texture--pentagram::after {"):]
+        block = block[: block.index("}")]
+        canvases = [int(w) for w in re.findall(r"svg[^)]*?width='(\d+)'", block)]
+        sizes = re.search(r"background-size:([^;]+);", block).group(1)
+        tiles = [int(t) for t in re.findall(r"(\d+)px \d+px", sizes)]
+        self.assertEqual(canvases, tiles, "pentagram tiles are being scaled")
+
+    def test_every_declared_texture_is_implemented(self):
+        """snow, ember, caustics and chrome were all declared by levels and
+        rendered nothing, which is why those pages looked bare."""
+        import json
+        css = (ROOT / "src" / "css" / "components.css").read_text(encoding="utf-8")
+        declared = set()
+        for jf in (ROOT / "data" / "levels").glob("*.json"):
+            rec = json.loads(jf.read_text(encoding="utf-8"))
+            tex = rec["theme"].get("texture")
+            if tex and tex != "none":
+                declared.add(tex)
+        missing = sorted(t for t in declared if f".texture--{t}" not in css)
+        self.assertEqual(missing, [], f"textures with no CSS: {missing}")
+
     def test_notes_are_not_published(self):
         self.assertFalse((DOCS / "superpowers").exists())
         self.assertFalse((DOCS / "specs").exists())
