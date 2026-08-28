@@ -2,50 +2,61 @@
   "rank": 3,
   "slug": "the-yandere",
   "name": "The Yandere",
-  "tagline": "Sweetness and menace wearing the same face.",
-  "published": false,
+  "tagline": "196,956 objects of obsession — clocks, chains, and a whole lot of red.",
+  "published": true,
   "facts": {
     "creators": [
       "Dorami",
+      "CastriX",
+      "DavJT",
+      "Partition",
+      "DanZmeN",
+      "Alderite",
       "and more"
     ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "host": "Dorami",
+    "verifier": "Dorami",
+    "verifiedDate": "2019-03-20",
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
-    "objects": null,
-    "length": null,
-    "gdVersion": null,
+    "levelId": "54615662",
+    "objects": "196,956",
+    "length": "2m 33s",
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
+      "name": "The Yanderes Puppet Show",
+      "artist": "Acid-Notation",
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "note": "A mega-collaboration hosted, verified and published by Dorami, themed on Yandere Simulator. The song is no longer available on Newgrounds.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/The_Yandere",
+      "https://pointercrate.com/demonlist/266/"
+    ]
   },
   "theme": {
-    "tier": "themed",
+    "tier": "bespoke",
     "palette": {
-      "field": "#12060c",
-      "ink": "#fbeef4",
-      "muted": "#c99bb2",
-      "accent": "#ff4f9a"
+      "field": "#0a0304",
+      "ink": "#f8e9eb",
+      "muted": "#bd8b90",
+      "accent": "#ff1636",
+      "accent2": "#ff4d8f"
     },
     "texture": "grain",
-    "signature": "pulse",
-    "mood": null
+    "signature": "slash",
+    "mood": "Black and arterial red, nothing in between. Ghost clock faces turning behind everything, chains, gears, and a torn paint swash under a title that looks cut rather than typed.",
+    "googleFonts": ["Bangers"]
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Obsession, rendered at 196,956 objects.",
+    "why": "<p>The Yandere is on this list because it commits. Plenty of levels pick a theme and decorate around it; this one builds the whole thing out of a single idea and never blinks. The clocks turning in the background, the chains, the red that never lets up &mdash; it all points the same direction.</p><p>It also came out in 2019 and still looks like this. Nearly 200,000 objects on a 2.1 level, hosted and verified by the same person, which is its own kind of stubbornness.</p>",
     "draftedByClaude": true
   },
   "media": {
-    "video": {},
-    "art": null,
+    "video": { "youtubeId": null, "title": null, "channel": null },
+    "art": "src/art/the-yandere.svg",
     "images": []
   }
 }

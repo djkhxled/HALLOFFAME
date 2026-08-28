@@ -182,6 +182,101 @@
     });
   }
 
+  /* Signature: slash — the swash wipes across and the title cuts in. ---- */
+  function slash() {
+    var stage = document.querySelector("[data-sig='slash']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=170%",
+        scrub: 0.7,
+        pin: true,
+      },
+    });
+
+    tl.fromTo(
+      stage.querySelector("[data-swash]"),
+      { scaleX: 0, transformOrigin: "left center" },
+      { scaleX: 1, ease: "none" },
+      0
+    )
+      .fromTo(
+        stage.querySelectorAll("[data-cut]"),
+        { xPercent: -14, opacity: 0, skewX: 14 },
+        { xPercent: 0, opacity: 1, skewX: 0, stagger: 0.16, ease: "power3.out" },
+        0.18
+      )
+      .to(stage.querySelectorAll("[data-hand]"), { rotate: 220, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-hand-slow]"), { rotate: 74, ease: "none" }, 0);
+  }
+
+  /* Signature: prism — the beam sweeps, the lattice drifts apart. ------- */
+  function prism() {
+    var stage = document.querySelector("[data-sig='prism']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=180%",
+        scrub: 0.7,
+        pin: true,
+      },
+    });
+
+    tl.fromTo(
+      stage.querySelector("[data-beam]"),
+      { xPercent: -60, opacity: 0 },
+      { xPercent: 60, opacity: 1, ease: "none" },
+      0
+    )
+      .to(stage.querySelectorAll("[data-drift='a']"), { yPercent: -26, xPercent: -8, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-drift='b']"), { yPercent: 22, xPercent: 10, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelectorAll("[data-split]"),
+        { opacity: 0, letterSpacing: "0.4em" },
+        { opacity: 1, letterSpacing: "0.02em", ease: "power2.out" },
+        0.1
+      );
+  }
+
+  /* Signature: descend — the camera falls, the world rises past it. ----- */
+  function descend() {
+    var stage = document.querySelector("[data-sig='descend']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=200%",
+        scrub: 0.9,
+        pin: true,
+      },
+    });
+
+    tl.to(stage.querySelectorAll("[data-fall='far']"), { yPercent: -30, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-fall='mid']"), { yPercent: -62, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-fall='near']"), { yPercent: -104, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-chain]"), { yPercent: -140, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelector("[data-dark]"),
+        { opacity: 0 },
+        { opacity: 0.72, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelectorAll("[data-desc-line]"),
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.2, ease: "power2.out" },
+        0.15
+      );
+  }
+
   reveals();
   countdown();
 
@@ -189,4 +284,7 @@
   if (sig === "orbit") orbit();
   if (sig === "eclipse") eclipse();
   if (sig === "glitch-assemble") glitchAssemble();
+  if (sig === "slash") slash();
+  if (sig === "prism") prism();
+  if (sig === "descend") descend();
 })();

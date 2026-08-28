@@ -2,50 +2,53 @@
   "rank": 4,
   "slug": "cold-sweat",
   "name": "Cold Sweat",
-  "tagline": "The panic that arrives a half-second before the drop does.",
-  "published": false,
+  "tagline": "Neon wireframe in the dark, and blocks that lie to you.",
+  "published": true,
   "facts": {
-    "creators": [
-      "Para",
-      "and more"
-    ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "creators": ["para", "Sminx", "Wulzy"],
+    "host": "para",
+    "verifier": "Kapinapi",
+    "verifiedDate": "2020-09-13",
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "76543324",
     "objects": null,
-    "length": null,
-    "gdVersion": null,
+    "length": "2m 06s",
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Pagoda",
+      "artist": "Xomu",
+      "newgroundsId": "837148"
     },
     "peakRank": null,
-    "sources": []
+    "note": "Known for its fake blocks, placed to mislead the player.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Cold_Sweat",
+      "https://pointercrate.com/demonlist/168/"
+    ]
   },
   "theme": {
-    "tier": "themed",
+    "tier": "bespoke",
     "palette": {
-      "field": "#050d12",
-      "ink": "#e9f6fb",
-      "muted": "#8fb4c4",
-      "accent": "#38d6f5"
+      "field": "#05070d",
+      "ink": "#e9f2ff",
+      "muted": "#93a5bd",
+      "accent": "#4de2ff",
+      "accent2": "#ff5ce0"
     },
-    "texture": "grain",
-    "signature": "flood",
-    "mood": null
+    "texture": "scanline",
+    "signature": "prism",
+    "mood": "Cold and clinical. White wireframe geometry receding into black, hard scanlines across everything, chromatic split on the type, and one rainbow prism beam cutting the frame diagonally.",
+    "googleFonts": ["Poppins:wght@300;500;600"]
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "The one that lies to you.",
+    "why": "<p>Cold Sweat earns its place on nerve. The fake blocks are the whole thesis &mdash; a level that decorates itself with things that look solid and aren't, so you spend the run doubting what you're seeing. That is a genuinely mean idea, executed cleanly.</p><p>And it looks incredible doing it. White wireframe against near-black, scanlines, that one prism streak. It's the coldest-looking level on this list and the name fits perfectly.</p>",
     "draftedByClaude": true
   },
   "media": {
-    "video": {},
-    "art": null,
+    "video": { "youtubeId": null, "title": null, "channel": null },
+    "art": "src/art/cold-sweat.svg",
     "images": []
   }
 }
