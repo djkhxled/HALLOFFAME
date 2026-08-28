@@ -45,10 +45,19 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
     theme = level.get("theme") or {}
     media = level.get("media") or {}
 
+    # SVG is inlined so level CSS can reach into it; raster art ships as an
+    # <img> and is served from the copied asset tree.
     art_html = ""
     art_rel = media.get("art")
     if art_rel:
-        art_html = read(ROOT / art_rel)
+        if art_rel.endswith(".svg"):
+            art_html = read(ROOT / art_rel)
+        else:
+            name = pathlib.Path(art_rel).name
+            art_html = (
+                f'<img class="hero__img" src="/assets/art/{name}" alt="" '
+                f'fetchpriority="high" decoding="async">'
+            )
 
     bespoke_path = ROOT / "bespoke" / f"{slug}.html"
     bespoke_html = read(bespoke_path) if bespoke_path.exists() else ""

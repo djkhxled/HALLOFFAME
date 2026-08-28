@@ -8,8 +8,11 @@ philosophy in notes/design/deimos-philosophy.md.
 
 Pillow only — no numpy on this machine.
 
-Usage: python3 tools/render_deimos.py [--scale 1.0]
-Writes: src/art/deimos.png
+Usage: python3 tools/render_deimos.py [--scale 1.0] [--png]
+Writes: src/art/deimos.webp (and the full PNG with --png)
+
+WebP is what ships: the same 2400x1350 frame is ~94 KB lossy against ~1.1 MB
+as PNG, and a hero image is not worth a megabyte.
 """
 
 import argparse
@@ -20,7 +23,8 @@ import random
 from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OUT = ROOT / "src" / "art" / "deimos.png"
+OUT = ROOT / "src" / "art" / "deimos.webp"
+OUT_PNG = ROOT / "src" / "art" / "deimos.png"
 
 W, H = 2400, 1350
 
@@ -442,9 +446,17 @@ def render(scale=1.0):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--scale", type=float, default=1.0)
+    ap.add_argument("--png", action="store_true",
+                    help="also write the lossless PNG (not shipped)")
     args = ap.parse_args()
+
     out = render(args.scale)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    out.save(OUT, "PNG", optimize=True)
+    out.save(OUT, "WEBP", quality=92, method=6)
     print(f"wrote {OUT.relative_to(ROOT)}  {out.size[0]}x{out.size[1]}  "
           f"{OUT.stat().st_size // 1024} KB")
+
+    if args.png:
+        out.save(OUT_PNG, "PNG", optimize=True)
+        print(f"wrote {OUT_PNG.relative_to(ROOT)}  "
+              f"{OUT_PNG.stat().st_size // 1024} KB")
