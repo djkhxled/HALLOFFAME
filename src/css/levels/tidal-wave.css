@@ -18,7 +18,15 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 2.2rem color-mix(in srgb, var(--accent) 55%, transparent));
+  /* The art behind this is dense, so the title needs a dark rim before any
+     glow will read. Stacked tight shadows build the outline; the wide one
+     puts the light back around it. */
+  filter:
+    drop-shadow(0 0 2px #01060c)
+    drop-shadow(0 0 4px #01060c)
+    drop-shadow(0 0 9px rgba(1, 6, 12, 0.95))
+    drop-shadow(0 0 20px rgba(1, 6, 12, 0.75))
+    drop-shadow(0 0 2.8rem color-mix(in srgb, var(--accent) 60%, transparent));
 }
 
 [data-level="tidal-wave"] .hero__eyebrow,

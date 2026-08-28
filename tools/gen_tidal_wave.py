@@ -7,7 +7,6 @@ The level's vocabulary, taken from in-game reference:
   - nested chevron arrows in the block centres
   - black spiked saw stars with a glowing core
   - jagged teeth along ceiling and floor
-  - the player's glowing trail and ship
   - fine particulate everywhere
 
 Usage: python3 tools/gen_tidal_wave.py
@@ -162,10 +161,6 @@ def build():
       '<stop offset="0%" stop-color="#2f9ff0" stop-opacity="0.88"/>'
       '<stop offset="52%" stop-color="#1560b8" stop-opacity="0.82"/>'
       '<stop offset="100%" stop-color="#0a2f66" stop-opacity="0.88"/></linearGradient>')
-    a('<linearGradient id="tw-trail" x1="0" y1="0" x2="1" y2="0">'
-      '<stop offset="0%" stop-color="#ff2f6b" stop-opacity="0"/>'
-      '<stop offset="30%" stop-color="#ff2f6b"/>'
-      '<stop offset="100%" stop-color="#ff8fb0"/></linearGradient>')
     a('<radialGradient id="tw-core" cx="50%" cy="50%" r="50%">'
       '<stop offset="0%" stop-color="#ffffff"/>'
       '<stop offset="40%" stop-color="#4fd8ff"/>'
@@ -228,23 +223,6 @@ def build():
     for x, y, s in ((392, 300, 1.0), (1120, 520, 0.86), (1490, 860, 1.1),
                     (250, 560, 0.66)):
         a(f'<use href="#tw-saw" transform="translate({x} {y}) scale({s})"/>')
-
-    # ---- the player's trail and ship ----
-    a('<g>')
-    a('<path d="M-60 760 L200 470 L330 640" fill="none" stroke="url(#tw-trail)" '
-      'stroke-width="26" stroke-linejoin="round" stroke-linecap="round" '
-      'opacity="0.95"/>')
-    a('<path d="M-60 760 L200 470 L330 640" fill="none" stroke="#ffd9e4" '
-      'stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>')
-    a('<path d="M-60 760 L200 470 L330 640" fill="none" stroke="#ff2f6b" '
-      'stroke-width="44" stroke-linejoin="round" opacity="0.28" '
-      'filter="url(#tw-soft)"/>')
-    a('<g transform="translate(348 664) rotate(52)">'
-      '<path d="M-34 -26 L46 0 L-34 26 L-18 0 Z" fill="#ff2f6b"/>'
-      '<path d="M-34 -26 L46 0 L-34 26 L-18 0 Z" fill="none" stroke="#ffd9e4" '
-      'stroke-width="4"/>'
-      '<path d="M-16 -10 L20 0 L-16 10 L-8 0 Z" fill="#2a0410"/></g>')
-    a('</g>')
 
     # ---- small stepped pixel decorations ----
     for bx, by, st in ((880, 470, 1), (1268, 388, -1), (520, 560, 1)):
