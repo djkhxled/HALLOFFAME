@@ -23,6 +23,12 @@
   /* Shared: sections rise into place as they enter. ---------------------- */
   function reveals() {
     gsap.utils.toArray(".section").forEach(function (el) {
+      /* Never transform a section that contains triggers of its own. A
+         transformed ancestor corrupts how ScrollTrigger measures everything
+         inside it — this is what left the countdown's starts thousands of
+         pixels negative and its palette stuck on one level. */
+      if (el.querySelector(".countdown, [data-sig]")) return;
+
       gsap.from(el, {
         opacity: 0,
         y: 36,
@@ -56,6 +62,51 @@
       });
     }
 
+    /* Pick the entry nearest the viewport centre, read live on every frame.
+
+       This deliberately does not use ScrollTrigger. Its ranges are computed
+       once and cached, and on this page they were being computed before the
+       hero art and webfonts settled — leaving starts thousands of pixels
+       negative, 34 of 50 triggers "active" at scroll 0, and the palette stuck
+       on whichever level won the race. Reading geometry live cannot go stale,
+       and this is one cheap measurement per frame while scrolling. */
+    var ticking = false;
+    var worn = null;
+
+    function pick() {
+      ticking = false;
+      var mid = window.innerHeight / 2;
+      var best = null;
+      var bestDist = Infinity;
+
+      for (var i = 0; i < entries.length; i++) {
+        var r = entries[i].getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        var d = Math.abs((r.top + r.bottom) / 2 - mid);
+        if (d < bestDist) {
+          bestDist = d;
+          best = entries[i];
+        }
+      }
+
+      if (best !== worn) {
+        worn = best;
+        wear(best);
+      }
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(pick);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    pick();
+
+    /* The name reveals can stay on ScrollTrigger: if one fires a little early
+       or late it is invisible, unlike the page changing colour. */
     entries.forEach(function (entry) {
       gsap.from(entry.querySelector(".countdown__name"), {
         opacity: 0,
@@ -64,25 +115,6 @@
         ease: "power3.out",
         scrollTrigger: { trigger: entry, start: "top 88%" },
       });
-
-      if (!entry.style.getPropertyValue("--field")) return;
-      window.ScrollTrigger.create({
-        trigger: entry,
-        start: "top 60%",
-        end: "bottom 40%",
-        onToggle: function (self) {
-          if (self.isActive) wear(entry);
-        },
-      });
-    });
-
-    /* Back above the countdown, the site returns to its own palette. */
-    window.ScrollTrigger.create({
-      trigger: ".countdown",
-      start: "top 60%",
-      onToggle: function (self) {
-        if (!self.isActive) wear(null);
-      },
     });
   }
 
@@ -467,6 +499,42 @@
 
   reveals();
   countdown();
+
+  /* Triggers are created from a layout that has not settled: the hero art is
+     a large inline SVG and the display faces are webfonts, both of which
+     change the page height after this script runs. Stale measurements are not
+     cosmetic - on the landing page they left 34 of 50 triggers reporting
+     active at scroll 0, so the countdown's palette stuck on whichever level
+     won the race.
+
+     Firing on load and on fonts.ready is not enough on its own, because both
+     can resolve before the art has finished laying out. Watching the document
+     height instead means we re-measure whenever the page actually moves,
+     whatever caused it. */
+  function settle() {
+    window.ScrollTrigger.refresh();
+  }
+
+  if (document.readyState === "complete") {
+    settle();
+  } else {
+    window.addEventListener("load", settle, { once: true });
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(settle);
+  }
+
+  if (window.ResizeObserver) {
+    var lastHeight = document.documentElement.scrollHeight;
+    var pending;
+    new ResizeObserver(function () {
+      var h = document.documentElement.scrollHeight;
+      if (Math.abs(h - lastHeight) < 4) return;
+      lastHeight = h;
+      clearTimeout(pending);
+      pending = setTimeout(settle, 60);
+    }).observe(document.body);
+  }
 
   var sig = document.documentElement.dataset.signature;
   if (sig === "fracture") fracture();

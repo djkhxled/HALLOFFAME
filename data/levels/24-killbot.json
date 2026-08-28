@@ -2,8 +2,8 @@
   "rank": 24,
   "slug": "killbot",
   "name": "Killbot",
-  "tagline": "Industrial, unfeeling, extremely good at its job.",
-  "published": false,
+  "tagline": "Red against green, painted rather than built.",
+  "published": true,
   "facts": {
     "creators": [
       "Lithifusion"
@@ -23,28 +23,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Killbot",
+      "https://geometry-dash-fan.fandom.com/wiki/Killbot"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#08090b",
-      "ink": "#eef1f5",
-      "muted": "#99a1ac",
-      "accent": "#ff5a3c"
+      "field": "#0a0f06",
+      "ink": "#ffeaea",
+      "muted": "#b09090",
+      "accent": "#ff2020",
+      "accent2": "#3cff3c"
     },
-    "texture": "chrome",
-    "signature": "static",
-    "mood": null
+    "texture": "grain",
+    "signature": "slash",
+    "mood": null,
+    "googleFonts": [
+      "Bungee"
+    ],
+    "displayFont": "\"Bungee\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Industrial, unfeeling, extremely good at its job.",
+    "why": "<p>Killbot goes for a colour pairing that should be unusable &mdash; saturated red against saturated green &mdash; and makes it feel violent instead of festive.</p><p>The art is painterly and messy in a game full of clean geometry, which is exactly why it stands out.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/killbot.svg",
     "images": []
   }
 }

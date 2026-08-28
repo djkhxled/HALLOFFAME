@@ -294,12 +294,15 @@ a.countdown__hit:focus-visible {
 
 /* Level hero ------------------------------------------------------------ */
 
+/* Raw --accent is unreadable against its own field on several levels
+   (deep red on deep red). Blending toward ink keeps the accent's character
+   while guaranteeing it separates. */
 .level-hero__rank {
   font-family: var(--font-mono);
   font-size: var(--step--1);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: color-mix(in srgb, var(--accent) 45%, var(--ink));
 }
 
 .level-hero__title {

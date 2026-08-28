@@ -5,8 +5,10 @@ Usage: python3 build.py
 Exit 0 on success, 1 if validation fails (nothing is written on failure).
 """
 
+import hashlib
 import json
 import pathlib
+import re
 import shutil
 import sys
 
@@ -16,6 +18,23 @@ from hall.data import load_levels, validate_levels, voice_progress
 ROOT = pathlib.Path(__file__).resolve().parent
 DOCS = ROOT / "docs"
 TEMPLATES = ROOT / "templates"
+
+
+def asset_stamp() -> str:
+    """A short hash over every CSS and JS file.
+
+    Browsers cache /assets/... aggressively, so a rebuilt stylesheet can keep
+    showing the old page and look like a bug in the change rather than in the
+    cache. Stamping the URLs makes a rebuild always win, and the stamp only
+    moves when the assets actually do.
+    """
+    h = hashlib.sha256()
+    for sub in ("css", "js"):
+        for f in sorted((ROOT / "src" / sub).rglob("*")):
+            if f.is_file():
+                h.update(f.name.encode())
+                h.update(f.read_bytes())
+    return h.hexdigest()[:10]
 
 
 def read(path: pathlib.Path) -> str:
@@ -108,8 +127,14 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
             f'&display=swap" rel="stylesheet">'
         )
 
+    # A themed level owns no stylesheet, so its display face is declared
+    # here; bespoke levels can still override it in their own CSS.
+    face = theme.get("displayFont")
+    face_rule = f"--font-display:{face};" if face else ""
+
     head_extra += (
-        f"<style>[data-level=\"{slug}\"] .hero__title{{font-size:"
+        f"<style>[data-level=\"{slug}\"]{{{face_rule}}}"
+        f"[data-level=\"{slug}\"] .hero__title{{font-size:"
         f"{render.hero_size(level['name'])}}}</style>"
     )
     if css_path.exists():
@@ -187,7 +212,14 @@ def main() -> int:
     index_tpl = read(TEMPLATES / "index.html")
     level_tpl = read(TEMPLATES / "level.html")
 
-    write(DOCS / "index.html", build_index(levels, site, base_tpl, index_tpl))
+    stamp = asset_stamp()
+
+    def stamped(html: str) -> str:
+        return re.sub(r'(/assets/(?:css|js)/[^"\']+?\.(?:css|js))',
+                      lambda m: f"{m.group(1)}?v={stamp}", html)
+
+    write(DOCS / "index.html",
+          stamped(build_index(levels, site, base_tpl, index_tpl)))
     pages = 1
 
     published = [lv for lv in levels if lv.get("published")]
@@ -197,7 +229,7 @@ def main() -> int:
         nxt = by_rank.get(level["rank"] + 1)
         prev = prev if prev and prev.get("published") else None
         nxt = nxt if nxt and nxt.get("published") else None
-        html = build_level(level, site, prev, nxt, base_tpl, level_tpl)
+        html = stamped(build_level(level, site, prev, nxt, base_tpl, level_tpl))
         write(DOCS / "levels" / level["slug"] / "index.html", html)
         pages += 1
 

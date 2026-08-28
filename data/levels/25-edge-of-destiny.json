@@ -2,8 +2,8 @@
   "rank": 25,
   "slug": "edge-of-destiny",
   "name": "Edge of Destiny",
-  "tagline": "Where the list begins, and the climb starts.",
-  "published": false,
+  "tagline": "Where the list begins — a blazing cyan core and a lot of blue.",
+  "published": true,
   "facts": {
     "creators": [
       "CDMusic",
@@ -24,28 +24,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Edge_of_Destiny",
+      "https://geometry-dash-fan.fandom.com/wiki/Edge_of_Destiny"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#050810",
-      "ink": "#eaeeff",
-      "muted": "#8f97b8",
-      "accent": "#6f8cff"
+      "field": "#040a28",
+      "ink": "#eafaff",
+      "muted": "#8fa8d0",
+      "accent": "#2ad4ff",
+      "accent2": "#6b8cff"
     },
-    "texture": "starfield",
-    "signature": "static",
-    "mood": null
+    "texture": "caustics",
+    "signature": "surge",
+    "mood": null,
+    "googleFonts": [
+      "Saira:wght@300;700"
+    ],
+    "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Number twenty-five, and still on the list.",
+    "why": "<p>Edge of Destiny closes out the list, and that's not a slight. Everything here beat out hundreds of levels to be on it at all.</p><p>That cyan blast against layered dark blue platforms is a genuinely great piece of composition, and it's the level I'd point at to explain what I mean by atmosphere.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/edge-of-destiny.svg",
     "images": []
   }
 }

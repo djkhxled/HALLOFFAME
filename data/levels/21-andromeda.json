@@ -3,7 +3,7 @@
   "slug": "andromeda",
   "name": "Andromeda",
   "tagline": "A galaxy you are asked to cross on foot.",
-  "published": false,
+  "published": true,
   "facts": {
     "creators": [
       "Insxne"
@@ -23,28 +23,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Andromeda",
+      "https://geometry-dash-fan.fandom.com/wiki/Andromeda"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#06081a",
-      "ink": "#eceeff",
-      "muted": "#9295c4",
-      "accent": "#7c7dff"
+      "field": "#080326",
+      "ink": "#efeaff",
+      "muted": "#a099cc",
+      "accent": "#7c5cff",
+      "accent2": "#3ccfff"
     },
     "texture": "starfield",
-    "signature": "static",
-    "mood": null
+    "signature": "orbit",
+    "mood": null,
+    "googleFonts": [
+      "Saira:wght@300;600"
+    ],
+    "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Violet tubing and one white core.",
+    "why": "<p>Andromeda gets the hardest thing about space themes right: it feels big. Most levels that try this end up looking like a screensaver.</p><p>The maze tubing winding through the dark gives it structure, and then that white burst in the middle gives it a centre.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/andromeda.svg",
     "images": []
   }
 }

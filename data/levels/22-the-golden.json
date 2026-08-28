@@ -2,8 +2,8 @@
   "rank": 22,
   "slug": "the-golden",
   "name": "The Golden",
-  "tagline": "Gilded, and heavier than it looks.",
-  "published": false,
+  "tagline": "Not gold at all — acid green, and heavier than it looks.",
+  "published": true,
   "facts": {
     "creators": [
       "BoBoBoBoBoBoBo",
@@ -24,28 +24,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/The_Golden",
+      "https://geometry-dash-fan.fandom.com/wiki/The_Golden"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#0d0a03",
-      "ink": "#fff6e2",
-      "muted": "#c7ab77",
-      "accent": "#ffc44d"
+      "field": "#050f06",
+      "ink": "#f2ffe6",
+      "muted": "#9dbf8f",
+      "accent": "#b6ff2a",
+      "accent2": "#ffe14d"
     },
-    "texture": "chrome",
-    "signature": "static",
-    "mood": null
+    "texture": "grain",
+    "signature": "ignite",
+    "mood": null,
+    "googleFonts": [
+      "Cinzel:wght@600;800"
+    ],
+    "displayFont": "\"Cinzel\", serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "The most misleading title on the list.",
+    "why": "<p>The Golden isn't gold. It's a hard acid green over near-black, and that misdirection is half of why I like it.</p><p>Green is the hardest colour to make look good in this game &mdash; it goes muddy or radioactive almost every time. This one lands it.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/the-golden.svg",
     "images": []
   }
 }

@@ -2,8 +2,8 @@
   "rank": 18,
   "slug": "maniacal-chains",
   "name": "Maniacal Chains",
-  "tagline": "Restraint as a design principle, then abandoned.",
-  "published": false,
+  "tagline": "A single cyan beam through mirrored chains and teeth.",
+  "published": true,
   "facts": {
     "creators": [
       "LordDivinity"
@@ -23,28 +23,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Maniacal_Chains",
+      "https://geometry-dash-fan.fandom.com/wiki/Maniacal_Chains"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#08070a",
-      "ink": "#f1eef4",
-      "muted": "#a096ac",
-      "accent": "#b06bff"
+      "field": "#010708",
+      "ink": "#e8fffe",
+      "muted": "#7fb8b4",
+      "accent": "#25e8e0",
+      "accent2": "#8ff5f0"
     },
-    "texture": "grain",
-    "signature": "static",
-    "mood": null
+    "texture": "chrome",
+    "signature": "descend",
+    "mood": null,
+    "googleFonts": [
+      "Saira:wght@300;700"
+    ],
+    "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Symmetry used as a threat.",
+    "why": "<p>Maniacal Chains builds almost everything around one horizontal axis and mirrors it. The result is unnervingly clean for something this aggressive.</p><p>That teal is doing an enormous amount of work against all the black.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/maniacal-chains.svg",
     "images": []
   }
 }

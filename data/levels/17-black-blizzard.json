@@ -2,49 +2,58 @@
   "rank": 17,
   "slug": "black-blizzard",
   "name": "Black Blizzard",
-  "tagline": "A whiteout with teeth.",
-  "published": false,
+  "tagline": "Pure black and white, and four months to verify.",
+  "published": true,
   "facts": {
     "creators": [
       "KrmaL"
     ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "host": "KrmaL",
+    "verifier": "KrmaL",
+    "verifiedDate": "2017-05-21",
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "34057654",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.0/2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Dimension",
+      "artist": "hyperdemented",
+      "newgroundsId": "709578"
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Black_Blizzard",
+      "https://geometry-dash-fan.fandom.com/wiki/Black_Blizzard"
+    ],
+    "note": "Created, verified and published solo by KrmaL; verification took about four months."
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#070809",
+      "field": "#050506",
       "ink": "#f4f6f8",
-      "muted": "#a3a9b0",
-      "accent": "#dfe6ee"
+      "muted": "#9aa0a8",
+      "accent": "#c9cdd4",
+      "accent2": "#8f959e"
     },
     "texture": "snow",
     "signature": "static",
-    "mood": null
+    "mood": null,
+    "googleFonts": [
+      "Saira:wght@300;600"
+    ],
+    "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "No colour at all, and it doesn't need any.",
+    "why": "<p>Black Blizzard is the most restrained level on this list by a mile. White line on black, nothing else, and it still has more presence than levels doing ten times as much.</p><p>KrmaL made it, verified it and published it alone, over four months. He also used to ban people from his stream for revealing the song, which I find very funny.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/black-blizzard.svg",
     "images": []
   }
 }

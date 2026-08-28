@@ -2,8 +2,8 @@
   "rank": 15,
   "slug": "zodiac",
   "name": "Zodiac",
-  "tagline": "Star charts drawn by somebody with something to prove.",
-  "published": false,
+  "tagline": "A twenty-creator collab built around the astrological wheel.",
+  "published": true,
   "facts": {
     "creators": [
       "BIANOX",
@@ -24,28 +24,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Zodiac",
+      "https://geometry-dash-fan.fandom.com/wiki/Zodiac"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#080614",
-      "ink": "#f0eeff",
-      "muted": "#9c96c6",
-      "accent": "#9d7bff"
+      "field": "#0d0620",
+      "ink": "#f0ecff",
+      "muted": "#a099c8",
+      "accent": "#6b7cff",
+      "accent2": "#ff6bd0"
     },
     "texture": "starfield",
-    "signature": "static",
-    "mood": null
+    "signature": "orbit",
+    "mood": null,
+    "googleFonts": [
+      "Cinzel:wght@600"
+    ],
+    "displayFont": "\"Cinzel\", serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Twenty names on one chart.",
+    "why": "<p>Zodiac earns its place on scale and coherence at once. Twenty-odd creators, and it still holds a single idea from end to end.</p><p>The wheel motif gives every part somewhere to belong, which is exactly what enormous collabs usually lack.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/zodiac.svg",
     "images": []
   }
 }

@@ -2,8 +2,8 @@
   "rank": 20,
   "slug": "firework",
   "name": "Firework",
-  "tagline": "Bright, brief, and gone before you've understood it.",
-  "published": false,
+  "tagline": "Chrome and crimson, bright and gone before you've understood it.",
+  "published": true,
   "facts": {
     "creators": [
       "cherryteam"
@@ -23,28 +23,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Firework",
+      "https://geometry-dash-fan.fandom.com/wiki/Firework"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#0b0610",
-      "ink": "#fdeef6",
-      "muted": "#bd94ac",
-      "accent": "#ff6bd6"
+      "field": "#0c0508",
+      "ink": "#fdecef",
+      "muted": "#c08f97",
+      "accent": "#ff2f45",
+      "accent2": "#7ad4e8"
     },
-    "texture": "grain",
-    "signature": "static",
-    "mood": null
+    "texture": "ember",
+    "signature": "ignite",
+    "mood": null,
+    "googleFonts": [
+      "Cinzel:wght@600"
+    ],
+    "displayFont": "\"Cinzel\", serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Brief, and very loud about it.",
+    "why": "<p>Firework is all edge and shine &mdash; chrome letters, red light, small tech detail scattered everywhere. It looks expensive.</p><p>It also doesn't outstay its welcome, which on this list is almost a novelty.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/firework.svg",
     "images": []
   }
 }
