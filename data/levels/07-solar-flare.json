@@ -5,7 +5,10 @@
   "tagline": "Nine Circles rebuilt as a sun — gold, geometry, and a smiling star called Janet.",
   "published": true,
   "facts": {
-    "creators": ["Linear", "Rynoxious"],
+    "creators": [
+      "Linear",
+      "rynoxious"
+    ],
     "host": "Linear",
     "verifier": "swiborg",
     "verifiedDate": "2023-04-29",
@@ -15,12 +18,17 @@
     "objects": null,
     "length": null,
     "gdVersion": "2.1",
-    "song": { "name": null, "artist": null, "newgroundsId": null },
+    "song": {
+      "name": "Solar Wind",
+      "artist": "Jumper",
+      "newgroundsId": "493898"
+    },
     "peakRank": null,
-    "note": "A heavily buffed remake of the 1.9 Nine Circles level Solar Circles. The smiling sun in the level is named Janet.",
+    "note": "A heavily buffed remake of the 1.9 Medium Demon Solar Circles. Text reading 'GLHF' flashes at 31%, during the half-speed ball section. The smiling sun at 52-54% is named Janet. Contains 89 frame perfects at 60 FPS. The fourth-hardest Nine Circles level, behind Sakupen Circles, The Hallucination and Subsuming Vortex.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Solar_Flare",
-      "https://geometry-dash-fan.fandom.com/wiki/Solar_Flare"
+      "https://geometry-dash-fan.fandom.com/wiki/Solar_Flare",
+      "https://pointercrate.com/demonlist/permalink/495/"
     ]
   },
   "theme": {
@@ -35,15 +43,43 @@
     "texture": "ember",
     "signature": "ignite",
     "mood": "Molten gold on near-black. A sun disc with a hard corona, radiating sunburst blades, spoked medallions turning like gears, and heavy beveled letters lit white-hot from inside.",
-    "googleFonts": ["Bungee"]
+    "googleFonts": [
+      "Bungee"
+    ]
   },
   "voice": {
-    "hook": "A Nine Circles level that became a sun.",
-    "why": "<p>Solar Flare takes the most overdone format in the game and makes it feel enormous. It's a remake of Solar Circles, buffed to the point of being a different level entirely, and every part of it is built around one idea &mdash; heat.</p><p>The gold is what sells it. Most levels that go for orange end up muddy; this one keeps the blacks genuinely black so the gold reads as light rather than paint. And it has a smiling sun named Janet in it, which I think about more than I should.</p>",
-    "draftedByClaude": true
+    "hook": "An absolute triumph of the Nine Circles style.",
+    "why": "<p>Solar Flare is an absolute triumph of the Nine Circles style. Created by Linear and rynoxious and verified by swiborg, it takes the classic 2.0-era epileptic wave trend and modernizes it into a breathtaking 2.1 Extreme Demon. Instead of relying on the usual dark or neon colors, the level is themed entirely around the sun and stars, utilizing a beautiful but blistering palette of yellow, orange and dark grey.</p><p>The synchronization with the song &ldquo;Solar Wind&rdquo; by Jumper is phenomenal, driving the relentless momentum of the level. The pre-drop lulls you into a false sense of security with difficult but manageable cube and ship sections, famously flashing a cheeky &lsquo;GLHF&rsquo; text at 31% before all hell breaks loose. Once the drop hits, it becomes one of the hardest Nine Circles waves in the game. It throws an absurd amount of tight wave corridors, invisible quadruple-speed changes, and even a memory section disguised as starry constellations right at you.</p><p>My favorite detail about Solar Flare is the incredible personality baked into the background. During the drop, a giant smiley-faced sun affectionately named &ldquo;Janet&rdquo; watches you play. The creators added an amazing easter egg: if you crash at any point during the first half of the wave, Janet instantly turns into a sad, black face. It is an incredible touch of humor in a level packed with 89 agonizing 60 FPS frame-perfect inputs. Solar Flare proves that you can make a punishingly difficult level while still giving it a massive amount of charm and &ldquo;almost being a shape.&rdquo;</p>",
+    "draftedByClaude": false,
+    "arc": [
+      {
+        "label": "The pre-drop",
+        "at": null,
+        "note": "Difficult but manageable cube and ship. A false sense of security."
+      },
+      {
+        "label": "GLHF",
+        "at": "31%",
+        "note": "Flashed at half speed, during the ball. Then all hell breaks loose."
+      },
+      {
+        "label": "The drop",
+        "at": null,
+        "note": "One of the hardest Nine Circles waves in the game."
+      },
+      {
+        "label": "Janet",
+        "at": "52-54%",
+        "note": "The smiling sun watching you play. Crash in the first half of the wave and she turns sad and black."
+      }
+    ]
   },
   "media": {
-    "video": { "youtubeId": null, "title": null, "channel": null },
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/solar-flare.svg",
     "images": []
   }
