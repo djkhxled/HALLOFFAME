@@ -22,120 +22,264 @@
 <main id="main" class="site-main">
 <section class="hero page" data-motion>
   <p class="hero__eyebrow"><span class="level-hero__rank">Rank 1 of 25</span></p>
-  <div class="hero__art" aria-hidden="true"><svg class="art art--deimos" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A ruined gothic castle silhouetted against a burning red eclipse, above blackened cliffs">
+  <div class="hero__art" aria-hidden="true"><svg class="art art--deimos" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A ruined gothic cathedral silhouetted against a burning red eclipse, above layered blackened mountains">
   <defs>
-    <radialGradient id="dm-orb" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff7a55"/>
-      <stop offset="34%" stop-color="#ff2f21"/>
-      <stop offset="72%" stop-color="#b8130f"/>
-      <stop offset="93%" stop-color="#ff4a2a"/>
-      <stop offset="100%" stop-color="#5c0705"/>
+    <radialGradient id="dm-orb" cx="50%" cy="46%" r="52%">
+      <stop offset="0%" stop-color="#ffb08c"/>
+      <stop offset="22%" stop-color="#ff7a55"/>
+      <stop offset="46%" stop-color="#ff2f21"/>
+      <stop offset="76%" stop-color="#b8130f"/>
+      <stop offset="94%" stop-color="#ff4a2a"/>
+      <stop offset="100%" stop-color="#4d0604"/>
     </radialGradient>
     <radialGradient id="dm-halo" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff2f21" stop-opacity="0.55"/>
-      <stop offset="45%" stop-color="#c4140f" stop-opacity="0.24"/>
+      <stop offset="0%" stop-color="#ff2f21" stop-opacity="0.5"/>
+      <stop offset="40%" stop-color="#c4140f" stop-opacity="0.22"/>
       <stop offset="100%" stop-color="#c4140f" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="dm-fog" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#0a0506" stop-opacity="0"/>
-      <stop offset="62%" stop-color="#0a0506" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#0a0506" stop-opacity="0.96"/>
+      <stop offset="58%" stop-color="#0a0506" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#0a0506" stop-opacity="0.94"/>
     </linearGradient>
-    <linearGradient id="dm-keep" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2a0f10"/>
-      <stop offset="55%" stop-color="#150809"/>
-      <stop offset="100%" stop-color="#0a0506"/>
+    <linearGradient id="dm-keep" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0%" stop-color="#39181a"/>
+      <stop offset="42%" stop-color="#1d0d0e"/>
+      <stop offset="100%" stop-color="#0b0607"/>
     </linearGradient>
+    <linearGradient id="dm-keep-dark" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#241012"/>
+      <stop offset="100%" stop-color="#090405"/>
+    </linearGradient>
+    <radialGradient id="dm-rose" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd0a8"/>
+      <stop offset="55%" stop-color="#ff6a36"/>
+      <stop offset="100%" stop-color="#8c1c0a"/>
+    </radialGradient>
     <filter id="dm-grain">
       <feTurbulence type="fractalNoise" baseFrequency="0.86" numOctaves="4" result="n"/>
       <feColorMatrix in="n" type="saturate" values="0"/>
     </filter>
+    <filter id="dm-blur"><feGaussianBlur stdDeviation="9"/></filter>
   </defs>
 
   <rect width="1600" height="900" fill="#0a0506"/>
 
-  <!-- The eclipse, high and right so the title never buries it -->
-  <circle cx="1090" cy="236" r="440" fill="url(#dm-halo)"/>
-  <circle cx="1090" cy="236" r="206" fill="url(#dm-orb)"/>
+  <!-- Cloud banks catching the light -->
+  <g fill="#2a1112" opacity="0.55" filter="url(#dm-blur)">
+    <ellipse cx="1090" cy="120" rx="420" ry="60"/>
+    <ellipse cx="760" cy="250" rx="300" ry="44"/>
+    <ellipse cx="1420" cy="300" rx="280" ry="40"/>
+  </g>
+
+  <!-- The eclipse -->
+  <circle cx="1090" cy="236" r="450" fill="url(#dm-halo)"/>
+  <circle cx="1090" cy="236" r="208" fill="url(#dm-orb)"/>
+  <circle cx="1090" cy="236" r="208" fill="none" stroke="#ffb08c" stroke-width="2" opacity="0.5"/>
 
   <!-- Lightning across the disc -->
-  <g stroke="#ffd9c2" fill="none" stroke-width="2.2" opacity="0.9">
-    <path d="M946 138 l26 34 -20 12 30 40"/>
-    <path d="M1256 184 l-28 30 22 14 -26 42"/>
-    <path d="M1198 96 l18 26 -16 10 22 30"/>
+  <g stroke="#ffe0cc" fill="none" stroke-width="2.2" opacity="0.9" stroke-linejoin="round">
+    <path d="M946 132 l24 36 -20 10 28 42 -16 6"/>
+    <path d="M1262 178 l-26 32 22 12 -24 44"/>
+    <path d="M1196 92 l16 28 -16 8 20 32"/>
+    <path d="M1010 300 l18 26 -14 8 20 28"/>
   </g>
-  <g stroke="#ff5a3a" fill="none" stroke-width="6" opacity="0.3">
-    <path d="M946 138 l26 34 -20 12 30 40"/>
-    <path d="M1256 184 l-28 30 22 14 -26 42"/>
+  <g stroke="#ff5a3a" fill="none" stroke-width="7" opacity="0.28">
+    <path d="M946 132 l24 36 -20 10 28 42"/>
+    <path d="M1262 178 l-26 32 22 12 -24 44"/>
   </g>
 
-  <!-- Ruined keep. Spires break into the disc so the silhouette reads. -->
-  <g fill="url(#dm-keep)">
-    <path d="M932 900 V286 l22-34 22 34 v58 h38 V214 l26-42 26 42 v130 h34 V150 l30-46 30 46 v194 h32 V236 l26-40 26 40 v108 h40 V300 l22-34 22 34 v600 Z"/>
-    <path d="M858 900 V366 l28-40 28 40 v534 Z"/>
-    <path d="M1268 900 V330 l26-38 26 38 v570 Z"/>
-  </g>
-  <!-- Rim light where the disc burns behind the stone -->
-  <g fill="none" stroke="#ff7a52" stroke-width="2" opacity="0.6">
-    <path d="M932 286 l22-34 22 34 v58 h38 V214 l26-42 26 42 v130 h34 V150 l30-46 30 46 v194 h32 V236 l26-40 26 40 v108 h40 V300 l22-34 22 34"/>
-    <path d="M858 366 l28-40 28 40"/>
-    <path d="M1268 330 l26-38 26 38"/>
-  </g>
-  <!-- Lit windows -->
-  <g fill="#ff8b5e" opacity="0.8">
-    <rect x="1014" y="392" width="7" height="17" rx="3.5"/>
-    <rect x="1094" y="330" width="7" height="17" rx="3.5"/>
-    <rect x="1160" y="410" width="7" height="17" rx="3.5"/>
-    <rect x="1052" y="486" width="7" height="17" rx="3.5"/>
-    <rect x="1134" y="530" width="7" height="17" rx="3.5"/>
-    <rect x="946" y="452" width="7" height="17" rx="3.5"/>
+  <!-- ================= CATHEDRAL ================= -->
+  <g>
+    <!-- Outer flanking towers -->
+    <g fill="url(#dm-keep-dark)">
+      <path d="M842 900 V330 l30-56 30 56 v570 Z"/>
+      <path d="M1338 900 V318 l30-58 30 58 v582 Z"/>
+    </g>
+    <!-- crenellations on outer towers -->
+    <g fill="url(#dm-keep-dark)">
+      <path d="M842 340 h12 v-18 h12 v18 h12 v-18 h12 v18 h12 v22 h-60 Z"/>
+      <path d="M1338 328 h12 v-18 h12 v18 h12 v-18 h12 v18 h12 v22 h-60 Z"/>
+    </g>
+
+    <!-- Side towers -->
+    <g fill="url(#dm-keep)">
+      <path d="M916 900 V262 l38-72 38 72 v638 Z"/>
+      <path d="M1254 900 V250 l38-74 38 74 v650 Z"/>
+    </g>
+
+    <!-- Central spire -->
+    <g fill="url(#dm-keep)">
+      <path d="M1046 900 V196 l44-118 44 118 v704 Z"/>
+    </g>
+    <!-- Cross atop the spire -->
+    <g fill="#1d0d0e">
+      <rect x="1085" y="30" width="10" height="56"/>
+      <rect x="1067" y="46" width="46" height="9"/>
+    </g>
+    <g stroke="#ff8b5e" stroke-width="1.6" opacity="0.7" fill="none">
+      <path d="M1090 30 v56 M1067 50 h46"/>
+    </g>
+
+    <!-- Nave block between the towers -->
+    <path d="M992 900 V420 h256 v480 Z" fill="url(#dm-keep)"/>
+    <!-- nave crenellations -->
+    <g fill="url(#dm-keep)">
+      <path d="M992 430 h16 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h16 v26 H992 Z"/>
+    </g>
+
+    <!-- Flying buttresses -->
+    <g fill="none" stroke="#241012" stroke-width="13">
+      <path d="M960 620 Q 984 548 1000 560"/>
+      <path d="M960 720 Q 986 652 1002 664"/>
+      <path d="M1280 610 Q 1256 540 1240 552"/>
+      <path d="M1280 712 Q 1258 644 1242 656"/>
+    </g>
+    <g fill="none" stroke="#ff7a52" stroke-width="1.4" opacity="0.34">
+      <path d="M960 620 Q 984 548 1000 560"/>
+      <path d="M1280 610 Q 1256 540 1240 552"/>
+    </g>
+
+    <!-- Rose window -->
+    <circle cx="1120" cy="516" r="46" fill="url(#dm-rose)" opacity="0.92"/>
+    <g stroke="#2a1012" stroke-width="4" fill="none">
+      <circle cx="1120" cy="516" r="46"/>
+      <circle cx="1120" cy="516" r="19"/>
+      <path d="M1120 470 v92 M1074 516 h92 M1087 483 l66 66 M1153 483 l-66 66"/>
+    </g>
+    <circle cx="1120" cy="516" r="62" fill="#ff6a36" opacity="0.16" filter="url(#dm-blur)"/>
+
+    <!-- Gothic arched windows: nave -->
+    <g fill="#ff8b5e" opacity="0.72">
+      <path d="M1014 664 a11 11 0 0 1 22 0 v40 h-22 Z"/>
+      <path d="M1058 664 a11 11 0 0 1 22 0 v40 h-22 Z"/>
+      <path d="M1162 664 a11 11 0 0 1 22 0 v40 h-22 Z"/>
+      <path d="M1206 664 a11 11 0 0 1 22 0 v40 h-22 Z"/>
+      <path d="M1014 762 a11 11 0 0 1 22 0 v38 h-22 Z"/>
+      <path d="M1206 762 a11 11 0 0 1 22 0 v38 h-22 Z"/>
+    </g>
+    <!-- Great door -->
+    <path d="M1092 900 V806 a28 28 0 0 1 56 0 v94 Z" fill="#180b0c"/>
+    <path d="M1092 900 V806 a28 28 0 0 1 56 0 v94 Z" fill="none" stroke="#ff7a52" stroke-width="1.8" opacity="0.45"/>
+
+    <!-- Tower windows -->
+    <g fill="#ff8b5e" opacity="0.68">
+      <path d="M944 372 a10 10 0 0 1 20 0 v30 h-20 Z"/>
+      <path d="M944 470 a10 10 0 0 1 20 0 v30 h-20 Z"/>
+      <path d="M1282 360 a10 10 0 0 1 20 0 v30 h-20 Z"/>
+      <path d="M1282 458 a10 10 0 0 1 20 0 v30 h-20 Z"/>
+      <path d="M1080 300 a10 10 0 0 1 20 0 v28 h-20 Z"/>
+      <path d="M862 430 a9 9 0 0 1 18 0 v26 h-18 Z"/>
+      <path d="M1358 420 a9 9 0 0 1 18 0 v26 h-18 Z"/>
+    </g>
+
+    <!-- Rim light along every silhouette edge facing the disc -->
+    <g fill="none" stroke="#ff7a52" stroke-width="2.1" opacity="0.62" stroke-linejoin="round">
+      <path d="M1046 196 l44-118 44 118"/>
+      <path d="M916 262 l38-72 38 72"/>
+      <path d="M1254 250 l38-74 38 74"/>
+      <path d="M842 330 l30-56 30 56"/>
+      <path d="M1338 318 l30-58 30 58"/>
+      <path d="M992 430 h16 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h18 v-22 h18 v22 h16"/>
+    </g>
+    <!-- A broken, ruined edge on the right tower -->
+    <g fill="#0a0506">
+      <path d="M1254 250 l14 30 -20 26 22 24 -16 34 h-2 V250 Z"/>
+    </g>
   </g>
 
   <!-- Bats -->
-  <g fill="#0a0506" opacity="0.92">
-    <path d="M1176 156 q8-9 16 0 q8-9 16 0 q-8 7-16 3 q-8 4-16-3Z"/>
-    <path d="M990 202 q6-7 12 0 q6-7 12 0 q-6 5-12 2 q-6 3-12-2Z"/>
-    <path d="M1230 288 q7-8 14 0 q7-8 14 0 q-7 6-14 3 q-7 3-14-3Z"/>
-    <path d="M918 108 q5-6 10 0 q5-6 10 0 q-5 4-10 2 q-5 2-10-2Z"/>
+  <g fill="#0a0506" opacity="0.94">
+    <path d="M1180 150 q9-10 18 0 q9-10 18 0 q-9 8-18 3 q-9 5-18-3Z"/>
+    <path d="M988 196 q7-8 14 0 q7-8 14 0 q-7 6-14 2 q-7 4-14-2Z"/>
+    <path d="M1232 296 q8-9 16 0 q8-9 16 0 q-8 7-16 3 q-8 4-16-3Z"/>
+    <path d="M916 112 q6-7 12 0 q6-7 12 0 q-6 5-12 2 q-6 3-12-2Z"/>
+    <path d="M1330 214 q5-6 10 0 q5-6 10 0 q-5 4-10 2 q-5 2-10-2Z"/>
+    <path d="M1044 122 q5-6 10 0 q5-6 10 0 q-5 4-10 2 q-5 2-10-2Z"/>
   </g>
 
-  <!-- Blackened cliffs -->
-  <g fill="#150c0d">
-    <path d="M0 900 V642 l108-52 96 66 84-40 122 88 96-44 130 96 V900Z"/>
-    <path d="M1600 900 V596 l-118 62 -92-44 -126 96 -78-36 -142 108 V900Z"/>
-  </g>
-  <g fill="#231314">
-    <path d="M0 900 V760 l150-58 132 74 118-46 156 92 V900Z"/>
-    <path d="M1600 900 V726 l-140 66 -128-52 -150 104 V900Z"/>
-  </g>
-  <!-- Ember light spilling between the rocks -->
-  <g fill="#ff3b1e" opacity="0.4">
-    <ellipse cx="470" cy="742" rx="160" ry="17"/>
-    <ellipse cx="1160" cy="782" rx="140" ry="14"/>
-    <ellipse cx="820" cy="812" rx="180" ry="12"/>
+  <!-- ================= MOUNTAINS =================
+       Asymmetric peaks with broken shoulders: real rock is steep on one
+       face and rubbled on the other, never an isosceles triangle. -->
+
+  <!-- Far range -->
+  <g>
+    <path fill="#1b0f10" d="M0 900 V646 L38 592 L64 616 L96 528 L124 566 L152 548 L188 604 L214 566 L250 498 L282 552 L306 530 L338 586 L366 560 L398 620 L430 542 L462 588 L488 566 L520 618 L552 574 L588 510 L618 562 L644 540 L676 596 L706 570 L740 624 L772 552 L802 598 L830 576 L866 628 L898 566 L930 610 L958 588 L992 636 L1026 560 L1058 606 L1086 584 L1120 632 L1152 570 L1184 614 L1212 592 L1246 640 L1280 566 L1312 612 L1340 590 L1374 638 L1408 574 L1440 618 L1468 596 L1502 642 L1536 580 L1568 624 L1600 602 V900 Z"/>
+    <!-- Lit faces, disc side only -->
+    <g fill="#2c1819" opacity="0.85">
+      <path d="M96 528 L124 566 L96 596 Z"/>
+      <path d="M250 498 L282 552 L250 578 Z"/>
+      <path d="M588 510 L618 562 L588 590 Z"/>
+      <path d="M1026 560 L1058 606 L1026 628 Z"/>
+      <path d="M1280 566 L1312 612 L1280 634 Z"/>
+      <path d="M1536 580 L1568 624 L1536 644 Z"/>
+    </g>
+    <g fill="none" stroke="#c0503a" stroke-width="1.3" opacity="0.34">
+      <path d="M96 528 L124 566 M250 498 L282 552 M588 510 L618 562 M1026 560 L1058 606 M1280 566 L1312 612"/>
+    </g>
   </g>
 
-  <!-- Leaning grave marker and bone, lower left -->
-  <g fill="#1d1112">
+  <!-- Mid range -->
+  <g>
+    <path fill="#120a0b" d="M0 900 V744 L34 700 L70 726 L104 652 L132 694 L164 672 L196 720 L232 664 L268 708 L296 686 L330 736 L364 676 L396 722 L424 700 L458 748 L492 688 L526 730 L556 708 L590 754 L624 692 L658 736 L686 714 L720 760 L754 700 L788 742 L816 720 L850 766 L884 706 L918 748 L946 726 L980 770 L1014 710 L1048 752 L1076 730 L1110 774 L1144 714 L1178 756 L1206 734 L1240 778 L1274 718 L1308 760 L1336 738 L1370 780 L1404 722 L1438 764 L1466 742 L1500 784 L1534 726 L1568 768 L1600 746 V900 Z"/>
+    <g fill="#1f1213" opacity="0.9">
+      <path d="M104 652 L132 694 L104 716 Z"/>
+      <path d="M364 676 L396 722 L364 742 Z"/>
+      <path d="M754 700 L788 742 L754 762 Z"/>
+      <path d="M1144 714 L1178 756 L1144 774 Z"/>
+      <path d="M1404 722 L1438 764 L1404 782 Z"/>
+    </g>
+  </g>
+
+  <!-- Near range, almost black and much chunkier -->
+  <g fill="#0a0506">
+    <path d="M0 900 V834 L46 796 L88 822 L134 780 L178 812 L214 792 L262 828 L308 786 L352 818 L390 800 L438 836 L484 794 L528 824 L568 806 L616 840 L662 798 L706 828 L744 810 L792 844 L838 802 L882 832 L920 814 L968 848 L1014 806 L1058 836 L1096 818 L1144 850 L1190 810 L1234 840 L1272 822 L1320 852 L1366 814 L1410 844 L1448 826 L1496 856 L1542 818 L1586 846 L1600 838 V900 Z"/>
+  </g>
+
+  <!-- Ember light pooling in the valleys -->
+  <g fill="#ff3b1e" opacity="0.34" filter="url(#dm-blur)">
+    <ellipse cx="300" cy="726" rx="150" ry="16"/>
+    <ellipse cx="760" cy="782" rx="170" ry="15"/>
+    <ellipse cx="1230" cy="756" rx="150" ry="15"/>
+  </g>
+
+  <!-- Rising embers -->
+  <g fill="#ff8b5e">
+    <circle cx="238" cy="666" r="2.2" opacity="0.75"/>
+    <circle cx="404" cy="590" r="1.6" opacity="0.55"/>
+    <circle cx="612" cy="700" r="2.4" opacity="0.7"/>
+    <circle cx="788" cy="614" r="1.8" opacity="0.5"/>
+    <circle cx="1016" cy="708" r="2.2" opacity="0.65"/>
+    <circle cx="1284" cy="640" r="1.7" opacity="0.55"/>
+    <circle cx="1436" cy="720" r="2.3" opacity="0.6"/>
+    <circle cx="146" cy="590" r="1.5" opacity="0.45"/>
+    <circle cx="906" cy="768" r="1.9" opacity="0.5"/>
+  </g>
+
+  <!-- Leaning grave marker, bone and skulls -->
+  <g fill="#241516">
     <path d="M232 900 L268 618 l34 5 -34 277 Z"/>
     <path d="M186 664 l150 21 -5 32 -150-21 Z"/>
   </g>
-  <g fill="none" stroke="#c8705a" stroke-width="1.8" opacity="0.6">
+  <g fill="none" stroke="#c8705a" stroke-width="1.8" opacity="0.55">
     <path d="M268 618 l34 5"/>
     <path d="M186 664 l150 21"/>
   </g>
-  <g fill="#2b1c1c" opacity="0.95">
-    <circle cx="150" cy="836" r="26"/>
-    <circle cx="206" cy="856" r="21"/>
-    <circle cx="98" cy="864" r="19"/>
+  <g fill="#31201f">
+    <circle cx="150" cy="838" r="27"/>
+    <circle cx="208" cy="858" r="22"/>
+    <circle cx="96" cy="866" r="20"/>
+    <rect x="238" y="856" width="66" height="9" rx="4.5" transform="rotate(-9 238 856)"/>
   </g>
   <g fill="#0a0506">
-    <circle cx="142" cy="830" r="6"/><circle cx="160" cy="832" r="6"/>
-    <circle cx="200" cy="852" r="5"/><circle cx="213" cy="853" r="5"/>
+    <circle cx="141" cy="832" r="6.5"/><circle cx="160" cy="834" r="6.5"/>
+    <path d="M146 852 h12 v6 h-12 Z"/>
+    <circle cx="202" cy="853" r="5.5"/><circle cx="216" cy="855" r="5.5"/>
+    <circle cx="89" cy="861" r="5"/><circle cx="103" cy="862" r="5"/>
   </g>
 
   <rect width="1600" height="900" fill="url(#dm-fog)"/>
-  <rect width="1600" height="900" filter="url(#dm-grain)" opacity="0.16"/>
+  <rect width="1600" height="900" filter="url(#dm-grain)" opacity="0.17"/>
 </svg>
 </div>
   <h1 class="hero__title level-hero__title">Deimos</h1>
