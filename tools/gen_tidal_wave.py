@@ -184,6 +184,13 @@ def build():
       '<feMerge><feMergeNode in="g"/><feMergeNode in="g"/>'
       '<feMergeNode in="SourceGraphic"/></feMerge></filter>')
     a('<filter id="tw-soft"><feGaussianBlur stdDeviation="14"/></filter>')
+    a('<linearGradient id="tw-foamfade" x1="0" y1="0" x2="0" y2="1">'
+      '<stop offset="0%" stop-color="#000"/>'
+      '<stop offset="38%" stop-color="#888"/>'
+      '<stop offset="78%" stop-color="#fff"/>'
+      '<stop offset="100%" stop-color="#fff"/></linearGradient>')
+    a(f'<mask id="tw-foammask"><rect x="0" y="812" width="{W}" '
+      'height="88" fill="url(#tw-foamfade)"/></mask>')
     a('<filter id="tw-grain">'
       '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4"/>'
       '<feColorMatrix type="saturate" values="0"/></filter>')
@@ -253,18 +260,19 @@ def build():
     a("</g>")
 
     a(f'<rect width="{W}" height="{H}" fill="url(#tw-vig)"/>')
-    # Foam last: it is lit ground, not sky, so the vignette
-    # must not sit on top of it.
-    a('<g>')
-    a(f'<rect x="0" y="836" width="{W}" height="64" fill="url(#tw-foam)" '
-      'opacity="0.9"/>')
-    for i in range(0, W + 60, 46):
-        r = 20 + (i // 46 % 4) * 7
-        cy = 838 + ((i // 46 % 3) - 1) * 6
+    # Foam last: it is lit ground, not sky, so the vignette must not sit on
+    # top of it. Masked so it dissolves upward instead of ending in a band,
+    # and kept low enough that the corner metadata never lands on it.
+    a('<g mask="url(#tw-foammask)">')
+    a(f'<rect x="0" y="862" width="{W}" height="38" fill="url(#tw-foam)" '
+      'opacity="0.92"/>')
+    for i in range(0, W + 40, 38):
+        r = 13 + (i // 38 % 4) * 5
+        cy = 866 + ((i // 38 % 3) - 1) * 4
         a(f'<circle cx="{i}" cy="{cy}" r="{r}" fill="url(#tw-foam)" '
-          'opacity="0.92"/>')
-    for i in range(24, W + 60, 92):
-        a(f'<circle cx="{i}" cy="826" r="12" fill="#ffffff" opacity="0.9"/>')
+          'opacity="0.9"/>')
+    for i in range(19, W + 40, 76):
+        a(f'<circle cx="{i}" cy="856" r="7" fill="#ffffff" opacity="0.8"/>')
     a('</g>')
 
     a(f'<rect width="{W}" height="{H}" filter="url(#tw-grain)" opacity="0.1"/>')
