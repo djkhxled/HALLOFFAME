@@ -72,14 +72,17 @@ def build():
       '<stop offset="100%" stop-color="#8f6cff" stop-opacity="0"/>'
       "</linearGradient>")
     a('<linearGradient id="al-ice" x1="0.25" y1="0" x2="0.6" y2="1">'
-      '<stop offset="0%" stop-color="#e8fbff"/>'
-      '<stop offset="22%" stop-color="#bfe8f5"/>'
+      '<stop offset="0%" stop-color="#bcdff0"/>'
+      '<stop offset="22%" stop-color="#a5d2e8"/>'
       '<stop offset="55%" stop-color="#7ab8d6"/>'
       '<stop offset="100%" stop-color="#2b6285"/>'
       "</linearGradient>")
+    # Fades in as well as out. At 0.34 straight off the top edge this drew a
+    # hard horizontal line across the middle of the hero.
     a('<linearGradient id="al-glow" x1="0" y1="0" x2="0" y2="1">'
-      '<stop offset="0%" stop-color="#7dffca" stop-opacity="0.34"/>'
-      '<stop offset="100%" stop-color="#7dffca" stop-opacity="0"/>'
+      '<stop offset="0%" stop-color="#7dffca" stop-opacity="0"/>'
+      '<stop offset="52%" stop-color="#7dffca" stop-opacity="0.30"/>'
+      '<stop offset="100%" stop-color="#9ff0ff" stop-opacity="0.06"/>'
       "</linearGradient>")
     a('<linearGradient id="al-vig" x1="0" y1="0" x2="0" y2="1">'
       '<stop offset="0%" stop-color="#050a20" stop-opacity="0.42"/>'
@@ -90,6 +93,7 @@ def build():
     a('<filter id="al-soft"><feGaussianBlur stdDeviation="13"/></filter>')
     a('<filter id="al-fine"><feGaussianBlur stdDeviation="5"/></filter>')
     a('<filter id="al-cloud"><feGaussianBlur stdDeviation="22"/></filter>')
+    a('<filter id="al-haze"><feGaussianBlur stdDeviation="26"/></filter>')
     a("</defs>")
 
     a(f'<rect width="{W}" height="{H}" fill="url(#al-sky)"/>')
@@ -154,8 +158,8 @@ def build():
     a("</g>")
 
     # ----------------------------------------------------- horizon + light
-    a(f'<rect x="0" y="{HORIZON - 190}" width="{W}" height="190" '
-      'fill="url(#al-glow)" opacity="0.75"/>')
+    a(f'<rect x="0" y="{HORIZON - 300}" width="{W}" height="300" '
+      'fill="url(#al-glow)" opacity="0.8"/>')
 
     # far ridge, and the little station from the thumbnail
     ridge = [f"{-20},{HORIZON + 6}"]
@@ -177,6 +181,14 @@ def build():
     # ------------------------------------------------------------- the ice
     a(f'<rect x="0" y="{HORIZON}" width="{W}" height="{H - HORIZON}" '
       'fill="url(#al-ice)"/>')
+
+    # Ground haze straddling the horizon. Sky-to-ice was a 117-point
+    # luminance step measured off the render, which read as a pasted band
+    # rather than a horizon.
+    a(f'<rect x="-40" y="{HORIZON - 54}" width="{W + 80}" height="112" '
+      'fill="#cfeaf6" opacity="0.5" filter="url(#al-haze)"/>')
+    a(f'<rect x="-40" y="{HORIZON - 16}" width="{W + 80}" height="52" '
+      'fill="#eafaff" opacity="0.34" filter="url(#al-haze)"/>')
 
     # Slabs: flat-topped shards, lighter on top, catching the sky.
     a("<g>")
