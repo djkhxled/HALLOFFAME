@@ -16,6 +16,8 @@ SIGNATURES = frozenset(
         "fracture",
         "flood",
         "eclipse",
+        "slash",
+        "prism",
         "static",
     }
 )

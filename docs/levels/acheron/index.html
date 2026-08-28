@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en" data-level="acheron" data-signature="descend">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acheron — #5 · Baylor&#x27;s Hall of Extremes</title>
+<meta name="description" content="The river of woe — and for a while, the hardest level in the game.">
+<meta property="og:title" content="Acheron — #5 · Baylor&#x27;s Hall of Extremes">
+<meta property="og:description" content="The river of woe — and for a while, the hardest level in the game.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<style>:root{--field:#080405;--ink:#f1e7e7;--muted:#ac9092;--accent:#ff2b2b;--accent2:#46e6ff;}</style><link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet"><style>[data-level="acheron"] .hero__title{font-size:clamp(2.75rem, 17.5vw, 15rem)}</style><link rel="stylesheet" href="/assets/css/levels/acheron.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="texture texture--grain" aria-hidden="true"></div>
+<main id="main" class="site-main">
+<section class="hero page" data-motion>
+  <p class="hero__eyebrow"><span class="level-hero__rank">Rank 5 of 25</span></p>
+  <div class="hero__art" aria-hidden="true"><svg class="art art--acheron" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Dark brick hell chamber with hanging chains, gears, red spikes and a single cold cyan orb">
+  <defs>
+    <linearGradient id="ac-brick" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#2b1416"/>
+      <stop offset="60%" stop-color="#160a0c"/>
+      <stop offset="100%" stop-color="#0a0506"/>
+    </linearGradient>
+    <radialGradient id="ac-glow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#ff2b2b" stop-opacity="0.34"/>
+      <stop offset="55%" stop-color="#a5121b" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#a5121b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ac-eye" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#ffe9b0"/>
+      <stop offset="42%" stop-color="#ff9a2e"/>
+      <stop offset="100%" stop-color="#c21708"/>
+    </radialGradient>
+    <radialGradient id="ac-orb" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="34%" stop-color="#9df3ff"/>
+      <stop offset="100%" stop-color="#0f8fb0"/>
+    </radialGradient>
+    <linearGradient id="ac-vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080405" stop-opacity="0.88"/>
+      <stop offset="40%" stop-color="#080405" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#080405" stop-opacity="0.94"/>
+    </linearGradient>
+    <filter id="ac-soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="ac-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.86" numOctaves="4"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <pattern id="ac-wall" width="160" height="80" patternUnits="userSpaceOnUse">
+      <rect width="160" height="80" fill="url(#ac-brick)"/>
+      <g stroke="#3a1a1d" stroke-width="2" fill="none">
+        <path d="M0 40 H160 M0 80 H160"/>
+        <path d="M80 0 V40 M0 40 V80 M160 40 V80"/>
+      </g>
+      <g stroke="#4d2226" stroke-width="1" fill="none" opacity="0.6">
+        <path d="M0 41 H160"/><path d="M81 0 V40"/>
+      </g>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="#080405"/>
+  <rect width="1600" height="900" fill="url(#ac-wall)" opacity="0.85"/>
+  <rect width="1600" height="900" fill="url(#ac-glow)"/>
+
+  <!-- Ceiling teeth -->
+  <g fill="#0a0506">
+    <path d="M0 0 h1600 v58 l-46 46 -44 -40 -50 58 -46 -50 -48 44 -44 -54 -50 48 -46 -42 -48 56 -44 -48 -50 44 -46 -56 -48 50 -44 -44 -50 54 -46 -48 -48 42 -44 -56 -50 48 -46 -44 -48 52 -44 -46 -50 42 -46 -54 -48 48 -44 -42 -50 50 -46 -48 Z"/>
+  </g>
+  <g fill="none" stroke="#ff2b2b" stroke-width="1.6" opacity="0.34">
+    <path d="M0 58 l46 46 44 -40 50 58 46 -50 48 44 44 -54 50 48 46 -42 48 56 44 -48 50 44 46 -56 48 50 44 -44 50 54 46 -48 48 42 44 -56 50 48 46 -44 48 52 44 -46 50 42 46 -54 48 48 44 -42 50 50 46 -48"/>
+  </g>
+
+  <!-- Hanging chains with weighted blocks -->
+  <g>
+    <g transform="translate(196 0)">
+      <g stroke="#241012" stroke-width="9" fill="none">
+        <ellipse cy="30" rx="14" ry="26"/><ellipse cy="82" rx="14" ry="26"/>
+        <ellipse cy="134" rx="14" ry="26"/><ellipse cy="186" rx="14" ry="26"/>
+        <ellipse cy="238" rx="14" ry="26"/><ellipse cy="290" rx="14" ry="26"/>
+      </g>
+      <rect x="-52" y="316" width="104" height="104" fill="#1c0d0f" stroke="#4a1f22" stroke-width="3"/>
+      <rect x="-52" y="316" width="104" height="18" fill="#ff2b2b" opacity="0.28"/>
+      <path d="M-52 420 h104 l-52 66 Z" fill="#0e0708" stroke="#4a1f22" stroke-width="2.4"/>
+      <path d="M-30 420 h60 l-30 40 Z" fill="#ff2b2b" opacity="0.4"/>
+    </g>
+    <g transform="translate(1288 0)">
+      <g stroke="#241012" stroke-width="8" fill="none">
+        <ellipse cy="26" rx="12" ry="22"/><ellipse cy="70" rx="12" ry="22"/>
+        <ellipse cy="114" rx="12" ry="22"/><ellipse cy="158" rx="12" ry="22"/>
+        <ellipse cy="202" rx="12" ry="22"/>
+      </g>
+      <rect x="-44" y="224" width="88" height="88" fill="#1c0d0f" stroke="#4a1f22" stroke-width="3"/>
+      <rect x="-44" y="224" width="88" height="15" fill="#ff2b2b" opacity="0.28"/>
+      <path d="M-44 312 h88 l-44 56 Z" fill="#0e0708" stroke="#4a1f22" stroke-width="2.2"/>
+    </g>
+    <g transform="translate(880 0)" opacity="0.8">
+      <g stroke="#241012" stroke-width="7" fill="none">
+        <ellipse cy="24" rx="10" ry="19"/><ellipse cy="62" rx="10" ry="19"/>
+        <ellipse cy="100" rx="10" ry="19"/><ellipse cy="138" rx="10" ry="19"/>
+        <ellipse cy="176" rx="10" ry="19"/><ellipse cy="214" rx="10" ry="19"/>
+        <ellipse cy="252" rx="10" ry="19"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- The framed pair of burning eyes -->
+  <g transform="translate(700 300)">
+    <rect x="-260" y="-120" width="520" height="240" fill="#150a0c" stroke="#4a1f22" stroke-width="5"/>
+    <g stroke="#3a1a1d" stroke-width="2" fill="none" opacity="0.8">
+      <path d="M-260 -40 H260 M-260 40 H260 M-130 -120 V-40 M0 -40 V40 M130 40 V120"/>
+    </g>
+    <g>
+      <rect x="-166" y="-58" width="116" height="116" fill="#f2ecec"/>
+      <circle cx="-108" cy="0" r="42" fill="url(#ac-eye)"/>
+      <path d="M-166 -58 h116 l-116 116 Z" fill="#1a0d0e" opacity="0.9"/>
+      <circle cx="-108" cy="0" r="60" fill="#ff6a2e" opacity="0.28" filter="url(#ac-soft)"/>
+    </g>
+    <g>
+      <rect x="50" y="-58" width="116" height="116" fill="#f2ecec"/>
+      <circle cx="108" cy="0" r="42" fill="url(#ac-eye)"/>
+      <path d="M50 -58 h116 l-116 116 Z" fill="#1a0d0e" opacity="0.9"/>
+      <circle cx="108" cy="0" r="60" fill="#ff6a2e" opacity="0.28" filter="url(#ac-soft)"/>
+    </g>
+    <!-- spikes beneath the frame -->
+    <g fill="#1a0d0e">
+      <path d="M-190 120 h60 l-30 62 Z"/><path d="M-110 120 h60 l-30 62 Z"/>
+      <path d="M-30 120 h60 l-30 62 Z"/><path d="M50 120 h60 l-30 62 Z"/>
+      <path d="M130 120 h60 l-30 62 Z"/>
+    </g>
+    <g fill="#ff2b2b" opacity="0.5">
+      <path d="M-176 120 h32 l-16 34 Z"/><path d="M-96 120 h32 l-16 34 Z"/>
+      <path d="M-16 120 h32 l-16 34 Z"/><path d="M64 120 h32 l-16 34 Z"/>
+      <path d="M144 120 h32 l-16 34 Z"/>
+    </g>
+  </g>
+
+  <!-- Gears -->
+  <g fill="none" stroke="#3a1a1d" opacity="0.9">
+    <g transform="translate(1116 690)">
+      <circle r="58" stroke-width="16"/>
+      <circle r="22" stroke-width="9"/>
+      <g stroke-width="15">
+        <path d="M0 -76 v18"/><path d="M0 76 v-18"/><path d="M-76 0 h18"/><path d="M76 0 h-18"/>
+        <path d="M54 -54 l13 -13"/><path d="M-54 54 l-13 13"/>
+        <path d="M54 54 l13 13"/><path d="M-54 -54 l-13 -13"/>
+      </g>
+    </g>
+    <g transform="translate(438 730)" opacity="0.7">
+      <circle r="44" stroke-width="13"/>
+      <circle r="17" stroke-width="7"/>
+      <g stroke-width="12">
+        <path d="M0 -58 v14"/><path d="M0 58 v-14"/><path d="M-58 0 h14"/><path d="M58 0 h-14"/>
+        <path d="M41 -41 l10 -10"/><path d="M-41 41 l-10 10"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- The one cold thing in the room -->
+  <g transform="translate(1348 470)">
+    <circle r="72" fill="#46e6ff" opacity="0.16" filter="url(#ac-soft)"/>
+    <circle r="40" fill="none" stroke="#9df3ff" stroke-width="6"/>
+    <circle r="27" fill="url(#ac-orb)"/>
+    <circle r="52" fill="none" stroke="#46e6ff" stroke-width="2" opacity="0.55"/>
+  </g>
+
+  <!-- Floor spikes -->
+  <g fill="#0a0506">
+    <path d="M0 900 V846 l52 -62 46 62 52 -74 48 74 54 -58 46 58 52 -70 48 70 54 -62 46 62
+      52 -74 48 74 54 -58 46 58 52 -70 48 70 54 -62 46 62 52 -74 48 74 54 -58 46 58 52 -66
+      48 66 54 -60 46 60 52 -70 48 70 V900 Z"/>
+  </g>
+  <g fill="none" stroke="#ff2b2b" stroke-width="1.8" opacity="0.38">
+    <path d="M0 846 l52 -62 46 62 52 -74 48 74 54 -58 46 58 52 -70 48 70 54 -62 46 62
+      52 -74 48 74 54 -58 46 58 52 -70 48 70 54 -62 46 62 52 -74 48 74 54 -58 46 58 52 -66
+      48 66 54 -60 46 60 52 -70 48 70"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#ac-vig)"/>
+  <rect width="1600" height="900" filter="url(#ac-grain)" opacity="0.15"/>
+</svg>
+</div>
+  <h1 class="hero__title level-hero__title">Acheron</h1>
+  <div class="hero__foot">
+    <p>ryamu, Riot, and more</p>
+    <p class="hero__lede">The river of woe — and for a while, the hardest level in the game.</p>
+    <p class="hero__meta-r">Verified by Zoink · 2022</p>
+    <div class="hero__rule"></div>
+  </div>
+</section>
+
+<section class="sig sig--descend" data-sig="descend" aria-labelledby="descend-h">
+  <h2 id="descend-h" class="visually-hidden">Acheron — the descent</h2>
+
+  <div class="desc__wall desc__wall--far" data-fall="far" data-motion aria-hidden="true"></div>
+  <div class="desc__wall desc__wall--mid" data-fall="mid" data-motion aria-hidden="true"></div>
+  <div class="desc__wall desc__wall--near" data-fall="near" data-motion aria-hidden="true"></div>
+
+  <span class="desc__chain desc__chain--1" data-chain data-motion aria-hidden="true"></span>
+  <span class="desc__chain desc__chain--2" data-chain data-motion aria-hidden="true"></span>
+  <span class="desc__chain desc__chain--3" data-chain data-motion aria-hidden="true"></span>
+  <span class="desc__chain desc__chain--4" data-chain data-motion aria-hidden="true"></span>
+
+  <div class="desc__teeth desc__teeth--a" data-fall="mid" data-motion aria-hidden="true"></div>
+  <div class="desc__teeth desc__teeth--b" data-fall="near" data-motion aria-hidden="true"></div>
+
+  <div class="desc__dark" data-dark data-motion aria-hidden="true"></div>
+
+  <div class="desc__copy page">
+    <p class="eyebrow" data-desc-line data-motion>Sixty-seven seconds</p>
+    <p class="desc__line" data-desc-line data-motion>72,808<br>attempts</p>
+    <p class="desc__sub measure" data-desc-line data-motion>
+      Hosted by ryamu, co-hosted by Riot, verified by Zoink on 23 August 2022.
+      47,984 objects in barely over a minute, and for a while the hardest rated
+      level in the game.
+    </p>
+  </div>
+</section>
+
+
+<section class="section page" aria-labelledby="stats-h">
+  <h2 id="stats-h" class="eyebrow">The record</h2>
+  <dl class="statblock"><div class="statblock__row"><dt class="statblock__key">Host</dt><dd class="statblock__val">ryamu</dd></div><div class="statblock__row"><dt class="statblock__key">Creators</dt><dd class="statblock__val">ryamu, Riot, and more</dd></div><div class="statblock__row"><dt class="statblock__key">Verifier</dt><dd class="statblock__val">Zoink</dd></div><div class="statblock__row"><dt class="statblock__key">Verified</dt><dd class="statblock__val">2022-08-23</dd></div><div class="statblock__row"><dt class="statblock__key">Attempts</dt><dd class="statblock__val">72,808</dd></div><div class="statblock__row"><dt class="statblock__key">Rated</dt><dd class="statblock__val"><span class="nil" aria-label="not known">&mdash;</span></dd></div><div class="statblock__row"><dt class="statblock__key">Level ID</dt><dd class="statblock__val">73667628</dd></div><div class="statblock__row"><dt class="statblock__key">Objects</dt><dd class="statblock__val">47,984</dd></div><div class="statblock__row"><dt class="statblock__key">Length</dt><dd class="statblock__val">1m 07s</dd></div><div class="statblock__row"><dt class="statblock__key">GD version</dt><dd class="statblock__val">2.1</dd></div><div class="statblock__row"><dt class="statblock__key">Peak rank</dt><dd class="statblock__val">#1 on the Demonlist (7 October 2022)</dd></div><div class="statblock__row"><dt class="statblock__key">Song</dt><dd class="statblock__val">Thermodynamix <span class="statblock__by">by dj-Nate</span></dd></div></dl>
+</section>
+
+<section class="section page">
+  <section class="voice" aria-labelledby="voice-h"><h2 id="voice-h" class="eyebrow">Why it&rsquo;s here</h2><p class="voice__hook">Sixty-seven seconds that took 72,808 tries.</p><div class="voice__body measure"><p>Acheron is the shortest level near the top of this list and it doesn't matter at all. Sixty-seven seconds, 72,808 attempts to verify, and for a while it sat at #1. The density is the point &mdash; there is no rest in it anywhere.</p><p>I also just love how it looks. Riot's hell trilogy has a consistent, genuinely oppressive visual language, and Acheron is the one where it clicked completely: brick, chain, gear, and that single cyan orb doing all the work of telling you something else exists.</p></div><p class="voice__drafted">Drafted placeholder &mdash; not yet in Baylor&rsquo;s words.</p></section>
+</section>
+
+<section class="section page">
+  
+  <section class="player" aria-labelledby="song-h"><h2 id="song-h" class="eyebrow">Song</h2><p class="player__title">Thermodynamix &middot; dj-Nate</p></section>
+</section>
+
+<div class="page">
+  <nav class="ranknav" aria-label="Rank navigation"><a class="ranknav__link ranknav__link--prev" href="/levels/cold-sweat/"><span class="ranknav__dir">Previous</span><span class="ranknav__rank">#4</span><span class="ranknav__name">Cold Sweat</span></a><a class="ranknav__home" href="/">All 25</a><span></span></nav>
+</div>
+
+<div class="section page">
+  <section class="sources" aria-labelledby="sources-h"><h2 id="sources-h" class="eyebrow">Sources</h2><ul><li><a href="https://geometrydash.wiki.gg/wiki/Acheron" rel="nofollow noopener" target="_blank">https://geometrydash.wiki.gg/wiki/Acheron</a></li><li><a href="https://pointercrate.com/demonlist/" rel="nofollow noopener" target="_blank">https://pointercrate.com/demonlist/</a></li></ul></section>
+</div>
+
+</main>
+<footer class="site-foot">
+  <div class="page">
+    <p>A fan project. Unaffiliated with RobTop Games. All levels and songs belong to their creators.</p>
+    <p>Built by hand · no trackers · nothing loads from YouTube until you press play.</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="/assets/js/scroll.js" defer></script>
+<script src="/assets/js/media.js" defer></script>
+</body>
+</html>

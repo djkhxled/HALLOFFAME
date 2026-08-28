@@ -1,0 +1,153 @@
+/* Cold Sweat — rank 4.
+   Outline type with a chromatic split, wireframe lattice, one prism beam. */
+
+[data-level="cold-sweat"] {
+  --font-display: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --rule-colour: color-mix(in srgb, var(--accent) 26%, transparent);
+}
+
+[data-level="cold-sweat"] .hero__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+  /* the split is the whole look: cyan left, magenta right */
+  text-shadow:
+    -0.03em 0 0 color-mix(in srgb, var(--accent) 78%, transparent),
+    0.03em 0 0 color-mix(in srgb, var(--accent2) 68%, transparent);
+}
+
+[data-level="cold-sweat"] .hero__art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ink) 6%, transparent) 0 1px,
+    transparent 1px 5px
+  );
+}
+
+[data-level="cold-sweat"] .hero__eyebrow,
+[data-level="cold-sweat"] .hero__foot p {
+  text-shadow: 0 0 0.9rem #05070d, 0 0 1.6rem #05070d;
+}
+
+/* prism set-piece -------------------------------------------------------- */
+
+.sig--prism {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--rule-colour);
+}
+
+.prism__lattice {
+  position: absolute;
+  inset: -8%;
+  pointer-events: none;
+}
+
+.prism__cell {
+  position: absolute;
+  border: 2px solid color-mix(in srgb, var(--ink) 62%, transparent);
+}
+
+.prism__cell::before,
+.prism__cell::after {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 1.4px solid color-mix(in srgb, var(--ink) 40%, transparent);
+}
+
+.prism__cell::after {
+  inset: 18%;
+  border-color: color-mix(in srgb, var(--ink) 24%, transparent);
+}
+
+.prism__cell--1 { width: 26vmin; height: 16vmin; left: 6%;  top: 12%; rotate: -22deg; }
+.prism__cell--2 { width: 30vmin; height: 18vmin; left: 34%; top: 4%;  rotate: -12deg; }
+.prism__cell--3 { width: 24vmin; height: 15vmin; right: 8%; top: 16%; rotate: -28deg; }
+.prism__cell--4 { width: 28vmin; height: 17vmin; left: 12%; bottom: 8%; rotate: 16deg; }
+.prism__cell--5 { width: 26vmin; height: 16vmin; right: 14%; bottom: 6%; rotate: 20deg; }
+
+.prism__tri {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5vmin solid transparent;
+  border-right: 5vmin solid transparent;
+  border-bottom: 8vmin solid color-mix(in srgb, var(--ink) 88%, transparent);
+}
+
+.prism__tri--1 { left: 14%; top: 18%; }
+.prism__tri--2 { left: 42%; top: 8%; }
+.prism__tri--3 { right: 15%; top: 22%; }
+.prism__tri--4 { left: 20%; bottom: 12%; rotate: 180deg; }
+.prism__tri--5 { right: 21%; bottom: 10%; rotate: 180deg; }
+
+.prism__beam {
+  position: absolute;
+  left: 8%;
+  top: -20%;
+  width: 4.2vmin;
+  height: 140%;
+  rotate: 24deg;
+  background: linear-gradient(
+    180deg,
+    #ff2fb0 0%, #ff3b3b 18%, #ffd93b 36%, #4dff88 54%,
+    #4de2ff 72%, #5c6bff 88%, #ff5ce0 100%
+  );
+  filter: blur(0.5px) drop-shadow(0 0 2.2rem rgba(120, 190, 255, 0.55));
+  pointer-events: none;
+}
+
+.prism__scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ink) 7%, transparent) 0 1px,
+    transparent 1px 5px
+  );
+  pointer-events: none;
+}
+
+.prism__copy {
+  position: relative;
+  z-index: 3;
+}
+
+.prism__line {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 5.4vw, 4.4rem);
+  line-height: 1.06;
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-5);
+  color: transparent;
+  -webkit-text-stroke: 1.6px var(--ink);
+  text-shadow:
+    -0.024em 0 0 color-mix(in srgb, var(--accent) 70%, transparent),
+    0.024em 0 0 color-mix(in srgb, var(--accent2) 60%, transparent);
+}
+
+.prism__sub {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  line-height: 1.7;
+  text-shadow: 0 0 1.4rem #05070d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prism__beam {
+    opacity: 0.75;
+  }
+}

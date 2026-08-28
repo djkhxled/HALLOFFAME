@@ -2,51 +2,53 @@
   "rank": 5,
   "slug": "acheron",
   "name": "Acheron",
-  "tagline": "The middle chapter of Riot's descent into hell.",
-  "published": false,
+  "tagline": "The river of woe — and for a while, the hardest level in the game.",
+  "published": true,
   "facts": {
-    "creators": [
-      "ryamu",
-      "Riot",
-      "and more"
-    ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "creators": ["ryamu", "Riot", "and more"],
+    "host": "ryamu",
+    "verifier": "Zoink",
+    "verifiedDate": "2022-08-23",
     "ratedDate": null,
-    "attempts": null,
-    "levelId": null,
-    "objects": null,
-    "length": null,
-    "gdVersion": null,
+    "attempts": "72,808",
+    "levelId": "73667628",
+    "objects": "47,984",
+    "length": "1m 07s",
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
+      "name": "Thermodynamix",
+      "artist": "dj-Nate",
       "newgroundsId": null
     },
-    "peakRank": null,
-    "sources": []
+    "peakRank": "#1 on the Demonlist (7 October 2022)",
+    "note": "Hosted by ryamu and co-hosted by Riot. The second of Riot's three hell-themed Top 1 levels.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Acheron",
+      "https://pointercrate.com/demonlist/"
+    ]
   },
   "theme": {
-    "tier": "themed",
+    "tier": "bespoke",
     "palette": {
-      "field": "#0d0503",
-      "ink": "#ffeee4",
-      "muted": "#c39684",
-      "accent": "#ff5c1a"
+      "field": "#080405",
+      "ink": "#f1e7e7",
+      "muted": "#ac9092",
+      "accent": "#ff2b2b",
+      "accent2": "#46e6ff"
     },
-    "texture": "ember",
+    "texture": "grain",
     "signature": "descend",
-    "mood": null
+    "mood": "Industrial hell. Dark brick, hanging chains and gears, red spikes, one cold cyan orb as the only relief. Chrome Roman capitals edged in red neon with a cyan chromatic split.",
+    "googleFonts": ["Marcellus"]
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Sixty-seven seconds that took 72,808 tries.",
+    "why": "<p>Acheron is the shortest level near the top of this list and it doesn't matter at all. Sixty-seven seconds, 72,808 attempts to verify, and for a while it sat at #1. The density is the point &mdash; there is no rest in it anywhere.</p><p>I also just love how it looks. Riot's hell trilogy has a consistent, genuinely oppressive visual language, and Acheron is the one where it clicked completely: brick, chain, gear, and that single cyan orb doing all the work of telling you something else exists.</p>",
     "draftedByClaude": true
   },
   "media": {
-    "video": {},
-    "art": null,
+    "video": { "youtubeId": null, "title": null, "channel": null },
+    "art": "src/art/acheron.svg",
     "images": []
   }
 }
