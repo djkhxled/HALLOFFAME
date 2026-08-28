@@ -29,11 +29,6 @@
     drop-shadow(0 0 2.8rem color-mix(in srgb, var(--accent) 60%, transparent));
 }
 
-[data-level="tidal-wave"] .hero__eyebrow,
-[data-level="tidal-wave"] .hero__foot p {
-  text-shadow: 0 0 0.9rem #03080f, 0 0 1.7rem #03080f;
-}
-
 /* surge set-piece -------------------------------------------------------- */
 
 .sig--surge {

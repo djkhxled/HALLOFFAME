@@ -20,11 +20,6 @@
     0 0 2.4rem color-mix(in srgb, var(--accent) 60%, transparent);
 }
 
-[data-level="the-yandere"] .hero__eyebrow,
-[data-level="the-yandere"] .hero__foot p {
-  text-shadow: 0 0 0.8rem #0a0304, 0 0 1.5rem #0a0304;
-}
-
 [data-level="the-yandere"] .voice__hook {
   font-family: var(--font-display);
   font-weight: 400;

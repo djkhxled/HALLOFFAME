@@ -94,7 +94,7 @@
   font-size: var(--step--2);
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .hero__eyebrow::before,
@@ -114,6 +114,19 @@
   margin-block: var(--space-5);
 }
 
+/* Hero art is dense on every level, so the metadata always needs a halo of
+   the page's own field colour to sit on — and muted grey over busy art is
+   unreadable no matter how big the halo. Full ink; the small size and wide
+   tracking carry the hierarchy instead. */
+.hero__eyebrow,
+.hero__foot p {
+  text-shadow:
+    0 0 0.5rem var(--field),
+    0 0 1rem var(--field),
+    0 0 2rem var(--field),
+    0 0 3.4rem var(--field);
+}
+
 .hero__foot {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -123,7 +136,7 @@
   font-size: var(--step--2);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .hero__foot p {

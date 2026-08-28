@@ -30,18 +30,6 @@
     drop-shadow(0 0 2.6rem color-mix(in srgb, var(--accent) 65%, transparent));
 }
 
-/* Muted grey on textured brick disappears. The corner metadata gets the
-   full ink colour and a heavier halo so it reads at a glance. */
-[data-level="acheron"] .hero__eyebrow,
-[data-level="acheron"] .hero__foot p {
-  color: var(--ink);
-  text-shadow:
-    0 0 0.5rem #080405,
-    0 0 1rem #080405,
-    0 0 2rem rgba(8, 4, 5, 0.95),
-    0 0 3.4rem rgba(8, 4, 5, 0.8);
-}
-
 [data-level="acheron"] .level-hero__rank {
   color: #ff6a5a;
 }

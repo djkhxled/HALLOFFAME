@@ -19,11 +19,6 @@
     0 0 6rem color-mix(in srgb, var(--accent2) 40%, transparent);
 }
 
-[data-level="slaughterhouse"] .hero__eyebrow,
-[data-level="slaughterhouse"] .hero__foot p {
-  text-shadow: 0 0 0.9rem #0a0203, 0 0 1.8rem #0a0203;
-}
-
 [data-level="slaughterhouse"] .voice__hook {
   font-family: var(--font-display);
   font-size: var(--step-5);

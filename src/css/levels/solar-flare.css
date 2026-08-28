@@ -24,11 +24,6 @@
     drop-shadow(0 0 2.4rem color-mix(in srgb, var(--accent) 65%, transparent));
 }
 
-[data-level="solar-flare"] .hero__eyebrow,
-[data-level="solar-flare"] .hero__foot p {
-  text-shadow: 0 0 0.9rem #0d0500, 0 0 1.8rem #0d0500;
-}
-
 [data-level="solar-flare"] .voice__hook {
   font-family: var(--font-display);
   font-size: var(--step-4);

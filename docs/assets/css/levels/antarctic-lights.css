@@ -21,11 +21,6 @@
   filter: drop-shadow(0 0 2.6rem color-mix(in srgb, var(--accent) 50%, transparent));
 }
 
-[data-level="antarctic-lights"] .hero__eyebrow,
-[data-level="antarctic-lights"] .hero__foot p {
-  text-shadow: 0 0 0.9rem #030b16, 0 0 1.8rem #030b16;
-}
-
 [data-level="antarctic-lights"] .voice__hook {
   font-family: var(--font-display);
   font-weight: 300;
