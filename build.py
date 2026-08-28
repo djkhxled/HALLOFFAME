@@ -252,6 +252,13 @@ def main() -> int:
         shutil.rmtree(DOCS)
     DOCS.mkdir(parents=True)
 
+    # docs/ is wiped and rebuilt every run, so a CNAME committed by hand
+    # disappears on the next build. Set site.domain and it is written here
+    # instead, which is the only way it survives.
+    domain = site.get("domain")
+    if domain:
+        write(DOCS / "CNAME", domain + "\n")
+
     for sub in ("css", "js", "art", "fonts"):
         src = ROOT / "src" / sub
         if src.exists():
