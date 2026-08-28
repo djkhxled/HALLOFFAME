@@ -20,18 +20,36 @@ DOCS = ROOT / "docs"
 TEMPLATES = ROOT / "templates"
 
 
-def rebase(text: str, base: str) -> str:
-    """Prefix every site-internal absolute URL with the base path.
+def relativize(text: str, depth: int) -> str:
+    """Turn site-internal absolute URLs into relative ones.
 
-    GitHub Pages serves a project repo under /<repo>/, so the absolute URLs
-    this build writes (/assets/..., /levels/...) would 404 there. Setting
-    site.base to "/HALLOFFAME" fixes that; clearing it back to "" is what you
-    want the moment a custom domain is serving from the apex.
+    The site has to work at three addresses: localhost at the root,
+    djkhxled.github.io/HALLOFFAME/ under a project path, and b4ylor.com at
+    the apex. A hardcoded prefix is right for exactly one of them and silently
+    breaks the others, which is what left the pages unstyled. Relative URLs
+    are correct at all three with nothing to configure and nothing to flip
+    when the domain goes live.
+
+    depth is how many directories deep the page sits below the site root:
+    index.html is 0, privacy/index.html is 1, levels/deimos/index.html is 2.
     """
-    if not base:
-        return text
-    text = re.sub(r'((?:href|src)=")/(?!/)', rf"\1{base}/", text)
-    return text.replace("url(/assets/", f"url({base}/assets/")
+    prefix = "../" * depth if depth else ""
+
+    def fix(m):
+        return f'{m.group(1)}="{prefix}{m.group(2)}'
+
+    # href="/x" and src="/x", but never "//host" (protocol-relative)
+    text = re.sub(r'\b(href|src)="/(?!/)([^"]*)', fix, text)
+    # a bare href="/" becomes "./" rather than an empty attribute
+    text = text.replace('href=""', 'href="./"').replace('src=""', 'src="./"')
+    return text
+
+
+def relativize_css(text: str, depth: int) -> str:
+    """Same, for url(/assets/...) inside a stylesheet. depth is measured from
+    the stylesheet's own directory, since CSS URLs resolve against it."""
+    prefix = "../" * depth if depth else ""
+    return re.sub(r'url\(/(?!/)', f"url({prefix}", text)
 
 
 def texture_class(theme: dict) -> str:
@@ -278,11 +296,10 @@ def main() -> int:
         if src.exists():
             shutil.copytree(src, DOCS / "assets" / sub)
 
-    base_path = (site.get("base") or "").rstrip("/")
-    if base_path:
-        for css in (DOCS / "assets" / "css").rglob("*.css"):
-            css.write_text(rebase(css.read_text(encoding="utf-8"), base_path),
-                           encoding="utf-8")
+    for css in (DOCS / "assets" / "css").rglob("*.css"):
+        depth = len(css.relative_to(DOCS).parts) - 1
+        css.write_text(relativize_css(css.read_text(encoding="utf-8"), depth),
+                       encoding="utf-8")
 
     base_tpl = read(TEMPLATES / "base.html")
     index_tpl = read(TEMPLATES / "index.html")
@@ -290,12 +307,10 @@ def main() -> int:
 
     stamp = asset_stamp()
 
-    base = (site.get("base") or "").rstrip("/")
-
-    def stamped(html: str) -> str:
+    def stamped(html: str, depth: int = 0) -> str:
         html = re.sub(r'(/assets/(?:css|js)/[^"\']+?\.(?:css|js))',
                       lambda m: f"{m.group(1)}?v={stamp}", html)
-        return rebase(html, base)
+        return relativize(html, depth)
 
     write(DOCS / "index.html",
           stamped(build_index(levels, site, base_tpl, index_tpl)))
@@ -304,7 +319,7 @@ def main() -> int:
     page_tpl = read(TEMPLATES / "page.html")
     for doc in site.get("docs", []):
         write(DOCS / doc["slug"] / "index.html",
-              stamped(build_doc(doc, site, base_tpl, page_tpl)))
+              stamped(build_doc(doc, site, base_tpl, page_tpl), 1))
         pages += 1
     if not site.get("contact"):
         print("  ! no site.contact set — the policy pages say so in place "
@@ -317,7 +332,8 @@ def main() -> int:
         nxt = by_rank.get(level["rank"] + 1)
         prev = prev if prev and prev.get("published") else None
         nxt = nxt if nxt and nxt.get("published") else None
-        html = stamped(build_level(level, site, prev, nxt, base_tpl, level_tpl))
+        html = stamped(
+            build_level(level, site, prev, nxt, base_tpl, level_tpl), 2)
         write(DOCS / "levels" / level["slug"] / "index.html", html)
         pages += 1
 

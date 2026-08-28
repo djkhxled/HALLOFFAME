@@ -180,6 +180,36 @@ class TestBuild(unittest.TestCase):
         missing = sorted(t for t in declared if f".texture--{t}" not in css)
         self.assertEqual(missing, [], f"textures with no CSS: {missing}")
 
+    def test_internal_urls_are_relative_so_the_site_can_move(self):
+        """The site has to work at localhost root, under a GitHub Pages
+        project path, and later at b4ylor.com. A leading slash is correct for
+        exactly one of those and leaves the others unstyled."""
+        import re
+        bad = []
+        for f in sorted(DOCS.rglob("index.html")):
+            page = str(f.relative_to(DOCS))
+            html = f.read_text(encoding="utf-8")
+            for m in re.finditer(r'\b(?:href|src)="(/[^/][^"]*)"', html):
+                bad.append(f"{page}: {m.group(1)}")
+        self.assertEqual(bad[:6], [], f"{len(bad)} root-absolute internal URLs")
+
+    def test_relative_depth_matches_where_the_page_sits(self):
+        deep = (DOCS / "levels" / "deimos" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="../../assets/css/base.css', deep)
+        self.assertIn('href="../../"', deep)
+        mid = (DOCS / "privacy" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="../assets/css/base.css', mid)
+        top = (DOCS / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="assets/css/base.css', top)
+
+    def test_stylesheet_urls_resolve_from_the_stylesheet(self):
+        css = (DOCS / "assets" / "css" / "fonts.css").read_text(encoding="utf-8")
+        self.assertNotIn("url(/", css)
+        self.assertIn("url(../../assets/fonts/", css)
+        first = css.split("url(../../assets/fonts/")[1].split(")")[0]
+        self.assertTrue((DOCS / "assets" / "fonts" / first).is_file(),
+                        f"fonts.css points at a file that is not there: {first}")
+
     def test_notes_are_not_published(self):
         self.assertFalse((DOCS / "superpowers").exists())
         self.assertFalse((DOCS / "specs").exists())
