@@ -32,5 +32,6 @@
       "lede": "Geometry Dash belongs to RobTop. The levels belong to their creators. The art here is original."
     }
   ],
-  "domain": null
+  "domain": null,
+  "base": "/HALLOFFAME"
 }
