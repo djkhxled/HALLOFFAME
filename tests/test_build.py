@@ -86,6 +86,30 @@ class TestBuild(unittest.TestCase):
         self.assertIn('class="arc__at">30%', html)
         self.assertEqual(html.count('class="arc__at arc__at--none"'), 3)
 
+    def test_an_arc_with_no_stated_timings_drops_the_marker_row(self):
+        """Nhelv's arc states no percentages, so five empty slots would be
+        five rows of nothing."""
+        html = (DOCS / "levels" / "nhelv" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('class="arc__stop"', html)
+        self.assertNotIn('class="arc__at', html)
+
+    def test_a_nong_track_is_named_instead_of_linked(self):
+        """Nhelv's in-game song ID points at a different track; linking it
+        would hand the reader the wrong music."""
+        html = (DOCS / "levels" / "nhelv" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Silentroom", html)
+        self.assertIn("player__nong", html)
+        self.assertNotIn("newgrounds.com/audio", html)
+
+    def test_cold_sweat_carries_its_own_level_id(self):
+        """76543324 is Verdant Landscape by ItzNisha, and its song came across
+        with it."""
+        html = (DOCS / "levels" / "cold-sweat" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("63996127", html)
+        self.assertNotIn("76543324", html)
+        self.assertIn("False Noise", html)
+        self.assertNotIn("Xomu", html)
+
     def test_deimos_is_no_longer_a_drafted_placeholder(self):
         html = (DOCS / "levels" / "deimos" / "index.html").read_text(encoding="utf-8")
         self.assertNotIn("voice__drafted", html)

@@ -612,3 +612,11 @@ a.countdown__hit:focus-visible {
 .voice__body--long > p + p {
   margin-top: 1.15em;
 }
+
+.player__nong {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}

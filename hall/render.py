@@ -144,13 +144,18 @@ def arc_html(voice: dict) -> str:
     stops = (voice or {}).get("arc") or []
     if not stops:
         return ""
+    # An empty marker slot only earns its space when some other stop fills
+    # one; an arc with no stated timings anywhere drops the row entirely.
+    marked = any(stop.get("at") for stop in stops)
     items = []
     for stop in stops:
         mark = stop.get("at")
-        mark_html = (
-            f'<span class="arc__at">{esc(mark)}</span>' if mark
-            else '<span class="arc__at arc__at--none" aria-hidden="true"></span>'
-        )
+        if not marked:
+            mark_html = ""
+        elif mark:
+            mark_html = f'<span class="arc__at">{esc(mark)}</span>'
+        else:
+            mark_html = '<span class="arc__at arc__at--none" aria-hidden="true"></span>'
         items.append(
             '<li class="arc__stop">'
             f'{mark_html}'
@@ -228,6 +233,14 @@ def player_html(facts: dict) -> str:
             f'<a class="player__ng" rel="nofollow noopener" target="_blank" '
             f'href="https://www.newgrounds.com/audio/listen/{esc(ng)}">'
             f"Listen on Newgrounds</a>"
+        )
+    elif song.get("nong"):
+        # The level ships a placeholder Newgrounds track and the real song is
+        # supplied separately. Linking the in-game song ID would play the
+        # wrong music, so say so instead.
+        link = (
+            '<p class="player__nong">Not on Newgrounds &mdash; the level '
+            "carries this track as a custom song.</p>"
         )
     return (
         '<section class="player" aria-labelledby="song-h">'

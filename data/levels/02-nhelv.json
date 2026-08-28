@@ -5,26 +5,32 @@
   "tagline": "A level built to be the music video for its own song. Widely held to be the best-decorated extreme demon ever made.",
   "published": true,
   "facts": {
-    "creators": ["SrGuillester", "notlsa", "DienID"],
+    "creators": [
+      "SrGuillester",
+      "notlsa",
+      "Dienid"
+    ],
     "host": "SrGuillester",
     "verifier": "SrGuillester",
     "verifiedDate": "2021-04-14",
     "ratedDate": "2021-04-21",
-    "attempts": 10168,
+    "attempts": "10,168",
     "levelId": "68353244",
-    "objects": 65535,
-    "length": "2:36",
+    "objects": null,
+    "length": "2m 36s",
     "gdVersion": "2.1",
     "song": {
       "name": "Nhelv",
       "artist": "Silentroom",
-      "newgroundsId": "812038"
+      "newgroundsId": null,
+      "nong": true
     },
-    "peakRank": "#29",
-    "note": "Decoration is modelled on the official music video for Silentroom's 'Nhelv'.",
+    "peakRank": "#29 on the Demonlist",
+    "note": "Decoration is modelled on the official music video for Silentroom's 'Nhelv'. Formerly the hardest rated memory level, taking that title from Killbot and losing it to LIMBO in November 2022. Best Extreme Demon in the 2021 Geometry Dash Awards.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Nhelv",
-      "https://geometry-dash-fan.fandom.com/wiki/SrGuillester"
+      "https://pointercrate.com/demonlist/permalink/336/",
+      "https://gdbrowser.com/68353244"
     ]
   },
   "theme": {
@@ -45,9 +51,31 @@
     ]
   },
   "voice": {
-    "hook": "The level that made decoration the point.",
-    "why": "<p>Nhelv is here for how it looks, and I don't think that needs defending. It took the official music video for Silentroom's track and rebuilt it inside Geometry Dash, and the result still gets used as the benchmark for what level design can be years later.</p><p>What gets me is the restraint. It would have been easy to make this a wall of effects. Instead every flash is timed to something, and when the level goes quiet it actually goes quiet. Plenty of levels are harder. Very few are this composed.</p>",
-    "draftedByClaude": true
+    "hook": "The best decorated and themed level of all time.",
+    "why": "<p>Nhelv is crazy. The way the level is built to be the hardest memory demon and just so happens to be the best decorated and themed level of all time is astonishing to me.</p><p>My favorite parts are the break going down the mountain just before the second drop and final dual, and the final dual itself. The way tension is built before the second drop, and the rhythmic displacement right before it, makes the drop feel epic &mdash; like the level is making its last push and throwing everything it possibly can at you, using all of its energy to try and kill you.</p><p>I think the song for the level is also perfect.</p>",
+    "draftedByClaude": false,
+    "arc": [
+      {
+        "label": "Down the mountain",
+        "at": null,
+        "note": "The break. One of my two favorite parts of the level."
+      },
+      {
+        "label": "Rhythmic displacement",
+        "at": null,
+        "note": "The tension right before the drop, and what makes it land."
+      },
+      {
+        "label": "Second drop",
+        "at": null,
+        "note": "The last push. Everything it can possibly throw at you."
+      },
+      {
+        "label": "The final dual",
+        "at": null,
+        "note": "All of its energy, spent trying to kill you."
+      }
+    ]
   },
   "media": {
     "video": {

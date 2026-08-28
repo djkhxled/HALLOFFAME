@@ -5,26 +5,32 @@
   "tagline": "Neon wireframe in the dark, and blocks that lie to you.",
   "published": true,
   "facts": {
-    "creators": ["para", "Sminx", "Wulzy"],
+    "creators": [
+      "para",
+      "Sminx",
+      "Wulzy"
+    ],
     "host": "para",
     "verifier": "Kapinapi",
     "verifiedDate": "2020-09-13",
     "ratedDate": "2020-09-13",
     "attempts": null,
-    "levelId": "76543324",
+    "levelId": "63996127",
     "objects": null,
-    "length": "2m 06s",
+    "length": null,
     "gdVersion": "2.1",
     "song": {
-      "name": "Pagoda",
-      "artist": "Xomu",
-      "newgroundsId": "837148"
+      "name": "Shiver",
+      "artist": "False Noise",
+      "newgroundsId": null,
+      "nong": true
     },
     "peakRank": null,
-    "note": "Known for its fake blocks, placed to mislead the player.",
+    "note": "Known for its fake blocks, placed to mislead the player. Best Extreme Demon in the 2020 Geometry Dash Awards.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Cold_Sweat",
-      "https://pointercrate.com/demonlist/168/"
+      "https://pointercrate.com/demonlist/permalink/293/",
+      "https://gdbrowser.com/63996127"
     ]
   },
   "theme": {
@@ -39,15 +45,21 @@
     "texture": "scanline",
     "signature": "prism",
     "mood": "Cold and clinical. White wireframe geometry receding into black, hard scanlines across everything, chromatic split on the type, and one rainbow prism beam cutting the frame diagonally.",
-    "googleFonts": ["Poppins:wght@300;500;600"]
+    "googleFonts": [
+      "Poppins:wght@300;500;600"
+    ]
   },
   "voice": {
-    "hook": "The one that lies to you.",
-    "why": "<p>Cold Sweat earns its place on nerve. The fake blocks are the whole thesis &mdash; a level that decorates itself with things that look solid and aren't, so you spend the run doubting what you're seeing. That is a genuinely mean idea, executed cleanly.</p><p>And it looks incredible doing it. White wireframe against near-black, scanlines, that one prism streak. It's the coldest-looking level on this list and the name fits perfectly.</p>",
-    "draftedByClaude": true
+    "hook": "Nothing short of amazing.",
+    "why": "<p>I love Cold Sweat. The idea behind the level being a semi memory demon is very interesting and cool, and I love the theming &mdash; it kind of reminds me of a prism. The song, &ldquo;Shiver&rdquo; by False Noise, I think brings this to the next level. I really haven't heard many songs like it, and it's very unique.</p><p>This level also holds a special place because of the people I used to watch play it. When it was first verified and showcased, I fell in love instantly. When Doggie played it and made a video about it, it made me love it even more, especially after his devastating death at 98. I don't even know what else to say here &mdash; I think it's nothing short of amazing.</p>",
+    "draftedByClaude": false
   },
   "media": {
-    "video": { "youtubeId": null, "title": null, "channel": null },
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/cold-sweat.svg",
     "images": []
   }
