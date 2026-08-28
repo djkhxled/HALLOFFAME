@@ -1,0 +1,50 @@
+<svg class="art art--nhelv" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Violet and cyan geometric slices strobing across a dark field">
+  <defs>
+    <linearGradient id="nh-v" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b98cff"/>
+      <stop offset="100%" stop-color="#4ae0ff"/>
+    </linearGradient>
+    <linearGradient id="nh-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#08060f" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#08060f" stop-opacity="0.92"/>
+    </linearGradient>
+    <radialGradient id="nh-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4ae0ff" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#b98cff" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#b98cff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="#08060f"/>
+  <ellipse cx="800" cy="450" rx="620" ry="420" fill="url(#nh-core)"/>
+
+  <g stroke="url(#nh-v)" fill="none" opacity="0.55">
+    <path d="M800 158 L1128 450 L800 742 L472 450 Z" stroke-width="1.6"/>
+    <path d="M800 232 L1046 450 L800 668 L554 450 Z" stroke-width="1.2" opacity="0.8"/>
+    <path d="M800 306 L964 450 L800 594 L636 450 Z" stroke-width="1"/>
+  </g>
+
+  <g fill="#b98cff">
+    <rect x="150" y="286" width="220" height="3" opacity="0.75"/>
+    <rect x="150" y="330" width="120" height="3" opacity="0.4"/>
+    <rect x="1230" y="566" width="220" height="3" opacity="0.75"/>
+    <rect x="1330" y="610" width="120" height="3" opacity="0.4"/>
+  </g>
+  <g fill="#4ae0ff">
+    <rect x="150" y="566" width="160" height="3" opacity="0.6"/>
+    <rect x="1290" y="286" width="160" height="3" opacity="0.6"/>
+  </g>
+
+  <g opacity="0.9">
+    <rect x="392" y="404" width="56" height="92" fill="#b98cff" opacity="0.30"/>
+    <rect x="1152" y="404" width="56" height="92" fill="#4ae0ff" opacity="0.30"/>
+    <rect x="762" y="120" width="76" height="18" fill="#4ae0ff" opacity="0.55"/>
+    <rect x="762" y="762" width="76" height="18" fill="#b98cff" opacity="0.55"/>
+  </g>
+
+  <g stroke="#f3eeff" stroke-width="0.6" opacity="0.16">
+    <path d="M0 450 H1600"/><path d="M800 0 V900"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#nh-fade)"/>
+</svg>

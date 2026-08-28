@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-level="{{ slug }}" data-signature="{{ signature }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+{{ head_extra_html }}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="texture texture--{{ texture }}" aria-hidden="true"></div>
+<main id="main" class="site-main">
+{{ body_html }}
+</main>
+<footer class="site-foot">
+  <div class="page">
+    <p>{{ disclaimer }}</p>
+    <p>{{ colophon }}</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="/assets/js/scroll.js" defer></script>
+<script src="/assets/js/media.js" defer></script>
+</body>
+</html>

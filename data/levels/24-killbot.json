@@ -1,0 +1,50 @@
+{
+  "rank": 24,
+  "slug": "killbot",
+  "name": "Killbot",
+  "tagline": "Industrial, unfeeling, extremely good at its job.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "Lithifusion"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#08090b",
+      "ink": "#eef1f5",
+      "muted": "#99a1ac",
+      "accent": "#ff5a3c"
+    },
+    "texture": "chrome",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "rank": 22,
+  "slug": "the-golden",
+  "name": "The Golden",
+  "tagline": "Gilded, and heavier than it looks.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "BoBoBoBoBoBoBo",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#0d0a03",
+      "ink": "#fff6e2",
+      "muted": "#c7ab77",
+      "accent": "#ffc44d"
+    },
+    "texture": "chrome",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

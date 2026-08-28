@@ -1,0 +1,51 @@
+{
+  "rank": 4,
+  "slug": "cold-sweat",
+  "name": "Cold Sweat",
+  "tagline": "The panic that arrives a half-second before the drop does.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "Para",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#050d12",
+      "ink": "#e9f6fb",
+      "muted": "#8fb4c4",
+      "accent": "#38d6f5"
+    },
+    "texture": "grain",
+    "signature": "flood",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "rank": 25,
+  "slug": "edge-of-destiny",
+  "name": "Edge of Destiny",
+  "tagline": "Where the list begins, and the climb starts.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "CDMusic",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#050810",
+      "ink": "#eaeeff",
+      "muted": "#8f97b8",
+      "accent": "#6f8cff"
+    },
+    "texture": "starfield",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

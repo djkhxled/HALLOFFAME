@@ -1,0 +1,51 @@
+{
+  "rank": 23,
+  "slug": "ocular-miracle",
+  "name": "Ocular Miracle",
+  "tagline": "Something is watching, and it is beautiful about it.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "Davphla",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#040a0c",
+      "ink": "#e8f8fb",
+      "muted": "#89b6bf",
+      "accent": "#3fe0f0"
+    },
+    "texture": "caustics",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

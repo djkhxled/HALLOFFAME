@@ -1,0 +1,52 @@
+{
+  "rank": 7,
+  "slug": "solar-flare",
+  "name": "Solar Flare",
+  "tagline": "Light loud enough to hear.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "Linear",
+      "Swiborg",
+      "Rynoxious"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#100702",
+      "ink": "#fff2df",
+      "muted": "#cfa06a",
+      "accent": "#ffa528"
+    },
+    "texture": "ember",
+    "signature": "ignite",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

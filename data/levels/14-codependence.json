@@ -1,0 +1,50 @@
+{
+  "rank": 14,
+  "slug": "codependence",
+  "name": "Codependence",
+  "tagline": "Two halves that cannot function apart.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "TCTeam"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#040c0c",
+      "ink": "#e6f7f6",
+      "muted": "#86b3b0",
+      "accent": "#2fd9c9"
+    },
+    "texture": "grain",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "rank": 15,
+  "slug": "zodiac",
+  "name": "Zodiac",
+  "tagline": "Star charts drawn by somebody with something to prove.",
+  "published": false,
+  "facts": {
+    "creators": [
+      "BIANOX",
+      "and more"
+    ],
+    "host": null,
+    "verifier": null,
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": null,
+    "objects": null,
+    "length": null,
+    "gdVersion": null,
+    "song": {
+      "name": null,
+      "artist": null,
+      "newgroundsId": null
+    },
+    "peakRank": null,
+    "sources": []
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#080614",
+      "ink": "#f0eeff",
+      "muted": "#9c96c6",
+      "accent": "#9d7bff"
+    },
+    "texture": "starfield",
+    "signature": "static",
+    "mood": null
+  },
+  "voice": {
+    "hook": null,
+    "why": null,
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {},
+    "art": null,
+    "images": []
+  }
+}
