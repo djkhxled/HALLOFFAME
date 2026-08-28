@@ -386,10 +386,90 @@
     });
   }
 
+  /* Signature: fracture — the frame shatters apart and reassembles. ----- */
+  function fracture() {
+    var stage = document.querySelector("[data-sig='fracture']");
+    if (!stage) return;
+
+    var shards = stage.querySelectorAll("[data-shard]");
+    if (!shards.length) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=185%",
+        scrub: 0.7,
+        pin: true,
+      },
+    });
+
+    tl.fromTo(
+      shards,
+      {
+        xPercent: function (i) { return (i % 3 - 1) * 62; },
+        yPercent: function (i) { return (i % 2 ? -1 : 1) * 44; },
+        rotate: function (i) { return (i % 2 ? -1 : 1) * 26; },
+        opacity: 0.15,
+      },
+      {
+        xPercent: 0, yPercent: 0, rotate: 0, opacity: 1,
+        ease: "none", stagger: 0.05,
+      },
+      0
+    ).fromTo(
+      stage.querySelectorAll("[data-frac-line]"),
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, stagger: 0.2, ease: "power2.out" },
+      0.2
+    );
+  }
+
+  /* Signature: aurora — curtains drift while the peaks hold. ------------ */
+  function aurora() {
+    var stage = document.querySelector("[data-sig='aurora']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=190%",
+        scrub: 1,
+        pin: true,
+      },
+    });
+
+    tl.to(stage.querySelectorAll("[data-veil='a']"),
+          { xPercent: 16, yPercent: -12, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-veil='b']"),
+          { xPercent: -20, yPercent: -6, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-ridge='far']"), { yPercent: -8, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-ridge='near']"), { yPercent: -22, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelectorAll("[data-aurora-line]"),
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.22, ease: "power2.out" },
+        0.12
+      );
+
+    /* the curtains keep breathing on their own */
+    gsap.to(stage.querySelectorAll("[data-shimmer]"), {
+      opacity: 0.35,
+      duration: 3.2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: { each: 0.7, from: "random" },
+    });
+  }
+
   reveals();
   countdown();
 
   var sig = document.documentElement.dataset.signature;
+  if (sig === "fracture") fracture();
+  if (sig === "aurora") aurora();
   if (sig === "surge") surge();
   if (sig === "ignite") ignite();
   if (sig === "pulse") pulse();

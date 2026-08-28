@@ -1,0 +1,180 @@
+/* Antarctic Lights — rank 10. A polar night: thin type, cold light. */
+
+[data-level="antarctic-lights"] {
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --rule-colour: color-mix(in srgb, var(--accent) 26%, transparent);
+}
+
+[data-level="antarctic-lights"] .hero__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.045em;
+  line-height: 1.02;
+  text-transform: uppercase;
+  background: linear-gradient(
+    172deg,
+    #ffffff 0%, #eafaff 26%, #7dffca 58%, #5cc8ff 84%, #2a7fa8 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 2.6rem color-mix(in srgb, var(--accent) 50%, transparent));
+}
+
+[data-level="antarctic-lights"] .hero__eyebrow,
+[data-level="antarctic-lights"] .hero__foot p {
+  text-shadow: 0 0 0.9rem #030b16, 0 0 1.8rem #030b16;
+}
+
+[data-level="antarctic-lights"] .voice__hook {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  font-size: var(--step-5);
+}
+
+/* aurora set-piece ------------------------------------------------------- */
+
+.sig--aurora {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--rule-colour);
+  background: linear-gradient(180deg, #02121f 0%, #04283f 48%, #030b16 100%);
+}
+
+/* Curtains: tall soft bands, each drifting at its own rate. */
+.aur__veil {
+  position: absolute;
+  top: -18%;
+  height: 96%;
+  filter: blur(28px);
+  pointer-events: none;
+  opacity: 0.62;
+}
+
+.aur__veil--1 {
+  left: 4%;
+  width: 26vmin;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--accent) 62%, transparent) 30%,
+    color-mix(in srgb, var(--accent2) 34%, transparent) 68%,
+    transparent 100%
+  );
+  transform: skewX(-9deg);
+}
+
+.aur__veil--2 {
+  left: 32%;
+  width: 34vmin;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, #7dffca 58%, transparent) 34%,
+    transparent 100%
+  );
+  transform: skewX(7deg);
+}
+
+.aur__veil--3 {
+  right: 22%;
+  width: 28vmin;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--accent) 52%, transparent) 30%,
+    color-mix(in srgb, var(--accent2) 30%, transparent) 70%,
+    transparent 100%
+  );
+  transform: skewX(-6deg);
+}
+
+.aur__veil--4 {
+  right: 2%;
+  width: 22vmin;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, #7dffca 46%, transparent) 38%,
+    transparent 100%
+  );
+  transform: skewX(10deg);
+}
+
+/* Jagged ridge lines, cut from the flat colour. */
+.aur__ridge {
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.aur__ridge--far {
+  height: 44%;
+  background: #0b2436;
+  clip-path: polygon(
+    0 42%, 6% 26%, 12% 38%, 19% 20%, 26% 36%, 33% 18%, 40% 34%, 47% 16%,
+    54% 32%, 61% 14%, 68% 30%, 75% 12%, 82% 28%, 89% 16%, 96% 32%, 100% 24%,
+    100% 100%, 0 100%
+  );
+}
+
+.aur__ridge--near {
+  height: 28%;
+  background: #040e1a;
+  clip-path: polygon(
+    0 56%, 7% 30%, 14% 50%, 22% 26%, 30% 46%, 38% 22%, 46% 44%, 54% 20%,
+    62% 42%, 70% 18%, 78% 40%, 86% 24%, 94% 46%, 100% 30%,
+    100% 100%, 0 100%
+  );
+}
+
+.aur__stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 14%, #eafaff 50%, transparent 50%),
+    radial-gradient(1px 1px at 32% 8%, #eafaff 50%, transparent 50%),
+    radial-gradient(1.6px 1.6px at 54% 18%, #eafaff 50%, transparent 50%),
+    radial-gradient(1px 1px at 74% 10%, #eafaff 50%, transparent 50%),
+    radial-gradient(1.3px 1.3px at 88% 22%, #eafaff 50%, transparent 50%),
+    radial-gradient(1px 1px at 22% 30%, #eafaff 50%, transparent 50%),
+    radial-gradient(1.2px 1.2px at 64% 34%, #eafaff 50%, transparent 50%);
+  background-size: 100% 100%;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.aur__copy {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+}
+
+.aur__line {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6.6vw, 5.6rem);
+  line-height: 1.08;
+  letter-spacing: 0.05em;
+  margin: 0 0 var(--space-6);
+  background: linear-gradient(172deg, #ffffff 0%, #7dffca 50%, #5cc8ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.aur__sub {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--ink);
+  line-height: 1.7;
+  margin-inline: auto;
+  text-shadow: 0 0 1.5rem #030b16, 0 0 2.6rem #030b16;
+}

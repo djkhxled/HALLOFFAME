@@ -1,0 +1,183 @@
+<svg class="art art--kyouki" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Dense layered blue and violet geometry — spiked fronds, ringed spires and ornate panels stacked into texture">
+  <defs>
+    <radialGradient id="ky-glow" cx="50%" cy="46%" r="54%">
+      <stop offset="0%" stop-color="#4a7bff" stop-opacity="0.44"/>
+      <stop offset="50%" stop-color="#b06bff" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#b06bff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ky-spire" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#0a0630" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#4a7bff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#dfe8ff"/>
+    </linearGradient>
+    <linearGradient id="ky-frond" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#2b1a6e"/>
+      <stop offset="55%" stop-color="#160c42"/>
+      <stop offset="100%" stop-color="#0a0524"/>
+    </linearGradient>
+    <linearGradient id="ky-panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6a3ec4" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#2a1a72" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="ky-vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#06031a" stop-opacity="0.7"/>
+      <stop offset="34%" stop-color="#06031a" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#06031a" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="ky-soft"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="ky-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="#06031a"/>
+  <ellipse cx="800" cy="420" rx="860" ry="520" fill="url(#ky-glow)"/>
+
+  <!-- Ringed spires: triangles with concentric arcs inside -->
+  <g>
+    <g transform="translate(1130 470)">
+      <path d="M0 -220 L128 190 L-128 190 Z" fill="url(#ky-spire)" opacity="0.85"/>
+      <g fill="none" stroke="#dfe8ff" opacity="0.45">
+        <circle cy="86" r="26" stroke-width="4"/>
+        <circle cy="86" r="48" stroke-width="3"/>
+        <circle cy="86" r="70" stroke-width="2.4"/>
+        <circle cy="86" r="92" stroke-width="1.8"/>
+      </g>
+      <path d="M0 -220 L128 190 L-128 190 Z" fill="none" stroke="#eaf0ff" stroke-width="3" opacity="0.7"/>
+    </g>
+    <g transform="translate(1370 560)">
+      <path d="M0 -180 L104 156 L-104 156 Z" fill="url(#ky-spire)" opacity="0.75"/>
+      <g fill="none" stroke="#dfe8ff" opacity="0.4">
+        <circle cy="70" r="22" stroke-width="3.4"/>
+        <circle cy="70" r="40" stroke-width="2.6"/>
+        <circle cy="70" r="58" stroke-width="2"/>
+      </g>
+      <path d="M0 -180 L104 156 L-104 156 Z" fill="none" stroke="#eaf0ff" stroke-width="2.6" opacity="0.6"/>
+    </g>
+    <g transform="translate(300 560)">
+      <path d="M0 -200 L116 172 L-116 172 Z" fill="url(#ky-spire)" opacity="0.7"/>
+      <g fill="none" stroke="#dfe8ff" opacity="0.36">
+        <circle cy="78" r="24" stroke-width="3.4"/>
+        <circle cy="78" r="44" stroke-width="2.6"/>
+        <circle cy="78" r="64" stroke-width="2"/>
+      </g>
+      <path d="M0 -200 L116 172 L-116 172 Z" fill="none" stroke="#eaf0ff" stroke-width="2.6" opacity="0.6"/>
+    </g>
+    <g transform="translate(560 640)" opacity="0.7">
+      <path d="M0 -150 L88 130 L-88 130 Z" fill="url(#ky-spire)" opacity="0.6"/>
+      <path d="M0 -150 L88 130 L-88 130 Z" fill="none" stroke="#eaf0ff" stroke-width="2.2" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- Spiked fronds along the top and bottom -->
+  <g fill="url(#ky-frond)">
+    <path d="M340 0 q 80 40 120 130 q -70 -50 -104 -46 q 66 62 84 140
+             q -72 -74 -120 -74 q 60 78 62 156 q -70 -96 -128 -100
+             q 46 96 30 172 q -56 -112 -110 -138 L 60 0 Z"/>
+    <path d="M1180 0 q -80 40 -120 130 q 70 -50 104 -46 q -66 62 -84 140
+             q 72 -74 120 -74 q -60 78 -62 156 q 70 -96 128 -100
+             q -46 96 -30 172 q 56 -112 110 -138 L1460 0 Z"/>
+  </g>
+  <g fill="url(#ky-frond)" opacity="0.9">
+    <path d="M120 900 q 70 -40 96 -122 q -58 46 -88 42 q 56 -58 68 -128
+             q -62 68 -102 66 q 50 -70 48 -140 q -58 88 -108 92
+             q 38 -88 22 -158 L 0 552 L0 900 Z"/>
+    <path d="M1480 900 q -70 -40 -96 -122 q 58 46 88 42 q -56 -58 -68 -128
+             q 62 68 102 66 q -50 -70 -48 -140 q 58 88 108 92
+             q -38 -88 -22 -158 L1600 552 L1600 900 Z"/>
+  </g>
+
+  <!-- Ornate patterned panels -->
+  <g>
+    <g transform="translate(214 250) rotate(-12)">
+      <rect x="-96" y="-64" width="192" height="128" fill="url(#ky-panel)" stroke="#b06bff" stroke-width="3"/>
+      <g fill="none" stroke="#dfe8ff" stroke-width="2" opacity="0.5">
+        <path d="M-76 -44 h152 M-76 -18 h152 M-76 8 h152 M-76 34 h152"/>
+        <path d="M-52 -64 v128 M0 -64 v128 M52 -64 v128"/>
+      </g>
+      <g fill="#b06bff" opacity="0.6">
+        <path d="M-30 0 l30 -22 30 22 -30 22 Z"/>
+      </g>
+    </g>
+    <g transform="translate(1400 210) rotate(14)">
+      <rect x="-84" y="-56" width="168" height="112" fill="url(#ky-panel)" stroke="#4a7bff" stroke-width="3"/>
+      <g fill="none" stroke="#dfe8ff" stroke-width="1.8" opacity="0.45">
+        <path d="M-66 -38 h132 M-66 -12 h132 M-66 14 h132 M-66 38 h132"/>
+        <path d="M-44 -56 v112 M0 -56 v112 M44 -56 v112"/>
+      </g>
+    </g>
+    <g transform="translate(720 780) rotate(-6)" opacity="0.85">
+      <rect x="-120" y="-46" width="240" height="92" fill="url(#ky-panel)" stroke="#b06bff" stroke-width="2.6"/>
+      <g fill="none" stroke="#dfe8ff" stroke-width="1.8" opacity="0.45">
+        <path d="M-100 -28 h200 M-100 0 h200 M-100 28 h200"/>
+      </g>
+      <g fill="#4a7bff" opacity="0.55">
+        <path d="M-60 0 l24 -18 24 18 -24 18 Z"/>
+        <path d="M12 0 l24 -18 24 18 -24 18 Z"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Nested diamond frames -->
+  <g fill="none" stroke="#4a7bff" opacity="0.55">
+    <g transform="translate(120 480) rotate(45)">
+      <rect x="-58" y="-58" width="116" height="116" stroke-width="4"/>
+      <rect x="-42" y="-42" width="84" height="84" stroke-width="2.6" stroke="#b06bff"/>
+      <rect x="-26" y="-26" width="52" height="52" stroke-width="2" stroke="#dfe8ff"/>
+    </g>
+    <g transform="translate(1512 430) rotate(45)">
+      <rect x="-50" y="-50" width="100" height="100" stroke-width="3.4"/>
+      <rect x="-34" y="-34" width="68" height="68" stroke-width="2.4" stroke="#b06bff"/>
+    </g>
+    <g transform="translate(940 168) rotate(45)" opacity="0.7">
+      <rect x="-40" y="-40" width="80" height="80" stroke-width="3"/>
+      <rect x="-26" y="-26" width="52" height="52" stroke-width="2" stroke="#dfe8ff"/>
+    </g>
+  </g>
+
+  <!-- Violet gears -->
+  <g fill="none" stroke="#b06bff" opacity="0.5">
+    <g transform="translate(430 200)">
+      <circle r="42" stroke-width="11"/>
+      <circle r="16" stroke-width="6"/>
+      <g stroke-width="10">
+        <path d="M0 -56 v14"/><path d="M0 56 v-14"/><path d="M-56 0 h14"/><path d="M56 0 h-14"/>
+        <path d="M40 -40 l10 -10"/><path d="M-40 40 l-10 10"/>
+        <path d="M40 40 l10 10"/><path d="M-40 -40 l-10 -10"/>
+      </g>
+    </g>
+    <g transform="translate(1220 790)" opacity="0.8">
+      <circle r="34" stroke-width="9"/>
+      <circle r="13" stroke-width="5"/>
+      <g stroke-width="8">
+        <path d="M0 -46 v12"/><path d="M0 46 v-12"/><path d="M-46 0 h12"/><path d="M46 0 h-12"/>
+        <path d="M33 -33 l8 -8"/><path d="M-33 33 l-8 8"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Small crystal shards -->
+  <g>
+    <path d="M660 250 L676 292 L660 320 L644 292 Z" fill="#b06bff" opacity="0.75"/>
+    <path d="M866 330 L880 366 L866 390 L852 366 Z" fill="#4a7bff" opacity="0.7"/>
+    <path d="M500 420 L512 450 L500 470 L488 450 Z" fill="#dfe8ff" opacity="0.6"/>
+    <path d="M1040 640 L1054 674 L1040 696 L1026 674 Z" fill="#b06bff" opacity="0.6"/>
+    <path d="M780 170 L792 200 L780 220 L768 200 Z" fill="#4a7bff" opacity="0.55"/>
+  </g>
+
+  <!-- Motes -->
+  <g fill="#dfe8ff">
+    <circle cx="250" cy="380" r="3" opacity="0.7"/><circle cx="620" cy="470" r="2.2" opacity="0.55"/>
+    <circle cx="980" cy="250" r="2.6" opacity="0.6"/><circle cx="1300" cy="380" r="3.2" opacity="0.65"/>
+    <circle cx="420" cy="640" r="2.4" opacity="0.5"/><circle cx="880" cy="560" r="2.8" opacity="0.55"/>
+    <circle cx="1460" cy="680" r="2.2" opacity="0.5"/><circle cx="160" cy="700" r="3" opacity="0.55"/>
+  </g>
+  <g fill="#b06bff">
+    <circle cx="540" cy="300" r="3.4" opacity="0.6"/><circle cx="1180" cy="560" r="3" opacity="0.55"/>
+    <circle cx="740" cy="640" r="2.6" opacity="0.5"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#ky-vig)"/>
+  <rect width="1600" height="900" filter="url(#ky-grain)" opacity="0.14"/>
+</svg>

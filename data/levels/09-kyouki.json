@@ -2,49 +2,53 @@
   "rank": 9,
   "slug": "kyouki",
   "name": "Kyouki",
-  "tagline": "Madness, arranged neatly.",
-  "published": false,
+  "tagline": "287,445 objects, built alone — and verified after a death at 97%.",
+  "published": true,
   "facts": {
-    "creators": [
-      "Demishio"
-    ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "creators": ["Demishio"],
+    "host": "Demishio",
+    "verifier": "Demishio",
+    "verifiedDate": "2022-11-24",
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
-    "objects": null,
-    "length": null,
-    "gdVersion": null,
+    "levelId": "112313819",
+    "objects": "287,445",
+    "length": "2m 27s",
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "I Cant Fix You feat. Crusher-P",
+      "artist": "The Living Tombstone",
+      "newgroundsId": "717444"
     },
     "peakRank": null,
-    "sources": []
+    "note": "A solo level — built and verified by one person. Kyouki (狂気) means madness. It was the first level placed on the Demonlist in 2023, and its verification run came after a death at 97%.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Kyouki",
+      "https://pointercrate.com/demonlist/21/"
+    ]
   },
   "theme": {
-    "tier": "themed",
+    "tier": "bespoke",
     "palette": {
-      "field": "#0a0507",
-      "ink": "#fdeef0",
-      "muted": "#c294a0",
-      "accent": "#ff3b5c"
+      "field": "#06031a",
+      "ink": "#eef1ff",
+      "muted": "#9ca2d6",
+      "accent": "#4a7bff",
+      "accent2": "#b06bff"
     },
-    "texture": "scanline",
+    "texture": "grain",
     "signature": "fracture",
-    "mood": null
+    "mood": "Electric blue and violet at maximum saturation. Glossy liquid-chrome script over layered spiked fronds, ringed spires and ornate panels — decoration stacked until it stops being readable and becomes texture.",
+    "googleFonts": ["Yellowtail"]
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "One person. 287,445 objects.",
+    "why": "<p>Kyouki is the one that makes no sense to me. It is a solo level. One person built 287,445 objects of it and then verified it themself, and the verification came after dying at 97% first, which I genuinely cannot imagine recovering from.</p><p>The name means madness and the decoration agrees. It is stacked so densely that it stops reading as individual objects and turns into pure texture &mdash; and somehow it never gets muddy. That blue is the best blue in the game.</p>",
     "draftedByClaude": true
   },
   "media": {
-    "video": {},
-    "art": null,
+    "video": { "youtubeId": null, "title": null, "channel": null },
+    "art": "src/art/kyouki.svg",
     "images": []
   }
 }

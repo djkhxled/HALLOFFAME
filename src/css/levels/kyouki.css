@@ -1,0 +1,120 @@
+/* Kyouki — rank 9. Electric blue and violet, stacked until it becomes texture. */
+
+[data-level="kyouki"] {
+  --font-display: "Yellowtail", "Brush Script MT", cursive;
+  --rule-colour: color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+[data-level="kyouki"] .hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.004em;
+  line-height: 1.08;
+  padding-block: 0.14em;
+  /* liquid chrome: a hard white lip, a deep blue belly */
+  background: linear-gradient(
+    166deg,
+    #ffffff 0%, #dfe8ff 16%, #4a7bff 44%, #1a2fa8 68%, #b06bff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 1px 0 #ffffff)
+    drop-shadow(0 0 2.4rem color-mix(in srgb, var(--accent) 70%, transparent))
+    drop-shadow(0 0 5rem color-mix(in srgb, var(--accent2) 45%, transparent));
+}
+
+[data-level="kyouki"] .hero__eyebrow,
+[data-level="kyouki"] .hero__foot p {
+  text-shadow: 0 0 0.9rem #06031a, 0 0 1.8rem #06031a;
+}
+
+/* fracture set-piece ----------------------------------------------------- */
+
+.sig--fracture {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--rule-colour);
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 46%,
+    #140a44 0%,
+    #06031a 76%
+  );
+}
+
+.frac__field {
+  position: absolute;
+  inset: -6%;
+  pointer-events: none;
+}
+
+/* Shards: each one a slice of the same lattice, displaced then reassembled. */
+.frac__shard {
+  position: absolute;
+  border: 2.4px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--accent2) 24%, transparent),
+    transparent 70%
+  );
+}
+
+.frac__shard::before {
+  content: "";
+  position: absolute;
+  inset: 16%;
+  border: 1.6px solid color-mix(in srgb, var(--ink) 34%, transparent);
+}
+
+.frac__shard--1 { width: 22vmin; height: 22vmin; left: 8%;  top: 12%; rotate: 45deg; }
+.frac__shard--2 { width: 16vmin; height: 16vmin; left: 26%; top: 62%; rotate: 45deg; }
+.frac__shard--3 { width: 26vmin; height: 26vmin; right: 10%; top: 16%; rotate: 45deg; }
+.frac__shard--4 { width: 18vmin; height: 18vmin; right: 24%; bottom: 10%; rotate: 45deg; }
+.frac__shard--5 { width: 13vmin; height: 13vmin; left: 46%; top: 8%;  rotate: 45deg; }
+.frac__shard--6 { width: 15vmin; height: 15vmin; left: 54%; bottom: 12%; rotate: 45deg; }
+
+/* Ringed spires, the level's signature shape. */
+.frac__spire {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 7vmin solid transparent;
+  border-right: 7vmin solid transparent;
+  border-bottom: 15vmin solid color-mix(in srgb, var(--accent) 34%, transparent);
+}
+
+.frac__spire--1 { left: 16%; bottom: 0; }
+.frac__spire--2 { left: 38%; bottom: 0; scale: 0.7; }
+.frac__spire--3 { right: 18%; bottom: 0; scale: 1.2; }
+.frac__spire--4 { right: 38%; bottom: 0; scale: 0.85; }
+
+.frac__copy {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.frac__line {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 8vw, 6.4rem);
+  line-height: 1.1;
+  padding-block: 0.08em;
+  margin: 0 0 var(--space-5);
+  background: linear-gradient(160deg, #ffffff 0%, #9db8ff 40%, #4a7bff 74%, #b06bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.frac__sub {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--ink);
+  line-height: 1.7;
+  margin-inline: auto;
+  text-shadow: 0 0 1.5rem #06031a, 0 0 2.6rem #06031a;
+}
