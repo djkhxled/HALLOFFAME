@@ -19,15 +19,31 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Chrome on dark brick needs a dark rim before the neon edge reads.
+     Tight shadows build the outline, then the red and cyan offsets. */
   filter:
-    drop-shadow(0.028em 0 0 color-mix(in srgb, var(--accent) 90%, transparent))
-    drop-shadow(-0.018em 0 0 color-mix(in srgb, var(--accent2) 55%, transparent))
-    drop-shadow(0 0 2rem color-mix(in srgb, var(--accent) 55%, transparent));
+    drop-shadow(0 0 2px #050203)
+    drop-shadow(0 0 5px #050203)
+    drop-shadow(0 0 12px rgba(5, 2, 3, 0.95))
+    drop-shadow(0.03em 0 0 var(--accent))
+    drop-shadow(-0.022em 0 0 color-mix(in srgb, var(--accent2) 75%, transparent))
+    drop-shadow(0 0 2.6rem color-mix(in srgb, var(--accent) 65%, transparent));
 }
 
+/* Muted grey on textured brick disappears. The corner metadata gets the
+   full ink colour and a heavier halo so it reads at a glance. */
 [data-level="acheron"] .hero__eyebrow,
 [data-level="acheron"] .hero__foot p {
-  text-shadow: 0 0 0.9rem #080405, 0 0 1.7rem #080405;
+  color: var(--ink);
+  text-shadow:
+    0 0 0.5rem #080405,
+    0 0 1rem #080405,
+    0 0 2rem rgba(8, 4, 5, 0.95),
+    0 0 3.4rem rgba(8, 4, 5, 0.8);
+}
+
+[data-level="acheron"] .level-hero__rank {
+  color: #ff6a5a;
 }
 
 [data-level="acheron"] .voice__hook {
