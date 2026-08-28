@@ -60,24 +60,24 @@
     ]
   },
   "voice": {
-    "hook": "Constantly killing you from the inside out.",
-    "why": "<p>Wow, Acheron is something alright. The way this level matches its song is perfect. Although it is pretty short, the predrop is amazing, the drop is amazing, and the second drop is amazing as well.</p><p>This is one of the situations where the sequel is really better than the original in every way, and I think it also does Tartarus so much justice. The level's menacing feel makes playing it feel like it's constantly killing you from the inside out.</p><p>The verification race for this level was also pretty special, watching it get passed around to so many people who failed &mdash; such as Wolvez, who had an unfortunate death at 96.</p>",
+    "hook": "Pure, concentrated intimidation.",
+    "why": "<p>Acheron is something else entirely: a level that exudes pure, concentrated intimidation. The way it matches dj-Nate's &ldquo;Thermodynamix&rdquo; is flawless. While it is on the shorter side for a Top 1 contender, absolutely no space is wasted. The predrop sets a dark, brooding tone, the first drop is a nightmare of fixed hitboxes, and the second drop demands absolute mechanical perfection.</p><p>In a game where sequels often fail to capture the magic of the original, Acheron is the rare exception that is undeniably better than Tartarus in every single way, while still doing its predecessor so much justice. Playing Acheron feels menacing; the oppressive atmosphere makes it feel like the level is actively trying to kill you from the inside out, draining your endurance with every input.</p><p>The history behind it only adds to its mythos. The verification race was spectacular, watching the level get passed around like a cursed artifact to so many top players who ultimately fell to it. Wolvez's tragic death at 96% remains one of the most brutal fails in recent GD history, making the level's eventual conquest feel like slaying an actual titan.</p>",
     "draftedByClaude": false,
     "arc": [
       {
         "label": "The predrop",
         "at": null,
-        "note": "Amazing."
+        "note": "Sets a dark, brooding tone."
       },
       {
-        "label": "The drop",
+        "label": "The first drop",
         "at": null,
-        "note": "Amazing."
+        "note": "A nightmare of fixed hitboxes."
       },
       {
         "label": "The second drop",
         "at": null,
-        "note": "Amazing as well."
+        "note": "Demands absolute mechanical perfection."
       }
     ]
   },

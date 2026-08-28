@@ -76,13 +76,13 @@
   },
   "voice": {
     "hook": "Truly my favorite extreme demon in the game.",
-    "why": "<p>Deimos is truly my favorite extreme demon in the game. All the different decoration parts seem to go so well with each other despite being created by nearly 30 players.</p><p>I think we need to start with the song, which is of course &ldquo;Deimos&rdquo; by Solkrieg. This song is honestly a masterpiece, plain and simple. It truly stands out to the average person because it merges classical compositional frameworks, dating back to the Baroque and Classical eras, with modern dubstep production techniques. The use of tension in this song is amazing. From the very beginning all the way up until 30%, where the first drop begins, the song never ceases to build up and add new instruments, and the level never ceases to intensify.</p><p>After the first drop is where the level truly shines. The break in the middle, before the second drop, may look like a boring part of the level, but I think it is where it gains its character. You have just been worn out by very intense gameplay for the past minute and a half, and now you get a break &mdash; a break that you know will not last long, but that you need to get through to get yourself to the end of the level.</p><p>When the second drop begins, the song, rather than just relying on sheer volume, uses negative space for maximum impact. By briefly stripping away the drums and leaving only a vocal track right before the drop, it creates a feeling of breaking through a wall, which I think perfectly describes the end of the level.</p><p>The level keeps throwing things at you and stays intense until the very end, which I think is amazing and something not a lot of levels do now. The final dual &mdash; a classic piece of gameplay taking heavy inspiration from the unnerfed Phobos last dual &mdash; is just an amazing way to end the perfect level. Deimos truly encapsulates a full story and journey through an insane level, and that is why I think it is my favorite extreme of all time.</p>",
+    "why": "<p>Deimos is truly my favorite extreme demon in the game. It is a masterclass in collaboration; the fact that nearly 30 different creators came together and managed to build something with such a cohesive, unified aesthetic is nothing short of a miracle.</p><p>The experience has to start with the song, &ldquo;Deimos&rdquo; by Solkrieg. This track is a masterpiece, plain and simple. It stands out because it unexpectedly merges classical compositional frameworks &mdash; dating back to the Baroque and Classical eras &mdash; with modern dubstep production techniques. The level matches this musical tension flawlessly. From the very first click all the way to 30% where the first drop hits, the song never ceases to build, introducing new instruments and layers while the gameplay relentlessly ratchets up the intensity.</p><p>But it's after the first drop where Deimos truly earns its legendary status. The slower break in the middle before the second drop might look mundane to a casual viewer, but this is exactly where the level gains its soul. You have just been worn down by a minute and a half of brutal, high-focus gameplay, and suddenly you get a breather. It's a tense, fleeting break; you know it won't last, but you desperately need to collect yourself to survive the finale.</p><p>When the second drop finally hits, the song uses negative space for maximum impact rather than just sheer volume. By briefly stripping away the drums and leaving only an isolated vocal track right before the drop, it creates a visceral feeling of breaking through a brick wall &mdash; a perfect metaphor for pushing through the end of the level. The final dual, drawing heavy inspiration from the infamous unnerfed Phobos final dual, is an incredibly poetic way to close out the run. Deimos isn't just a level; it encapsulates a full, exhausting, and triumphant journey, cementing it as my favorite extreme of all time.</p>",
     "draftedByClaude": false,
     "arc": [
       {
         "label": "The build",
         "at": "0%",
-        "note": "Never stops adding instruments. The level intensifies with it."
+        "note": "Never stops introducing instruments. The gameplay ratchets up with it."
       },
       {
         "label": "First drop",
@@ -92,17 +92,17 @@
       {
         "label": "The break",
         "at": null,
-        "note": "Looks like dead air. It is where the level gains its character."
+        "note": "Looks mundane to a casual viewer. It is where the level gains its soul."
       },
       {
         "label": "Second drop",
         "at": null,
-        "note": "Drums stripped, one vocal, then through the wall."
+        "note": "Drums stripped, one isolated vocal, then through the brick wall."
       },
       {
         "label": "The final dual",
         "at": null,
-        "note": "Heavy inspiration from the unnerfed Phobos last dual."
+        "note": "Heavy inspiration from the infamous unnerfed Phobos final dual."
       }
     ]
   },

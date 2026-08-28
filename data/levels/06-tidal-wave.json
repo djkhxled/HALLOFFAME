@@ -5,7 +5,9 @@
   "tagline": "Three minutes of wave, 255,394 objects, and the longest Top 1 reign in the game's history.",
   "published": true,
   "facts": {
-    "creators": ["OniLink"],
+    "creators": [
+      "OniLink"
+    ],
     "host": "OniLink",
     "verifier": "Zoink",
     "verifiedDate": "2023-09-09",
@@ -21,9 +23,10 @@
       "newgroundsId": null
     },
     "peakRank": "#1 on the Demonlist (18 February 2024)",
-    "note": "Published 4 December 2022. Held the #1 position for roughly 15 months — the longest any level has consecutively held Top 1.",
+    "note": "Published 4 December 2022. Held the #1 position for roughly 15 months — the longest any level has consecutively held Top 1 — until Amethyst passed it on 4 June 2025. Contains 200 frame perfects at 60 FPS, the most of any rated level; the previous record was 82.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Tidal_Wave",
+      "https://geometry-dash-fan.fandom.com/wiki/Tidal_Wave",
       "https://demonlist.org/classic/5"
     ]
   },
@@ -39,15 +42,21 @@
     "texture": "caustics",
     "signature": "surge",
     "mood": "A black ocean lit from inside. One enormous curling wave with neon foam, caustic light rippling through the water, and the level's own glowing triangle lattice buried in the swell.",
-    "googleFonts": ["Kaushan+Script"]
+    "googleFonts": [
+      "Kaushan+Script"
+    ]
   },
   "voice": {
-    "hook": "Fifteen months at number one.",
-    "why": "<p>Tidal Wave is the one that felt inevitable. Three straight minutes of wave, 255,394 objects, and a difficulty curve that just does not relent &mdash; and then it sat at #1 for fifteen months, longer than any level has managed before or since.</p><p>What I love is that it's a Nine Circles level at heart. That format has been done a thousand times, and OniLink took it and made the definitive version. It looks like the ocean and it plays like drowning.</p>",
-    "draftedByClaude": true
+    "hook": "A monster of a Top 1, wrapped in a tropical beach theme.",
+    "why": "<p>For years, the extreme demon list in Geometry Dash has been dominated by the exact same aesthetic: dark, brooding, red-and-black hellscapes like Bloodbath, Tartarus and Acheron. But OniLink did the unthinkable and built an absolute monster of a Top 1 level wrapped in a sunny, tropical beach theme. It completely shatters the mold. Beating your head against a wall of impossible difficulty somehow feels entirely different when it's set to Dion Timmer's upbeat &ldquo;Shiawase (VIP)&rdquo; instead of apocalyptic orchestral dubstep.</p><p>The sheer endurance required for this level is outrageous. It's over three minutes long, and OniLink didn't waste a single second of it. The gameplay is overwhelmingly wave focused, demanding continuous high-speed precision through insanely tight corridors.</p><p>The stats alone are terrifying: 200 frame perfects at 60 FPS. When Zoink verified this thing, it wasn't just a gaming achievement; it was a genuine testament to human limits, and it pushed the boundaries of this game forever.</p>",
+    "draftedByClaude": false
   },
   "media": {
-    "video": { "youtubeId": null, "title": null, "channel": null },
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/tidal-wave.svg",
     "images": []
   }

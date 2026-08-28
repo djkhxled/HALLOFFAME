@@ -51,29 +51,29 @@
     ]
   },
   "voice": {
-    "hook": "The best decorated and themed level of all time.",
-    "why": "<p>Nhelv is crazy. The way the level is built to be the hardest memory demon and just so happens to be the best decorated and themed level of all time is astonishing to me.</p><p>My favorite parts are the break going down the mountain just before the second drop and final dual, and the final dual itself. The way tension is built before the second drop, and the rhythmic displacement right before it, makes the drop feel epic &mdash; like the level is making its last push and throwing everything it possibly can at you, using all of its energy to try and kill you.</p><p>I think the song for the level is also perfect.</p>",
+    "hook": "An absolute masterpiece of chaotic design.",
+    "why": "<p>Nhelv is just an absolute masterpiece of chaotic design. The fact that a level intentionally created to be one of the game's most brutal memory demons also happens to be one of the best-decorated, most atmospheric levels of all time is astonishing. Silentroom's track gives it this frantic, glitchy, almost overwhelming energy, and the visual design matches it perfectly with abstract, monochromatic structures that constantly shift and deceive you.</p><p>My absolute favorite part is the transition down the &ldquo;mountain&rdquo; right before the second drop and the final dual. The way the level strips back and builds tension here is incredible. The rhythmic displacement in the music right before the climax makes the final drop feel genuinely epic. It feels as if the level itself is alive, making one final, desperate push and throwing every visual trick, fake, and obstacle it possibly can at you, expending all its remaining energy to try and kill your run. Beating Nhelv feels like surviving a digital apocalypse.</p>",
     "draftedByClaude": false,
     "arc": [
       {
         "label": "Down the mountain",
         "at": null,
-        "note": "The break. One of my two favorite parts of the level."
+        "note": "The level strips back. My absolute favorite part."
       },
       {
         "label": "Rhythmic displacement",
         "at": null,
-        "note": "The tension right before the drop, and what makes it land."
+        "note": "In the music, right before the climax. It is what makes the drop land."
       },
       {
         "label": "Second drop",
         "at": null,
-        "note": "The last push. Everything it can possibly throw at you."
+        "note": "One final, desperate push."
       },
       {
         "label": "The final dual",
         "at": null,
-        "note": "All of its energy, spent trying to kill you."
+        "note": "Every visual trick, fake and obstacle it has left."
       }
     ]
   },
