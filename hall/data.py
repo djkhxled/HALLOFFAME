@@ -18,6 +18,7 @@ SIGNATURES = frozenset(
         "eclipse",
         "slash",
         "prism",
+        "aurora",
         "static",
     }
 )

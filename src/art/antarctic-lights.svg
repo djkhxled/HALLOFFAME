@@ -1,0 +1,195 @@
+<svg class="art art--antarctic" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Green and teal aurora curtains over jagged ice peaks under a hard starfield">
+  <defs>
+    <linearGradient id="al-sky" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#02121f"/>
+      <stop offset="46%" stop-color="#04283f"/>
+      <stop offset="100%" stop-color="#030b16"/>
+    </linearGradient>
+    <linearGradient id="al-curtain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3ff0c8" stop-opacity="0"/>
+      <stop offset="26%" stop-color="#3ff0c8" stop-opacity="0.62"/>
+      <stop offset="62%" stop-color="#5cc8ff" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#5cc8ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="al-curtain2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7dffca" stop-opacity="0"/>
+      <stop offset="34%" stop-color="#7dffca" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#3ff0c8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="al-ice" x1="0.2" y1="0" x2="0.7" y2="1">
+      <stop offset="0%" stop-color="#dff6ff"/>
+      <stop offset="26%" stop-color="#7fbcd8"/>
+      <stop offset="62%" stop-color="#20465f"/>
+      <stop offset="100%" stop-color="#050f1c"/>
+    </linearGradient>
+    <radialGradient id="al-medal" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="42%" stop-color="#d6fff4"/>
+      <stop offset="100%" stop-color="#3ff0c8" stop-opacity="0.2"/>
+    </radialGradient>
+    <linearGradient id="al-vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#030b16" stop-opacity="0.5"/>
+      <stop offset="30%" stop-color="#030b16" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#030b16" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="al-soft"><feGaussianBlur stdDeviation="16"/></filter>
+    <filter id="al-tight"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="al-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="4"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#al-sky)"/>
+
+  <!-- Hard starfield -->
+  <g fill="#eafaff">
+    <circle cx="88" cy="72" r="1.6" opacity="0.9"/><circle cx="210" cy="140" r="1.1" opacity="0.7"/>
+    <circle cx="326" cy="56" r="1.4" opacity="0.85"/><circle cx="442" cy="122" r="1" opacity="0.6"/>
+    <circle cx="560" cy="44" r="1.7" opacity="0.9"/><circle cx="676" cy="112" r="1.1" opacity="0.65"/>
+    <circle cx="790" cy="60" r="1.3" opacity="0.8"/><circle cx="906" cy="130" r="1" opacity="0.6"/>
+    <circle cx="1022" cy="48" r="1.6" opacity="0.85"/><circle cx="1138" cy="118" r="1.1" opacity="0.65"/>
+    <circle cx="1254" cy="64" r="1.4" opacity="0.8"/><circle cx="1370" cy="134" r="1" opacity="0.6"/>
+    <circle cx="1486" cy="52" r="1.7" opacity="0.9"/><circle cx="150" cy="228" r="1.2" opacity="0.7"/>
+    <circle cx="388" cy="248" r="1" opacity="0.55"/><circle cx="624" cy="212" r="1.4" opacity="0.75"/>
+    <circle cx="862" cy="256" r="1" opacity="0.55"/><circle cx="1098" cy="220" r="1.3" opacity="0.7"/>
+    <circle cx="1334" cy="262" r="1" opacity="0.55"/><circle cx="1552" cy="206" r="1.5" opacity="0.8"/>
+    <circle cx="264" cy="330" r="1" opacity="0.5"/><circle cx="740" cy="318" r="1.2" opacity="0.6"/>
+    <circle cx="1210" cy="336" r="1" opacity="0.5"/><circle cx="480" cy="366" r="1.1" opacity="0.55"/>
+    <circle cx="980" cy="380" r="1" opacity="0.5"/><circle cx="1440" cy="352" r="1.2" opacity="0.6"/>
+  </g>
+
+  <!-- Aurora curtains -->
+  <g filter="url(#al-soft)">
+    <path d="M60 40 C 180 120, 140 280, 240 420 L 400 420 C 300 270, 340 120, 250 40 Z"
+          fill="url(#al-curtain)" opacity="0.85"/>
+    <path d="M420 20 C 560 130, 500 300, 620 460 L 800 460 C 660 300, 720 130, 600 20 Z"
+          fill="url(#al-curtain2)" opacity="0.8"/>
+    <path d="M900 30 C 1010 140, 960 300, 1060 440 L 1210 440 C 1100 290, 1150 140, 1060 30 Z"
+          fill="url(#al-curtain)" opacity="0.75"/>
+    <path d="M1260 10 C 1400 120, 1340 280, 1450 420 L 1600 420 L 1600 10 Z"
+          fill="url(#al-curtain2)" opacity="0.7"/>
+  </g>
+  <!-- Curtain striations -->
+  <g stroke="#9dffdf" fill="none" opacity="0.3" filter="url(#al-tight)">
+    <path d="M110 60 C 200 160, 176 300, 250 410" stroke-width="2"/>
+    <path d="M176 50 C 260 150, 236 296, 306 406" stroke-width="1.6"/>
+    <path d="M470 40 C 580 160, 540 310, 640 446" stroke-width="2"/>
+    <path d="M534 32 C 640 150, 604 300, 700 442" stroke-width="1.6"/>
+    <path d="M944 48 C 1030 156, 992 300, 1082 430" stroke-width="1.8"/>
+    <path d="M1310 30 C 1410 140, 1370 286, 1466 412" stroke-width="1.8"/>
+  </g>
+
+  <!-- Twelve-pointed snow medallion -->
+  <g transform="translate(1310 250)">
+    <circle r="112" fill="#3ff0c8" opacity="0.2" filter="url(#al-soft)"/>
+    <g fill="url(#al-medal)">
+      <path d="M0 -96 L18 -34 L-18 -34 Z"/>
+      <path d="M48 -83 L46 -20 L14 -40 Z"/>
+      <path d="M83 -48 L26 -22 L34 -60 Z"/>
+      <path d="M96 0 L34 18 L34 -18 Z"/>
+      <path d="M83 48 L26 22 L46 20 Z"/>
+      <path d="M48 83 L14 40 L46 20 Z"/>
+      <path d="M0 96 L-18 34 L18 34 Z"/>
+      <path d="M-48 83 L-14 40 L-46 20 Z"/>
+      <path d="M-83 48 L-26 22 L-46 20 Z"/>
+      <path d="M-96 0 L-34 -18 L-34 18 Z"/>
+      <path d="M-83 -48 L-26 -22 L-34 -60 Z"/>
+      <path d="M-48 -83 L-46 -20 L-14 -40 Z"/>
+    </g>
+    <circle r="40" fill="#eafaff" opacity="0.9"/>
+    <circle r="40" fill="none" stroke="#3ff0c8" stroke-width="4"/>
+    <circle r="22" fill="none" stroke="#5cc8ff" stroke-width="3" opacity="0.8"/>
+    <circle r="60" fill="none" stroke="#eafaff" stroke-width="2" opacity="0.5"/>
+  </g>
+
+  <!-- Far ridge -->
+  <g>
+    <path fill="#0b2436" d="M0 900 V600 L70 546 L118 578 L182 500 L236 560 L300 486
+      L358 552 L420 470 L482 540 L546 466 L610 536 L672 458 L736 528 L800 452
+      L864 522 L928 448 L992 518 L1056 444 L1120 514 L1184 440 L1248 510
+      L1312 436 L1376 506 L1440 432 L1504 502 L1560 448 L1600 486 V900 Z"/>
+    <g fill="#7fbcd8" opacity="0.34">
+      <path d="M182 500 L236 560 L182 578 Z"/><path d="M420 470 L482 540 L420 556 Z"/>
+      <path d="M672 458 L736 528 L672 546 Z"/><path d="M928 448 L992 518 L928 536 Z"/>
+      <path d="M1184 440 L1248 510 L1184 528 Z"/><path d="M1440 432 L1504 502 L1440 520 Z"/>
+    </g>
+  </g>
+
+  <!-- Mid range: the detailed crystalline peaks -->
+  <g>
+    <path fill="url(#al-ice)" d="M0 900 V706 L58 656 L96 686 L146 596 L186 646 L228 612
+      L268 668 L316 552 L362 622 L404 588 L452 660 L508 520 L556 596 L598 560
+      L648 640 L706 494 L760 578 L806 540 L858 622 L916 508 L968 588 L1012 552
+      L1062 630 L1120 516 L1174 596 L1218 560 L1268 638 L1326 528 L1380 606
+      L1424 570 L1476 646 L1532 560 L1580 620 L1600 596 V900 Z"/>
+    <!-- lit faces -->
+    <g fill="#dff6ff" opacity="0.55">
+      <path d="M316 552 L362 622 L316 640 Z"/>
+      <path d="M508 520 L556 596 L508 614 Z"/>
+      <path d="M706 494 L760 578 L706 598 Z"/>
+      <path d="M916 508 L968 588 L916 606 Z"/>
+      <path d="M1120 516 L1174 596 L1120 614 Z"/>
+      <path d="M1326 528 L1380 606 L1326 624 Z"/>
+    </g>
+    <!-- crevasse lines -->
+    <g stroke="#0a1e2e" stroke-width="2" fill="none" opacity="0.6">
+      <path d="M316 552 L330 660 L306 760"/>
+      <path d="M508 520 L524 640 L500 760"/>
+      <path d="M706 494 L722 620 L698 760"/>
+      <path d="M916 508 L932 630 L908 760"/>
+      <path d="M1120 516 L1136 636 L1112 760"/>
+      <path d="M1326 528 L1342 646 L1318 760"/>
+    </g>
+    <!-- snow caps -->
+    <g fill="#f4fdff" opacity="0.85">
+      <path d="M316 552 L340 588 L322 596 L300 578 Z"/>
+      <path d="M508 520 L534 560 L514 570 L492 548 Z"/>
+      <path d="M706 494 L734 538 L712 548 L688 524 Z"/>
+      <path d="M916 508 L942 550 L920 560 L898 536 Z"/>
+      <path d="M1120 516 L1146 558 L1124 568 L1102 544 Z"/>
+      <path d="M1326 528 L1352 570 L1330 580 L1308 556 Z"/>
+    </g>
+  </g>
+
+  <!-- Near range, almost black -->
+  <g fill="#040e1a">
+    <path d="M0 900 V812 L64 772 L118 800 L178 748 L236 790 L292 754 L352 800
+      L410 742 L470 792 L526 756 L586 804 L644 748 L704 796 L760 760 L820 806
+      L878 750 L938 798 L994 762 L1054 808 L1112 752 L1172 800 L1228 764
+      L1288 810 L1346 754 L1406 802 L1462 766 L1522 812 L1580 776 L1600 796 V900 Z"/>
+  </g>
+  <!-- rim of aurora light along the near crest -->
+  <g fill="none" stroke="#3ff0c8" stroke-width="2" opacity="0.4">
+    <path d="M0 812 L64 772 L118 800 L178 748 L236 790 L292 754 L352 800
+      L410 742 L470 792 L526 756 L586 804 L644 748 L704 796 L760 760 L820 806
+      L878 750 L938 798 L994 762 L1054 808 L1112 752 L1172 800 L1228 764
+      L1288 810 L1346 754 L1406 802 L1462 766 L1522 812 L1580 776 L1600 796"/>
+  </g>
+
+  <!-- Glowing triangle blocks, from the level itself -->
+  <g>
+    <g transform="translate(230 790)">
+      <path d="M0 -110 L118 76 L-118 76 Z" fill="none" stroke="#5cc8ff" stroke-width="5" opacity="0.85"/>
+      <path d="M0 -80 L86 56 L-86 56 Z" fill="none" stroke="#eafaff" stroke-width="3" opacity="0.6"/>
+      <path d="M0 -110 L118 76 L-118 76 Z" fill="#5cc8ff" opacity="0.12"/>
+    </g>
+    <g transform="translate(700 810)">
+      <path d="M0 -96 L104 66 L-104 66 Z" fill="none" stroke="#3ff0c8" stroke-width="4.6" opacity="0.8"/>
+      <path d="M0 -68 L74 48 L-74 48 Z" fill="none" stroke="#eafaff" stroke-width="2.6" opacity="0.55"/>
+      <path d="M0 -96 L104 66 L-104 66 Z" fill="#3ff0c8" opacity="0.1"/>
+    </g>
+  </g>
+
+  <!-- Snow in the air -->
+  <g fill="#eafaff">
+    <circle cx="180" cy="440" r="2.4" opacity="0.6"/><circle cx="420" cy="520" r="1.8" opacity="0.5"/>
+    <circle cx="640" cy="400" r="2.2" opacity="0.55"/><circle cx="880" cy="480" r="1.6" opacity="0.45"/>
+    <circle cx="1120" cy="420" r="2.4" opacity="0.55"/><circle cx="1380" cy="500" r="1.8" opacity="0.5"/>
+    <circle cx="300" cy="620" r="2" opacity="0.45"/><circle cx="980" cy="640" r="2.2" opacity="0.5"/>
+    <circle cx="1500" cy="360" r="1.8" opacity="0.45"/><circle cx="80" cy="540" r="2" opacity="0.5"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#al-vig)"/>
+  <rect width="1600" height="900" filter="url(#al-grain)" opacity="0.12"/>
+</svg>

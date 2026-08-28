@@ -2,52 +2,53 @@
   "rank": 10,
   "slug": "antarctic-lights",
   "name": "Antarctic Lights",
-  "tagline": "Cold, and quietly spectacular.",
-  "published": false,
+  "tagline": "Nine Circles, remade twice over, and sharpened into the tightest wave in the game.",
+  "published": true,
   "facts": {
-    "creators": [
-      "Declan",
-      "SkyJax",
-      "Tolstyh",
-      "Arcturus"
-    ],
-    "host": null,
-    "verifier": null,
+    "creators": ["Declan", "SkyJax", "Tolstyh", "Arcturus"],
+    "host": "Declan",
+    "verifier": "Axinity",
     "verifiedDate": null,
-    "ratedDate": null,
+    "ratedDate": "2026-07-22",
     "attempts": null,
-    "levelId": null,
+    "levelId": "144988390",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.2",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "~NK~ Fear Me (NGADm Entry)",
+      "artist": "Rukkus",
+      "newgroundsId": "428157"
     },
     "peakRank": null,
-    "sources": []
+    "note": "Published 16 July 2026. A remake of Arctic Lights, which was itself a remake of Nine Circles. Short, but built on extremely tight wave gaps and frame-precise timing.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Antarctic_Lights",
+      "https://geometry-dash-fan.fandom.com/wiki/Antarctic_Lights"
+    ]
   },
   "theme": {
-    "tier": "themed",
+    "tier": "bespoke",
     "palette": {
-      "field": "#03090e",
-      "ink": "#e8f6fb",
-      "muted": "#8ab3c2",
-      "accent": "#5ff0c8"
+      "field": "#030b16",
+      "ink": "#eafaff",
+      "muted": "#8ab8cc",
+      "accent": "#3ff0c8",
+      "accent2": "#5cc8ff"
     },
     "texture": "snow",
-    "signature": "static",
-    "mood": null
+    "signature": "aurora",
+    "mood": "A polar night. Green and teal curtains of light drifting over jagged ice peaks, a hard starfield above, and one twelve-pointed snow medallion burning white.",
+    "googleFonts": ["Cormorant+Garamond:wght@300;400;600"]
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "The coldest thing on this list.",
+    "why": "<p>Antarctic Lights is the newest level here by a long way, and it earned the spot immediately. It's a remake of a remake of Nine Circles, which sounds like it should be exhausted by now, and instead it's the sharpest version of that idea anyone has managed.</p><p>It's also just beautiful. Most levels that go for ice end up looking like blue plastic; this one actually feels cold. The aurora work is the best atmospheric decoration I've seen in a level.</p>",
     "draftedByClaude": true
   },
   "media": {
-    "video": {},
-    "art": null,
+    "video": { "youtubeId": null, "title": null, "channel": null },
+    "art": "src/art/antarctic-lights.svg",
     "images": []
   }
 }
