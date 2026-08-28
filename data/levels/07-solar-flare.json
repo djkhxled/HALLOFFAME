@@ -2,51 +2,49 @@
   "rank": 7,
   "slug": "solar-flare",
   "name": "Solar Flare",
-  "tagline": "Light loud enough to hear.",
-  "published": false,
+  "tagline": "Nine Circles rebuilt as a sun — gold, geometry, and a smiling star called Janet.",
+  "published": true,
   "facts": {
-    "creators": [
-      "Linear",
-      "Swiborg",
-      "Rynoxious"
-    ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "creators": ["Linear", "Rynoxious"],
+    "host": "Linear",
+    "verifier": "swiborg",
+    "verifiedDate": "2023-04-29",
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "90390075",
     "objects": null,
     "length": null,
-    "gdVersion": null,
-    "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
-    },
+    "gdVersion": "2.1",
+    "song": { "name": null, "artist": null, "newgroundsId": null },
     "peakRank": null,
-    "sources": []
+    "note": "A heavily buffed remake of the 1.9 Nine Circles level Solar Circles. The smiling sun in the level is named Janet.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Solar_Flare",
+      "https://geometry-dash-fan.fandom.com/wiki/Solar_Flare"
+    ]
   },
   "theme": {
-    "tier": "themed",
+    "tier": "bespoke",
     "palette": {
-      "field": "#100702",
-      "ink": "#fff2df",
-      "muted": "#cfa06a",
-      "accent": "#ffa528"
+      "field": "#0d0500",
+      "ink": "#fff1da",
+      "muted": "#cf9b62",
+      "accent": "#ffa018",
+      "accent2": "#ffe459"
     },
     "texture": "ember",
     "signature": "ignite",
-    "mood": null
+    "mood": "Molten gold on near-black. A sun disc with a hard corona, radiating sunburst blades, spoked medallions turning like gears, and heavy beveled letters lit white-hot from inside.",
+    "googleFonts": ["Bungee"]
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "A Nine Circles level that became a sun.",
+    "why": "<p>Solar Flare takes the most overdone format in the game and makes it feel enormous. It's a remake of Solar Circles, buffed to the point of being a different level entirely, and every part of it is built around one idea &mdash; heat.</p><p>The gold is what sells it. Most levels that go for orange end up muddy; this one keeps the blacks genuinely black so the gold reads as light rather than paint. And it has a smiling sun named Janet in it, which I think about more than I should.</p>",
     "draftedByClaude": true
   },
   "media": {
-    "video": {},
-    "art": null,
+    "video": { "youtubeId": null, "title": null, "channel": null },
+    "art": "src/art/solar-flare.svg",
     "images": []
   }
 }

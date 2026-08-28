@@ -1,0 +1,218 @@
+<svg class="art art--slaughterhouse" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="An enormous demon head drawn in thin red line on black, with a spiked crown, pentagram brand, burning eyes and a jagged jaw">
+  <defs>
+    <radialGradient id="sh-glow" cx="50%" cy="42%" r="52%">
+      <stop offset="0%" stop-color="#ff1a1a" stop-opacity="0.42"/>
+      <stop offset="46%" stop-color="#a30606" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#a30606" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sh-eye" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff6d8"/>
+      <stop offset="30%" stop-color="#ffc21a"/>
+      <stop offset="66%" stop-color="#ff4a06"/>
+      <stop offset="100%" stop-color="#8a0f02" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sh-vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0203" stop-opacity="0.86"/>
+      <stop offset="40%" stop-color="#0a0203" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#0a0203" stop-opacity="0.94"/>
+    </linearGradient>
+    <radialGradient id="sh-corner" cx="50%" cy="46%" r="70%">
+      <stop offset="52%" stop-color="#0a0203" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.92"/>
+    </radialGradient>
+    <filter id="sh-soft"><feGaussianBlur stdDeviation="11"/></filter>
+    <filter id="sh-tight"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="sh-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.86" numOctaves="4"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="#0a0203"/>
+  <ellipse cx="800" cy="380" rx="860" ry="520" fill="url(#sh-glow)"/>
+
+  <!-- Spiked organic silhouettes crowding the background -->
+  <g fill="#1a0405" opacity="0.85">
+    <path d="M40 900 C 20 700, 90 560, 60 440 C 130 470, 150 380, 130 300
+      C 200 350, 236 260, 214 190 C 280 250, 330 200, 320 140
+      C 380 240, 420 380, 400 900 Z"/>
+    <path d="M1560 900 C 1584 690, 1510 552, 1546 432 C 1476 466, 1454 374, 1478 296
+      C 1408 348, 1370 258, 1394 188 C 1330 250, 1280 198, 1292 138
+      C 1230 240, 1190 380, 1210 900 Z"/>
+    <path d="M470 900 C 452 760, 500 660, 480 574 C 534 606, 556 540, 542 486
+      C 592 528, 626 470, 616 424 C 664 500, 690 620, 678 900 Z"/>
+    <path d="M1130 900 C 1148 760, 1102 664, 1122 578 C 1068 610, 1046 546, 1060 492
+      C 1010 534, 976 476, 986 430 C 938 506, 912 624, 924 900 Z"/>
+  </g>
+  <g fill="none" stroke="#ff1a1a" stroke-width="1.6" opacity="0.22">
+    <path d="M60 440 C 130 470, 150 380, 130 300 C 200 350, 236 260, 214 190 C 280 250, 330 200, 320 140"/>
+    <path d="M1546 432 C 1476 466, 1454 374, 1478 296 C 1408 348, 1370 258, 1394 188 C 1330 250, 1280 198, 1292 138"/>
+  </g>
+
+  <!-- Stalactites -->
+  <g fill="#0a0203">
+    <path d="M1042 0 h34 l-10 190 -8 46 -8 -46 Z"/>
+    <path d="M1112 0 h30 l-9 156 -7 38 -7 -38 Z"/>
+    <path d="M328 0 h28 l-8 132 -6 32 -6 -32 Z"/>
+  </g>
+
+  <!-- Sigils and gears in the murk -->
+  <g fill="none" stroke="#ff1a1a" opacity="0.16">
+    <g transform="translate(1298 470)">
+      <circle r="52" stroke-width="9"/>
+      <circle r="20" stroke-width="6"/>
+      <g stroke-width="9">
+        <path d="M0 -66 v14"/><path d="M0 66 v-14"/><path d="M-66 0 h14"/><path d="M66 0 h-14"/>
+        <path d="M47 -47 l10 -10"/><path d="M-47 47 l-10 10"/>
+        <path d="M47 47 l10 10"/><path d="M-47 -47 l-10 -10"/>
+      </g>
+    </g>
+    <g transform="translate(318 596)">
+      <circle r="42" stroke-width="8"/>
+      <circle r="16" stroke-width="5"/>
+      <g stroke-width="8">
+        <path d="M0 -54 v12"/><path d="M0 54 v-12"/><path d="M-54 0 h12"/><path d="M54 0 h-12"/>
+        <path d="M38 -38 l9 -9"/><path d="M-38 38 l-9 9"/>
+      </g>
+    </g>
+    <g transform="translate(1420 220)">
+      <circle r="34" stroke-width="5"/>
+      <path d="M0 -34 L20 22 L-32 -12 L32 -12 L-20 22 Z" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- ================= THE DEMON ================= -->
+  <g transform="translate(800 330)">
+    <!-- outer crown of spikes -->
+    <g fill="none" stroke="#ff1a1a" stroke-width="5" opacity="0.75">
+      <path d="M-300 -160 L-346 -258 L-250 -222 L-236 -320 L-160 -258 L-120 -352
+               L-58 -276 L0 -368 L58 -276 L120 -352 L160 -258 L236 -320 L250 -222
+               L346 -258 L300 -160"/>
+    </g>
+    <g fill="#2b0507" opacity="0.9">
+      <path d="M-300 -160 L-346 -258 L-250 -222 L-236 -320 L-160 -258 L-120 -352
+               L-58 -276 L0 -368 L58 -276 L120 -352 L160 -258 L236 -320 L250 -222
+               L346 -258 L300 -160 Z"/>
+    </g>
+
+    <!-- head plate: an octagon -->
+    <path d="M-300 -160 L-190 -270 L190 -270 L300 -160 L300 120 L190 230 L-190 230 L-300 120 Z"
+          fill="#160304" stroke="#ff1a1a" stroke-width="6"/>
+    <path d="M-278 -150 L-182 -246 L182 -246 L278 -150 L278 110 L182 206 L-182 206 L-278 110 Z"
+          fill="none" stroke="#ff1a1a" stroke-width="2.2" opacity="0.55"/>
+
+    <!-- rivets along the plate edge -->
+    <g fill="#ff1a1a" opacity="0.55">
+      <circle cx="-236" cy="-206" r="5"/><circle cx="-120" cy="-258" r="5"/>
+      <circle cx="0" cy="-258" r="5"/><circle cx="120" cy="-258" r="5"/>
+      <circle cx="236" cy="-206" r="5"/>
+      <circle cx="288" cy="-40" r="5"/><circle cx="-288" cy="-40" r="5"/>
+    </g>
+
+    <!-- pentagram brand on the forehead -->
+    <g transform="translate(0 -180)">
+      <circle r="52" fill="none" stroke="#ff1a1a" stroke-width="5"/>
+      <path d="M0 -46 L27 36 L-43 -14 L43 -14 L-27 36 Z"
+            fill="none" stroke="#ff1a1a" stroke-width="5" stroke-linejoin="round"/>
+      <circle r="52" fill="#ff1a1a" opacity="0.1"/>
+    </g>
+
+    <!-- brow ridge -->
+    <g fill="none" stroke="#ff1a1a" stroke-width="5" opacity="0.8">
+      <path d="M-250 -96 L-120 -118 L-40 -84"/>
+      <path d="M250 -96 L120 -118 L40 -84"/>
+    </g>
+
+    <!-- eye sockets: hard angular wedges -->
+    <g>
+      <path d="M-232 -60 L-96 -60 L-58 30 L-206 30 Z" fill="#3a0709" stroke="#ff1a1a" stroke-width="5"/>
+      <path d="M232 -60 L96 -60 L58 30 L206 30 Z" fill="#3a0709" stroke="#ff1a1a" stroke-width="5"/>
+      <!-- inner shading -->
+      <path d="M-232 -60 L-96 -60 L-120 -14 L-222 -14 Z" fill="#5c0b0e" opacity="0.7"/>
+      <path d="M232 -60 L96 -60 L120 -14 L222 -14 Z" fill="#5c0b0e" opacity="0.7"/>
+    </g>
+
+    <!-- burning eyes -->
+    <g>
+      <circle cx="-150" cy="-16" r="90" fill="url(#sh-eye)" opacity="0.55" filter="url(#sh-soft)"/>
+      <circle cx="150" cy="-16" r="90" fill="url(#sh-eye)" opacity="0.55" filter="url(#sh-soft)"/>
+      <circle cx="-150" cy="-16" r="26" fill="url(#sh-eye)"/>
+      <circle cx="150" cy="-16" r="26" fill="url(#sh-eye)"/>
+      <circle cx="-150" cy="-16" r="10" fill="#fffaf0"/>
+      <circle cx="150" cy="-16" r="10" fill="#fffaf0"/>
+      <!-- horizontal glare streaks -->
+      <g fill="#ffc21a" opacity="0.7" filter="url(#sh-tight)">
+        <rect x="-296" y="-20" width="292" height="7"/>
+        <rect x="4" y="-20" width="292" height="7"/>
+      </g>
+    </g>
+
+    <!-- nose bridge blocks -->
+    <g fill="none" stroke="#ff1a1a" stroke-width="4.5" opacity="0.8">
+      <rect x="-16" y="-60" width="32" height="30"/>
+      <rect x="-16" y="-16" width="32" height="30"/>
+      <rect x="-16" y="28" width="32" height="30"/>
+    </g>
+
+    <!-- drips from the sockets -->
+    <g fill="#ff1a1a" opacity="0.5">
+      <path d="M-186 30 h12 l-3 78 -6 14 -6 -14 Z"/>
+      <path d="M-126 30 h10 l-2 52 -5 10 -5 -10 Z"/>
+      <path d="M126 30 h10 l-2 62 -5 12 -5 -12 Z"/>
+      <path d="M182 30 h12 l-3 44 -6 10 -6 -10 Z"/>
+    </g>
+
+    <!-- jagged jaw -->
+    <path d="M-260 96 L-206 176 L-152 96 L-98 176 L-44 96 L10 176 L64 96 L118 176 L172 96 L226 176 L260 96
+             L260 230 L-260 230 Z"
+          fill="#160304" stroke="#ff1a1a" stroke-width="5" stroke-linejoin="round"/>
+    <g fill="none" stroke="#ff1a1a" stroke-width="2.4" opacity="0.5">
+      <path d="M-206 176 L-206 230 M-98 176 L-98 230 M10 176 L10 230 M118 176 L118 230 M226 176 L226 230"/>
+    </g>
+
+    <!-- side saw teeth on the plate -->
+    <g fill="#ff1a1a" opacity="0.6">
+      <path d="M300 -120 l34 18 -34 18 Z"/><path d="M300 -60 l34 18 -34 18 Z"/>
+      <path d="M300 0 l34 18 -34 18 Z"/><path d="M300 60 l34 18 -34 18 Z"/>
+      <path d="M-300 -120 l-34 18 34 18 Z"/><path d="M-300 -60 l-34 18 34 18 Z"/>
+      <path d="M-300 0 l-34 18 34 18 Z"/><path d="M-300 60 l-34 18 34 18 Z"/>
+    </g>
+  </g>
+
+  <!-- Chains, thin and red -->
+  <g stroke="#ff1a1a" fill="none" stroke-width="4" opacity="0.35">
+    <g transform="translate(206 0)">
+      <ellipse cy="22" rx="10" ry="18"/><ellipse cy="60" rx="10" ry="18"/>
+      <ellipse cy="98" rx="10" ry="18"/><ellipse cy="136" rx="10" ry="18"/>
+      <ellipse cy="174" rx="10" ry="18"/>
+    </g>
+    <g transform="translate(1394 0)">
+      <ellipse cy="22" rx="9" ry="16"/><ellipse cy="56" rx="9" ry="16"/>
+      <ellipse cy="90" rx="9" ry="16"/><ellipse cy="124" rx="9" ry="16"/>
+    </g>
+  </g>
+
+  <!-- Floor spikes -->
+  <g fill="#0a0203">
+    <path d="M0 900 V856 l46 -56 42 56 48 -66 44 66 50 -58 42 58 48 -68 46 68 50 -58 42 58
+      48 -66 46 66 50 -60 42 60 48 -68 46 68 50 -58 42 58 48 -66 46 66 50 -60 42 60
+      48 -66 46 66 50 -58 42 58 48 -64 46 64 50 -58 42 58 V900 Z"/>
+  </g>
+  <g fill="none" stroke="#ff1a1a" stroke-width="1.8" opacity="0.34">
+    <path d="M0 856 l46 -56 42 56 48 -66 44 66 50 -58 42 58 48 -68 46 68 50 -58 42 58
+      48 -66 46 66 50 -60 42 60 48 -68 46 68 50 -58 42 58 48 -66 46 66 50 -60 42 60
+      48 -66 46 66 50 -58 42 58 48 -64 46 64 50 -58 42 58"/>
+  </g>
+
+  <!-- Sparks -->
+  <g fill="#ff6a1a">
+    <circle cx="418" cy="352" r="3" opacity="0.7"/><circle cx="1206" cy="300" r="2.4" opacity="0.6"/>
+    <circle cx="536" cy="586" r="2.6" opacity="0.6"/><circle cx="1084" cy="620" r="3" opacity="0.65"/>
+    <circle cx="286" cy="286" r="2.2" opacity="0.5"/><circle cx="1330" cy="700" r="2.8" opacity="0.55"/>
+    <circle cx="640" cy="200" r="2" opacity="0.45"/><circle cx="960" cy="760" r="2.4" opacity="0.5"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#sh-vig)"/>
+  <rect width="1600" height="900" fill="url(#sh-corner)"/>
+  <rect width="1600" height="900" filter="url(#sh-grain)" opacity="0.15"/>
+</svg>

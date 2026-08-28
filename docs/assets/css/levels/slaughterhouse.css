@@ -1,0 +1,126 @@
+/* Slaughterhouse — rank 8. Thin red line on black, breathing. */
+
+[data-level="slaughterhouse"] {
+  --font-display: "Metal Mania", "Impact", fantasy;
+  --rule-colour: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+[data-level="slaughterhouse"] .hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.04;
+  color: var(--accent);
+  /* pure neon: the letters are light, not paint */
+  text-shadow:
+    0 0 0.6rem color-mix(in srgb, var(--accent) 90%, transparent),
+    0 0 1.6rem color-mix(in srgb, var(--accent) 75%, transparent),
+    0 0 3.4rem color-mix(in srgb, var(--accent) 55%, transparent),
+    0 0 6rem color-mix(in srgb, var(--accent2) 40%, transparent);
+}
+
+[data-level="slaughterhouse"] .hero__eyebrow,
+[data-level="slaughterhouse"] .hero__foot p {
+  text-shadow: 0 0 0.9rem #0a0203, 0 0 1.8rem #0a0203;
+}
+
+[data-level="slaughterhouse"] .voice__hook {
+  font-family: var(--font-display);
+  font-size: var(--step-5);
+  color: var(--accent);
+  text-shadow: 0 0 1.4rem color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+/* pulse set-piece -------------------------------------------------------- */
+
+.sig--pulse {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--rule-colour);
+  background: radial-gradient(
+    ellipse 66% 60% at 50% 42%,
+    #26060a 0%,
+    #0a0203 74%
+  );
+}
+
+/* A sigil looming out of the dark, breathing on the beat. */
+.pulse__loom {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  translate: -50% -50%;
+  width: min(64vmin, 40rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+.pulse__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid color-mix(in srgb, var(--accent) 62%, transparent);
+  box-shadow:
+    0 0 3rem color-mix(in srgb, var(--accent) 40%, transparent),
+    inset 0 0 4rem color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.pulse__ring--inner {
+  inset: 16%;
+  border-width: 2px;
+  opacity: 0.7;
+}
+
+.pulse__star {
+  position: absolute;
+  inset: 20%;
+  /* five-pointed star, drawn as a polygon */
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+  box-shadow: 0 0 4rem color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.pulse__teeth {
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--accent) 55%, transparent) 0deg 2deg,
+    transparent 2deg 12deg
+  );
+  mask-image: radial-gradient(circle, transparent 62%, #000 66%, #000 76%, transparent 78%);
+}
+
+.pulse__copy {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.pulse__line {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 7vw, 6rem);
+  line-height: 1.06;
+  margin: 0 0 var(--space-5);
+  color: var(--accent);
+  text-shadow:
+    0 0 0.6rem color-mix(in srgb, var(--accent) 85%, transparent),
+    0 0 2rem color-mix(in srgb, var(--accent) 65%, transparent),
+    0 0 4rem color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.pulse__sub {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--ink);
+  line-height: 1.7;
+  margin-inline: auto;
+  text-shadow: 0 0 1.5rem #0a0203, 0 0 2.6rem #0a0203;
+}

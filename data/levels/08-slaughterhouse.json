@@ -2,50 +2,58 @@
   "rank": 8,
   "slug": "slaughterhouse",
   "name": "Slaughterhouse",
-  "tagline": "It was the hardest level in the game, and it looked the part.",
-  "published": false,
+  "tagline": "A hell-themed wave gauntlet, and for a while the hardest level in the game.",
+  "published": true,
   "facts": {
     "creators": [
       "icedcave",
+      "DrCuber",
+      "Brittank88",
+      "EndLevel",
+      "river",
+      "Iris",
+      "CDMusic",
       "and more"
     ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "host": "icedcave",
+    "verifier": "Doggie",
+    "verifiedDate": "2021-12-19",
     "ratedDate": null,
     "attempts": null,
     "levelId": null,
     "objects": null,
     "length": null,
-    "gdVersion": null,
-    "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
-    },
-    "peakRank": null,
-    "sources": []
+    "gdVersion": "2.1",
+    "song": { "name": null, "artist": null, "newgroundsId": null },
+    "peakRank": "#1 on the Demonlist",
+    "note": "A mega-collaboration hosted by icedcave, loosely based on his own 2015 level of the same name. An earlier verification claim in October 2021 was later determined to be illegitimate; Doggie's completion on 19 December 2021 is the recognised verification. The song is a remix of Crim3s' 'Lost'.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Slaughterhouse",
+      "https://geometry-dash-user-levels.fandom.com/wiki/Slaughterhouse_(IcEDCave)"
+    ]
   },
   "theme": {
-    "tier": "themed",
+    "tier": "bespoke",
     "palette": {
-      "field": "#0c0303",
-      "ink": "#ffe9e9",
-      "muted": "#c08585",
-      "accent": "#ff2d2d"
+      "field": "#0a0203",
+      "ink": "#ffe6e6",
+      "muted": "#bd8082",
+      "accent": "#ff1a1a",
+      "accent2": "#ff6a1a"
     },
     "texture": "grain",
     "signature": "pulse",
-    "mood": null
+    "mood": "One enormous demon looming out of red darkness — spiked crown, pentagram brand, burning eyes, jagged jaw. Everything drawn in thin red line on black, breathing on the beat.",
+    "googleFonts": ["Metal+Mania"]
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "It announced itself as the new hardest, and it was right.",
+    "why": "<p>Slaughterhouse is the one that felt like a statement. icedcave built it out of frustration that a 2015 impossible level was the only thing he was known for, and the remake ended up at the top of the list.</p><p>It also has the best single image on this whole page. That demon face &mdash; the crown, the pentagram, the two burning eyes in all that red &mdash; is instantly recognisable, and it does what great level art should: you know exactly what you're in for before you press start.</p>",
     "draftedByClaude": true
   },
   "media": {
-    "video": {},
-    "art": null,
+    "video": { "youtubeId": null, "title": null, "channel": null },
+    "art": "src/art/slaughterhouse.svg",
     "images": []
   }
 }

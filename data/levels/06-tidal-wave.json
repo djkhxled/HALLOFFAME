@@ -2,49 +2,53 @@
   "rank": 6,
   "slug": "tidal-wave",
   "name": "Tidal Wave",
-  "tagline": "Three minutes of wave, and nowhere to hide.",
-  "published": false,
+  "tagline": "Three minutes of wave, 255,394 objects, and the longest Top 1 reign in the game's history.",
+  "published": true,
   "facts": {
-    "creators": [
-      "OniLink"
-    ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "creators": ["OniLink"],
+    "host": "OniLink",
+    "verifier": "Zoink",
+    "verifiedDate": "2023-09-09",
     "ratedDate": null,
-    "attempts": null,
-    "levelId": null,
-    "objects": null,
-    "length": null,
-    "gdVersion": null,
+    "attempts": "~49,534",
+    "levelId": "86407629",
+    "objects": "255,394",
+    "length": "3m 01s",
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
+      "name": "Shiawase (VIP)",
+      "artist": "Dion Timmer",
       "newgroundsId": null
     },
-    "peakRank": null,
-    "sources": []
+    "peakRank": "#1 on the Demonlist (18 February 2024)",
+    "note": "Published 4 December 2022. Held the #1 position for roughly 15 months — the longest any level has consecutively held Top 1.",
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Tidal_Wave",
+      "https://demonlist.org/classic/5"
+    ]
   },
   "theme": {
-    "tier": "themed",
+    "tier": "bespoke",
     "palette": {
-      "field": "#02080f",
-      "ink": "#e6f4ff",
-      "muted": "#7fa8c4",
-      "accent": "#22a7ff"
+      "field": "#03080f",
+      "ink": "#e8f7ff",
+      "muted": "#87b2cb",
+      "accent": "#2ac9ff",
+      "accent2": "#74f0d6"
     },
     "texture": "caustics",
     "signature": "surge",
-    "mood": null
+    "mood": "A black ocean lit from inside. One enormous curling wave with neon foam, caustic light rippling through the water, and the level's own glowing triangle lattice buried in the swell.",
+    "googleFonts": ["Kaushan+Script"]
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Fifteen months at number one.",
+    "why": "<p>Tidal Wave is the one that felt inevitable. Three straight minutes of wave, 255,394 objects, and a difficulty curve that just does not relent &mdash; and then it sat at #1 for fifteen months, longer than any level has managed before or since.</p><p>What I love is that it's a Nine Circles level at heart. That format has been done a thousand times, and OniLink took it and made the definitive version. It looks like the ocean and it plays like drowning.</p>",
     "draftedByClaude": true
   },
   "media": {
-    "video": {},
-    "art": null,
+    "video": { "youtubeId": null, "title": null, "channel": null },
+    "art": "src/art/tidal-wave.svg",
     "images": []
   }
 }
