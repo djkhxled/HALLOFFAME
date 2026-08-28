@@ -30,15 +30,16 @@
   "theme": {
     "tier": "bespoke",
     "palette": {
-      "field": "#07070c",
-      "ink": "#f4efe9",
-      "muted": "#b3a091",
-      "accent": "#ff7a3d",
-      "accent2": "#8fb7d6"
+      "field": "#0a0506",
+      "ink": "#f2e4e2",
+      "muted": "#b08d8c",
+      "accent": "#ff3b23",
+      "accent2": "#ff8b5e"
     },
-    "texture": "starfield",
-    "signature": "orbit",
-    "mood": "A dead moon lit from one side. Rust and bone against deep space, with the level name holding still while everything else drifts."
+    "texture": "grain",
+    "signature": "eclipse",
+    "mood": "Gothic horror, not science fiction. A blood eclipse burning behind a ruined keep, blackened cliffs, bats, bone. Heavy grain over everything and an engraved-serif title lit like carved stone.",
+    "googleFonts": ["Cinzel:wght@400;600;800"]
   },
   "voice": {
     "hook": "Number one, and it isn't close.",

@@ -112,6 +112,37 @@
       );
   }
 
+  /* Signature: eclipse — the disc swells while the ridges close in. ------ */
+  function eclipse() {
+    var stage = document.querySelector("[data-sig='eclipse']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=190%",
+        scrub: 0.8,
+        pin: true,
+      },
+    });
+
+    tl.fromTo(
+      stage.querySelector("[data-depth='orb']"),
+      { scale: 0.72, opacity: 0.75 },
+      { scale: 1.18, opacity: 1, ease: "none" },
+      0
+    )
+      .to(stage.querySelector("[data-depth='far']"), { yPercent: -14, ease: "none" }, 0)
+      .to(stage.querySelector("[data-depth='near']"), { yPercent: -34, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelectorAll("[data-ecl-line]"),
+        { opacity: 0, y: 34 },
+        { opacity: 1, y: 0, stagger: 0.22, ease: "power2.out" },
+        0.12
+      );
+  }
+
   /* Signature: glitch-assemble — the headline pulls itself together. ----- */
   function glitchAssemble() {
     var stage = document.querySelector("[data-sig='glitch-assemble']");
@@ -156,5 +187,6 @@
 
   var sig = document.documentElement.dataset.signature;
   if (sig === "orbit") orbit();
+  if (sig === "eclipse") eclipse();
   if (sig === "glitch-assemble") glitchAssemble();
 })();

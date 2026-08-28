@@ -1,27 +1,45 @@
-/* Deimos — rank 1. Rust and bone against deep space. */
+/* Deimos — rank 1.
+   Gothic horror. Blood eclipse, ruined keep, bone and ember on near-black. */
+
+[data-level="deimos"] {
+  --font-display: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --rule-colour: color-mix(in srgb, var(--accent) 30%, transparent);
+}
 
 [data-level="deimos"] .hero__title {
-  letter-spacing: -0.06em;
-  background: linear-gradient(180deg, #fff 0%, #f4efe9 38%, #8d8479 100%);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 1;
+  background: linear-gradient(
+    176deg,
+    #fff4ef 0%,
+    #f2d9d2 32%,
+    #c98d80 62%,
+    #7d3a30 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Carved-stone edge: a hot rim below, a cold shadow above. */
+  filter:
+    drop-shadow(0 1px 0 #40100c)
+    drop-shadow(0 0 1.6rem color-mix(in srgb, var(--accent) 55%, transparent));
 }
 
-[data-level="deimos"] .hero__art::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 80% 50% at 50% 100%,
-    color-mix(in srgb, var(--accent) 22%, transparent),
-    transparent 70%
-  );
+[data-level="deimos"] .hero__eyebrow,
+[data-level="deimos"] .hero__foot p {
+  text-shadow: 0 0 0.9rem #0a0506, 0 0 1.6rem #0a0506;
 }
 
-/* orbit set-piece -------------------------------------------------------- */
+[data-level="deimos"] .texture--grain::after {
+  opacity: 0.4;
+}
 
-.sig--orbit {
+/* eclipse set-piece ------------------------------------------------------ */
+
+.sig--eclipse {
   position: relative;
   min-height: 100svh;
   display: grid;
@@ -30,65 +48,127 @@
   border-top: var(--rule) solid var(--rule-colour);
 }
 
-.orbit__field {
+.ecl__sky {
   position: absolute;
-  inset: -10% 0 -10% 0;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      color-mix(in srgb, var(--accent) 26%, transparent) 0%,
+      transparent 58%
+    ),
+    linear-gradient(180deg, #14090a 0%, #0a0506 70%);
   pointer-events: none;
 }
 
-.orbit__body {
+.ecl__orb {
   position: absolute;
+  left: 50%;
+  top: 42%;
+  width: min(52vmin, 30rem);
+  aspect-ratio: 1;
+  translate: -50% -50%;
   border-radius: 50%;
-  display: block;
-}
-
-.orbit__body--far {
-  width: 42vmin;
-  height: 42vmin;
-  left: 8%;
-  top: 12%;
-  background: radial-gradient(circle at 34% 28%, #2a2622, #0c0b0a 72%);
-  box-shadow: inset -14px -10px 30px rgba(0, 0, 0, 0.8);
-  opacity: 0.5;
-}
-
-.orbit__body--mid {
-  width: 26vmin;
-  height: 26vmin;
-  right: 12%;
-  top: 26%;
-  background: radial-gradient(circle at 30% 26%, #6b6259, #17150f 76%);
+  background: radial-gradient(
+    circle,
+    #ff7a55 0%,
+    #ff2f21 34%,
+    #b8130f 72%,
+    #ff4a2a 93%,
+    #5c0705 100%
+  );
   box-shadow:
-    inset -10px -8px 24px rgba(0, 0, 0, 0.85),
-    0 0 60px color-mix(in srgb, var(--accent) 18%, transparent);
+    0 0 8rem color-mix(in srgb, var(--accent) 60%, transparent),
+    0 0 16rem color-mix(in srgb, var(--accent) 34%, transparent);
 }
 
-.orbit__body--near {
-  width: 13vmin;
-  height: 13vmin;
-  left: 26%;
-  bottom: 14%;
-  background: radial-gradient(circle at 32% 30%, #b5a898, #2a251f 78%);
-  box-shadow: inset -6px -5px 14px rgba(0, 0, 0, 0.8);
+.ecl__bolt {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  translate: -50% -50%;
+  width: min(52vmin, 30rem);
+  aspect-ratio: 1;
+  opacity: 0.85;
+  animation: ecl-flash 5.5s steps(1) infinite;
 }
 
-.orbit__copy {
+.ecl__bolt--b {
+  animation-delay: 2.4s;
+  scale: -1 1;
+}
+
+@keyframes ecl-flash {
+  0%,
+  6%,
+  100% {
+    opacity: 0;
+  }
+  2%,
+  4% {
+    opacity: 0.9;
+  }
+}
+
+/* Ridge lines stacked in front of the orb, each moving at its own rate. */
+.ecl__ridge {
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: 0;
+  height: 62%;
+  background: #0d0708;
+  pointer-events: none;
+}
+
+.ecl__ridge--far {
+  height: 46%;
+  background: #180c0d;
+  clip-path: polygon(
+    0 46%, 9% 30%, 17% 42%, 27% 24%, 36% 38%, 47% 20%,
+    58% 36%, 68% 22%, 79% 40%, 89% 28%, 100% 44%, 100% 100%, 0 100%
+  );
+}
+
+.ecl__ridge--near {
+  height: 34%;
+  background: #0a0506;
+  clip-path: polygon(
+    0 58%, 12% 34%, 22% 52%, 34% 28%, 45% 48%, 56% 26%,
+    67% 46%, 78% 30%, 88% 50%, 100% 34%, 100% 100%, 0 100%
+  );
+}
+
+.ecl__copy {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  text-align: center;
 }
 
-.orbit__line {
+.ecl__line {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(2.6rem, 8.5vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -0.045em;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6.5vw, 5.5rem);
+  line-height: 1.04;
+  letter-spacing: 0.01em;
   margin: 0 0 var(--space-6);
+  color: var(--ink);
+  text-shadow: 0 0 2rem #0a0506, 0 0 3.5rem #0a0506;
 }
 
-.orbit__sub {
+.ecl__sub {
   font-family: var(--font-mono);
   font-size: var(--step--1);
   color: var(--muted);
   line-height: 1.7;
+  margin-inline: auto;
+  text-shadow: 0 0 1.4rem #0a0506;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ecl__bolt {
+    animation: none !important;
+    opacity: 0.55 !important;
+  }
 }
