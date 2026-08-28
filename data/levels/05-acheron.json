@@ -5,7 +5,22 @@
   "tagline": "The river of woe — and for a while, the hardest level in the game.",
   "published": true,
   "facts": {
-    "creators": ["ryamu", "Riot", "and more"],
+    "creators": [
+      "ryamu",
+      "Riot",
+      "Metalface221",
+      "Komp",
+      "GrenadeofTacos",
+      "icedcave",
+      "Cersia",
+      "LimeTime313",
+      "Endlevel",
+      "goob",
+      "AZuLer4",
+      "ewop",
+      "Deadlox",
+      "silver"
+    ],
     "host": "ryamu",
     "verifier": "Zoink",
     "verifiedDate": "2022-08-23",
@@ -18,13 +33,14 @@
     "song": {
       "name": "Thermodynamix",
       "artist": "dj-Nate",
-      "newgroundsId": null
+      "newgroundsId": "770520"
     },
     "peakRank": "#1 on the Demonlist (7 October 2022)",
-    "note": "Hosted by ryamu and co-hosted by Riot. The second of Riot's three hell-themed Top 1 levels.",
+    "note": "Hosted by ryamu and co-hosted by Riot; the sequel to Tartarus. Wolvez reached 96% before stepping away in April 2022 on health grounds, and Zoink won the verification race on 23 August 2022.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Acheron",
-      "https://pointercrate.com/demonlist/"
+      "https://pointercrate.com/demonlist/permalink/442/",
+      "https://gdbrowser.com/73667628"
     ]
   },
   "theme": {
@@ -39,15 +55,38 @@
     "texture": "grain",
     "signature": "descend",
     "mood": "Industrial hell. Dark brick, hanging chains and gears, red spikes, one cold cyan orb as the only relief. Chrome Roman capitals edged in red neon with a cyan chromatic split.",
-    "googleFonts": ["Marcellus"]
+    "googleFonts": [
+      "Marcellus"
+    ]
   },
   "voice": {
-    "hook": "Sixty-seven seconds that took 72,808 tries.",
-    "why": "<p>Acheron is the shortest level near the top of this list and it doesn't matter at all. Sixty-seven seconds, 72,808 attempts to verify, and for a while it sat at #1. The density is the point &mdash; there is no rest in it anywhere.</p><p>I also just love how it looks. Riot's hell trilogy has a consistent, genuinely oppressive visual language, and Acheron is the one where it clicked completely: brick, chain, gear, and that single cyan orb doing all the work of telling you something else exists.</p>",
-    "draftedByClaude": true
+    "hook": "Constantly killing you from the inside out.",
+    "why": "<p>Wow, Acheron is something alright. The way this level matches its song is perfect. Although it is pretty short, the predrop is amazing, the drop is amazing, and the second drop is amazing as well.</p><p>This is one of the situations where the sequel is really better than the original in every way, and I think it also does Tartarus so much justice. The level's menacing feel makes playing it feel like it's constantly killing you from the inside out.</p><p>The verification race for this level was also pretty special, watching it get passed around to so many people who failed &mdash; such as Wolvez, who had an unfortunate death at 96.</p>",
+    "draftedByClaude": false,
+    "arc": [
+      {
+        "label": "The predrop",
+        "at": null,
+        "note": "Amazing."
+      },
+      {
+        "label": "The drop",
+        "at": null,
+        "note": "Amazing."
+      },
+      {
+        "label": "The second drop",
+        "at": null,
+        "note": "Amazing as well."
+      }
+    ]
   },
   "media": {
-    "video": { "youtubeId": null, "title": null, "channel": null },
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/acheron.svg",
     "images": []
   }

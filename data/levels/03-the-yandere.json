@@ -7,12 +7,26 @@
   "facts": {
     "creators": [
       "Dorami",
-      "CastriX",
-      "DavJT",
+      "Mazl",
+      "Mulpan",
       "Partition",
+      "CastriX",
+      "RoiMousti",
+      "DavJT",
+      "YunHaSeu14",
       "DanZmeN",
+      "MrLorenzo",
+      "Jghost217",
+      "FarDreamer",
+      "alkali",
       "Alderite",
-      "and more"
+      "Elisione",
+      "Master X",
+      "Bransilver",
+      "Cirtrax",
+      "Spectex",
+      "Osiris GD",
+      "JonathanGD"
     ],
     "host": "Dorami",
     "verifier": "Dorami",
@@ -26,13 +40,14 @@
     "song": {
       "name": "The Yanderes Puppet Show",
       "artist": "Acid-Notation",
-      "newgroundsId": null
+      "newgroundsId": "722366"
     },
     "peakRank": null,
-    "note": "A mega-collaboration hosted, verified and published by Dorami, themed on Yandere Simulator. The song is no longer available on Newgrounds.",
+    "note": "A mega-collaboration hosted, verified and published by Dorami, themed on Yandere Simulator. Dorami's 98% fail during verification is one of the community's most-circulated clips. The 80-86% section, widely called the hardest part, is by Spectex, FarDreamer and GdTheTactiq.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/The_Yandere",
-      "https://pointercrate.com/demonlist/266/"
+      "https://pointercrate.com/demonlist/permalink/2/",
+      "https://gdbrowser.com/54615662"
     ]
   },
   "theme": {
@@ -47,15 +62,43 @@
     "texture": "grain",
     "signature": "slash",
     "mood": "Black and arterial red, nothing in between. Ghost clock faces turning behind everything, chains, gears, and a torn paint swash under a title that looks cut rather than typed.",
-    "googleFonts": ["Bangers"]
+    "googleFonts": [
+      "Bangers"
+    ]
   },
   "voice": {
-    "hook": "Obsession, rendered at 196,956 objects.",
-    "why": "<p>The Yandere is on this list because it commits. Plenty of levels pick a theme and decorate around it; this one builds the whole thing out of a single idea and never blinks. The clocks turning in the background, the chains, the red that never lets up &mdash; it all points the same direction.</p><p>It also came out in 2019 and still looks like this. Nearly 200,000 objects on a 2.1 level, hosted and verified by the same person, which is its own kind of stubbornness.</p>",
-    "draftedByClaude": true
+    "hook": "This level's intensity is almost unmatched.",
+    "why": "<p>The Yandere by Dorami holds another special place in my heart. I think this level's intensity is almost unmatched, and the theming is something so unique it's amazing. In my friend unaura's words, &ldquo;They just don't make levels like these anymore,&rdquo; and I think that is just the truth. This is another level where I think it does the song so much justice.</p><p>My favorite part must be the end again, right after Spectex's part. Spectex was given the part right before the final drop, and I think he mastered the idea of building suspense and tension here. His transition with his logo, switching to the level saying &ldquo;FAR,&rdquo; is one of the coolest things in the entire game, despite being pretty simple.</p><p>Watching Dorami verify this also made this level engrained in my memory. When he failed at 98% with Topi in the room, I think the entire community felt his pain, and it was a coming-together moment to all cheer for Dorami to verify the level. When he finally did, it really was something special that not many levels do.</p>",
+    "draftedByClaude": false,
+    "arc": [
+      {
+        "label": "Spectex's part",
+        "at": null,
+        "note": "Given the run-up to the final drop, and he mastered it."
+      },
+      {
+        "label": "The logo transition",
+        "at": null,
+        "note": "Switching to the level saying “FAR.” Simple, and one of the coolest things in the game."
+      },
+      {
+        "label": "The final drop",
+        "at": null,
+        "note": "The end. My favorite part, again."
+      },
+      {
+        "label": "98%",
+        "at": "98%",
+        "note": "Dorami's fail, with Topi in the room. The whole community felt it."
+      }
+    ]
   },
   "media": {
-    "video": { "youtubeId": null, "title": null, "channel": null },
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/the-yandere.svg",
     "images": []
   }
