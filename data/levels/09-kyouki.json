@@ -2,7 +2,7 @@
   "rank": 9,
   "slug": "kyouki",
   "name": "Kyouki",
-  "tagline": "287,445 objects, built alone — and verified after a death at 97%.",
+  "tagline": "220,720 objects, built alone — and verified after a death at 97%.",
   "published": true,
   "facts": {
     "creators": [
@@ -12,21 +12,22 @@
     "verifier": "Demishio",
     "verifiedDate": "2022-11-24",
     "ratedDate": null,
-    "attempts": null,
-    "levelId": "112313819",
-    "objects": "287,445",
-    "length": "2m 27s",
+    "attempts": "501,997 (258,510 to verify)",
+    "levelId": "86018142",
+    "objects": "220,720",
+    "length": null,
     "gdVersion": "2.1",
     "song": {
-      "name": "I Cant Fix You feat. Crusher-P",
-      "artist": "The Living Tombstone",
-      "newgroundsId": "717444"
+      "name": "Crazy",
+      "artist": "Creo",
+      "newgroundsId": "905108"
     },
     "peakRank": null,
-    "note": "A solo level — built and verified by one person. Kyouki (狂気) means madness. It was the first level placed on the Demonlist in 2023, and its verification run came after a death at 97%.",
+    "note": "A solo level — built and verified by one person. Kyouki (狂気) means madness. The hardest fully-solo level beaten legitimately. Demishio streamed it for 175 days at roughly three hours a day, spending 258,510 attempts verifying and 243,487 playtesting, and the verification run followed a death at 97%. Zoink became the first victor on 11 December 2022 after at least 19,800 attempts.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Kyouki",
-      "https://pointercrate.com/demonlist/21/"
+      "https://geometry-dash-fan.fandom.com/wiki/Kyouki",
+      "https://pointercrate.com/demonlist/permalink/468/"
     ]
   },
   "theme": {
@@ -49,9 +50,26 @@
     "nativeLang": "ja"
   },
   "voice": {
-    "hook": "One person. 287,445 objects.",
-    "why": "<p>Kyouki is the one that makes no sense to me. It is a solo level. One person built 287,445 objects of it and then verified it themself, and the verification came after dying at 97% first, which I genuinely cannot imagine recovering from.</p><p>The name means madness and the decoration agrees. It is stacked so densely that it stops reading as individual objects and turns into pure texture &mdash; and somehow it never gets muddy. That blue is the best blue in the game.</p>",
-    "draftedByClaude": true
+    "hook": "Absolute madness, which is exactly what the name means.",
+    "why": "<p>Kyouki is absolute madness &mdash; which is incredibly fitting, considering that is exactly what the name translates to in Japanese. The fact that this is a fully solo level, entirely created and verified by Demishio, makes it one of the most legendary achievements in the entire game. It stands proudly as the hardest fully-solo level ever legitimately beaten, proving that a single creator's vision can compete with the game's biggest mega-collabs.</p><p>The synchronization with Creo's song &ldquo;Crazy&rdquo; is completely off the charts. The level doesn't just match the beat; it perfectly captures the frantic, high-octane energy of the track. The gameplay is blisteringly fast, cycling through different game modes at a breakneck pace while surrounded by blinding, neon designs. Because the portals change so rapidly and the timings are near-impossible, learning this level is an absolute nightmare. Demishio purposefully built the gameplay around his own specific skillset, making it a highly unique challenge.</p><p>My favorite part has to be just how overwhelming the whole experience is, and of course the dash orb at the start of the first drop. From the rapid cube section at the start to the triple-speed transitions, it never gives you a chance to breathe. Watching top players tackle it was thrilling, especially when Zoink stepped up to become the very first victor shortly after Demishio's brutal 500,000-attempt verification journey. It is a masterpiece of high-speed perfection.</p>",
+    "draftedByClaude": false,
+    "arc": [
+      {
+        "label": "The rapid cube",
+        "at": null,
+        "note": "Straight in at the start. No chance to breathe from here on."
+      },
+      {
+        "label": "The dash orb",
+        "at": null,
+        "note": "At the start of the first drop. One of my favorite moments in the level."
+      },
+      {
+        "label": "Triple-speed transitions",
+        "at": null,
+        "note": "Game modes cycling faster than you can learn them."
+      }
+    ]
   },
   "media": {
     "video": {

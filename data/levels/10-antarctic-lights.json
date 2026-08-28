@@ -5,10 +5,15 @@
   "tagline": "Nine Circles, remade twice over, and sharpened into the tightest wave in the game.",
   "published": true,
   "facts": {
-    "creators": ["Declan", "SkyJax", "Tolstyh", "Arcturus"],
-    "host": "Declan",
+    "creators": [
+      "declanlc",
+      "SkyJax",
+      "tolstyh",
+      "Arcturus"
+    ],
+    "host": "declanlc",
     "verifier": "Axinity",
-    "verifiedDate": null,
+    "verifiedDate": "2026-07-14",
     "ratedDate": "2026-07-22",
     "attempts": null,
     "levelId": "144988390",
@@ -21,10 +26,11 @@
       "newgroundsId": "428157"
     },
     "peakRank": null,
-    "note": "Published 16 July 2026. A remake of Arctic Lights, which was itself a remake of Nine Circles. Short, but built on extremely tight wave gaps and frame-precise timing.",
+    "note": "Published 16 July 2026. A remake of Arctic Lights, which was itself a remake of Nine Circles. Rated 22 July 2026 and now the hardest Nine Circles level in the history of the Demonlist. Short, but built on extremely tight wave gaps and frame-precise timing.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Antarctic_Lights",
-      "https://geometry-dash-fan.fandom.com/wiki/Antarctic_Lights"
+      "https://geometry-dash-fan.fandom.com/wiki/Antarctic_Lights",
+      "https://pointercrate.com/demonlist/permalink/711/"
     ]
   },
   "theme": {
@@ -39,15 +45,48 @@
     "texture": "snow",
     "signature": "aurora",
     "mood": "A polar night. Green and teal curtains of light drifting over jagged ice peaks, a hard starfield above, and one twelve-pointed snow medallion burning white.",
-    "googleFonts": ["Cormorant+Garamond:wght@300;400;600"]
+    "googleFonts": [
+      "Cormorant+Garamond:wght@300;400;600"
+    ]
   },
   "voice": {
-    "hook": "The coldest thing on this list.",
-    "why": "<p>Antarctic Lights is the newest level here by a long way, and it earned the spot immediately. It's a remake of a remake of Nine Circles, which sounds like it should be exhausted by now, and instead it's the sharpest version of that idea anyone has managed.</p><p>It's also just beautiful. Most levels that go for ice end up looking like blue plastic; this one actually feels cold. The aurora work is the best atmospheric decoration I've seen in a level.</p>",
-    "draftedByClaude": true
+    "hook": "A terrifyingly beautiful evolution of Nine Circles.",
+    "why": "<p>Antarctic Lights is a terrifyingly beautiful evolution of the Nine Circles trend. Hosted by declanlc and verified by Axinity in the summer of 2026, it serves as an impossibly difficult remake of Arctic Lights. While classic Nine Circles levels can sometimes feel visually stale, this level takes the formula, polishes the effect, and pushes the difficulty to the absolute breaking point.</p><p>The atmosphere is incredible. Set to the classic, aggressive dubstep of &ldquo;Fear Me&rdquo; by Rukkus, it predominantly uses a gorgeous, cold blue color palette mixed with bright orange, mint and purple accents in the pre-drop. The beginning lulls you in with a melancholic cube section before the beats get louder and the gameplay ramps up into incredibly precise ball and ship parts.</p><p>But the drop is where the level becomes truly monstrous. The wave gameplay is excruciating, throwing the player into quadruple-speed corridors filled with nearly invisible gravity and size portals. In terms of raw, frame-perfect precision, its gaps are so tight that it actually towers over Tidal Wave.</p><p>What I love most is the ending. After surviving one of the most exhausting, strobe-heavy wave sections ever built and navigating the nerve-racking final ship and UFO timings, you have to thread the needle through a tight sawblade corridor. As a final victory lap, you fly directly through a giant Lenny face at the very end, a callback to the low-detail mode end screen of the original Arctic Lights. Becoming the hardest Nine Circles level in the history of the Demonlist is no small feat, and Antarctic Lights absolutely earned that crown.</p>",
+    "draftedByClaude": false,
+    "arc": [
+      {
+        "label": "The melancholic cube",
+        "at": null,
+        "note": "It lulls you in before the beats get louder."
+      },
+      {
+        "label": "The pre-drop",
+        "at": null,
+        "note": "Incredibly precise ball and ship. Orange, mint and purple against the cold blue."
+      },
+      {
+        "label": "The drop",
+        "at": null,
+        "note": "Quadruple-speed corridors, nearly invisible gravity and size portals."
+      },
+      {
+        "label": "Ship, UFO, sawblades",
+        "at": null,
+        "note": "Nerve-racking timings, then threading a tight sawblade corridor."
+      },
+      {
+        "label": "The Lenny face",
+        "at": null,
+        "note": "You fly straight through it. A callback to Arctic Lights' low-detail end screen."
+      }
+    ]
   },
   "media": {
-    "video": { "youtubeId": null, "title": null, "channel": null },
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/antarctic-lights.svg",
     "images": []
   }

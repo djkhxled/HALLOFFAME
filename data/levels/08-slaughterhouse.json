@@ -7,29 +7,34 @@
   "facts": {
     "creators": [
       "icedcave",
-      "DrCuber",
       "Brittank88",
-      "EndLevel",
-      "river",
-      "Iris",
+      "Endlevel",
+      "River",
       "CDMusic",
-      "and more"
+      "DrCuber",
+      "GD Iris"
     ],
     "host": "icedcave",
     "verifier": "Doggie",
     "verifiedDate": "2021-12-19",
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "27690100",
     "objects": null,
     "length": null,
     "gdVersion": "2.1",
-    "song": { "name": null, "artist": null, "newgroundsId": null },
+    "song": {
+      "name": "Lost (remix)",
+      "artist": "Crim3s",
+      "newgroundsId": null,
+      "nong": true
+    },
     "peakRank": "#1 on the Demonlist",
-    "note": "A mega-collaboration hosted by icedcave, loosely based on his own 2015 level of the same name. An earlier verification claim in October 2021 was later determined to be illegitimate; Doggie's completion on 19 December 2021 is the recognised verification. The song is a remix of Crim3s' 'Lost'.",
+    "note": "A mega-collaboration hosted by icedcave, built over his own 2015 level of the same name. A slow opening cube section carries the text 'Welcome to the End of the World'. River's wave at 49-58% is the most-cited section. After a two-week verification race, spaceuk claimed the verification on 24 October 2021; it was later found to have been hacked and the title passed to Doggie, the level's first legitimate victor, on 19 December 2021. The song is a remix of Crim3s' 'Lost' sampling Vince Staples' 'Fire', taken from a CS:GO montage by XVA and later remastered by icedcave and EndLevel with XVA's permission.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Slaughterhouse",
-      "https://geometry-dash-user-levels.fandom.com/wiki/Slaughterhouse_(IcEDCave)"
+      "https://geometry-dash-fan.fandom.com/wiki/Slaughterhouse",
+      "https://pointercrate.com/demonlist/permalink/380/"
     ]
   },
   "theme": {
@@ -44,15 +49,48 @@
     "texture": "grain",
     "signature": "pulse",
     "mood": "One enormous demon looming out of red darkness — spiked crown, pentagram brand, burning eyes, jagged jaw. Everything drawn in thin red line on black, breathing on the beat.",
-    "googleFonts": ["Metal+Mania"]
+    "googleFonts": [
+      "Metal+Mania"
+    ]
   },
   "voice": {
-    "hook": "It announced itself as the new hardest, and it was right.",
-    "why": "<p>Slaughterhouse is the one that felt like a statement. icedcave built it out of frustration that a 2015 impossible level was the only thing he was known for, and the remake ended up at the top of the list.</p><p>It also has the best single image on this whole page. That demon face &mdash; the crown, the pentagram, the two burning eyes in all that red &mdash; is instantly recognisable, and it does what great level art should: you know exactly what you're in for before you press start.</p>",
-    "draftedByClaude": true
+    "hook": "Pure, unadulterated intimidation.",
+    "why": "<p>Slaughterhouse is pure, unadulterated intimidation. Hosted by icedcave, this mega-collaboration took the standard red-and-black &ldquo;hell theme&rdquo; of Geometry Dash and pushed it to its absolute terrifying maximum. It is famous for its completely unforgiving difficulty, leaning heavily into brutal quadruple-speed wave sections and ridiculously tight straight-fly corridors.</p><p>The atmosphere of this level is suffocating. The song, a heavy remix of &ldquo;Lost&rdquo; by Crim3s, creates an intensely dark, glitchy and chaotic environment. Right from the start, a slow cube section drops the haunting text &ldquo;Welcome to the End of the World,&rdquo; setting the perfect psychological tone for the torture that is about to follow.</p><p>The most iconic segment has to be river's wave at 49-58%. But for me personally, it is the very end, starting at the final ship part with everything enclosing on you before handing you some of the hardest cube timings the game has to offer. icedcave's own logo at the end popping up right after you click the last input actually is so nostalgic for me and literally gives me chills. I don't know why, but something about it &mdash; and the fact that it really was never supposed to be possible &mdash; is so cool to me.</p><p>The history of Slaughterhouse is just as legendary as its gameplay. The level was initially the subject of a massive verification race, culminating in spaceuk claiming the victory in late 2021. However, when spaceuk was later exposed in one of the biggest hacking scandals in Geometry Dash history, his records were wiped, and the title of legitimate verifier rightfully fell to Doggie, the level's true first victor. Beating Slaughterhouse is a supreme test of raw nerve and mechanical perfection, standing as a terrifying monument to the absolute limits of player skill.</p>",
+    "draftedByClaude": false,
+    "arc": [
+      {
+        "label": "Welcome to the End of the World",
+        "at": null,
+        "note": "A slow opening cube, and the whole psychological tone set in one line of text."
+      },
+      {
+        "label": "River's wave",
+        "at": "49-58%",
+        "note": "The most iconic segment of the level."
+      },
+      {
+        "label": "The final ship",
+        "at": null,
+        "note": "Everything enclosing on you. My favorite part."
+      },
+      {
+        "label": "The last cube timings",
+        "at": null,
+        "note": "Some of the hardest the game has to offer."
+      },
+      {
+        "label": "icedcave's logo",
+        "at": null,
+        "note": "Pops up right after the last input. Gives me chills."
+      }
+    ]
   },
   "media": {
-    "video": { "youtubeId": null, "title": null, "channel": null },
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/slaughterhouse.svg",
     "images": []
   }

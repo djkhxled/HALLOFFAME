@@ -110,6 +110,16 @@ class TestBuild(unittest.TestCase):
         self.assertIn("False Noise", html)
         self.assertNotIn("Xomu", html)
 
+    def test_kyouki_carries_its_own_level_id(self):
+        """112313819 is Anathema by nikroplays, and its song and object count
+        came across with it."""
+        html = (DOCS / "levels" / "kyouki" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("86018142", html)
+        self.assertNotIn("112313819", html)
+        self.assertIn("Creo", html)
+        self.assertNotIn("Living Tombstone", html)
+        self.assertNotIn("287,445", html)
+
     def test_deimos_is_no_longer_a_drafted_placeholder(self):
         html = (DOCS / "levels" / "deimos" / "index.html").read_text(encoding="utf-8")
         self.assertNotIn("voice__drafted", html)
