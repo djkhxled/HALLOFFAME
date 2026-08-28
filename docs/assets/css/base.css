@@ -21,7 +21,8 @@ body {
   font-synthesis-weight: none;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  transition: background-color var(--dur-slow) var(--ease);
+  transition: background-color var(--dur-slow) var(--ease),
+    color var(--dur-slow) var(--ease);
 }
 
 h1,

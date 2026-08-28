@@ -76,6 +76,15 @@
   object-fit: cover;
 }
 
+/* Hero art can be busy right where the metadata sits, so the text layer
+   always wins. */
+.hero__eyebrow,
+.hero__foot,
+.hero__title {
+  position: relative;
+  z-index: 2;
+}
+
 .hero__eyebrow {
   display: flex;
   align-items: center;
