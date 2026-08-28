@@ -1,179 +1,194 @@
-<svg class="art art--tidalwave" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="An enormous curling wave lit from within by neon blue, over a dark ocean scattered with glowing triangles">
+<svg class="art art--tidalwave" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A breaking wave built from rows of glowing neon triangles over dark water, with diagonal light rails and diamond frames">
   <defs>
     <linearGradient id="tw-deep" x1="0" y1="0" x2="0.2" y2="1">
-      <stop offset="0%" stop-color="#062138"/>
-      <stop offset="42%" stop-color="#04121f"/>
+      <stop offset="0%" stop-color="#04182b"/>
+      <stop offset="46%" stop-color="#03101d"/>
       <stop offset="100%" stop-color="#03080f"/>
     </linearGradient>
-    <linearGradient id="tw-face" x1="0.1" y1="0" x2="0.9" y2="1">
-      <stop offset="0%" stop-color="#7df0d6"/>
-      <stop offset="26%" stop-color="#2ac9ff"/>
-      <stop offset="62%" stop-color="#0d5f9e"/>
-      <stop offset="100%" stop-color="#05243f"/>
+    <linearGradient id="tw-tri" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#0a5fae"/>
+      <stop offset="34%" stop-color="#1fb4f5"/>
+      <stop offset="78%" stop-color="#5ce4ff"/>
+      <stop offset="100%" stop-color="#c9f6ff"/>
     </linearGradient>
-    <linearGradient id="tw-inner" x1="0" y1="0" x2="1" y2="0.6">
-      <stop offset="0%" stop-color="#d9fbff"/>
-      <stop offset="34%" stop-color="#74f0d6"/>
-      <stop offset="74%" stop-color="#1f9ad6"/>
-      <stop offset="100%" stop-color="#08375e"/>
+    <filter id="tw-neon" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feFlood flood-color="#2ac9ff" result="c"/>
+      <feComposite in="c" in2="b" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="tw-rail" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#74f0d6" stop-opacity="0"/>
+      <stop offset="24%" stop-color="#74f0d6"/>
+      <stop offset="72%" stop-color="#2ac9ff"/>
+      <stop offset="100%" stop-color="#2ac9ff" stop-opacity="0"/>
     </linearGradient>
     <radialGradient id="tw-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#2ac9ff" stop-opacity="0.5"/>
-      <stop offset="60%" stop-color="#1173b8" stop-opacity="0.16"/>
+      <stop offset="0%" stop-color="#2ac9ff" stop-opacity="0.44"/>
+      <stop offset="58%" stop-color="#1173b8" stop-opacity="0.14"/>
       <stop offset="100%" stop-color="#1173b8" stop-opacity="0"/>
     </radialGradient>
-    <!-- The wave crest sits high in the frame, so the top of the vignette
-         has to stay light or the foam turns grey. -->
+    <linearGradient id="tw-crest" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#d9fbff"/>
+      <stop offset="70%" stop-color="#3fd2ff"/>
+      <stop offset="100%" stop-color="#0a4f8c"/>
+    </linearGradient>
     <linearGradient id="tw-vig" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#03080f" stop-opacity="0.42"/>
-      <stop offset="22%" stop-color="#03080f" stop-opacity="0.04"/>
+      <stop offset="0%" stop-color="#03080f" stop-opacity="0.4"/>
+      <stop offset="24%" stop-color="#03080f" stop-opacity="0.03"/>
       <stop offset="100%" stop-color="#03080f" stop-opacity="0.9"/>
     </linearGradient>
-    <filter id="tw-soft"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="tw-soft"><feGaussianBlur stdDeviation="11"/></filter>
+    <filter id="tw-tight"><feGaussianBlur stdDeviation="3.4"/></filter>
     <filter id="tw-grain">
       <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4"/>
       <feColorMatrix type="saturate" values="0"/>
     </filter>
-    <clipPath id="tw-barrel">
-      <path d="M980 900 C 900 620, 1006 300, 1250 176 C 1430 86, 1600 96, 1600 96 L1600 900 Z"/>
-    </clipPath>
+
+    <!-- One glowing spike, the level's basic unit -->
+    <g id="tw-spike">
+      <path d="M0 -44 L26 30 L-26 30 Z" fill="url(#tw-tri)"/>
+      <path d="M0 -44 L26 30 L-26 30 Z" fill="none" stroke="#ffffff" stroke-width="2.6"/>
+      <path d="M0 -18 L9 12 L-9 12 Z" fill="#ffffff" opacity="0.8"/>
+    </g>
+    <!-- A layered chevron block, as the level stacks them -->
+    <g id="tw-chev">
+      <path d="M-70 34 L0 -34 L70 34" fill="none" stroke="#2ac9ff" stroke-width="9"/>
+      <path d="M-70 62 L0 -6 L70 62" fill="none" stroke="#2ac9ff" stroke-width="6" opacity="0.7"/>
+      <path d="M-70 86 L0 18 L70 86" fill="none" stroke="#74f0d6" stroke-width="4" opacity="0.5"/>
+    </g>
   </defs>
 
   <rect width="1600" height="900" fill="url(#tw-deep)"/>
-  <ellipse cx="1180" cy="420" rx="700" ry="440" fill="url(#tw-glow)"/>
+  <ellipse cx="1060" cy="440" rx="780" ry="480" fill="url(#tw-glow)"/>
 
-  <!-- Caustic light rippling across the water -->
-  <g stroke="#2ac9ff" fill="none" opacity="0.2">
-    <path d="M-40 640 q 90 -30 180 0 t 180 0 t 180 0 t 180 0 t 180 0 t 180 0 t 180 0" stroke-width="2"/>
-    <path d="M-40 688 q 110 -34 220 0 t 220 0 t 220 0 t 220 0 t 220 0 t 220 0" stroke-width="1.6"/>
-    <path d="M-40 742 q 80 -26 160 0 t 160 0 t 160 0 t 160 0 t 160 0 t 160 0 t 160 0 t 160 0" stroke-width="2.2"/>
-    <path d="M-40 800 q 120 -36 240 0 t 240 0 t 240 0 t 240 0 t 240 0 t 240 0" stroke-width="1.4"/>
-    <path d="M-40 858 q 96 -30 192 0 t 192 0 t 192 0 t 192 0 t 192 0 t 192 0 t 192 0" stroke-width="1.8"/>
-  </g>
-
-  <!-- Sunken neon lattice: the level's own triangles, in the deep -->
-  <g opacity="0.72">
-    <g transform="translate(190 300) rotate(-38)">
-      <path d="M0 -66 L58 40 L-58 40 Z" fill="none" stroke="#2ac9ff" stroke-width="5"/>
-      <path d="M0 -44 L40 30 L-40 30 Z" fill="none" stroke="#7df0d6" stroke-width="3"/>
-      <path d="M0 -22 L20 20 L-20 20 Z" fill="#2ac9ff" opacity="0.5"/>
-    </g>
-    <g transform="translate(430 176) rotate(-16)" opacity="0.8">
-      <path d="M0 -52 L46 32 L-46 32 Z" fill="none" stroke="#2ac9ff" stroke-width="4"/>
-      <path d="M0 -32 L28 22 L-28 22 Z" fill="#7df0d6" opacity="0.42"/>
-    </g>
-    <g transform="translate(126 566) rotate(24)" opacity="0.7">
-      <path d="M0 -58 L50 36 L-50 36 Z" fill="none" stroke="#2ac9ff" stroke-width="4.4"/>
-      <path d="M0 -34 L28 22 L-28 22 Z" fill="#2ac9ff" opacity="0.44"/>
-    </g>
-    <g transform="translate(618 380) rotate(-30)" opacity="0.55">
-      <path d="M0 -46 L40 28 L-40 28 Z" fill="none" stroke="#7df0d6" stroke-width="3.4"/>
-    </g>
-    <g transform="translate(760 168) rotate(12)" opacity="0.5">
-      <path d="M0 -40 L34 24 L-34 24 Z" fill="none" stroke="#2ac9ff" stroke-width="3"/>
-    </g>
-    <!-- chevron rails, like the level's diagonal blocks -->
-    <g stroke="#2ac9ff" fill="none" stroke-width="6" opacity="0.5">
-      <path d="M20 760 L150 630 L280 760"/>
-      <path d="M56 760 L150 666 L244 760" stroke-width="3.4" stroke-opacity="0.8"/>
-      <path d="M330 856 L470 716 L610 856"/>
-      <path d="M372 856 L470 758 L568 856" stroke-width="3.4" stroke-opacity="0.8"/>
-    </g>
-    <!-- drifting bubbles -->
-    <g fill="#7df0d6">
-      <circle cx="300" cy="430" r="3.4" opacity="0.75"/>
-      <circle cx="356" cy="512" r="2.2" opacity="0.55"/>
-      <circle cx="214" cy="470" r="2.6" opacity="0.6"/>
-      <circle cx="540" cy="560" r="3" opacity="0.6"/>
-      <circle cx="470" cy="300" r="2" opacity="0.5"/>
-      <circle cx="700" cy="470" r="2.8" opacity="0.55"/>
-      <circle cx="640" cy="640" r="2.2" opacity="0.5"/>
-      <circle cx="820" cy="360" r="2.4" opacity="0.45"/>
-    </g>
-  </g>
-
-  <!-- ================= THE WAVE ================= -->
+  <!-- Diagonal light rails, the level's travel lines -->
   <g>
-    <!-- outer swell -->
-    <path fill="url(#tw-face)" d="M900 900
-      C 840 620, 930 286, 1200 150
-      C 1372 62, 1600 70, 1600 70
-      L1600 900 Z"/>
+    <rect x="-140" y="700" width="1100" height="16" rx="8" fill="url(#tw-rail)"
+          transform="rotate(-34 400 708)" opacity="0.9"/>
+    <rect x="-140" y="700" width="1100" height="42" rx="21" fill="#2ac9ff"
+          transform="rotate(-34 400 708)" opacity="0.18" filter="url(#tw-soft)"/>
+    <rect x="620" y="300" width="1160" height="12" rx="6" fill="url(#tw-rail)"
+          transform="rotate(-34 1200 306)" opacity="0.7"/>
+    <rect x="120" y="880" width="900" height="10" rx="5" fill="url(#tw-rail)"
+          transform="rotate(-34 570 885)" opacity="0.5"/>
+  </g>
 
-    <!-- the barrel: a lighter inner face turning over -->
-    <path fill="url(#tw-inner)" opacity="0.95" d="M1046 900
-      C 996 646, 1074 366, 1288 250
-      C 1414 180, 1600 190, 1600 190
-      L1600 900 Z"/>
-
-    <!-- lip curling forward over the barrel -->
-    <path fill="url(#tw-face)" d="M1176 214
-      C 1300 148, 1470 150, 1600 176
-      L1600 96
-      C 1440 74, 1260 96, 1150 178
-      C 1094 220, 1062 282, 1046 344
-      C 1078 288, 1120 246, 1176 214 Z"/>
-
-    <!-- water striations following the curl -->
-    <g fill="none" stroke="#d9fbff" opacity="0.30" clip-path="url(#tw-barrel)">
-      <path d="M1010 900 C 968 640, 1046 372, 1256 258 C 1382 190, 1560 196, 1600 200" stroke-width="3"/>
-      <path d="M1074 900 C 1038 660, 1110 398, 1300 292 C 1414 232, 1566 240, 1600 244" stroke-width="2.2"/>
-      <path d="M1140 900 C 1110 678, 1176 426, 1346 328 C 1448 274, 1572 282, 1600 286" stroke-width="1.8"/>
-      <path d="M1208 900 C 1184 696, 1242 452, 1392 364 C 1482 314, 1578 322, 1600 326" stroke-width="1.5"/>
-      <path d="M1284 900 C 1266 714, 1314 480, 1440 400 C 1518 356, 1584 362, 1600 366" stroke-width="1.2"/>
+  <!-- Diamond frames -->
+  <g fill="none" opacity="0.6">
+    <g transform="translate(216 234) rotate(45)">
+      <rect x="-64" y="-64" width="128" height="128" stroke="#2ac9ff" stroke-width="5"/>
+      <rect x="-46" y="-46" width="92" height="92" stroke="#74f0d6" stroke-width="3"/>
+      <rect x="-28" y="-28" width="56" height="56" stroke="#eafdff" stroke-width="2"/>
     </g>
-
-    <!-- foam crest, built from overlapping lobes -->
-    <g fill="#f2fdff">
-      <path d="M1150 178 c26 -30 62 -18 74 6 c30 -34 76 -20 88 8 c30 -30 74 -16 84 12
-        c34 -26 78 -10 84 18 c36 -20 78 -2 84 26 l0 -74 c-40 -22 -92 -28 -140 -16
-        c-30 -30 -84 -30 -118 -6 c-32 -22 -80 -14 -106 12 c-24 -8 -44 4 -50 14 Z"/>
-      <g opacity="0.95">
-        <circle cx="1188" cy="176" r="26"/><circle cx="1244" cy="156" r="30"/>
-        <circle cx="1308" cy="146" r="26"/><circle cx="1368" cy="140" r="30"/>
-        <circle cx="1436" cy="138" r="26"/><circle cx="1500" cy="142" r="28"/>
-        <circle cx="1560" cy="150" r="24"/>
-        <circle cx="1216" cy="204" r="20"/><circle cx="1278" cy="184" r="22"/>
-        <circle cx="1344" cy="174" r="20"/><circle cx="1408" cy="170" r="22"/>
-        <circle cx="1472" cy="170" r="19"/><circle cx="1536" cy="178" r="20"/>
-      </g>
+    <g transform="translate(1436 258) rotate(45)" opacity="0.75">
+      <rect x="-56" y="-56" width="112" height="112" stroke="#2ac9ff" stroke-width="4.4"/>
+      <rect x="-38" y="-38" width="76" height="76" stroke="#74f0d6" stroke-width="2.8"/>
     </g>
-    <!-- foam tumbling down the face -->
-    <g fill="#f2fdff" opacity="0.85">
-      <circle cx="1122" cy="268" r="15"/><circle cx="1156" cy="300" r="11"/>
-      <circle cx="1096" cy="330" r="9"/><circle cx="1180" cy="352" r="8"/>
-      <circle cx="1074" cy="392" r="7"/><circle cx="1140" cy="424" r="6"/>
-      <circle cx="1058" cy="470" r="5.5"/>
-    </g>
-    <!-- spray thrown off the lip -->
-    <g fill="#d9fbff">
-      <circle cx="1258" cy="96" r="5" opacity="0.9"/>
-      <circle cx="1330" cy="70" r="4" opacity="0.8"/>
-      <circle cx="1402" cy="88" r="4.6" opacity="0.85"/>
-      <circle cx="1474" cy="58" r="3.4" opacity="0.7"/>
-      <circle cx="1544" cy="82" r="4" opacity="0.75"/>
-      <circle cx="1292" cy="42" r="3" opacity="0.6"/>
-      <circle cx="1368" cy="30" r="3.6" opacity="0.65"/>
-      <circle cx="1440" cy="18" r="2.8" opacity="0.55"/>
-    </g>
-
-    <!-- neon glow inside the barrel -->
-    <ellipse cx="1330" cy="400" rx="200" ry="250" fill="#2ac9ff" opacity="0.22" filter="url(#tw-soft)"/>
-    <!-- triangles caught inside the wave -->
-    <g clip-path="url(#tw-barrel)" opacity="0.5">
-      <g transform="translate(1330 440) rotate(-20)">
-        <path d="M0 -50 L44 32 L-44 32 Z" fill="none" stroke="#d9fbff" stroke-width="4"/>
-        <path d="M0 -28 L24 18 L-24 18 Z" fill="#d9fbff" opacity="0.6"/>
-      </g>
-      <g transform="translate(1204 632) rotate(16)" opacity="0.8">
-        <path d="M0 -38 L32 24 L-32 24 Z" fill="none" stroke="#d9fbff" stroke-width="3.2"/>
-      </g>
+    <g transform="translate(120 660) rotate(45)" opacity="0.5">
+      <rect x="-44" y="-44" width="88" height="88" stroke="#2ac9ff" stroke-width="3.6"/>
+      <rect x="-28" y="-28" width="56" height="56" stroke="#eafdff" stroke-width="2"/>
     </g>
   </g>
 
-  <!-- Foam line where the wave meets the flat water -->
-  <g fill="#d9fbff" opacity="0.55">
-    <path d="M0 878 q 60 -16 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0 t 120 0 l0 22 L0 900 Z"/>
+  <!-- Chevron stacks -->
+  <g opacity="0.8">
+    <use href="#tw-chev" x="420" y="760"/>
+    <use href="#tw-chev" x="700" y="820" transform="scale(0.8) translate(180 190)"/>
+    <use href="#tw-chev" x="1290" y="742"/>
+  </g>
+
+  <!-- ============ THE WAVE, BUILT FROM SPIKES ============ -->
+  <!-- The crest curve is described by rows of the level's own triangles,
+       tightening as the wave rears up on the right. -->
+  <g>
+    <!-- glow behind the wall of water -->
+    <path d="M760 900 C 720 620, 840 300, 1120 190 C 1320 110, 1600 130, 1600 130 L1600 900 Z"
+          fill="#062a4c" opacity="0.55"/>
+    <path d="M900 900 C 872 650, 968 372, 1210 268 C 1380 196, 1600 214, 1600 214 L1600 900 Z"
+          fill="#083a68" opacity="0.5"/>
+
+    <!-- breaking lip -->
+    <path fill="url(#tw-crest)" d="M1110 214
+      C 1250 146, 1450 152, 1600 180 L1600 100
+      C 1420 72, 1220 96, 1104 182 C 1046 226, 1010 292, 992 356
+      C 1026 296, 1054 250, 1110 214 Z"/>
+    <g fill="#ffffff">
+      <path d="M1104 200
+        a34 34 0 0 1 60 -18 a38 38 0 0 1 68 -12 a34 34 0 0 1 62 -8
+        a38 38 0 0 1 70 -6 a33 33 0 0 1 60 -2 a35 35 0 0 1 62 2
+        a30 30 0 0 1 54 6 L1600 176 L1600 96
+        C 1420 72, 1220 96, 1104 182 Z"/>
+    </g>
+
+    <!-- spike rows following the wave face -->
+    <g filter="url(#tw-neon)">
+      <use href="#tw-spike" transform="translate(1006 402) rotate(-64) scale(1.05)"/>
+      <use href="#tw-spike" transform="translate(1044 486) rotate(-58) scale(1.05)"/>
+      <use href="#tw-spike" transform="translate(1090 570) rotate(-52) scale(1.05)"/>
+      <use href="#tw-spike" transform="translate(1146 650) rotate(-46) scale(1.05)"/>
+      <use href="#tw-spike" transform="translate(1210 726) rotate(-40) scale(1.05)"/>
+      <use href="#tw-spike" transform="translate(1282 796) rotate(-34) scale(1.05)"/>
+
+      <use href="#tw-spike" transform="translate(1122 372) rotate(-70) scale(0.9)" opacity="0.9"/>
+      <use href="#tw-spike" transform="translate(1164 456) rotate(-64) scale(0.9)" opacity="0.9"/>
+      <use href="#tw-spike" transform="translate(1214 540) rotate(-58) scale(0.9)" opacity="0.9"/>
+      <use href="#tw-spike" transform="translate(1272 620) rotate(-52) scale(0.9)" opacity="0.9"/>
+      <use href="#tw-spike" transform="translate(1338 696) rotate(-46) scale(0.9)" opacity="0.9"/>
+
+      <use href="#tw-spike" transform="translate(1252 344) rotate(-76) scale(0.75)" opacity="0.75"/>
+      <use href="#tw-spike" transform="translate(1296 424) rotate(-70) scale(0.75)" opacity="0.75"/>
+      <use href="#tw-spike" transform="translate(1348 502) rotate(-64) scale(0.75)" opacity="0.75"/>
+      <use href="#tw-spike" transform="translate(1408 578) rotate(-58) scale(0.75)" opacity="0.75"/>
+
+      <use href="#tw-spike" transform="translate(1420 340) rotate(-82) scale(0.62)" opacity="0.6"/>
+      <use href="#tw-spike" transform="translate(1464 414) rotate(-76) scale(0.62)" opacity="0.6"/>
+      <use href="#tw-spike" transform="translate(1516 488) rotate(-70) scale(0.62)" opacity="0.6"/>
+    </g>
+
+    <!-- inner barrel light -->
+    <ellipse cx="1330" cy="420" rx="180" ry="230" fill="#2ac9ff" opacity="0.2" filter="url(#tw-soft)"/>
+
+    <!-- spray off the lip -->
+    <g fill="#d9fbff">
+      <circle cx="1224" cy="98" r="5" opacity="0.9"/><circle cx="1300" cy="72" r="4" opacity="0.8"/>
+      <circle cx="1372" cy="90" r="4.6" opacity="0.85"/><circle cx="1444" cy="60" r="3.4" opacity="0.7"/>
+      <circle cx="1520" cy="84" r="4" opacity="0.75"/><circle cx="1262" cy="44" r="3" opacity="0.6"/>
+      <circle cx="1340" cy="32" r="3.6" opacity="0.65"/><circle cx="1414" cy="20" r="2.8" opacity="0.55"/>
+    </g>
+  </g>
+
+  <!-- Free-floating spikes in the water -->
+  <g filter="url(#tw-neon)">
+    <use href="#tw-spike" transform="translate(206 400) rotate(-28) scale(1.15)" opacity="0.85"/>
+    <use href="#tw-spike" transform="translate(378 300) rotate(16) scale(0.85)" opacity="0.7"/>
+    <use href="#tw-spike" transform="translate(150 550) rotate(38) scale(0.95)" opacity="0.7"/>
+    <use href="#tw-spike" transform="translate(560 470) rotate(-14) scale(0.7)" opacity="0.55"/>
+    <use href="#tw-spike" transform="translate(690 250) rotate(24) scale(0.6)" opacity="0.45"/>
+    <use href="#tw-spike" transform="translate(760 620) rotate(-40) scale(0.8)" opacity="0.5"/>
+    <use href="#tw-spike" transform="translate(330 740) rotate(8) scale(0.7)" opacity="0.45"/>
+  </g>
+
+  <!-- Caustic ripples -->
+  <g stroke="#2ac9ff" fill="none" opacity="0.18">
+    <path d="M-40 660 q 90 -30 180 0 t 180 0 t 180 0 t 180 0 t 180 0 t 180 0 t 180 0" stroke-width="2"/>
+    <path d="M-40 720 q 110 -34 220 0 t 220 0 t 220 0 t 220 0 t 220 0 t 220 0" stroke-width="1.6"/>
+    <path d="M-40 786 q 80 -26 160 0 t 160 0 t 160 0 t 160 0 t 160 0 t 160 0 t 160 0 t 160 0" stroke-width="2.2"/>
+    <path d="M-40 850 q 120 -36 240 0 t 240 0 t 240 0 t 240 0 t 240 0 t 240 0" stroke-width="1.4"/>
+  </g>
+
+  <!-- Bubbles -->
+  <g fill="#74f0d6">
+    <circle cx="300" cy="470" r="3.4" opacity="0.75"/><circle cx="356" cy="552" r="2.2" opacity="0.55"/>
+    <circle cx="214" cy="500" r="2.6" opacity="0.6"/><circle cx="540" cy="600" r="3" opacity="0.6"/>
+    <circle cx="470" cy="340" r="2" opacity="0.5"/><circle cx="700" cy="510" r="2.8" opacity="0.55"/>
+    <circle cx="640" cy="690" r="2.2" opacity="0.5"/><circle cx="880" cy="400" r="2.4" opacity="0.45"/>
+    <circle cx="960" cy="640" r="2.6" opacity="0.5"/>
   </g>
 
   <rect width="1600" height="900" fill="url(#tw-vig)"/>
