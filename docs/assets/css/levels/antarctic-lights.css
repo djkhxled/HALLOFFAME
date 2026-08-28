@@ -215,16 +215,16 @@
   transform: skewX(8deg);
 }
 
-/* Page-wide snow, turned up for this level specifically. */
+/* Page-wide snow, a little denser here than the shared default. */
 [data-level="antarctic-lights"] .texture {
-  opacity: 0.85;
+  opacity: 0.7;
 }
 
 [data-level="antarctic-lights"] .texture--snow::before {
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 [data-level="antarctic-lights"] .texture--snow::after {
-  opacity: 0.62;
-  animation-duration: 34s;
+  opacity: 0.5;
+  animation-duration: 40s;
 }
