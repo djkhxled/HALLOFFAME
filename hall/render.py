@@ -183,8 +183,12 @@ def voice_html(voice: dict) -> str:
     parts.append('<h2 id="voice-h" class="eyebrow">Why it&rsquo;s here</h2>')
     if hook:
         parts.append(f'<p class="voice__hook">{esc(hook)}</p>')
-    long = " class=\"voice__body measure voice__body--long\"" if len(body) > 1800 else ' class="voice__body measure"'
-    parts.append(f'<div{long}>{body}</div>')
+    # The essay treatment marks commentary that is actually Baylor's, rather
+    # than tracking length: a character threshold made the drop cap flip on
+    # and off as he edited.
+    essay = not drafted and body.count("<p>") >= 2
+    cls = "voice__body measure voice__body--long" if essay else "voice__body measure"
+    parts.append(f'<div class="{cls}">{body}</div>')
     if drafted:
         parts.append(
             '<p class="voice__drafted">Drafted placeholder &mdash; '
