@@ -2,8 +2,8 @@
   "rank": 13,
   "slug": "subsonic",
   "name": "Subsonic",
-  "tagline": "A Viprin collab from when collabs were still being invented.",
-  "published": false,
+  "tagline": "A Viprin collab from back when collabs were still being invented.",
+  "published": true,
   "facts": {
     "creators": [
       "Viprin",
@@ -24,28 +24,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Subsonic",
+      "https://geometry-dash-fan.fandom.com/wiki/Subsonic"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#04070f",
-      "ink": "#e9f0ff",
-      "muted": "#8b9bc0",
-      "accent": "#5f8cff"
+      "field": "#0a0420",
+      "ink": "#f4ecff",
+      "muted": "#a9a0c8",
+      "accent": "#ff4de0",
+      "accent2": "#4de0ff"
     },
-    "texture": "grain",
-    "signature": "static",
-    "mood": null
+    "texture": "scanline",
+    "signature": "prism",
+    "mood": null,
+    "googleFonts": [
+      "Kaushan+Script"
+    ],
+    "displayFont": "\"Kaushan Script\", cursive"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "The template for everything after it.",
+    "why": "<p>Subsonic is on this list partly for what it started. Viprin's collabs set the shape that mega-collaborations still follow, and you can see the whole grammar here already.</p><p>The magenta-and-cyan look has been copied endlessly since. This is where a lot of people saw it first.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/subsonic.svg",
     "images": []
   }
 }

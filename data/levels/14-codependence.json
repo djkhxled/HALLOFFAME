@@ -2,8 +2,8 @@
   "rank": 14,
   "slug": "codependence",
   "name": "Codependence",
-  "tagline": "Two halves that cannot function apart.",
-  "published": false,
+  "tagline": "Two halves that cannot function apart — red above, cyan below.",
+  "published": true,
   "facts": {
     "creators": [
       "TCTeam"
@@ -23,28 +23,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Codependence",
+      "https://geometry-dash-fan.fandom.com/wiki/Codependence"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#040c0c",
-      "ink": "#e6f7f6",
-      "muted": "#86b3b0",
-      "accent": "#2fd9c9"
+      "field": "#050b12",
+      "ink": "#eef6ff",
+      "muted": "#8fa6b8",
+      "accent": "#ff2a3c",
+      "accent2": "#2ae0ff"
     },
-    "texture": "grain",
-    "signature": "static",
-    "mood": null
+    "texture": "scanline",
+    "signature": "fracture",
+    "mood": null,
+    "googleFonts": [
+      "Chakra+Petch:wght@500;700"
+    ],
+    "displayFont": "\"Chakra Petch\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "A level built as an argument with itself.",
+    "why": "<p>Codependence splits itself down the middle and makes the split the point. Red on top, cyan underneath, and the whole level lives on that tension.</p><p>Committing to one visual idea that hard is rare, and it's why this one sticks.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/codependence.svg",
     "images": []
   }
 }

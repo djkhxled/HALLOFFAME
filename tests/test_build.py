@@ -20,8 +20,16 @@ class TestBuild(unittest.TestCase):
         self.assertTrue((DOCS / "levels" / "deimos" / "index.html").is_file())
         self.assertTrue((DOCS / "levels" / "nhelv" / "index.html").is_file())
 
-    def test_unpublished_levels_get_no_page(self):
-        self.assertFalse((DOCS / "levels" / "killbot").exists())
+    def test_pages_exist_for_exactly_the_published_levels(self):
+        """Named slugs go stale as levels ship; check the rule instead."""
+        import json
+        published = set()
+        for jf in (ROOT / "data" / "levels").glob("*.json"):
+            rec = json.loads(jf.read_text(encoding="utf-8"))
+            if rec.get("published"):
+                published.add(rec["slug"])
+        built = {d.name for d in (DOCS / "levels").iterdir() if d.is_dir()}
+        self.assertEqual(built, published)
 
     def test_index_lists_all_25_ranks(self):
         html = (DOCS / "index.html").read_text(encoding="utf-8")

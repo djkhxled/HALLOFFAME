@@ -104,11 +104,23 @@ class TestValidate(unittest.TestCase):
         errs = self._check([bad])
         self.assertTrue(any("voice.why" in e for e in errs), errs)
 
-    def test_themed_level_may_not_declare_art(self):
+    def test_themed_level_may_declare_art(self):
+        """The themed tier carries generated art; only the bespoke fragment
+        and stylesheet are reserved to the bespoke tier."""
+        ok = minimal(1, "alpha")
+        ok["media"] = {"art": "src/art/tidal-wave.svg"}
+        with tempfile.TemporaryDirectory() as d:
+            tmp = pathlib.Path(d)
+            (tmp / "src" / "art").mkdir(parents=True)
+            (tmp / "src" / "art" / "tidal-wave.svg").write_text("<svg/>")
+            lv = write(tmp, [ok])
+            self.assertEqual(validate_levels(load_levels(lv), tmp), [])
+
+    def test_art_must_exist_on_disk(self):
         bad = minimal(1, "alpha")
-        bad["media"] = {"art": "src/art/alpha.svg"}
+        bad["media"] = {"art": "src/art/nope.svg"}
         errs = self._check([bad])
-        self.assertTrue(any("themed" in e for e in errs), errs)
+        self.assertTrue(any("missing file" in e for e in errs), errs)
 
     def test_missing_tagline_is_an_error(self):
         bad = minimal(1, "alpha")

@@ -3,7 +3,7 @@
   "slug": "titan-complex",
   "name": "Titan Complex",
   "tagline": "Built like a machine that was never meant to be entered.",
-  "published": false,
+  "published": true,
   "facts": {
     "creators": [
       "TCTeam"
@@ -23,28 +23,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Titan_Complex",
+      "https://geometry-dash-fan.fandom.com/wiki/Titan_Complex"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#05090d",
-      "ink": "#e8f1f8",
-      "muted": "#8ea4b8",
-      "accent": "#4dc3ff"
+      "field": "#160205",
+      "ink": "#ffe6ec",
+      "muted": "#c48a97",
+      "accent": "#ff2d5a",
+      "accent2": "#ff7a95"
     },
-    "texture": "chrome",
+    "texture": "grain",
     "signature": "fracture",
-    "mood": null
+    "mood": null,
+    "googleFonts": [
+      "Kaushan+Script"
+    ],
+    "displayFont": "\"Kaushan Script\", cursive"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Industrial, and completely airless.",
+    "why": "<p>Titan Complex is oppressive in a way I like. Deep red on black, saw shapes everywhere, structures that look load-bearing rather than decorative.</p><p>The script logo against all that machinery is a genuinely strange choice and it works.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/titan-complex.svg",
     "images": []
   }
 }

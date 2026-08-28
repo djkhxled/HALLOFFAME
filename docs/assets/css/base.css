@@ -20,7 +20,10 @@ body {
   line-height: 1.6;
   font-synthesis-weight: none;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip, not hidden: overflow-x:hidden makes body a scroll container,
+     which is a known hazard for scroll measurement. clip stops the
+     overflow without creating a scroller. */
+  overflow-x: clip;
   transition: background-color var(--dur-slow) var(--ease),
     color var(--dur-slow) var(--ease);
 }

@@ -2,8 +2,8 @@
   "rank": 12,
   "slug": "idols",
   "name": "Idols",
-  "tagline": "Worship, rendered in neon.",
-  "published": false,
+  "tagline": "Every colour at once, and somehow it works.",
+  "published": true,
   "facts": {
     "creators": [
       "Zafkiel7",
@@ -24,28 +24,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Idols",
+      "https://geometry-dash-fan.fandom.com/wiki/Idols"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#0e0710",
-      "ink": "#f8eeff",
-      "muted": "#b697c4",
-      "accent": "#c56bff"
+      "field": "#12042c",
+      "ink": "#fdefff",
+      "muted": "#c49ad8",
+      "accent": "#ff3ce0",
+      "accent2": "#3cf0ff"
     },
-    "texture": "scanline",
-    "signature": "static",
-    "mood": null
+    "texture": "grain",
+    "signature": "ignite",
+    "mood": null,
+    "googleFonts": [
+      "Bungee"
+    ],
+    "displayFont": "\"Bungee\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Maximum saturation, zero restraint.",
+    "why": "<p>Idols is loud in a way almost nothing else manages without turning to mud. Magenta, yellow, cyan and green all fighting in the same frame, and it still reads cleanly.</p><p>It shouldn't work. It absolutely works.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/idols.svg",
     "images": []
   }
 }

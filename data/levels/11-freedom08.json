@@ -2,8 +2,8 @@
   "rank": 11,
   "slug": "freedom08",
   "name": "Freedom08",
-  "tagline": "Joy at an unreasonable speed.",
-  "published": false,
+  "tagline": "Pale marble, hanging chains and colour — the brightest level on this list.",
+  "published": true,
   "facts": {
     "creators": [
       "Pennutoh",
@@ -24,28 +24,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Freedom08",
+      "https://geometry-dash-fan.fandom.com/wiki/Freedom08"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#060a10",
-      "ink": "#eef3ff",
-      "muted": "#94a2c0",
-      "accent": "#7aa8ff"
+      "field": "#161a3a",
+      "ink": "#eef0ff",
+      "muted": "#a4abd8",
+      "accent": "#b9a6e8",
+      "accent2": "#7fb4ee"
     },
     "texture": "grain",
-    "signature": "static",
-    "mood": null
+    "signature": "flood",
+    "mood": null,
+    "googleFonts": [
+      "Poppins:wght@300;600"
+    ],
+    "displayFont": "\"Poppins\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Joy at an unreasonable speed.",
+    "why": "<p>Freedom08 is the one that doesn't look like a demon at all. Cream columns, soft pastels, open light &mdash; and then it plays like everything else here. That contrast is the whole appeal.</p><p>It's a reminder that this difficulty tier doesn't have to mean darkness and red. Somebody decided extreme demons could be pretty and just did it.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/freedom08.svg",
     "images": []
   }
 }

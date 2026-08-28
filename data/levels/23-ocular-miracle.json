@@ -2,8 +2,8 @@
   "rank": 23,
   "slug": "ocular-miracle",
   "name": "Ocular Miracle",
-  "tagline": "Something is watching, and it is beautiful about it.",
-  "published": false,
+  "tagline": "A planet, a red nebula, and the calmest art on this list.",
+  "published": true,
   "facts": {
     "creators": [
       "Davphla",
@@ -24,28 +24,36 @@
       "newgroundsId": null
     },
     "peakRank": null,
-    "sources": []
+    "sources": [
+      "https://geometrydash.wiki.gg/wiki/Ocular_Miracle",
+      "https://geometry-dash-fan.fandom.com/wiki/Ocular_Miracle"
+    ]
   },
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#040a0c",
-      "ink": "#e8f8fb",
-      "muted": "#89b6bf",
-      "accent": "#3fe0f0"
+      "field": "#05061a",
+      "ink": "#eef2ff",
+      "muted": "#95a0c8",
+      "accent": "#ff2f4a",
+      "accent2": "#4a8bff"
     },
-    "texture": "caustics",
-    "signature": "static",
-    "mood": null
+    "texture": "starfield",
+    "signature": "orbit",
+    "mood": null,
+    "googleFonts": [
+      "Saira:wght@200;500"
+    ],
+    "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": null,
-    "why": null,
+    "hook": "Something is watching, and it is beautiful about it.",
+    "why": "<p>Ocular Miracle is the one that looks least like a Geometry Dash level. It looks like a book cover &mdash; a real painted planet, red nebula arcs, thin elegant type.</p><p>Everything else on this list shouts. This one doesn't, and it's still unmistakable.</p>",
     "draftedByClaude": true
   },
   "media": {
     "video": {},
-    "art": null,
+    "art": "src/art/ocular-miracle.svg",
     "images": []
   }
 }
