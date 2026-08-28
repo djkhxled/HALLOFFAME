@@ -20,6 +20,20 @@ DOCS = ROOT / "docs"
 TEMPLATES = ROOT / "templates"
 
 
+def rebase(text: str, base: str) -> str:
+    """Prefix every site-internal absolute URL with the base path.
+
+    GitHub Pages serves a project repo under /<repo>/, so the absolute URLs
+    this build writes (/assets/..., /levels/...) would 404 there. Setting
+    site.base to "/HALLOFFAME" fixes that; clearing it back to "" is what you
+    want the moment a custom domain is serving from the apex.
+    """
+    if not base:
+        return text
+    text = re.sub(r'((?:href|src)=")/(?!/)', rf"\1{base}/", text)
+    return text.replace("url(/assets/", f"url({base}/assets/")
+
+
 def texture_class(theme: dict) -> str:
     """The texture layer's classes. A level may layer one modifier over a
     shared texture -- Slaughterhouse takes ember and swaps its glyphs for
@@ -264,15 +278,24 @@ def main() -> int:
         if src.exists():
             shutil.copytree(src, DOCS / "assets" / sub)
 
+    base_path = (site.get("base") or "").rstrip("/")
+    if base_path:
+        for css in (DOCS / "assets" / "css").rglob("*.css"):
+            css.write_text(rebase(css.read_text(encoding="utf-8"), base_path),
+                           encoding="utf-8")
+
     base_tpl = read(TEMPLATES / "base.html")
     index_tpl = read(TEMPLATES / "index.html")
     level_tpl = read(TEMPLATES / "level.html")
 
     stamp = asset_stamp()
 
+    base = (site.get("base") or "").rstrip("/")
+
     def stamped(html: str) -> str:
-        return re.sub(r'(/assets/(?:css|js)/[^"\']+?\.(?:css|js))',
+        html = re.sub(r'(/assets/(?:css|js)/[^"\']+?\.(?:css|js))',
                       lambda m: f"{m.group(1)}?v={stamp}", html)
+        return rebase(html, base)
 
     write(DOCS / "index.html",
           stamped(build_index(levels, site, base_tpl, index_tpl)))
