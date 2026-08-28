@@ -391,7 +391,7 @@ def build_setpiece():
 
   <p class="pulse__end" aria-hidden="true">
     <span class="pulse__end-text">THE END</span>
-    <svg class="pulse__bat" viewBox="0 0 110 30"><path d="{BAT}" fill="currentColor"/></svg>
+    <svg class="pulse__bat" viewBox="0 0 110 30" aria-hidden="true" focusable="false"><path d="{BAT}" fill="currentColor"/></svg>
   </p>
 
   <div class="pulse__copy page">
