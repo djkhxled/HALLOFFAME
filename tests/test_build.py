@@ -47,6 +47,18 @@ class TestBuild(unittest.TestCase):
         html = (DOCS / "levels" / "deimos" / "index.html").read_text(encoding="utf-8")
         self.assertIn("geometrydash.wiki.gg", html)
 
+    def test_level_pages_ship_their_own_palette(self):
+        """A level page must carry its palette, not fall back to the neutral
+        defaults — a light-field level renders unreadable without it."""
+        html = (DOCS / "levels" / "nhelv" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("--field:#eeedea", html)
+        self.assertIn("--ink:#1b1b1e", html)
+
+    def test_level_fonts_are_requested_when_declared(self):
+        html = (DOCS / "levels" / "nhelv" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Bodoni+Moda", html)
+        self.assertIn("Cutive+Mono", html)
+
     def test_nojekyll_is_written(self):
         self.assertTrue((DOCS / ".nojekyll").is_file())
 

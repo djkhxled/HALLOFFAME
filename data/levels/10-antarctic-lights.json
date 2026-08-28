@@ -1,12 +1,15 @@
 {
   "rank": 10,
-  "slug": "titan-complex",
-  "name": "Titan Complex",
-  "tagline": "Built like a machine that was never meant to be entered.",
+  "slug": "antarctic-lights",
+  "name": "Antarctic Lights",
+  "tagline": "Cold, and quietly spectacular.",
   "published": false,
   "facts": {
     "creators": [
-      "TCTeam"
+      "Declan",
+      "SkyJax",
+      "Tolstyh",
+      "Arcturus"
     ],
     "host": null,
     "verifier": null,
@@ -28,13 +31,13 @@
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#05090d",
-      "ink": "#e8f1f8",
-      "muted": "#8ea4b8",
-      "accent": "#4dc3ff"
+      "field": "#03090e",
+      "ink": "#e8f6fb",
+      "muted": "#8ab3c2",
+      "accent": "#5ff0c8"
     },
-    "texture": "chrome",
-    "signature": "fracture",
+    "texture": "snow",
+    "signature": "static",
     "mood": null
   },
   "voice": {

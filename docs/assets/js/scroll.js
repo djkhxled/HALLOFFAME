@@ -38,10 +38,25 @@
     var entries = gsap.utils.toArray(".countdown__entry");
     if (!entries.length) return;
 
-    entries.forEach(function (entry) {
-      var field = entry.style.getPropertyValue("--field");
-      var accent = entry.style.getPropertyValue("--accent");
+    /* The whole palette travels together, not just the background. Some
+       levels are light-on-dark and some are dark-on-light, so shifting the
+       field without the ink would leave text unreadable mid-scroll. CSS
+       transitions on body handle the easing. */
+    var ROOT = document.documentElement;
+    var TRAVELS = ["--field", "--ink", "--muted", "--accent", "--accent2"];
+    var base = {};
+    TRAVELS.forEach(function (name) {
+      base[name] = getComputedStyle(ROOT).getPropertyValue(name);
+    });
 
+    function wear(entry) {
+      TRAVELS.forEach(function (name) {
+        var value = entry ? entry.style.getPropertyValue(name) : "";
+        ROOT.style.setProperty(name, (value || base[name]).trim());
+      });
+    }
+
+    entries.forEach(function (entry) {
       gsap.from(entry.querySelector(".countdown__name"), {
         opacity: 0,
         x: -28,
@@ -50,24 +65,24 @@
         scrollTrigger: { trigger: entry, start: "top 88%" },
       });
 
-      if (!field) return;
+      if (!entry.style.getPropertyValue("--field")) return;
       window.ScrollTrigger.create({
         trigger: entry,
         start: "top 60%",
         end: "bottom 40%",
         onToggle: function (self) {
-          if (!self.isActive) return;
-          gsap.to(document.body, {
-            backgroundColor: field.trim(),
-            duration: 0.9,
-            ease: "power2.out",
-            overwrite: "auto",
-          });
-          if (accent) {
-            document.documentElement.style.setProperty("--accent", accent.trim());
-          }
+          if (self.isActive) wear(entry);
         },
       });
+    });
+
+    /* Back above the countdown, the site returns to its own palette. */
+    window.ScrollTrigger.create({
+      trigger: ".countdown",
+      start: "top 60%",
+      onToggle: function (self) {
+        if (!self.isActive) wear(null);
+      },
     });
   }
 

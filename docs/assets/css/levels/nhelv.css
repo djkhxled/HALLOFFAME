@@ -1,10 +1,43 @@
-/* Nhelv — rank 2. Violet and cyan, hard slices, strobe on the beat. */
+/* Nhelv — rank 2.
+   Bright, not dark. Paper-white field, black shards, chromatic yellow-green
+   and blue fringing, credits tiled in typewriter mono. */
+
+[data-level="nhelv"] {
+  --font-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --font-tile: "Cutive Mono", ui-monospace, Menlo, monospace;
+  --rule-colour: color-mix(in srgb, var(--ink) 26%, transparent);
+}
+
+/* The shared skeleton assumes light-on-dark; this level is the inverse, so
+   the few surfaces tuned for a dark field get rebalanced here. */
+[data-level="nhelv"] .videoframe__load {
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+[data-level="nhelv"] .videoframe__load:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
 
 [data-level="nhelv"] .hero__title {
-  letter-spacing: -0.05em;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--field);
+  -webkit-text-stroke: 2px var(--ink);
   text-shadow:
-    0.06em 0 0 color-mix(in srgb, var(--accent) 55%, transparent),
-    -0.06em 0 0 color-mix(in srgb, var(--accent2) 45%, transparent);
+    -0.035em 0 0 color-mix(in srgb, var(--accent2) 78%, transparent),
+    0.035em 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+/* Metadata and lede sit over shards; a soft halo of the field colour keeps
+   them legible without adding a visible box. */
+[data-level="nhelv"] .hero__foot p,
+[data-level="nhelv"] .hero__eyebrow {
+  text-shadow:
+    0 0 0.5rem var(--field),
+    0 0 0.9rem var(--field),
+    0 0 1.4rem var(--field);
 }
 
 [data-level="nhelv"] .hero__art::after {
@@ -12,10 +45,82 @@
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--accent2) 7%, transparent) 0 1px,
-    transparent 1px 4px
+    118deg,
+    color-mix(in srgb, var(--ink) 4%, transparent) 0 34px,
+    transparent 34px 96px
   );
+}
+
+/* The credits wall ------------------------------------------------------- */
+
+.nh-wall {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--rule-colour);
+  background: repeating-linear-gradient(
+    118deg,
+    color-mix(in srgb, var(--ink) 5%, transparent) 0 40px,
+    transparent 40px 110px
+  );
+}
+
+.nh-wall__rows {
+  position: absolute;
+  inset: -4% 0;
+  display: grid;
+  grid-auto-rows: 1fr;
+  align-content: center;
+  pointer-events: none;
+  font-family: var(--font-tile);
+  font-size: clamp(1.6rem, 4.4vw, 3.4rem);
+  line-height: 1.5;
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+.nh-wall__row {
+  display: flex;
+  width: max-content;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  animation: nh-drift 38s linear infinite;
+}
+
+.nh-wall__row--alt {
+  animation-duration: 52s;
+  animation-direction: reverse;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+.nh-wall__row--ghost {
+  animation-duration: 64s;
+  color: color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+@keyframes nh-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.nh-wall__word {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-family: var(--font-tile);
+  font-size: clamp(3rem, 12vw, 10rem);
+  line-height: 1;
+  color: var(--ink);
+  text-shadow:
+    0 0 2.2rem var(--field),
+    0 0 1.1rem var(--field),
+    0 0 0.5rem var(--field);
 }
 
 /* glitch-assemble set-piece --------------------------------------------- */
@@ -43,31 +148,33 @@
   overflow: hidden;
 }
 
+/* Black shards on white, fringed the way the logo card is. */
 .glitch__slice::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      color-mix(in srgb, var(--accent) 42%, transparent) 22%,
-      color-mix(in srgb, var(--accent2) 38%, transparent) 58%,
-      transparent 100%
-    );
-  opacity: 0.5;
-  clip-path: polygon(0 38%, 100% 32%, 100% 62%, 0 68%);
+  background: linear-gradient(
+    92deg,
+    transparent 0%,
+    color-mix(in srgb, var(--ink) 88%, transparent) 26%,
+    color-mix(in srgb, var(--ink) 74%, transparent) 62%,
+    transparent 100%
+  );
+  clip-path: polygon(0 40%, 100% 33%, 100% 60%, 0 67%);
+  box-shadow:
+    -3px 0 0 color-mix(in srgb, var(--accent2) 60%, transparent),
+    3px 0 0 color-mix(in srgb, var(--accent) 52%, transparent);
 }
 
 .glitch__slice:nth-child(odd)::before {
-  clip-path: polygon(0 30%, 100% 40%, 100% 66%, 0 58%);
-  opacity: 0.34;
+  clip-path: polygon(0 30%, 100% 42%, 100% 65%, 0 56%);
+  opacity: 0.62;
 }
 
 .glitch__flick {
   position: absolute;
   display: block;
-  opacity: 0.12;
+  opacity: 0.18;
 }
 
 .glitch__flick--a {
@@ -101,8 +208,17 @@
 
 .glitch__line {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(1.6rem, 4vw, 3rem);
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3.6vw, 2.6rem);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  background: var(--field);
+  box-shadow: 0 0 0 0.6rem var(--field);
+}
+
+/* The wall drifts forever; reduced motion stops it dead. */
+@media (prefers-reduced-motion: reduce) {
+  .nh-wall__row {
+    animation: none !important;
+  }
 }

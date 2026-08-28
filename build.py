@@ -75,7 +75,26 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
     )
 
     css_path = ROOT / "src" / "css" / "levels" / f"{slug}.css"
-    head_extra = (
+
+    # The level's palette must reach the page before anything paints, or the
+    # page renders in the neutral defaults. Level CSS uses [data-level=...],
+    # which outranks :root, so it can still override any of these.
+    head_extra = ""
+    palette = render.palette_style(level)
+    if palette:
+        head_extra += f"<style>:root{{{palette}}}</style>"
+
+    # A level may bring its own typefaces when the shared stack cannot carry
+    # its identity. Loaded before the level stylesheet so it can use them.
+    families = theme.get("googleFonts") or []
+    if families:
+        query = "&".join(f"family={f}" for f in families)
+        head_extra += (
+            f'<link href="https://fonts.googleapis.com/css2?{query}'
+            f'&display=swap" rel="stylesheet">'
+        )
+
+    head_extra += (
         f"<style>[data-level=\"{slug}\"] .hero__title{{font-size:"
         f"{render.hero_size(level['name'])}}}</style>"
     )

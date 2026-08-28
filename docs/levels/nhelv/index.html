@@ -14,63 +14,100 @@
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/base.css">
 <link rel="stylesheet" href="/assets/css/components.css">
-<style>[data-level="nhelv"] .hero__title{font-size:clamp(2.75rem, 24.4vw, 15rem)}</style><link rel="stylesheet" href="/assets/css/levels/nhelv.css">
+<style>:root{--field:#eeedea;--ink:#1b1b1e;--muted:#5e5e66;--accent:#3f43c9;--accent2:#8f9c00;}</style><link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600&family=Cutive+Mono&display=swap" rel="stylesheet"><style>[data-level="nhelv"] .hero__title{font-size:clamp(2.75rem, 24.4vw, 15rem)}</style><link rel="stylesheet" href="/assets/css/levels/nhelv.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="texture texture--scanline" aria-hidden="true"></div>
+<div class="texture texture--none" aria-hidden="true"></div>
 <main id="main" class="site-main">
 <section class="hero page" data-motion>
   <p class="hero__eyebrow"><span class="level-hero__rank">Rank 2 of 25</span></p>
-  <div class="hero__art" aria-hidden="true"><svg class="art art--nhelv" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Violet and cyan geometric slices strobing across a dark field">
+  <div class="hero__art" aria-hidden="true"><svg class="art art--nhelv" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Black angular shards radiating across a bright white field, edged in yellow-green and blue">
   <defs>
-    <linearGradient id="nh-v" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#b98cff"/>
-      <stop offset="100%" stop-color="#4ae0ff"/>
-    </linearGradient>
-    <linearGradient id="nh-fade" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#08060f" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#08060f" stop-opacity="0.92"/>
-    </linearGradient>
-    <radialGradient id="nh-core" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#4ae0ff" stop-opacity="0.5"/>
-      <stop offset="60%" stop-color="#b98cff" stop-opacity="0.14"/>
-      <stop offset="100%" stop-color="#b98cff" stop-opacity="0"/>
+    <radialGradient id="nh-burst" cx="50%" cy="48%" r="52%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="58%" stop-color="#fbfbf9"/>
+      <stop offset="100%" stop-color="#dcdcd8"/>
     </radialGradient>
+    <linearGradient id="nh-shard" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0%" stop-color="#141416"/>
+      <stop offset="100%" stop-color="#33333a"/>
+    </linearGradient>
+    <filter id="nh-chroma" x="-20%" y="-20%" width="140%" height="140%">
+      <feOffset in="SourceGraphic" dx="-2.5" dy="0" result="l"/>
+      <feFlood flood-color="#b6c400" result="lc"/>
+      <feComposite in="lc" in2="l" operator="in" result="lch"/>
+      <feOffset in="SourceGraphic" dx="2.5" dy="0" result="r"/>
+      <feFlood flood-color="#3f43c9" result="rc"/>
+      <feComposite in="rc" in2="r" operator="in" result="rch"/>
+      <feMerge>
+        <feMergeNode in="lch"/>
+        <feMergeNode in="rch"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
 
-  <rect width="1600" height="900" fill="#08060f"/>
-  <ellipse cx="800" cy="450" rx="620" ry="420" fill="url(#nh-core)"/>
+  <rect width="1600" height="900" fill="url(#nh-burst)"/>
 
-  <g stroke="url(#nh-v)" fill="none" opacity="0.55">
-    <path d="M800 158 L1128 450 L800 742 L472 450 Z" stroke-width="1.6"/>
-    <path d="M800 232 L1046 450 L800 668 L554 450 Z" stroke-width="1.2" opacity="0.8"/>
-    <path d="M800 306 L964 450 L800 594 L636 450 Z" stroke-width="1"/>
+  <!-- Long thin arcs sweeping through the burst -->
+  <g fill="none" stroke="#1b1b1e" stroke-width="1.6" opacity="0.55">
+    <path d="M-60 250 Q 520 40 1660 330"/>
+    <path d="M-60 470 Q 640 700 1660 380"/>
+    <path d="M-60 640 Q 480 300 1660 620"/>
+    <path d="M120 -40 Q 400 480 260 940"/>
+    <path d="M1420 -40 Q 1180 460 1340 940"/>
+  </g>
+  <g fill="none" stroke="#b6c400" stroke-width="2.4" opacity="0.5">
+    <path d="M-60 254 Q 520 44 1660 334"/>
+    <path d="M124 -40 Q 404 480 264 940"/>
+  </g>
+  <g fill="none" stroke="#3f43c9" stroke-width="2.2" opacity="0.42">
+    <path d="M-60 466 Q 640 696 1660 376"/>
+    <path d="M1416 -40 Q 1176 460 1336 940"/>
   </g>
 
-  <g fill="#b98cff">
-    <rect x="150" y="286" width="220" height="3" opacity="0.75"/>
-    <rect x="150" y="330" width="120" height="3" opacity="0.4"/>
-    <rect x="1230" y="566" width="220" height="3" opacity="0.75"/>
-    <rect x="1330" y="610" width="120" height="3" opacity="0.4"/>
-  </g>
-  <g fill="#4ae0ff">
-    <rect x="150" y="566" width="160" height="3" opacity="0.6"/>
-    <rect x="1290" y="286" width="160" height="3" opacity="0.6"/>
+  <!-- Shards, radiating outward from the centre -->
+  <g filter="url(#nh-chroma)">
+    <g fill="url(#nh-shard)">
+      <path d="M262 118 L332 96 L296 190 Z"/>
+      <path d="M470 62 L512 132 L432 140 Z"/>
+      <path d="M690 40 L742 88 L676 108 Z"/>
+      <path d="M980 74 L1046 58 L1014 146 Z"/>
+      <path d="M1210 108 L1288 132 L1200 186 Z"/>
+      <path d="M1392 236 L1470 214 L1436 306 Z"/>
+      <path d="M120 320 L206 300 L166 392 Z"/>
+      <path d="M1466 480 L1546 512 L1454 560 Z"/>
+      <path d="M92 560 L176 590 L96 646 Z"/>
+      <path d="M1330 660 L1414 692 L1322 750 Z"/>
+      <path d="M232 726 L308 700 L286 796 Z"/>
+      <!-- The bottom-centre band is left clear: the tagline and corner
+           credits sit there, and dark shards under dark text kill it. -->
+      <path d="M1080 764 L1152 742 L1126 838 Z"/>
+      <path d="M660 214 L706 246 L642 268 Z"/>
+      <path d="M940 636 L992 664 L928 690 Z"/>
+    </g>
+    <g fill="#1b1b1e" opacity="0.32">
+      <path d="M380 250 L416 268 L372 292 Z"/>
+      <path d="M1180 330 L1220 350 L1176 374 Z"/>
+      <path d="M418 596 L458 616 L414 640 Z"/>
+      <path d="M1042 470 L1078 488 L1036 512 Z"/>
+      <path d="M760 660 L796 678 L754 702 Z"/>
+      <path d="M868 268 L902 286 L862 310 Z"/>
+    </g>
   </g>
 
-  <g opacity="0.9">
-    <rect x="392" y="404" width="56" height="92" fill="#b98cff" opacity="0.30"/>
-    <rect x="1152" y="404" width="56" height="92" fill="#4ae0ff" opacity="0.30"/>
-    <rect x="762" y="120" width="76" height="18" fill="#4ae0ff" opacity="0.55"/>
-    <rect x="762" y="762" width="76" height="18" fill="#b98cff" opacity="0.55"/>
+  <!-- Katakana-style tick marks along the horizon, as in the logo card -->
+  <g fill="#1b1b1e" opacity="0.30">
+    <rect x="596" y="556" width="16" height="3"/>
+    <rect x="648" y="556" width="16" height="3"/>
+    <rect x="700" y="556" width="16" height="3"/>
+    <rect x="752" y="556" width="16" height="3"/>
+    <rect x="804" y="556" width="16" height="3"/>
+    <rect x="856" y="556" width="16" height="3"/>
+    <rect x="908" y="556" width="16" height="3"/>
+    <rect x="960" y="556" width="16" height="3"/>
   </g>
-
-  <g stroke="#f3eeff" stroke-width="0.6" opacity="0.16">
-    <path d="M0 450 H1600"/><path d="M800 0 V900"/>
-  </g>
-
-  <rect width="1600" height="900" fill="url(#nh-fade)"/>
 </svg>
 </div>
   <h1 class="hero__title level-hero__title">Nhelv</h1>
@@ -80,6 +117,24 @@
     <p class="hero__meta-r">Verified by SrGuillester · 2021</p>
     <div class="hero__rule"></div>
   </div>
+</section>
+
+<!-- Two moments from the level's own visual language:
+     the tiled credit wall, then the shards assembling. -->
+
+<section class="nh-wall" aria-labelledby="wall-h">
+  <h2 id="wall-h" class="visually-hidden">Nhelv — the credits wall</h2>
+
+  <div class="nh-wall__rows" aria-hidden="true">
+    <div class="nh-wall__row" data-motion><span>silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;</span><span>silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;</span></div>
+    <div class="nh-wall__row nh-wall__row--alt" data-motion><span>dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;</span><span>dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;</span></div>
+    <div class="nh-wall__row nh-wall__row--ghost" data-motion><span>srguillester&nbsp;&nbsp;srguillester&nbsp;&nbsp;srguillester&nbsp;&nbsp;srguillester&nbsp;&nbsp;</span><span>srguillester&nbsp;&nbsp;srguillester&nbsp;&nbsp;srguillester&nbsp;&nbsp;srguillester&nbsp;&nbsp;</span></div>
+    <div class="nh-wall__row nh-wall__row--alt" data-motion><span>notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;</span><span>notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;notlsa&nbsp;&nbsp;</span></div>
+    <div class="nh-wall__row" data-motion><span>silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;</span><span>silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;silentroom&nbsp;&nbsp;</span></div>
+    <div class="nh-wall__row nh-wall__row--ghost" data-motion><span>dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;</span><span>dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;dienid&nbsp;&nbsp;</span></div>
+  </div>
+
+  <p class="nh-wall__word">nhelv</p>
 </section>
 
 <section class="sig sig--glitch" data-sig="glitch-assemble" aria-labelledby="glitch-h">
