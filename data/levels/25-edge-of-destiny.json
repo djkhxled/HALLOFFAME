@@ -7,27 +7,48 @@
   "facts": {
     "creators": [
       "CDMusic",
-      "and more"
+      "knobbelboy",
+      "Manix648",
+      "LazerBlitz",
+      "HelpegasuS",
+      "Salamander",
+      "Realvet",
+      "Yoonsr",
+      "Rustam",
+      "Dudex",
+      "Terron",
+      "Marwec",
+      "Etzer",
+      "Namtar",
+      "Quasar",
+      "Serponge",
+      "Mefewe",
+      "Zafkiel",
+      "Herdys",
+      "Auntex"
     ],
-    "host": null,
-    "verifier": null,
-    "verifiedDate": null,
+    "host": "CDMusic",
+    "verifier": "Polterghast",
+    "verifiedDate": "2023-03-09",
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "89187968",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Betrayal of Fear",
+      "artist": "Goukisan",
+      "newgroundsId": "167229"
     },
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Edge_of_Destiny",
-      "https://geometry-dash-fan.fandom.com/wiki/Edge_of_Destiny"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Edge_of_Destiny",
+      "https://pointercrate.com/demonlist/permalink/485/",
+      "https://gdbrowser.com/89187968"
+    ],
+    "note": "Formerly titled Blade of Destiny. Hosted by CDMusic, co-hosted by Days of Thunder and verified by polterghast on 9 March 2023. A buffed and redecorated remake of Blade of Justice, based on DuaL KiKi's unnerfed version, and it kept that level's Goukisan theme. Won Best Extreme Demon at the Geometry Dash 2023 Awards."
   },
   "theme": {
     "tier": "themed",
@@ -47,9 +68,9 @@
     "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": "Number twenty-five, and still on the list.",
-    "why": "<p>Edge of Destiny closes out the list, and that's not a slight. Everything here beat out hundreds of levels to be on it at all.</p><p>That cyan blast against layered dark blue platforms is a genuinely great piece of composition, and it's the level I'd point at to explain what I mean by atmosphere.</p>",
-    "draftedByClaude": true
+    "hook": "A triumphant, cinematic grand finale.",
+    "why": "<p>Edge of Destiny is a triumphant, cinematic grand finale. Created as a heavily updated sequel and remake to Blade of Justice, CDMusic and the team managed to optimise and upgrade the futuristic sci-fi aesthetic into something truly breathtaking.</p><p>Set to Goukisan's &ldquo;Betrayal of Fear,&rdquo; the level has an incredible sense of scale and momentum. The drop feels monumental, and the stunning artwork combined with the intense, high-speed gameplay makes it feel like you are playing through the climax of an epic action movie.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

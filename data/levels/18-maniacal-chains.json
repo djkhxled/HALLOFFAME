@@ -8,25 +8,28 @@
     "creators": [
       "LordDivinity"
     ],
-    "host": null,
-    "verifier": null,
+    "host": "LordDivinity",
+    "verifier": "spcreat",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
-    "levelId": null,
+    "levelId": "48991380",
     "objects": null,
     "length": null,
-    "gdVersion": null,
+    "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Sweet Dreams",
+      "artist": "Rukkus",
+      "newgroundsId": "464120"
     },
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Maniacal_Chains",
-      "https://geometry-dash-fan.fandom.com/wiki/Maniacal_Chains"
-    ]
+      "https://geometry-dash-fan.fandom.com/wiki/Maniacal_Chains",
+      "https://pointercrate.com/demonlist/permalink/697/",
+      "https://gdbrowser.com/48991380"
+    ],
+    "note": "A solo level by LordDivinity, verified by spcreat."
   },
   "theme": {
     "tier": "themed",
@@ -46,9 +49,9 @@
     "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": "Symmetry used as a threat.",
-    "why": "<p>Maniacal Chains builds almost everything around one horizontal axis and mirrors it. The result is unnervingly clean for something this aggressive.</p><p>That teal is doing an enormous amount of work against all the black.</p>",
-    "draftedByClaude": true
+    "hook": "A hostile, mechanical hellscape.",
+    "why": "<p>Maniacal Chains brings a terrifying level of aggression to the extreme demon roster. LordDivinity perfectly captured the aesthetic of a hostile, mechanical hellscape, utilising heavy, industrial decoration that makes the environment feel like a trap waiting to spring.</p><p>The gameplay is heavy on tight spaces and rigorous wave sections, constantly maintaining a high-pressure environment that refuses to let up. It is a pure, concentrated dose of difficulty wrapped in a menacing visual package.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},

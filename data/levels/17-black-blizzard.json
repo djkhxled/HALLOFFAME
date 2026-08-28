@@ -14,7 +14,7 @@
     "ratedDate": null,
     "attempts": null,
     "levelId": "34057654",
-    "objects": null,
+    "objects": "29,089",
     "length": null,
     "gdVersion": "2.0/2.1",
     "song": {
@@ -25,9 +25,11 @@
     "peakRank": null,
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Black_Blizzard",
-      "https://geometry-dash-fan.fandom.com/wiki/Black_Blizzard"
+      "https://geometry-dash-fan.fandom.com/wiki/Black_Blizzard",
+      "https://pointercrate.com/demonlist/permalink/204/",
+      "https://gdbrowser.com/34057654"
     ],
-    "note": "Created, verified and published solo by KrmaL; verification took about four months."
+    "note": "Created, verified and published solo by KrmaL; verification took about four months. He banned people from his stream for revealing the song, not wanting it overused the way Hinkik's 'Time Leaper' had been."
   },
   "theme": {
     "tier": "themed",
@@ -47,9 +49,9 @@
     "displayFont": "\"Saira\", sans-serif"
   },
   "voice": {
-    "hook": "No colour at all, and it doesn't need any.",
-    "why": "<p>Black Blizzard is the most restrained level on this list by a mile. White line on black, nothing else, and it still has more presence than levels doing ten times as much.</p><p>KrmaL made it, verified it and published it alone, over four months. He also used to ban people from his stream for revealing the song, which I find very funny.</p>",
-    "draftedByClaude": true
+    "hook": "A psychological thriller of a level.",
+    "why": "<p>Black Blizzard is a testament to KrmaL's genius for unconventional, deeply atmospheric level design. Set to hyperdemented's &ldquo;Dimension,&rdquo; the level abandons heavy glow and maximalist decoration for a stark, minimalist tornado aesthetic that feels genuinely oppressive.</p><p>The gameplay is famously awkward and unforgiving, demanding absolute mastery over tight timings and frantic dual sections right out of the gate. It is a psychological thriller of a level; the dark, dusty atmosphere makes you feel like you are desperately trying to survive a raging storm.</p>",
+    "draftedByClaude": false
   },
   "media": {
     "video": {},
