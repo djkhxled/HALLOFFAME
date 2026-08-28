@@ -5,7 +5,9 @@
   "tagline": "287,445 objects, built alone — and verified after a death at 97%.",
   "published": true,
   "facts": {
-    "creators": ["Demishio"],
+    "creators": [
+      "Demishio"
+    ],
     "host": "Demishio",
     "verifier": "Demishio",
     "verifiedDate": "2022-11-24",
@@ -30,16 +32,21 @@
   "theme": {
     "tier": "bespoke",
     "palette": {
-      "field": "#06031a",
-      "ink": "#eef1ff",
-      "muted": "#9ca2d6",
-      "accent": "#4a7bff",
-      "accent2": "#b06bff"
+      "field": "#04081f",
+      "ink": "#eaf2ff",
+      "muted": "#9aa6d8",
+      "accent": "#4fe0ff",
+      "accent2": "#a45cff"
     },
     "texture": "grain",
     "signature": "fracture",
-    "mood": "Electric blue and violet at maximum saturation. Glossy liquid-chrome script over layered spiked fronds, ringed spires and ornate panels — decoration stacked until it stops being readable and becomes texture.",
-    "googleFonts": ["Yellowtail"]
+    "mood": "Green, blue and violet at full intensity over deep blue. Slabs carved with circuit line work, nested diamonds rimmed in a pink-to-green gradient, segmented discs, and square particles tumbling through everything.",
+    "googleFonts": [
+      "Yellowtail",
+      "Dela+Gothic+One"
+    ],
+    "nativeName": "狂気",
+    "nativeLang": "ja"
   },
   "voice": {
     "hook": "One person. 287,445 objects.",
@@ -47,7 +54,11 @@
     "draftedByClaude": true
   },
   "media": {
-    "video": { "youtubeId": null, "title": null, "channel": null },
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/kyouki.svg",
     "images": []
   }

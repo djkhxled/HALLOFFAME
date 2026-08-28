@@ -25,7 +25,7 @@ def fill(template: str, slots: dict) -> str:
     return out
 
 
-def _esc(value) -> str:
+def esc(value) -> str:
     return html.escape("" if value is None else str(value))
 
 
@@ -50,8 +50,8 @@ def _fact(value) -> str:
     if value is None or value == "" or value == []:
         return DASH
     if isinstance(value, list):
-        return _esc(", ".join(str(v) for v in value))
-    return _esc(value)
+        return esc(", ".join(str(v) for v in value))
+    return esc(value)
 
 
 STAT_ROWS = [
@@ -75,16 +75,16 @@ def statblock_html(facts: dict) -> str:
     for label, getter in STAT_ROWS:
         rows.append(
             f'<div class="statblock__row">'
-            f'<dt class="statblock__key">{_esc(label)}</dt>'
+            f'<dt class="statblock__key">{esc(label)}</dt>'
             f'<dd class="statblock__val">{_fact(getter(facts))}</dd>'
             f"</div>"
         )
     song = facts.get("song") or {}
     if song.get("name"):
         artist = song.get("artist")
-        val = _esc(song["name"])
+        val = esc(song["name"])
         if artist:
-            val += f' <span class="statblock__by">by {_esc(artist)}</span>'
+            val += f' <span class="statblock__by">by {esc(artist)}</span>'
     else:
         val = DASH
     rows.append(
@@ -100,8 +100,8 @@ def sources_html(facts: dict) -> str:
     if not sources:
         return ""
     items = "".join(
-        f'<li><a href="{_esc(url)}" rel="nofollow noopener" '
-        f'target="_blank">{_esc(url)}</a></li>'
+        f'<li><a href="{esc(url)}" rel="nofollow noopener" '
+        f'target="_blank">{esc(url)}</a></li>'
         for url in sources
     )
     return (
@@ -121,7 +121,7 @@ def voice_html(voice: dict) -> str:
     parts = ['<section class="voice" aria-labelledby="voice-h">']
     parts.append('<h2 id="voice-h" class="eyebrow">Why it&rsquo;s here</h2>')
     if hook:
-        parts.append(f'<p class="voice__hook">{_esc(hook)}</p>')
+        parts.append(f'<p class="voice__hook">{esc(hook)}</p>')
     parts.append(f'<div class="voice__body measure">{body}</div>')
     if drafted:
         parts.append(
@@ -139,15 +139,15 @@ def video_html(media: dict, level_name: str) -> str:
         return ""
     title = video.get("title") or f"{level_name} showcase"
     channel = video.get("channel")
-    credit = f'<p class="videoframe__credit">{_esc(title)}'
+    credit = f'<p class="videoframe__credit">{esc(title)}'
     if channel:
-        credit += f" &middot; {_esc(channel)}"
+        credit += f" &middot; {esc(channel)}"
     credit += "</p>"
     return (
         '<section class="videoframe" aria-labelledby="video-h">'
         '<h2 id="video-h" class="eyebrow">Footage</h2>'
         f'<button class="videoframe__load" type="button" '
-        f'data-youtube="{_esc(yt)}" data-title="{_esc(title)}">'
+        f'data-youtube="{esc(yt)}" data-title="{esc(title)}">'
         f"<span class=\"videoframe__play\" aria-hidden=\"true\">&#9654;</span>"
         f'<span class="videoframe__label">Load video from YouTube</span>'
         f"</button>{credit}"
@@ -162,14 +162,14 @@ def player_html(facts: dict) -> str:
         return ""
     artist = song.get("artist")
     ng = song.get("newgroundsId")
-    line = _esc(song["name"])
+    line = esc(song["name"])
     if artist:
-        line += f" &middot; {_esc(artist)}"
+        line += f" &middot; {esc(artist)}"
     link = ""
     if ng:
         link = (
             f'<a class="player__ng" rel="nofollow noopener" target="_blank" '
-            f'href="https://www.newgrounds.com/audio/listen/{_esc(ng)}">'
+            f'href="https://www.newgrounds.com/audio/listen/{esc(ng)}">'
             f"Listen on Newgrounds</a>"
         )
     return (
@@ -184,10 +184,10 @@ def ranknav_html(prev: dict | None, nxt: dict | None) -> str:
     if prev:
         parts.append(
             f'<a class="ranknav__link ranknav__link--prev" '
-            f'href="/levels/{_esc(prev["slug"])}/">'
+            f'href="/levels/{esc(prev["slug"])}/">'
             f'<span class="ranknav__dir">Previous</span>'
             f'<span class="ranknav__rank">#{prev["rank"]}</span>'
-            f'<span class="ranknav__name">{_esc(prev["name"])}</span></a>'
+            f'<span class="ranknav__name">{esc(prev["name"])}</span></a>'
         )
     else:
         parts.append("<span></span>")
@@ -195,10 +195,10 @@ def ranknav_html(prev: dict | None, nxt: dict | None) -> str:
     if nxt:
         parts.append(
             f'<a class="ranknav__link ranknav__link--next" '
-            f'href="/levels/{_esc(nxt["slug"])}/">'
+            f'href="/levels/{esc(nxt["slug"])}/">'
             f'<span class="ranknav__dir">Next</span>'
             f'<span class="ranknav__rank">#{nxt["rank"]}</span>'
-            f'<span class="ranknav__name">{_esc(nxt["name"])}</span></a>'
+            f'<span class="ranknav__name">{esc(nxt["name"])}</span></a>'
         )
     else:
         parts.append("<span></span>")
@@ -225,12 +225,12 @@ def countdown_html(levels: list[dict]) -> str:
         inner = (
             f'<span class="countdown__rank" aria-hidden="true">'
             f'{lv["rank"]:02d}</span>'
-            f'<span class="countdown__name">{_esc(lv["name"])}</span>'
-            + (f'<span class="countdown__by">{_esc(by)}</span>' if by else "")
-            + f'<span class="countdown__tag">{_esc(lv.get("tagline",""))}</span>'
+            f'<span class="countdown__name">{esc(lv["name"])}</span>'
+            + (f'<span class="countdown__by">{esc(by)}</span>' if by else "")
+            + f'<span class="countdown__tag">{esc(lv.get("tagline",""))}</span>'
         )
         if published:
-            body = f'<a class="countdown__hit" href="/levels/{_esc(slug)}/">{inner}<span class="countdown__cta">Enter</span></a>'
+            body = f'<a class="countdown__hit" href="/levels/{esc(slug)}/">{inner}<span class="countdown__cta">Enter</span></a>'
         else:
             body = (
                 f'<div class="countdown__hit countdown__hit--soon">{inner}'
@@ -238,6 +238,6 @@ def countdown_html(levels: list[dict]) -> str:
             )
         entries.append(
             f'<li class="{classes}" data-rank="{lv["rank"]}" '
-            f'data-slug="{_esc(slug)}" style="{palette_style(lv)}">{body}</li>'
+            f'data-slug="{esc(slug)}" style="{palette_style(lv)}">{body}</li>'
         )
     return f'<ol class="countdown" reversed>{"".join(entries)}</ol>'

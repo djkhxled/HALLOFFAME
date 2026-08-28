@@ -5,6 +5,27 @@
   --rule-colour: color-mix(in srgb, var(--accent) 32%, transparent);
 }
 
+/* 狂気 — madness. Set under the roman title in a heavy Japanese display
+   face, spaced out so it reads as a mark rather than a caption. */
+[data-level="kyouki"] .hero__native {
+  font-family: "Dela Gothic One", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-size: clamp(1.6rem, 4.4vw, 3.4rem);
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  text-align: center;
+  margin: calc(var(--space-2) * -1) 0 0;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(150deg, #ffffff 0%, #5cff9d 34%, #4fe0ff 68%, #a45cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 0 2px #04081f)
+    drop-shadow(0 0 6px rgba(4, 8, 31, 0.95))
+    drop-shadow(0 0 2.2rem color-mix(in srgb, var(--accent) 55%, transparent));
+}
+
 [data-level="kyouki"] .hero__title {
   font-family: var(--font-display);
   font-weight: 400;
@@ -14,14 +35,17 @@
   /* liquid chrome: a hard white lip, a deep blue belly */
   background: linear-gradient(
     166deg,
-    #ffffff 0%, #dfe8ff 16%, #4a7bff 44%, #1a2fa8 68%, #b06bff 100%
+    #ffffff 0%, #dfe8ff 14%, #5cff9d 34%, #4fe0ff 62%, #a45cff 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   filter:
+    drop-shadow(0 0 2px #04081f)
+    drop-shadow(0 0 5px #04081f)
+    drop-shadow(0 0 11px rgba(4, 8, 31, 0.95))
     drop-shadow(0 1px 0 #ffffff)
-    drop-shadow(0 0 2.4rem color-mix(in srgb, var(--accent) 70%, transparent))
+    drop-shadow(0 0 2.6rem color-mix(in srgb, var(--accent) 65%, transparent))
     drop-shadow(0 0 5rem color-mix(in srgb, var(--accent2) 45%, transparent));
 }
 

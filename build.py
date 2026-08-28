@@ -69,6 +69,11 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
         {
             "rank": level["rank"],
             "name": level["name"],
+            "native_html": (
+                f'<p class="hero__native" lang="{theme.get("nativeLang", "ja")}">'
+                f'{render.esc(theme["nativeName"])}</p>'
+                if theme.get("nativeName") else ""
+            ),
             "tagline": level.get("tagline", ""),
             "art_html": art_html,
             "meta_left": left,
