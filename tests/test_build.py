@@ -62,10 +62,26 @@ class TestBuild(unittest.TestCase):
         self.assertIn("--field:#eeedea", html)
         self.assertIn("--ink:#1b1b1e", html)
 
-    def test_level_fonts_are_requested_when_declared(self):
+    def test_declared_faces_are_available_locally(self):
+        """Fonts used to arrive via a Google Fonts <link> per level. They are
+        self-hosted now, so the check is that every declared family has real
+        @font-face rules in the one stylesheet every page loads."""
+        import json
         html = (DOCS / "levels" / "nhelv" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("Bodoni+Moda", html)
-        self.assertIn("Cutive+Mono", html)
+        self.assertIn("/assets/css/fonts.css", html)
+        css = (DOCS / "assets" / "css" / "fonts.css").read_text(encoding="utf-8")
+        for jf in (ROOT / "data" / "levels").glob("*.json"):
+            rec = json.loads(jf.read_text(encoding="utf-8"))
+            for spec in rec["theme"].get("googleFonts") or []:
+                family = spec.split(":")[0].replace("+", " ")
+                self.assertIn(f"font-family: '{family}'", css,
+                              f"{rec['slug']} declares {family}, not hosted")
+
+    def test_font_files_are_served_from_this_origin(self):
+        css = (DOCS / "assets" / "css" / "fonts.css").read_text(encoding="utf-8")
+        self.assertIn("/assets/fonts/", css)
+        self.assertNotIn("fonts.gstatic.com", css)
+        self.assertTrue(list((DOCS / "assets" / "fonts").glob("*.woff2")))
 
     def test_nojekyll_is_written(self):
         self.assertTrue((DOCS / ".nojekyll").is_file())

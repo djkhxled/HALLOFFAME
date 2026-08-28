@@ -198,6 +198,39 @@ def voice_html(voice: dict) -> str:
     return "".join(parts)
 
 
+def footer_links_html(docs: list[dict]) -> str:
+    links = "".join(
+        f'<li><a href="/{d["slug"]}/">{d["heading"]}</a></li>' for d in docs
+    )
+    return ('<nav class="site-foot__nav" aria-label="Site information">'
+            f"<ul>{links}</ul></nav>")
+
+
+def docnav_html(docs: list[dict], current: str) -> str:
+    """Cross-links between the policy pages, and back to the list."""
+    items = ['<a class="docnav__home" href="/">Back to the list</a>']
+    for d in docs:
+        if d["slug"] == current:
+            continue
+        items.append(f'<a class="docnav__link" href="/{d["slug"]}/">'
+                     f'{d["heading"]}</a>')
+    return ('<nav class="docnav" aria-label="Site information">'
+            + "".join(items) + "</nav>")
+
+
+def doc_footer_html(contact, updated: str) -> str:
+    """The contact line. Says plainly when no address has been set, rather
+    than inventing one or quietly omitting it."""
+    if contact:
+        line = (f'Contact: <a href="mailto:{esc(contact)}">{esc(contact)}</a>')
+    else:
+        line = ('<strong class="doc__todo">Contact address not set yet</strong> '
+                "&mdash; add one to data/site.json before relying on these "
+                "pages.")
+    return (f'<p class="doc__meta">{line}</p>'
+            f'<p class="doc__meta">Last updated {esc(updated)}.</p>')
+
+
 def video_html(media: dict, level_name: str) -> str:
     video = (media or {}).get("video") or {}
     yt = video.get("youtubeId")

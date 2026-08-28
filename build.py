@@ -130,15 +130,9 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
     if palette:
         head_extra += f"<style>:root{{{palette}}}</style>"
 
-    # A level may bring its own typefaces when the shared stack cannot carry
-    # its identity. Loaded before the level stylesheet so it can use them.
-    families = theme.get("googleFonts") or []
-    if families:
-        query = "&".join(f"family={f}" for f in families)
-        head_extra += (
-            f'<link href="https://fonts.googleapis.com/css2?{query}'
-            f'&display=swap" rel="stylesheet">'
-        )
+    # googleFonts stays in the data as the record of which faces a level
+    # uses, but nothing is requested from Google: tools/fetch_vendor.py has
+    # pulled every face into src/fonts and fonts.css declares them all.
 
     # A themed level owns no stylesheet, so its display face is declared
     # here; bespoke levels can still override it in their own CSS.
@@ -165,8 +159,49 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
             "body_html": body,
             "disclaimer": site["disclaimer"],
             "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
         },
     )
+
+
+def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str) -> str:
+    body = read(ROOT / "pages" / f"{doc['slug']}.html")
+    body += render.doc_footer_html(site.get("contact"), site.get("updated", ""))
+    inner = render.fill(
+        page_tpl,
+        {
+            "eyebrow": doc["eyebrow"],
+            "heading": doc["heading"],
+            "lede": doc["lede"],
+            "meta_left": site["title"],
+            "meta_right": f"Updated {site.get('updated', '')}",
+            "body_html": body,
+            "docnav_html": render.docnav_html(site["docs"], doc["slug"]),
+        },
+    )
+    return render.fill(
+        base_tpl,
+        {
+            "slug": f"doc-{doc['slug']}",
+            "signature": "static",
+            "texture_class": "texture texture--grain",
+            "title": f"{strip_tags(doc['heading'])} · {site['title']}",
+            "description": doc["lede"],
+            "head_extra_html": (
+                f'<style>[data-level="doc-{doc["slug"]}"] .hero__title'
+                f'{{font-size:{render.hero_size(strip_tags(doc["heading"]))}}}'
+                "</style>"
+            ),
+            "body_html": inner,
+            "disclaimer": site["disclaimer"],
+            "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
+        },
+    )
+
+
+def strip_tags(text: str) -> str:
+    return re.sub(r"<[^>]+>", "", text).replace("&amp;", "&")
 
 
 def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -> str:
@@ -197,6 +232,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
             "body_html": body,
             "disclaimer": site["disclaimer"],
             "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
         },
     )
 
@@ -216,7 +252,7 @@ def main() -> int:
         shutil.rmtree(DOCS)
     DOCS.mkdir(parents=True)
 
-    for sub in ("css", "js", "art"):
+    for sub in ("css", "js", "art", "fonts"):
         src = ROOT / "src" / sub
         if src.exists():
             shutil.copytree(src, DOCS / "assets" / sub)
@@ -234,6 +270,15 @@ def main() -> int:
     write(DOCS / "index.html",
           stamped(build_index(levels, site, base_tpl, index_tpl)))
     pages = 1
+
+    page_tpl = read(TEMPLATES / "page.html")
+    for doc in site.get("docs", []):
+        write(DOCS / doc["slug"] / "index.html",
+              stamped(build_doc(doc, site, base_tpl, page_tpl)))
+        pages += 1
+    if not site.get("contact"):
+        print("  ! no site.contact set — the policy pages say so in place "
+              "of an address", file=sys.stderr)
 
     published = [lv for lv in levels if lv.get("published")]
     by_rank = {lv["rank"]: lv for lv in levels}

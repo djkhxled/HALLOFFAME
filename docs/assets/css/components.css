@@ -806,3 +806,102 @@ a.countdown__hit:focus-visible {
   0%, 100% { background-position: 120% 0; }
   50%      { background-position: -20% 0; }
 }
+
+/* Documents (terms, privacy, credits) ----------------------------------- */
+
+.hero--doc {
+  min-height: 62svh;
+}
+
+.doc__title {
+  max-width: 18ch;
+}
+
+.doc {
+  font-size: var(--step-0);
+  line-height: 1.7;
+}
+
+.doc__lead {
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--ink);
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.doc h2 {
+  font-size: var(--step-2);
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-3);
+}
+
+.doc ul {
+  padding-left: 1.1em;
+  margin: 0 0 1em;
+}
+
+.doc li {
+  margin-bottom: 0.5em;
+}
+
+.doc code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.doc a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+.doc__meta {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  margin: var(--space-6) 0 0;
+}
+
+/* Loud on purpose: an unset contact address should be impossible to miss. */
+.doc__todo {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.docnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+  padding-block: var(--space-6);
+  border-top: var(--rule) solid var(--rule-colour);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-foot__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+}
+
+.site-foot__nav a {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.site-foot__nav a:hover,
+.site-foot__nav a:focus-visible {
+  color: var(--ink);
+}
