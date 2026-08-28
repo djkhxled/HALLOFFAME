@@ -30,11 +30,6 @@
   );
 }
 
-[data-level="cold-sweat"] .hero__eyebrow,
-[data-level="cold-sweat"] .hero__foot p {
-  text-shadow: 0 0 0.9rem #05070d, 0 0 1.6rem #05070d;
-}
-
 /* prism set-piece -------------------------------------------------------- */
 
 .sig--prism {

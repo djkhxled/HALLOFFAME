@@ -25,11 +25,6 @@
     drop-shadow(0 0 5rem color-mix(in srgb, var(--accent2) 45%, transparent));
 }
 
-[data-level="kyouki"] .hero__eyebrow,
-[data-level="kyouki"] .hero__foot p {
-  text-shadow: 0 0 0.9rem #06031a, 0 0 1.8rem #06031a;
-}
-
 /* fracture set-piece ----------------------------------------------------- */
 
 .sig--fracture {
