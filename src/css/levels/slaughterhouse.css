@@ -5,18 +5,43 @@
   --rule-colour: color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
+/* The title sits directly across the skull, and red neon on a red-lit skull
+   is unreadable. A blurred, darkened band behind the letterforms pushes the
+   art back without dimming the rest of the hero. backdrop-filter does the
+   blur; the gradient underneath is the fallback where it is unsupported and
+   also carries most of the darkening on its own. */
 [data-level="slaughterhouse"] .hero__title {
+  position: relative;
   font-family: var(--font-display);
   font-weight: 400;
   letter-spacing: 0.01em;
   line-height: 1.04;
-  color: var(--accent);
-  /* pure neon: the letters are light, not paint */
+  color: #ffe9e4;
   text-shadow:
-    0 0 0.6rem color-mix(in srgb, var(--accent) 90%, transparent),
-    0 0 1.6rem color-mix(in srgb, var(--accent) 75%, transparent),
-    0 0 3.4rem color-mix(in srgb, var(--accent) 55%, transparent),
-    0 0 6rem color-mix(in srgb, var(--accent2) 40%, transparent);
+    0 0 0.5rem color-mix(in srgb, var(--accent) 95%, transparent),
+    0 0 1.4rem color-mix(in srgb, var(--accent) 85%, transparent),
+    0 0 3rem color-mix(in srgb, var(--accent) 65%, transparent),
+    0 0 6rem color-mix(in srgb, var(--accent2) 45%, transparent);
+}
+
+[data-level="slaughterhouse"] .hero__title::before {
+  content: "";
+  position: absolute;
+  inset: -0.18em -8vw;
+  z-index: -1;
+  pointer-events: none;
+  backdrop-filter: blur(14px) brightness(0.42) saturate(0.7);
+  -webkit-backdrop-filter: blur(14px) brightness(0.42) saturate(0.7);
+  background: radial-gradient(
+    ellipse 62% 90% at 50% 50%,
+    color-mix(in srgb, #0a0203 88%, transparent) 0%,
+    color-mix(in srgb, #0a0203 70%, transparent) 52%,
+    transparent 82%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 66% 95% at 50% 50%, #000 42%, transparent 84%);
+  mask-image: radial-gradient(
+    ellipse 66% 95% at 50% 50%, #000 42%, transparent 84%);
 }
 
 [data-level="slaughterhouse"] .voice__hook {

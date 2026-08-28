@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Slaughterhouse hero art — the horned skull with RUN in both sockets.
+"""Slaughterhouse hero art — the horned skull.
 
 Drawn from the level's own most-screenshotted frame: a vast ram-horned skull
 in red neon on black, RUN burned into each eye, jagged cave teeth closing in
@@ -26,7 +26,7 @@ DEEP = "#8f0000"
 
 
 def jag(x1, y1, x2, y2, amp, steps, rng):
-    """A ragged line from a to b — used for ribs, cracks and lightning."""
+    """A ragged line from a to b — used for ribs and cracks."""
     pts = []
     for i in range(steps + 1):
         t = i / steps
@@ -89,9 +89,9 @@ def build():
 
     a(f'<svg class="art art--slaughterhouse" viewBox="0 0 {W} {H}" '
       'xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" '
-      'role="img" aria-label="A vast horned skull in red neon on black, the '
-      'word RUN burning in each eye socket, jagged cave teeth closing in from '
-      'above and below">')
+      'role="img" aria-label="A vast horned skull in red neon on black, hollow '
+      'sockets above a jagged jaw, with cave teeth closing in from above and '
+      'below">')
 
     a("<defs>")
     a('<radialGradient id="sh-glow" cx="50%" cy="46%" r="62%">'
@@ -187,29 +187,12 @@ def build():
     a(f'{up}<g filter="url(#sh-neon)" opacity="0.95">{ink}</g></g>')
     a(f"{up}{ink}</g>")
 
-    # ------------------------------------------------------------- RUN, RUN
-    for ex in (716, 884):
-        a(up)
-        a(f'<text x="{ex}" y="{460}" text-anchor="middle" '
-          'font-family="Metal Mania, Impact, sans-serif" font-size="66" '
-          f'fill="{RED}" filter="url(#sh-neon)" opacity="0.95">RUN</text>')
-        a(f'<text x="{ex}" y="{460}" text-anchor="middle" '
-          'font-family="Metal Mania, Impact, sans-serif" font-size="66" '
-          f'fill="#ffd0c0" letter-spacing="2">RUN</text>')
-        a("</g>")
-
     # ------------------------------------------------------------ cave teeth
     top = cave_teeth(92, 124, 24, True, rng)
     bottom = cave_teeth(816, 132, 20, False, rng)
     a(f'<g filter="url(#sh-bloom)" opacity="0.75">{top}{bottom}</g>')
     a(top)
     a(bottom)
-
-    # ------------------------------------------------------------- lightning
-    a(f'<g stroke="#ff4de0" fill="none" opacity="0.75">'
-      f'<path d="{jag(120, 40, 210, 330, 26, 9, rng)}" stroke-width="2.4"/>'
-      f'<path d="{jag(1470, 90, 1392, 300, 20, 8, rng)}" '
-      'stroke-width="1.8" opacity="0.6"/></g>')
 
     # -------------------------------------------------------- level blocks
     a('<g fill="#ffffff">')
