@@ -77,6 +77,25 @@
   object-fit: cover;
 }
 
+/* Every hero art ends in a hard horizontal cut where the section does, and
+   the corner metadata sits right on that edge. This dissolves the bottom of
+   the art into the page so there is no seam, and gives the metadata a dark
+   base to read against whatever the art is doing there. */
+.hero__art::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 34%;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--field) 55%, transparent) 46%,
+    var(--field) 92%
+  );
+  pointer-events: none;
+}
+
 /* Hero art can be busy right where the metadata sits, so the text layer
    always wins. */
 .hero__eyebrow,

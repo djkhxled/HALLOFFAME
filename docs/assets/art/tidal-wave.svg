@@ -8,6 +8,8 @@
 <linearGradient id="tw-vig" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#020a12" stop-opacity="0.42"/><stop offset="26%" stop-color="#020a12" stop-opacity="0.02"/><stop offset="100%" stop-color="#020a12" stop-opacity="0.55"/></linearGradient>
 <filter id="tw-rim" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#5fd6ff" result="c"/><feComposite in="c" in2="b" operator="in" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <filter id="tw-soft"><feGaussianBlur stdDeviation="14"/></filter>
+<linearGradient id="tw-foamfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#000"/><stop offset="38%" stop-color="#888"/><stop offset="78%" stop-color="#fff"/><stop offset="100%" stop-color="#fff"/></linearGradient>
+<mask id="tw-foammask"><rect x="0" y="812" width="1600" height="88" fill="url(#tw-foamfade)"/></mask>
 <filter id="tw-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4"/><feColorMatrix type="saturate" values="0"/></filter>
 <g id="tw-saw"><path d="M75.3 -10.6 L43.7 5.4 L70.5 28.5 L35.1 26.5 L46.8 59.9 L17.2 40.5 L10.6 75.3 L-5.4 43.7 L-28.5 70.5 L-26.5 35.1 L-59.9 46.8 L-40.5 17.2 L-75.3 10.6 L-43.7 -5.4 L-70.5 -28.5 L-35.1 -26.5 L-46.8 -59.9 L-17.2 -40.5 L-10.6 -75.3 L5.4 -43.7 L28.5 -70.5 L26.5 -35.1 L59.9 -46.8 L40.5 -17.2 Z" fill="#03080f"/><path d="M61.4 -8.6 L35.7 4.4 L57.5 23.2 L28.8 21.7 L38.2 48.9 L14.1 33.1 L8.6 61.4 L-4.4 35.7 L-23.2 57.5 L-21.7 28.8 L-48.9 38.2 L-33.1 14.1 L-61.4 8.6 L-35.7 -4.4 L-57.5 -23.2 L-28.8 -21.7 L-38.2 -48.9 L-14.1 -33.1 L-8.6 -61.4 L4.4 -35.7 L23.2 -57.5 L21.7 -28.8 L48.9 -38.2 L33.1 -14.1 Z" fill="#0a2b4a"/><circle r="30" fill="url(#tw-core)"/><circle r="30" fill="#4fd8ff" opacity="0.4" filter="url(#tw-soft)"/><circle r="13" fill="#ffffff"/></g>
 </defs>
@@ -247,63 +249,74 @@
 <rect x="949.7" y="461.5" width="5" height="5" opacity="0.50"/>
 </g>
 <rect width="1600" height="900" fill="url(#tw-vig)"/>
-<g>
-<rect x="0" y="836" width="1600" height="64" fill="url(#tw-foam)" opacity="0.9"/>
-<circle cx="0" cy="832" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="46" cy="838" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="92" cy="844" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="138" cy="832" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="184" cy="838" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="230" cy="844" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="276" cy="832" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="322" cy="838" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="368" cy="844" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="414" cy="832" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="460" cy="838" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="506" cy="844" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="552" cy="832" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="598" cy="838" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="644" cy="844" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="690" cy="832" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="736" cy="838" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="782" cy="844" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="828" cy="832" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="874" cy="838" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="920" cy="844" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="966" cy="832" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1012" cy="838" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1058" cy="844" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1104" cy="832" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1150" cy="838" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1196" cy="844" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1242" cy="832" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1288" cy="838" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1334" cy="844" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1380" cy="832" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1426" cy="838" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1472" cy="844" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1518" cy="832" r="27" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1564" cy="838" r="34" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1610" cy="844" r="41" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="1656" cy="832" r="20" fill="url(#tw-foam)" opacity="0.92"/>
-<circle cx="24" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="116" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="208" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="300" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="392" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="484" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="576" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="668" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="760" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="852" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="944" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="1036" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="1128" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="1220" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="1312" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="1404" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="1496" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
-<circle cx="1588" cy="826" r="12" fill="#ffffff" opacity="0.9"/>
+<g mask="url(#tw-foammask)">
+<rect x="0" y="862" width="1600" height="38" fill="url(#tw-foam)" opacity="0.92"/>
+<circle cx="0" cy="862" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="38" cy="866" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="76" cy="870" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="114" cy="862" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="152" cy="866" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="190" cy="870" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="228" cy="862" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="266" cy="866" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="304" cy="870" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="342" cy="862" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="380" cy="866" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="418" cy="870" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="456" cy="862" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="494" cy="866" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="532" cy="870" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="570" cy="862" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="608" cy="866" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="646" cy="870" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="684" cy="862" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="722" cy="866" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="760" cy="870" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="798" cy="862" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="836" cy="866" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="874" cy="870" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="912" cy="862" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="950" cy="866" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="988" cy="870" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1026" cy="862" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1064" cy="866" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1102" cy="870" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1140" cy="862" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1178" cy="866" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1216" cy="870" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1254" cy="862" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1292" cy="866" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1330" cy="870" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1368" cy="862" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1406" cy="866" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1444" cy="870" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1482" cy="862" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1520" cy="866" r="13" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1558" cy="870" r="18" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1596" cy="862" r="23" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="1634" cy="866" r="28" fill="url(#tw-foam)" opacity="0.9"/>
+<circle cx="19" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="95" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="171" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="247" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="323" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="399" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="475" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="551" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="627" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="703" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="779" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="855" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="931" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1007" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1083" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1159" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1235" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1311" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1387" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1463" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1539" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
+<circle cx="1615" cy="856" r="7" fill="#ffffff" opacity="0.8"/>
 </g>
 <rect width="1600" height="900" filter="url(#tw-grain)" opacity="0.1"/>
 </svg>
