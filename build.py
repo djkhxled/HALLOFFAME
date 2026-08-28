@@ -20,6 +20,17 @@ DOCS = ROOT / "docs"
 TEMPLATES = ROOT / "templates"
 
 
+def texture_class(theme: dict) -> str:
+    """The texture layer's classes. A level may layer one modifier over a
+    shared texture -- Slaughterhouse takes ember and swaps its glyphs for
+    inverted pentagrams."""
+    parts = ["texture", f"texture--{theme.get('texture') or 'none'}"]
+    mod = theme.get("textureMod")
+    if mod:
+        parts.append(f"texture--{mod}")
+    return " ".join(parts)
+
+
 def asset_stamp() -> str:
     """A short hash over every CSS and JS file.
 
@@ -147,7 +158,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
         {
             "slug": slug,
             "signature": theme.get("signature") or "static",
-            "texture": theme.get("texture") or "none",
+            "texture_class": texture_class(theme),
             "title": f'{level["name"]} — #{level["rank"]} · {site["title"]}',
             "description": level.get("tagline", ""),
             "head_extra_html": head_extra,
@@ -176,7 +187,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
         {
             "slug": "index",
             "signature": "static",
-            "texture": "starfield",
+            "texture_class": "texture texture--starfield",
             "title": site["title"],
             "description": site["description"],
             "head_extra_html": (
