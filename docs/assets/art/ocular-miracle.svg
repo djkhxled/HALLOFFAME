@@ -367,6 +367,8 @@
 <circle cx="86.7" cy="732.7" r="4.6" fill="#4a8bff" opacity="0.1" filter="url(#g-soft)"/>
 <circle cx="78.6" cy="226.9" r="4.5" fill="#ff2f4a" opacity="0.1" filter="url(#g-soft)"/>
 <circle cx="480.6" cy="890.2" r="2.5" fill="#eef2ff" opacity="0.6"/>
+<linearGradient id="g-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#05061a" stop-opacity="0"/><stop offset="34%" stop-color="#05061a" stop-opacity="0.62"/><stop offset="66%" stop-color="#05061a" stop-opacity="0.62"/><stop offset="100%" stop-color="#05061a" stop-opacity="0"/></linearGradient>
+<rect x="0" y="216" width="1600" height="468" fill="url(#g-band)"/>
 <rect width="1600" height="900" fill="url(#g-corner)"/>
 <rect width="1600" height="900" fill="url(#g-vig)"/>
 <rect width="1600" height="900" filter="url(#g-grain)" opacity="0.12"/>

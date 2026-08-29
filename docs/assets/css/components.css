@@ -975,118 +975,17 @@ a.countdown__hit:focus-visible {
 }
 
 /* Hero title legibility -------------------------------------------------- */
-/* Measured across the tier: sampling the band the title occupies, peak
-   backdrop luminance ran from 0.18 to 0.80 while the mean looked fine
-   everywhere. Against a light title that is 3.4:1 at best and 1.1:1 on
-   Freedom08 -- the mean is what makes this invisible in review, the peak is
-   what you actually read against.
-
-   The scrim is painted in the level's own --field, so it darkens a dark page
-   and lightens a light one, and the title always lands on something close to
-   the palette the contrast gate already validates. */
+/* There used to be a tinted scrim behind every hero title here. It read as a
+   dark elliptical glow sitting on the artwork, which fought the brighter
+   levels. The themed tier now carries a soft full-width haze baked into the
+   art itself (tools/gen_themed.py, band()), and the bespoke levels each
+   handle their own title -- carved stone on Deimos, a white rim on Antarctic
+   Lights, an outline on Tidal Wave. Slaughterhouse keeps a real scrim,
+   defined in its own stylesheet, because the skull glow directly behind its
+   title is the brightest backdrop on the site. */
 
 .hero__title {
   position: relative;
-}
-
-/* Adjacent sibling, not a page-level guard: the art div sits immediately
-   before the title, so this applies exactly where there is art behind the
-   text and nowhere else. The landing page and the policy pages have no
-   .hero__art, so they simply never match. */
-.hero__art + .hero__title::before {
-  content: "";
-  position: absolute;
-  inset: -0.16em calc(var(--gutter) * -0.85);
-  z-index: -1;
-  pointer-events: none;
-  backdrop-filter: blur(12px) saturate(0.72);
-  -webkit-backdrop-filter: blur(12px) saturate(0.72);
-  background: radial-gradient(
-    ellipse 60% 88% at 50% 50%,
-    color-mix(in srgb, var(--field) 86%, transparent) 0%,
-    color-mix(in srgb, var(--field) 66%, transparent) 54%,
-    transparent 84%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 64% 94% at 50% 50%, #000 44%, transparent 86%);
-  mask-image: radial-gradient(
-    ellipse 64% 94% at 50% 50%, #000 44%, transparent 86%);
-}
-
-
-/* Spotlight -------------------------------------------------------------- */
-/* The themed tier's one full-size moment. Built entirely from the level's
-   palette tokens, so fifteen levels get fifteen different panels with no
-   per-level CSS and no extra asset to download. */
-
-.spotlight {
-  position: relative;
-  min-height: 78svh;
-  display: grid;
-  align-content: center;
-  overflow: hidden;
-  border-top: var(--rule) solid var(--rule-colour);
-  background:
-    radial-gradient(ellipse 70% 90% at 22% 18%,
-      color-mix(in srgb, var(--accent) 26%, transparent) 0%, transparent 62%),
-    radial-gradient(ellipse 80% 70% at 82% 84%,
-      color-mix(in srgb, var(--accent2) 22%, transparent) 0%, transparent 60%),
-    linear-gradient(168deg,
-      color-mix(in srgb, var(--accent) 7%, var(--field)) 0%,
-      var(--field) 58%,
-      color-mix(in srgb, var(--accent2) 9%, var(--field)) 100%);
-}
-
-/* A slow drift across the accent fields, so the panel is not a still image.
-   Transform on a pseudo-element, so nothing in the flow is animated. */
-.spotlight::before {
-  content: "";
-  position: absolute;
-  inset: -30%;
-  pointer-events: none;
-  background: radial-gradient(ellipse 40% 40% at 50% 50%,
-    color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 70%);
-  animation: spotlight-drift 26s ease-in-out infinite alternate;
-}
-
-@keyframes spotlight-drift {
-  from { transform: translate3d(-8%, -6%, 0) scale(1); }
-  to   { transform: translate3d(9%, 7%, 0) scale(1.18); }
-}
-
-.spotlight__inner {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.spotlight__big {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(2.6rem, 11vw, 9rem);
-  line-height: 0.94;
-  letter-spacing: -0.03em;
-  margin: 0 0 var(--space-5);
-  text-wrap: balance;
-  background: linear-gradient(
-    172deg,
-    var(--ink) 0%,
-    color-mix(in srgb, var(--accent) 55%, var(--ink)) 62%,
-    var(--accent) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 2.4rem color-mix(in srgb, var(--accent) 35%, transparent));
-}
-
-.spotlight__sub {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  line-height: 1.7;
-  color: var(--ink);
-  margin-inline: auto;
-  opacity: 0.86;
 }
 
 /* Countdown palette rail -------------------------------------------------- */

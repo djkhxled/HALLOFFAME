@@ -310,6 +310,8 @@
 <circle cx="999.1" cy="501" r="2.5" fill="#6b7cff" opacity="0.3"/>
 <circle cx="20.3" cy="586.9" r="2.2" fill="#eae6ff" opacity="0.6"/>
 <circle cx="1025" cy="271.9" r="5.1" fill="#eae6ff" opacity="0.2" filter="url(#g-soft)"/>
+<linearGradient id="g-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d0620" stop-opacity="0"/><stop offset="34%" stop-color="#0d0620" stop-opacity="0.62"/><stop offset="66%" stop-color="#0d0620" stop-opacity="0.62"/><stop offset="100%" stop-color="#0d0620" stop-opacity="0"/></linearGradient>
+<rect x="0" y="216" width="1600" height="468" fill="url(#g-band)"/>
 <rect width="1600" height="900" fill="url(#g-corner)"/>
 <rect width="1600" height="900" fill="url(#g-vig)"/>
 <rect width="1600" height="900" filter="url(#g-grain)" opacity="0.12"/>
