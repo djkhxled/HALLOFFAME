@@ -2,9 +2,8 @@
 """Slaughterhouse hero art — the horned skull.
 
 Drawn from the level's own most-screenshotted frame: a vast ram-horned skull
-in red neon on black, RUN burned into each eye, jagged cave teeth closing in
-from top and bottom, a magenta strike down the left, and the small white
-blocks that sit in the real level.
+in red neon on black, hollow sockets, and jagged cave teeth closing in from
+top and bottom, with the small white blocks that sit in the real level.
 
 Usage: python3 tools/gen_slaughterhouse.py
 """
@@ -284,16 +283,6 @@ def scene():
       'xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" '
       'aria-hidden="true">')
     a("<defs>")
-    a('<radialGradient id="sp-orb" cx="42%" cy="38%" r="58%">'
-      '<stop offset="0%" stop-color="#ffffff"/>'
-      '<stop offset="26%" stop-color="#ffd6f2"/>'
-      '<stop offset="58%" stop-color="#ff2fc8" stop-opacity="0.8"/>'
-      '<stop offset="100%" stop-color="#ff2fc8" stop-opacity="0"/>'
-      "</radialGradient>")
-    a('<radialGradient id="sp-halo" cx="50%" cy="50%" r="50%">'
-      '<stop offset="0%" stop-color="#2bff9d" stop-opacity="0.5"/>'
-      '<stop offset="100%" stop-color="#2bff9d" stop-opacity="0"/>'
-      "</radialGradient>")
     a('<filter id="sp-neon" x="-40%" y="-40%" width="180%" height="180%">'
       '<feGaussianBlur stdDeviation="9"/></filter>')
     a("</defs>")
@@ -301,14 +290,6 @@ def scene():
     # chains down the right, as in the THE END frame
     a(f'<g opacity="0.8">{chain(86, -40, 900)}{chain(1436, -20, 940)}'
       f'{chain(1546, -60, 900)}</g>')
-
-    # neon guide lines, magenta and green
-    a('<g fill="none" opacity="0.85">')
-    a(f'<path d="{jag(980, -20, 1040, 300, 34, 8, rng)}" stroke="#ff2fc8" '
-      'stroke-width="3"/>')
-    a(f'<path d="{jag(1090, -30, 1030, 260, 30, 7, rng)}" stroke="#2bff9d" '
-      'stroke-width="3"/>')
-    a("</g>")
 
     # the bramble
     limbs = []
@@ -318,10 +299,6 @@ def scene():
     a(f'<g stroke="{RED}" fill="none" stroke-linecap="round" '
       f'filter="url(#sp-neon)" opacity="0.6">{bramble}</g>')
     a(f'<g stroke="{RED}" fill="none" stroke-linecap="round">{bramble}</g>')
-
-    # the orb the bramble reaches into
-    a('<circle cx="980" cy="404" r="168" fill="url(#sp-halo)"/>')
-    a('<circle cx="980" cy="404" r="104" fill="url(#sp-orb)" data-beat/>')
 
     # the blocky face: square sockets, crossed out, dripping, jagged jaw
     face = []
@@ -337,10 +314,12 @@ def scene():
             dx = ex + 14 + k * 22
             face.append(f'<path d="M{dx} 656 L{dx} {656 + rng.randint(18, 52)}"'
                         f' stroke="{RED}" stroke-width="2.4" opacity="0.7"/>')
+    # Ten teeth of 47 across the box's exact 470px, so the row starts and
+    # ends flush with the jaw instead of overhanging it.
     jawpts = []
-    for i in range(11):
-        tx = 186 + i * 44
-        jawpts.append(f"M{tx} 728 L{tx + 22} 790 L{tx + 44} 728")
+    for i in range(10):
+        tx = 176 + i * 47
+        jawpts.append(f"M{tx} 728 L{tx + 23.5} 790 L{tx + 47} 728")
     face.append(f'<path d="{" ".join(jawpts)}" fill="none" stroke="{RED}" '
                 'stroke-width="5" stroke-linejoin="round"/>')
     blocky = "".join(face)
@@ -378,8 +357,8 @@ def build_setpiece():
   </p>
 
   <div class="pulse__copy page">
-    <p class="eyebrow" data-pulse-line data-motion>Welcome to the End of the World</p>
-    <p class="pulse__line" data-pulse-line data-motion>Never supposed<br>to be possible</p>
+    <p class="eyebrow" data-pulse-line data-motion>Never supposed to be possible</p>
+    <p class="pulse__line" data-pulse-line data-motion>Welcome to the<br>End of the World</p>
     <p class="pulse__sub measure" data-pulse-line data-motion>
       Hosted by icedcave over his own 2015 impossible level. spaceuk claimed
       the verification on 24 October 2021 and had hacked it; Doggie took the
