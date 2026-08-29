@@ -246,6 +246,8 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
             "meta_left": site["metaLeft"],
             "meta_right": site["metaRight"],
             "lede": site["lede"],
+            "art_html": read(ROOT / "src" / "art" / "index.svg")
+            if (ROOT / "src" / "art" / "index.svg").exists() else "",
             "countdown_html": render.countdown_html(levels),
             "about_html": site["aboutHtml"],
         },
