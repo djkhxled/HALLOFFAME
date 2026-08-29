@@ -52,6 +52,8 @@
       "accent": "#ff2b2b",
       "accent2": "#46e6ff"
     },
+    "artDrift": "29s",
+    "artAmbient": [["embers", 20], ["drops", 14]],
     "texture": "grain",
     "signature": "descend",
     "mood": "Industrial hell. Dark brick, hanging chains and gears, red spikes, one cold cyan orb as the only relief. Chrome Roman capitals edged in red neon with a cyan chromatic split.",

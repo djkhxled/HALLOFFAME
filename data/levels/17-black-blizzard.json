@@ -41,6 +41,7 @@
       "accent2": "#8f959e"
     },
     "artDrift": "20s",
+    "artAmbient": [["drops", 42]],
     "texture": "snow",
     "signature": "whiteout",
     "mood": null,

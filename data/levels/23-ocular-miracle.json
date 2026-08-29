@@ -41,6 +41,7 @@
       "accent2": "#4a8bff"
     },
     "artDrift": "40s",
+    "artAmbient": [["shooting", 6], ["pulses", 4]],
     "texture": "starfield",
     "signature": "iris",
     "mood": null,

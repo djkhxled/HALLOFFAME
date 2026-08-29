@@ -42,6 +42,8 @@
       "accent": "#4de2ff",
       "accent2": "#ff5ce0"
     },
+    "artDrift": "31s",
+    "artAmbient": [["drops", 26], ["sweeps", 2]],
     "texture": "scanline",
     "signature": "prism",
     "mood": "Cold and clinical. White wireframe geometry receding into black, hard scanlines across everything, chromatic split on the type, and one rainbow prism beam cutting the frame diagonally.",

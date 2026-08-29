@@ -68,6 +68,7 @@
       "accent2": "#ff7a95"
     },
     "artDrift": "32s",
+    "artAmbient": [["embers", 18], ["flickers", 4]],
     "texture": "grain",
     "signature": "fracture",
     "mood": null,

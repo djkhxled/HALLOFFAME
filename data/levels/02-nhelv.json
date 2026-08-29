@@ -42,6 +42,8 @@
       "accent": "#3f43c9",
       "accent2": "#8f9c00"
     },
+    "artDrift": "16s",
+    "artAmbient": [["tears", 9], ["rips", 2]],
     "texture": "none",
     "signature": "glitch-assemble",
     "mood": "Bright, not dark. A near-white paper field with black shards through it, chromatic yellow-green and blue fringing on the edges, and the credits tiled across the background in typewriter mono.",

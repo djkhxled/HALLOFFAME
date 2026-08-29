@@ -299,12 +299,12 @@
 <circle cx="551.1" cy="129.1" r="2.1" opacity="0.40"/>
 <circle cx="810.3" cy="647.5" r="2.2" opacity="0.62"/>
 </g>
-<g transform="skewX(13)"><rect class="mo-sweep" style="--dur:16.5s;--delay:-13.6s" x="385.4" y="-120" width="196.7" height="1140" fill="url(#g-blade)" opacity="0"/></g>
-<g transform="skewX(-16)"><rect class="mo-sweep" style="--dur:18.0s;--delay:-0.2s" x="974.5" y="-120" width="234.7" height="1140" fill="url(#g-blade)" opacity="0"/></g>
-<circle cx="260.2" cy="668.6" r="2.4" fill="#f0e6ff" opacity="0.3"/>
-<circle cx="82.9" cy="43.8" r="4.5" fill="#4de0ff" opacity="0.1" filter="url(#g-soft)"/>
-<circle cx="612.2" cy="792.3" r="2.6" fill="#f0e6ff" opacity="0.4"/>
-<circle cx="269.6" cy="781.6" r="4.8" fill="#ff4de0" opacity="0.1" filter="url(#g-soft)"/>
+<circle cx="1462" cy="614.8" r="3.9" fill="#ff4de0" opacity="0.1" filter="url(#g-soft)"/>
+<circle cx="9.6" cy="732.7" r="4.9" fill="#f0e6ff" opacity="0.1" filter="url(#g-soft)"/>
+<circle cx="1117.7" cy="881.4" r="1.5" fill="#f0e6ff" opacity="0.3"/>
+<circle cx="131.7" cy="187.3" r="4.1" fill="#ff4de0" opacity="0.2" filter="url(#g-soft)"/>
+<circle cx="535.7" cy="344.4" r="3.1" fill="#f0e6ff" opacity="0.6"/>
+<circle cx="1322.1" cy="151.7" r="2.9" fill="#ff4de0" opacity="0.3"/>
 <circle cx="1104.6" cy="144" r="4" fill="#ff4de0" opacity="0.2" filter="url(#g-soft)"/>
 <circle cx="633.7" cy="530.5" r="3" fill="#f0e6ff" opacity="0.3"/>
 <circle cx="139.2" cy="694" r="2.6" fill="#ff4de0" opacity="0.5"/>
@@ -389,8 +389,6 @@
 <circle cx="255.5" cy="137.3" r="4.2" fill="#f0e6ff" opacity="0.1" filter="url(#g-soft)"/>
 <circle cx="1186.1" cy="595.2" r="3" fill="#ff4de0" opacity="0.5"/>
 <circle cx="607.8" cy="695" r="2.2" fill="#4de0ff" opacity="0.5"/>
-<circle cx="681.7" cy="834.5" r="3.3" fill="#ff4de0" opacity="0.4"/>
-<circle cx="154.1" cy="245.3" r="1.8" fill="#4de0ff" opacity="0.3"/>
 <linearGradient id="g-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a0420" stop-opacity="0"/><stop offset="34%" stop-color="#0a0420" stop-opacity="0.62"/><stop offset="66%" stop-color="#0a0420" stop-opacity="0.62"/><stop offset="100%" stop-color="#0a0420" stop-opacity="0"/></linearGradient>
 <rect x="0" y="216" width="1600" height="468" fill="url(#g-band)"/>
 <rect width="1600" height="900" fill="url(#g-corner)"/>

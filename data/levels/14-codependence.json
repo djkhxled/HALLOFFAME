@@ -68,6 +68,7 @@
       "accent2": "#2ae0ff"
     },
     "artDrift": "30s",
+    "artAmbient": [["tears", 7], ["drops", 16]],
     "texture": "scanline",
     "signature": "twin",
     "mood": null,
