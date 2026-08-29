@@ -44,11 +44,35 @@ class ValidationError(Exception):
     pass
 
 
+def _line_at(path: pathlib.Path, lineno: int) -> str:
+    """The offending line itself, so the error can be read without opening
+    the file."""
+    try:
+        return path.read_text(encoding="utf-8").splitlines()[lineno - 1].strip()
+    except (OSError, IndexError):
+        return ""
+
+
 def load_levels(levels_dir: pathlib.Path) -> list[dict]:
     records = []
     for path in sorted(levels_dir.glob("*.json")):
         with path.open(encoding="utf-8") as handle:
-            record = json.load(handle)
+            try:
+                record = json.load(handle)
+            except json.JSONDecodeError as exc:
+                # These files get edited by hand, often through GitHub's web
+                # editor, and the failure mode is always the same: a value
+                # typed without quotes. "attempts": 25,000 parses as the
+                # number 25 followed by junk, and "ratedDate": 2021-10-29 is
+                # not a number at all. A raw traceback names neither the file
+                # nor the line, so say both and say what to do.
+                raise ValidationError(
+                    f"{path.name} is not valid JSON: {exc.msg} "
+                    f"(line {exc.lineno}, column {exc.colno})\n"
+                    f"    {_line_at(path, exc.lineno)}\n"
+                    "    Every value in these files is a quoted string or "
+                    "null — numbers with commas and dates both need quotes."
+                ) from None
         record.setdefault("published", False)
         record.setdefault("theme", {})
         record.setdefault("facts", {})
