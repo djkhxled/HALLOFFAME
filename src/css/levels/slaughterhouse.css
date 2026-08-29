@@ -24,11 +24,27 @@
     0 0 6rem color-mix(in srgb, var(--accent2) 45%, transparent);
 }
 
-/* Heavier than the shared scrim: the skull glow directly behind this
-   title measured 0.499 peak, the brightest backdrop on the site. */
+/* The only scrim left on the site. The skull glow directly behind this title
+   measured 0.499 peak luminance, the brightest backdrop anywhere here, and
+   nothing short of knocking it back makes red type readable on it. */
 [data-level="slaughterhouse"] .hero__art + .hero__title::before {
+  content: "";
+  position: absolute;
+  inset: -0.16em calc(var(--gutter) * -0.85);
+  z-index: -1;
+  pointer-events: none;
   backdrop-filter: blur(14px) brightness(0.42) saturate(0.7);
   -webkit-backdrop-filter: blur(14px) brightness(0.42) saturate(0.7);
+  background: radial-gradient(
+    ellipse 60% 88% at 50% 50%,
+    color-mix(in srgb, var(--field) 86%, transparent) 0%,
+    color-mix(in srgb, var(--field) 66%, transparent) 54%,
+    transparent 84%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 64% 94% at 50% 50%, #000 44%, transparent 86%);
+  mask-image: radial-gradient(
+    ellipse 64% 94% at 50% 50%, #000 44%, transparent 86%);
 }
 
 [data-level="slaughterhouse"] .voice__hook {

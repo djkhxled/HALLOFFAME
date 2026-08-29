@@ -489,6 +489,45 @@ def dust(p, rng, c, n=90):
                  f'{" filter=\"url(#g-soft)\"" if near else ""}/>')
 
 
+
+def page_field(slug, fallback):
+    """The --field the page will actually render on.
+
+    The band has to be painted in this, not in the art's own deep colour.
+    They are usually close, but Freedom08 has pale cream art on a dark navy
+    page, and a band in the art's colour left its title at 1.78:1."""
+    import json
+    for jf in (ROOT / "data" / "levels").glob("*.json"):
+        rec = json.loads(jf.read_text(encoding="utf-8"))
+        if rec["slug"] == slug:
+            return rec["theme"]["palette"].get("field") or fallback
+    return fallback
+
+
+def band(p, rng, c, strength=0.62, colour=None):
+    """A soft full-width haze across the middle of the frame.
+
+    The hero title sits here. This used to be a CSS scrim painted over the
+    finished art, which read as a dark ellipse stuck on top of the picture.
+    Baked into the art instead, edge to edge and fading out over most of the
+    frame height, it reads as depth rather than as an overlay -- and it is
+    part of the composition, so nothing has to sit above the artwork.
+    """
+    col = colour or c["deep"]
+    top = H * 0.24
+    height = H * 0.52
+    p.append(f'<linearGradient id="g-band" x1="0" y1="0" x2="0" y2="1">'
+             f'<stop offset="0%" stop-color="{col}" stop-opacity="0"/>'
+             f'<stop offset="34%" stop-color="{col}" '
+             f'stop-opacity="{strength:.2f}"/>'
+             f'<stop offset="66%" stop-color="{col}" '
+             f'stop-opacity="{strength:.2f}"/>'
+             f'<stop offset="100%" stop-color="{col}" stop-opacity="0"/>'
+             "</linearGradient>")
+    p.append(f'<rect x="0" y="{f(top)}" width="{W}" height="{f(height)}" '
+             'fill="url(#g-band)"/>')
+
+
 MOTIFS = {
     "orb": m_orb, "burst": m_burst, "wheel": m_wheel, "gears": m_gears,
     "slabs": m_slabs, "tris": m_tris, "net": m_net, "chains": m_chains,
@@ -508,7 +547,9 @@ MOTIFS = {
 
 LEVELS = {
     "freedom08": dict(
-        seed=11, label="Pale columns, chained banners and drifting petals in cream and lavender",
+        # The palest art on the site sits on a dark navy page, so its haze
+        # has to work harder than anyone else's to carry a light title.
+        seed=11, band=0.88, label="Pale columns, chained banners and drifting petals in cream and lavender",
         c=dict(bg1="#e9e6f5", bg2="#cfd3ee", deep="#8f93c8", a1="#b9a6e8",
                a2="#7fb4ee", hi="#fffdf2"), light=True,
         motifs=[("columns", {}), ("tris", dict(n=12)), ("sparks", dict(n=5)),
@@ -682,6 +723,8 @@ def build(slug, cfg):
 
     dust(p, rng, c, n=cfg.get("dust", 90))
 
+    band(p, rng, c, cfg.get("band", 0.62),
+         colour=page_field(slug, c["deep"]))
     a(f'<rect width="{W}" height="{H}" fill="url(#g-corner)"/>')
     a(f'<rect width="{W}" height="{H}" fill="url(#g-vig)"/>')
     a(f'<rect width="{W}" height="{H}" filter="url(#g-grain)" '

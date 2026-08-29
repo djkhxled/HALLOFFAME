@@ -124,21 +124,29 @@ class TestAccessibility(unittest.TestCase):
         # and the focus rule has to come after the base rule to win
         self.assertLess(css.index(".skip {"), css.index(".skip:focus"))
 
-    def test_hero_titles_over_art_get_a_scrim(self):
-        """Sampling the band each hero title occupies, peak backdrop luminance
-        ran 0.18-0.80 across the themed tier while the mean looked fine
-        everywhere. Against a light title that is 1.09:1 at worst. The scrim
-        is what makes those titles readable, so it must stay attached to every
-        title that has art behind it."""
-        css = (ROOT / "src" / "css" / "components.css").read_text(encoding="utf-8")
-        self.assertIn(".hero__art + .hero__title::before", css,
-                      "the scrim must key off the art, not a page-level guard")
-        block = css[css.index(".hero__art + .hero__title::before"):]
-        block = block[: block.index("}")]
-        self.assertIn("var(--field)", block,
-                      "scrim must use the level's own field so light-field "
-                      "levels lighten rather than darken")
-        self.assertIn("backdrop-filter", block)
+    def test_hero_titles_have_something_behind_them(self):
+        """Sampling the band each hero title occupies, peak backdrop
+        luminance ran 0.18-0.80 across the themed tier while the mean looked
+        fine everywhere, so titles have to be given separation somehow.
+
+        A shared CSS scrim used to do it and read as a dark ellipse stuck on
+        the artwork. The themed art now carries the haze itself, so the check
+        is that the band is still being drawn into every generated piece."""
+        gen = (ROOT / "tools" / "gen_themed.py").read_text(encoding="utf-8")
+        self.assertIn("def band(", gen)
+        self.assertIn("band(p, rng, c", gen)
+        for slug in ("firework", "killbot", "zodiac", "black-blizzard"):
+            svg = (ROOT / "src" / "art" / f"{slug}.svg").read_text(encoding="utf-8")
+            self.assertIn('fill="url(#g-band)"', svg, f"{slug} lost its band")
+
+    def test_only_slaughterhouse_keeps_a_title_scrim(self):
+        """It is the one level whose backdrop cannot be handled in the art:
+        the skull glow behind the title measured 0.499 peak."""
+        shared = (ROOT / "src" / "css" / "components.css").read_text(encoding="utf-8")
+        self.assertNotIn(".hero__art + .hero__title::before", shared)
+        own = (ROOT / "src" / "css" / "levels" / "slaughterhouse.css").read_text(
+            encoding="utf-8")
+        self.assertIn(".hero__art + .hero__title::before", own)
 
     def test_grid_rows_can_shrink_on_narrow_screens(self):
         """Grid items default to min-width:auto, so a long level name refused
