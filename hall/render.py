@@ -106,19 +106,35 @@ def statblock_html(facts: dict) -> str:
     return f'<dl class="statblock">{"".join(rows)}</dl>'
 
 
+SOURCE_NAMES = {
+    "geometrydash.wiki.gg": "Official Geometry Dash Wiki",
+    "geometry-dash-fan.fandom.com": "Geometry Dash Fan Wiki",
+    "geometry-dash-user-levels.fandom.com": "GD User Levels Wiki",
+    "pointercrate.com": "Pointercrate",
+    "gdbrowser.com": "GDBrowser",
+    "demonlist.org": "demonlist.org",
+}
+
+
 def sources_html(facts: dict) -> str:
+    """Named, not raw. A column of full URLs is unreadable and tells the
+    reader less than the name of the site does."""
     sources = (facts or {}).get("sources") or []
     if not sources:
         return ""
-    items = "".join(
-        f'<li><a href="{esc(url)}" rel="nofollow noopener" '
-        f'target="_blank">{esc(url)}</a></li>'
-        for url in sources
-    )
+    items = []
+    for url in sources:
+        host = url.split("//", 1)[-1].split("/", 1)[0]
+        name = SOURCE_NAMES.get(host, host)
+        items.append(
+            f'<li><a href="{esc(url)}" rel="nofollow noopener" target="_blank">'
+            f'<span class="sources__name">{esc(name)}</span>'
+            f'<span class="sources__url">{esc(url)}</span></a></li>'
+        )
     return (
         '<section class="sources" aria-labelledby="sources-h">'
         '<h2 id="sources-h" class="eyebrow">Sources</h2>'
-        f"<ul>{items}</ul></section>"
+        f'<ul>{"".join(items)}</ul></section>'
     )
 
 
@@ -310,28 +326,26 @@ def player_html(facts: dict) -> str:
 
 
 def ranknav_html(prev: dict | None, nxt: dict | None) -> str:
+    """Previous/next, each carrying the palette of the page it leads to so the
+    link previews its destination rather than borrowing the current level's
+    colour."""
     parts = ['<nav class="ranknav" aria-label="Rank navigation">']
-    if prev:
-        parts.append(
-            f'<a class="ranknav__link ranknav__link--prev" '
-            f'href="/levels/{esc(prev["slug"])}/">'
-            f'<span class="ranknav__dir">Previous</span>'
-            f'<span class="ranknav__rank">#{prev["rank"]}</span>'
-            f'<span class="ranknav__name">{esc(prev["name"])}</span></a>'
+
+    def link(lv, direction, css_class):
+        return (
+            f'<a class="ranknav__link {css_class}" '
+            f'href="/levels/{esc(lv["slug"])}/" style="{palette_style(lv)}">'
+            f'<span class="ranknav__swatch" aria-hidden="true"></span>'
+            f'<span class="ranknav__dir">{direction}</span>'
+            f'<span class="ranknav__rank">#{lv["rank"]}</span>'
+            f'<span class="ranknav__name">{esc(lv["name"])}</span></a>'
         )
-    else:
-        parts.append("<span></span>")
+
+    parts.append(link(prev, "Previous", "ranknav__link--prev") if prev
+                 else "<span></span>")
     parts.append('<a class="ranknav__home" href="/">All 25</a>')
-    if nxt:
-        parts.append(
-            f'<a class="ranknav__link ranknav__link--next" '
-            f'href="/levels/{esc(nxt["slug"])}/">'
-            f'<span class="ranknav__dir">Next</span>'
-            f'<span class="ranknav__rank">#{nxt["rank"]}</span>'
-            f'<span class="ranknav__name">{esc(nxt["name"])}</span></a>'
-        )
-    else:
-        parts.append("<span></span>")
+    parts.append(link(nxt, "Next", "ranknav__link--next") if nxt
+                 else "<span></span>")
     parts.append("</nav>")
     return "".join(parts)
 

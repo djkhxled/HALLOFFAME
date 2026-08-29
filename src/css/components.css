@@ -1078,3 +1078,116 @@ a.countdown__hit:focus-visible {
     transparent 100%
   );
 }
+
+/* Rank nav swatch --------------------------------------------------------- */
+
+.ranknav__link {
+  position: relative;
+}
+
+.ranknav__swatch {
+  display: block;
+  height: 3px;
+  width: 100%;
+  margin-bottom: var(--space-3);
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+  opacity: 0.75;
+  transition: opacity var(--dur) var(--ease), height var(--dur) var(--ease);
+}
+
+.ranknav__link:hover .ranknav__swatch,
+.ranknav__link:focus-visible .ranknav__swatch {
+  opacity: 1;
+  height: 6px;
+}
+
+/* The name takes the destination's accent, not this page's. */
+.ranknav__link:hover .ranknav__name,
+.ranknav__link:focus-visible .ranknav__name {
+  color: var(--accent);
+}
+
+/* Sources ----------------------------------------------------------------- */
+
+.sources ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.sources li a {
+  display: grid;
+  gap: 0.15em;
+  text-decoration: none;
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--rule-colour);
+}
+
+.sources__name {
+  font-size: var(--step-0);
+  color: var(--ink);
+}
+
+.sources li a:hover .sources__name,
+.sources li a:focus-visible .sources__name {
+  color: var(--accent);
+}
+
+/* Kept visible but secondary: the reader can still see exactly where a link
+   goes before following it. */
+.sources__url {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+/* Spotlight entrance ------------------------------------------------------ */
+/* The hidden state is scoped to [data-enter], an attribute only scroll.js
+   sets. If the script never runs the panel is plainly visible, so the
+   entrance can never hide the content it is meant to introduce.
+
+   The hidden state carries transition:none on purpose. scroll.js adds the
+   attribute after first paint, so a transition here would make the panel
+   visibly fade OUT before it fades in. Hiding snaps; only revealing
+   animates. */
+
+.spotlight[data-enter] .spotlight__big,
+.spotlight[data-enter] .eyebrow,
+.spotlight[data-enter] .spotlight__sub {
+  opacity: 0;
+  transition: none;
+}
+
+.spotlight[data-enter] .eyebrow { transform: translateY(18px); }
+.spotlight[data-enter] .spotlight__sub { transform: translateY(20px); }
+
+/* The headline's entrance is picked by the level's own signature. */
+[data-signature="flood"]    .spotlight[data-enter] .spotlight__big { transform: translateY(26%); }
+[data-signature="descend"]  .spotlight[data-enter] .spotlight__big { transform: translateY(-28%); }
+[data-signature="surge"]    .spotlight[data-enter] .spotlight__big { transform: translateX(-14%); }
+[data-signature="slash"]    .spotlight[data-enter] .spotlight__big { transform: translateX(12%) skewX(9deg); }
+[data-signature="ignite"]   .spotlight[data-enter] .spotlight__big { transform: scale(0.8); }
+[data-signature="pulse"]    .spotlight[data-enter] .spotlight__big { transform: scale(1.2); }
+[data-signature="orbit"]    .spotlight[data-enter] .spotlight__big { transform: rotate(-6deg) scale(0.9); }
+[data-signature="fracture"] .spotlight[data-enter] .spotlight__big { transform: scale(1.1) rotate(3deg); }
+[data-signature="prism"]    .spotlight[data-enter] .spotlight__big { transform: skewY(5deg) translateY(14%); }
+[data-signature="static"]   .spotlight[data-enter] .spotlight__big { transform: scale(0.96); }
+
+/* The [data-signature=...] rules above are (0,4,0); a plain
+   .spotlight[data-enter="in"] .spotlight__big is (0,3,0) and loses to them,
+   which would leave the headline parked at its entrance transform forever.
+   The resting state has to carry the same [data-signature] prefix to win. */
+.spotlight[data-enter="in"] .spotlight__big,
+.spotlight[data-enter="in"] .eyebrow,
+.spotlight[data-enter="in"] .spotlight__sub,
+[data-signature] .spotlight[data-enter="in"] .spotlight__big {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s var(--ease), transform 0.9s var(--ease);
+}
+
+.spotlight[data-enter="in"] .spotlight__sub { transition-delay: 0.12s; }
