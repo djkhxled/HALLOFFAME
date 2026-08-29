@@ -40,8 +40,9 @@
       "accent": "#ff2020",
       "accent2": "#3cff3c"
     },
+    "artDrift": "14s",
     "texture": "grain",
-    "signature": "slash",
+    "signature": "corrupt",
     "mood": null,
     "googleFonts": [
       "Bungee"

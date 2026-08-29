@@ -1136,6 +1136,11 @@ a.countdown__hit:focus-visible {
 [data-signature="fracture"] .spotlight[data-enter] .spotlight__big { transform: scale(1.1) rotate(3deg); }
 [data-signature="prism"]    .spotlight[data-enter] .spotlight__big { transform: skewY(5deg) translateY(14%); }
 [data-signature="static"]   .spotlight[data-enter] .spotlight__big { transform: scale(0.96); }
+[data-signature="twin"]     .spotlight[data-enter] .spotlight__big { transform: translateY(18%) scaleY(0.7); }
+[data-signature="whiteout"] .spotlight[data-enter] .spotlight__big { transform: translateX(-18%) skewX(-6deg); }
+[data-signature="overgrow"] .spotlight[data-enter] .spotlight__big { transform: scale(0.7) rotate(-4deg); }
+[data-signature="iris"]     .spotlight[data-enter] .spotlight__big { transform: scale(1.35); }
+[data-signature="corrupt"]  .spotlight[data-enter] .spotlight__big { transform: translateX(9%) skewY(-4deg); }
 
 /* The [data-signature=...] rules above are (0,4,0); a plain
    .spotlight[data-enter="in"] .spotlight__big is (0,3,0) and loses to them,

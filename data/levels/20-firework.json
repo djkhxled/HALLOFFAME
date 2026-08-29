@@ -51,6 +51,7 @@
       "accent": "#ff2f45",
       "accent2": "#7ad4e8"
     },
+    "artDrift": "24s",
     "texture": "ember",
     "signature": "ignite",
     "mood": null,

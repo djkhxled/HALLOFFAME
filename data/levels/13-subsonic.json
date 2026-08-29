@@ -50,6 +50,7 @@
       "accent": "#ff4de0",
       "accent2": "#4de0ff"
     },
+    "artDrift": "17s",
     "texture": "scanline",
     "signature": "prism",
     "mood": null,

@@ -67,8 +67,9 @@
       "accent": "#ff2a3c",
       "accent2": "#2ae0ff"
     },
+    "artDrift": "30s",
     "texture": "scanline",
-    "signature": "fracture",
+    "signature": "twin",
     "mood": null,
     "googleFonts": [
       "Chakra+Petch:wght@500;700"

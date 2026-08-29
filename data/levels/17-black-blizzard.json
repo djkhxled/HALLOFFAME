@@ -40,8 +40,9 @@
       "accent": "#c9cdd4",
       "accent2": "#8f959e"
     },
+    "artDrift": "20s",
     "texture": "snow",
-    "signature": "static",
+    "signature": "whiteout",
     "mood": null,
     "googleFonts": [
       "Saira:wght@300;600"

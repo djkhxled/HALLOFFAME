@@ -1,0 +1,220 @@
+/* art.css — ambient motion inside the hero artwork.
+ *
+ * The hero SVG is inlined into the page (build.py does this deliberately so
+ * CSS can reach the shapes), which means the artwork can be animated as
+ * elements rather than as a picture. tools/gen_themed.py tags what should
+ * move with the .mo-* classes below and passes the per-element timing in a
+ * style attribute, so one keyframe serves every instance at a different
+ * speed and phase.
+ *
+ * Two rules everything here obeys:
+ *
+ * 1. Never animate a group that carries a transform ATTRIBUTE. A CSS
+ *    transform property beats a presentation attribute outright, so
+ *    animating <g transform="translate(800 400)"> throws the element to the
+ *    origin on frame one. The generator wraps such groups in a bare <g>
+ *    instead, and only the wrapper is animated.
+ *
+ * 2. transform-box: fill-box on anything that rotates or scales. The SVG
+ *    default is view-box, so transform-origin: center means the centre of
+ *    the whole 1600x900 canvas and a wheel would orbit the frame instead of
+ *    spinning in place.
+ */
+
+/* Rotation --------------------------------------------------------------- */
+
+.art .mo-spin,
+.art .mo-spin-r {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mo-spin var(--dur, 60s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.art .mo-spin-r {
+  animation-direction: reverse;
+}
+
+@keyframes mo-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Slow positional drift --------------------------------------------------- */
+
+.art .mo-drift {
+  animation: mo-drift var(--dur, 30s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-drift {
+  from { transform: translate(0, 0); }
+  to {
+    transform: translate(
+      calc(var(--dx, 40) * 1px),
+      calc(var(--dy, 20) * 1px)
+    );
+  }
+}
+
+.art .mo-bob {
+  transform-box: fill-box;
+  animation: mo-bob var(--dur, 9s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-bob {
+  from { transform: translateY(calc(var(--dy, 14) * -1px)); }
+  to   { transform: translateY(calc(var(--dy, 14) * 1px)); }
+}
+
+/* Scale and opacity ------------------------------------------------------- */
+
+.art .mo-breathe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mo-breathe var(--dur, 7s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-breathe {
+  from { transform: scale(var(--from, 0.96)); opacity: 0.7; }
+  to   { transform: scale(var(--to, 1.05)); opacity: 1; }
+}
+
+.art .mo-twinkle {
+  animation: mo-twinkle var(--dur, 4s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-twinkle {
+  from { opacity: 0.1; }
+  to   { opacity: 1; }
+}
+
+/* steps(1) so it snaps rather than fades — a fade reads as a pulse, and
+   this is meant to read as a fault. */
+.art .mo-flicker {
+  animation: mo-flicker var(--dur, 3s) steps(1) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-flicker {
+  0%, 42%, 46%, 61%, 100% { opacity: var(--hi, 0.8); }
+  43%, 45%, 62%           { opacity: var(--lo, 0.05); }
+}
+
+/* Shooting stars ---------------------------------------------------------- */
+/* The head and its trail are one group, drawn at the origin and thrown
+   across the frame. Direction comes from --dx/--dy, and the generator draws
+   the trail pointing back along that same vector so it always trails. */
+
+.art .mo-shoot {
+  animation: mo-shoot var(--dur, 7s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+@keyframes mo-shoot {
+  0%   { opacity: 0; transform: translate(0, 0) scale(0.4); }
+  4%   { opacity: 1; }
+  /* Most of the cycle is dead time, or every star crosses at once and it
+     reads as rain rather than as something rare. */
+  34%  { opacity: 1; }
+  46%  { opacity: 0; }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--dx, 600) * 1px), calc(var(--dy, 300) * 1px))
+      scale(1);
+  }
+}
+
+/* Glitch ------------------------------------------------------------------ */
+/* Killbot's whole trick is that the screen is lying, so these snap between
+   states with no interpolation at all. */
+
+.art .mo-tear {
+  animation: mo-tear var(--dur, 5s) steps(1) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-tear {
+  0%, 100%   { transform: translateX(0); }
+  17%        { transform: translateX(calc(var(--sx, 30) * 1px)); }
+  19%        { transform: translateX(0); }
+  53%        { transform: translateX(calc(var(--sx, 30) * -0.62px)); }
+  55%        { transform: translateX(0); }
+  78%        { transform: translateX(calc(var(--sx, 30) * 0.3px)); }
+  80%        { transform: translateX(0); }
+}
+
+/* A bar that rips down the frame and resets. */
+.art .mo-rip {
+  animation: mo-rip var(--dur, 6s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-rip {
+  0%        { transform: translateY(-40px); opacity: 0; }
+  6%        { opacity: 0.55; }
+  92%       { opacity: 0.55; }
+  100%      { transform: translateY(940px); opacity: 0; }
+}
+
+/* A light bar crossing the whole frame. */
+.art .mo-sweep {
+  animation: mo-sweep var(--dur, 11s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-sweep {
+  0%        { transform: translateX(-1900px); opacity: 0; }
+  12%       { opacity: 0.5; }
+  88%       { opacity: 0.5; }
+  100%      { transform: translateX(1900px); opacity: 0; }
+}
+
+/* Whole-frame drift ------------------------------------------------------- */
+/* "Move the background." The art is already sized to cover, so a plain
+   translate would expose an edge; the scale buys the headroom the drift
+   then spends. Applied to the svg root, so it moves the composition rather
+   than anything in it. */
+
+[data-art-drift] .hero__art > svg {
+  animation: mo-frame var(--art-drift-dur, 26s) ease-in-out infinite alternate;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes mo-frame {
+  from { transform: scale(1.07) translate(-1.1%, -0.7%); }
+  to   { transform: scale(1.07) translate(1.1%, 0.7%); }
+}
+
+/* Reduced motion ---------------------------------------------------------- */
+/* base.css clamps animation-duration globally, which stops these but leaves
+   each one frozen at whatever its first frame happens to be — and .mo-shoot
+   opens at opacity 0, so its stars would vanish rather than settle. Turning
+   the animations off outright restores every element to its authored state,
+   which is the composition the art was designed as. */
+
+@media (prefers-reduced-motion: reduce) {
+  .art .mo-spin,
+  .art .mo-spin-r,
+  .art .mo-drift,
+  .art .mo-bob,
+  .art .mo-breathe,
+  .art .mo-twinkle,
+  .art .mo-flicker,
+  .art .mo-tear,
+  .art .mo-rip,
+  .art .mo-sweep,
+  [data-art-drift] .hero__art > svg {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* These exist only to move. Standing still they are debris on the frame. */
+  .art .mo-shoot {
+    display: none;
+  }
+}
