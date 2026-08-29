@@ -497,7 +497,315 @@
     });
   }
 
+  /* ---------------------------------------------------------------------
+     Signatures written for the themed tier.
+
+     Ranks 11-25 each declared a signature that drove nothing at all: every
+     function above opens by querying for a [data-sig] stage, and only the
+     ten bespoke fragments ever contained one. tools/gen_setpiece.py now
+     writes that stage for all fifteen, so seven of the timelines above
+     drive themed pages unchanged. These six are new, for levels the bespoke
+     vocabulary had no way to describe.
+     ------------------------------------------------------------------- */
+
+  /* Signature: flood — the tide climbs the pillars. Freedom08. ---------- */
+  function flood() {
+    var stage = document.querySelector("[data-sig='flood']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=200%",
+        scrub: 0.85,
+        pin: true,
+      },
+    });
+
+    /* The tide is the whole point: four and a quarter minutes of the level
+       is holding a line while the water comes up. */
+    tl.fromTo(
+      stage.querySelector("[data-tide]"),
+      { yPercent: 100 },
+      { yPercent: 8, ease: "none" },
+      0
+    )
+      .fromTo(
+        stage.querySelectorAll("[data-pillar]"),
+        { yPercent: 26, opacity: 0.3 },
+        { yPercent: 0, opacity: 1, stagger: 0.04, ease: "none" },
+        0
+      )
+      .to(stage.querySelectorAll("[data-banner]"), { yPercent: -22, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelectorAll("[data-flood-line]"),
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.2, ease: "power2.out" },
+        0.12
+      );
+  }
+
+  /* Signature: twin — two halves close on the seam. Codependence. ------- */
+  function twin() {
+    var stage = document.querySelector("[data-sig='twin']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=185%",
+        scrub: 0.7,
+        pin: true,
+      },
+    });
+
+    /* Deliberately not mirrored. The level's gameplay is unsymmetrical, and
+       two halves sliding in by the same amount would say the opposite. */
+    tl.fromTo(
+      stage.querySelectorAll("[data-twin='a']"),
+      { xPercent: -18, yPercent: -10 },
+      { xPercent: 0, yPercent: 0, ease: "none" },
+      0
+    )
+      .fromTo(
+        stage.querySelectorAll("[data-twin='b']"),
+        { xPercent: 24, yPercent: 12 },
+        { xPercent: 0, yPercent: 0, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelector("[data-seam]"),
+        { scaleX: 0.1, opacity: 0 },
+        { scaleX: 1, opacity: 1, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelectorAll("[data-link]"),
+        { scaleY: 0, transformOrigin: "top center" },
+        { scaleY: 1, stagger: 0.03, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelectorAll("[data-twin-line]"),
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, stagger: 0.2, ease: "power2.out" },
+        0.15
+      );
+  }
+
+  /* Signature: whiteout — the funnel turns and the debris flies past.
+     Black Blizzard. ----------------------------------------------------- */
+  function whiteout() {
+    var stage = document.querySelector("[data-sig='whiteout']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=195%",
+        scrub: 0.9,
+        pin: true,
+      },
+    });
+
+    tl.fromTo(
+      stage.querySelector("[data-funnel]"),
+      { rotate: -9, scale: 0.82, opacity: 0.4 },
+      { rotate: 7, scale: 1.12, opacity: 1, ease: "none" },
+      0
+    )
+      .to(stage.querySelectorAll("[data-gust]"), { xPercent: 60, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-debris]"), { xPercent: 130, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelectorAll("[data-white-line]"),
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.22, ease: "power2.out" },
+        0.14
+      );
+  }
+
+  /* Signature: overgrow — growth closes in from every edge. The Golden. -- */
+  function overgrow() {
+    var stage = document.querySelector("[data-sig='overgrow']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=190%",
+        scrub: 0.8,
+        pin: true,
+      },
+    });
+
+    /* Scaling from the left edge of each vine, so they read as creeping out
+       from where they are anchored rather than inflating in place. */
+    tl.fromTo(
+      stage.querySelectorAll("[data-creep='a']"),
+      { scaleX: 0.08, transformOrigin: "left center" },
+      { scaleX: 1, stagger: 0.05, ease: "none" },
+      0
+    )
+      .fromTo(
+        stage.querySelectorAll("[data-creep='b']"),
+        { scaleX: 0.08, transformOrigin: "right center" },
+        { scaleX: 1, stagger: 0.05, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelectorAll("[data-frond]"),
+        { scale: 0.2, opacity: 0 },
+        { scale: 1, opacity: 1, stagger: 0.02, ease: "none" },
+        0.05
+      )
+      .fromTo(
+        stage.querySelectorAll("[data-grow-line]"),
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, stagger: 0.2, ease: "power2.out" },
+        0.18
+      );
+  }
+
+  /* Signature: iris — the eye opens. Ocular Miracle. -------------------- */
+  function iris() {
+    var stage = document.querySelector("[data-sig='iris']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=200%",
+        scrub: 0.8,
+        pin: true,
+      },
+    });
+
+    /* The lids retract first and the pupil dilates behind them, so the
+       reveal is the eye opening rather than two bars sliding away. */
+    tl.fromTo(
+      stage.querySelector("[data-lid='t']"),
+      { yPercent: 0 },
+      { yPercent: -78, ease: "none" },
+      0
+    )
+      .fromTo(
+        stage.querySelector("[data-lid='b']"),
+        { yPercent: 0 },
+        { yPercent: 78, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelector("[data-pupil]"),
+        { scale: 0.28 },
+        { scale: 1.1, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelector("[data-iris]"),
+        { scale: 0.86, rotate: -8 },
+        { scale: 1.04, rotate: 6, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelectorAll("[data-iris-line]"),
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.22, ease: "power2.out" },
+        0.3
+      );
+  }
+
+  /* Signature: corrupt — the channels separate and the rows tear.
+     Killbot. ------------------------------------------------------------ */
+  function corrupt() {
+    var stage = document.querySelector("[data-sig='corrupt']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=180%",
+        scrub: 0.5,
+        pin: true,
+      },
+    });
+
+    /* Channels pull apart in opposite directions: the level's whole trick is
+       that what you are looking at is not where the gameplay is. */
+    tl.fromTo(
+      stage.querySelector("[data-chan='r']"),
+      { xPercent: -7, yPercent: 2 },
+      { xPercent: 6, yPercent: -3, ease: "none" },
+      0
+    )
+      .fromTo(
+        stage.querySelector("[data-chan='g']"),
+        { xPercent: 7, yPercent: -2 },
+        { xPercent: -6, yPercent: 3, ease: "none" },
+        0
+      )
+      .to(
+        stage.querySelectorAll("[data-tear]"),
+        {
+          xPercent: function (i) { return (i % 5 - 2) * 26; },
+          ease: "none",
+        },
+        0
+      )
+      .fromTo(
+        stage.querySelectorAll("[data-corrupt-line]"),
+        { opacity: 0, y: 26 },
+        { opacity: 1, y: 0, stagger: 0.18, ease: "power2.out" },
+        0.12
+      );
+
+    /* Hazard plates blink on their own clock, not the scroll's. */
+    gsap.to(stage.querySelectorAll("[data-flicker]"), {
+      opacity: 0.05,
+      duration: 0.12,
+      repeat: -1,
+      yoyo: true,
+      ease: "steps(1)",
+      stagger: { each: 0.19, from: "random" },
+    });
+  }
+
+  /* Shared: the hero gains depth as you leave it. ------------------------
+
+     Deliberately on the copy, not on the art. The art already carries its
+     own slow drift (art.css, [data-art-drift]) as a CSS animation on the
+     <svg>, and a scroll-driven transform on the same element would simply
+     replace it. The art is also sized exactly to its clipping box, so
+     lifting it would expose the field underneath. Moving the words instead
+     costs nothing and reads as the same parallax. */
+  function heroDepth() {
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
+    var title = hero.querySelector(".hero__title");
+    var foot = hero.querySelector(".hero__foot");
+    var eyebrow = hero.querySelector(".hero__eyebrow");
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: hero,
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.5,
+      },
+    });
+
+    if (eyebrow) tl.to(eyebrow, { yPercent: -140, opacity: 0.2, ease: "none" }, 0);
+    if (title) tl.to(title, { yPercent: -34, opacity: 0.55, ease: "none" }, 0);
+    if (foot) tl.to(foot, { yPercent: -14, opacity: 0.4, ease: "none" }, 0);
+  }
+
   reveals();
+  heroDepth();
   countdown();
 
   /* Triggers are created from a layout that has not settled: the hero art is
@@ -628,5 +936,11 @@
   if (sig === "slash") slash();
   if (sig === "prism") prism();
   if (sig === "descend") descend();
+  if (sig === "flood") flood();
+  if (sig === "twin") twin();
+  if (sig === "whiteout") whiteout();
+  if (sig === "overgrow") overgrow();
+  if (sig === "iris") iris();
+  if (sig === "corrupt") corrupt();
   spotlight();
 })();

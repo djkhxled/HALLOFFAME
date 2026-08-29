@@ -40,8 +40,9 @@
       "accent": "#ff2f4a",
       "accent2": "#4a8bff"
     },
+    "artDrift": "40s",
     "texture": "starfield",
-    "signature": "orbit",
+    "signature": "iris",
     "mood": null,
     "googleFonts": [
       "Saira:wght@200;500"

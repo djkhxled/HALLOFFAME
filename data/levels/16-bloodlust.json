@@ -63,6 +63,7 @@
       "accent": "#ff1414",
       "accent2": "#ff5a2a"
     },
+    "artDrift": "22s",
     "texture": "ember",
     "signature": "pulse",
     "mood": null,

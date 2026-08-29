@@ -47,8 +47,9 @@
       "accent": "#b6ff2a",
       "accent2": "#ffe14d"
     },
+    "artDrift": "36s",
     "texture": "grain",
-    "signature": "ignite",
+    "signature": "overgrow",
     "mood": null,
     "googleFonts": [
       "Cinzel:wght@600;800"

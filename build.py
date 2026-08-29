@@ -172,6 +172,17 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
     face = theme.get("displayFont")
     face_rule = f"--font-display:{face};" if face else ""
 
+    # "Move the background": a slow scale-and-drift on the hero art itself,
+    # declared per level so each one moves at its own tempo. The attribute
+    # carries the switch and art.css carries the animation, which keeps the
+    # reduced-motion guard in one place instead of per level.
+    drift = theme.get("artDrift")
+    html_attrs = ""
+    if drift:
+        html_attrs = " data-art-drift"
+        head_extra += (f'<style>[data-level="{slug}"]'
+                       f"{{--art-drift-dur:{drift};}}</style>")
+
     head_extra += (
         f"<style>[data-level=\"{slug}\"]{{{face_rule}}}"
         f"[data-level=\"{slug}\"] .hero__title{{font-size:"
@@ -184,6 +195,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
         base_tpl,
         {
             "slug": slug,
+            "html_attrs_html": html_attrs,
             "signature": theme.get("signature") or "static",
             "texture_class": texture_class(theme),
             "title": f'{level["name"]} — #{level["rank"]} · {site["title"]}',
@@ -216,6 +228,7 @@ def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str) -> str:
         base_tpl,
         {
             "slug": f"doc-{doc['slug']}",
+            "html_attrs_html": "",
             "signature": "static",
             "texture_class": "texture texture--grain",
             "title": f"{strip_tags(doc['heading'])} · {site['title']}",
@@ -256,6 +269,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
         base_tpl,
         {
             "slug": "index",
+            "html_attrs_html": "",
             "signature": "static",
             "texture_class": "texture texture--starfield",
             "title": site["title"],

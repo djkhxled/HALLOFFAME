@@ -265,13 +265,22 @@ def m_confetti(p, rng, c, n=70):
     p.append("</g>")
 
 
-def m_motes(p, rng, c, n=110):
+def m_motes(p, rng, c, n=110, twinkle=0.0):
+    """twinkle is the fraction that animates. Deliberately a fraction and not
+    all of them: a field where every point pulses reads as noise, and these
+    are opacity animations on individual SVG children, which the compositor
+    does not accelerate. A third of them moving is the effect; all of them
+    moving is a cost."""
     p.append(f'<g fill="{c["hi"]}">')
     for _ in range(n):
-        p.append(f'<circle cx="{f(rng.uniform(0, W))}" '
-                 f'cy="{f(rng.uniform(0.02, 0.98) * H)}" '
-                 f'r="{rng.uniform(1, 2.8):.1f}" '
-                 f'opacity="{rng.uniform(0.2, 0.85):.2f}"/>')
+        base = f'cx="{f(rng.uniform(0, W))}" cy="{f(rng.uniform(0.02, 0.98) * H)}" '\
+               f'r="{rng.uniform(1, 2.8):.1f}"'
+        if rng.random() < twinkle:
+            p.append(f'<circle {base} class="mo-twinkle" style="'
+                     f'--dur:{rng.uniform(1.8, 6.5):.1f}s;'
+                     f'--delay:-{rng.uniform(0, 6):.1f}s"/>')
+        else:
+            p.append(f'<circle {base} opacity="{rng.uniform(0.2, 0.85):.2f}"/>')
     p.append("</g>")
 
 
@@ -490,6 +499,115 @@ def dust(p, rng, c, n=90):
 
 
 
+# ----------------------------------------------------------------- motion
+# The hero SVG is inlined into the page, so the artwork can be animated as
+# elements rather than as a picture. These emit the .mo-* hooks that
+# src/css/art.css drives; the timing rides along in a style attribute so one
+# keyframe serves every instance at its own speed and phase.
+
+
+def wrap(p, start, motion):
+    """Wrap everything appended since index `start` in an animated group.
+
+    The wrapper is bare on purpose. Almost every motif emits
+    <g transform="translate(x y)">, and a CSS transform property beats a
+    presentation attribute outright -- animating those groups directly threw
+    them to the origin. Wrapping leaves the positioning attribute untouched
+    and animates a parent that has none.
+    """
+    cls = motion["cls"]
+    style = ";".join(f"--{k}:{v}" for k, v in motion.items() if k != "cls")
+    p.insert(start, f'<g class="{cls}"{f" style={style!r}" if style else ""}>')
+    p.append("</g>")
+
+
+def shooting(p, rng, c, n=7):
+    """Shooting stars. The trail is drawn pointing back along the travel
+    vector, so it trails rather than leads whichever way the star is thrown."""
+    for _ in range(n):
+        # Start off the top-left quadrant and cross down-right, the direction
+        # the eye reads in; a few go the other way so it is not a pattern.
+        rightward = rng.random() > 0.25
+        dx = rng.uniform(520, 1250) * (1 if rightward else -1)
+        dy = rng.uniform(180, 520)
+        x0 = rng.uniform(-160, W * 0.55) if rightward else rng.uniform(W * 0.45, W + 160)
+        y0 = rng.uniform(-120, H * 0.5)
+        length = rng.uniform(40, 130)
+        mag = math.hypot(dx, dy)
+        tx, ty = -dx / mag * length, -dy / mag * length
+        p.append(
+            f'<g class="mo-shoot" style="--dur:{rng.uniform(5.5, 15):.1f}s;'
+            f'--delay:-{rng.uniform(0, 14):.1f}s;--dx:{dx:.0f};--dy:{dy:.0f}">'
+            f'<line x1="{f(x0)}" y1="{f(y0)}" x2="{f(x0 + tx)}" y2="{f(y0 + ty)}" '
+            f'stroke="{c["hi"]}" stroke-width="{rng.uniform(1.2, 2.6):.1f}" '
+            f'stroke-linecap="round" opacity="0.55"/>'
+            f'<circle cx="{f(x0)}" cy="{f(y0)}" r="{rng.uniform(1.8, 3.4):.1f}" '
+            f'fill="{c["hi"]}"/></g>'
+        )
+
+
+def tears(p, rng, c, n=10):
+    """Rows that jump sideways and snap back. Killbot's signal fault."""
+    for _ in range(n):
+        y = rng.uniform(0, H)
+        h = rng.uniform(4, 30)
+        p.append(
+            f'<rect class="mo-tear" style="--dur:{rng.uniform(2.4, 7):.1f}s;'
+            f'--delay:-{rng.uniform(0, 6):.1f}s;--sx:{rng.uniform(18, 90):.0f}" '
+            f'x="{f(rng.uniform(-120, W * 0.4))}" y="{f(y)}" '
+            f'width="{f(rng.uniform(W * 0.3, W * 1.15))}" height="{f(h)}" '
+            f'fill="{rng.choice([c["a1"], c["a2"], c["hi"]])}" '
+            f'opacity="{f(rng.uniform(0.08, 0.32))}"/>'
+        )
+
+
+def rips(p, rng, c, n=2):
+    """A bright band that travels down the frame and resets."""
+    for _ in range(n):
+        p.append(
+            f'<rect class="mo-rip" style="--dur:{rng.uniform(5, 11):.1f}s;'
+            f'--delay:-{rng.uniform(0, 9):.1f}s" '
+            f'x="0" y="{f(rng.uniform(-40, 60))}" width="{W}" '
+            f'height="{f(rng.uniform(3, 14))}" fill="{c["hi"]}" opacity="0"/>'
+        )
+
+
+def sweeps(p, rng, c, n=2):
+    """A soft bar of light crossing the whole frame."""
+    for _ in range(n):
+        w = rng.uniform(90, 260)
+        # The skew goes on a wrapper. On the rect itself the animation's
+        # transform property would replace the attribute outright and the
+        # bar would cross the frame bolt upright, which is the whole thing
+        # this function exists to avoid.
+        p.append(
+            f'<g transform="skewX({rng.uniform(-16, 16):.0f})">'
+            f'<rect class="mo-sweep" style="--dur:{rng.uniform(9, 20):.1f}s;'
+            f'--delay:-{rng.uniform(0, 16):.1f}s" '
+            f'x="{f(rng.uniform(0, W))}" y="-120" width="{f(w)}" '
+            f'height="{f(H + 240)}" fill="url(#g-blade)" opacity="0"/></g>'
+        )
+
+
+def flickers(p, rng, c, n=5):
+    """Panels that cut out and back. Never a fade -- a fade reads as a pulse,
+    and this has to read as a fault."""
+    for _ in range(n):
+        s = rng.uniform(60, 200)
+        p.append(
+            f'<rect class="mo-flicker" style="--dur:{rng.uniform(1.6, 5):.1f}s;'
+            f'--delay:-{rng.uniform(0, 4):.1f}s;--hi:{rng.uniform(0.3, 0.7):.2f};'
+            f'--lo:0.02" '
+            f'x="{f(rng.uniform(0, W - s))}" y="{f(rng.uniform(0, H - s * 0.5))}" '
+            f'width="{f(s)}" height="{f(s * rng.uniform(0.2, 0.6))}" '
+            f'fill="{c["a2"]}"/>'
+        )
+
+
+AMBIENT = {"shooting": shooting, "tears": tears, "rips": rips,
+           "sweeps": sweeps, "flickers": flickers}
+
+
 def page_field(slug, fallback):
     """The --field the page will actually render on.
 
@@ -552,96 +670,140 @@ LEVELS = {
         seed=11, band=0.88, label="Pale columns, chained banners and drifting petals in cream and lavender",
         c=dict(bg1="#e9e6f5", bg2="#cfd3ee", deep="#8f93c8", a1="#b9a6e8",
                a2="#7fb4ee", hi="#fffdf2"), light=True,
-        motifs=[("columns", {}), ("tris", dict(n=12)), ("sparks", dict(n=5)),
-                ("motes", dict(n=70))]),
+        motifs=[("columns", {}), ("tris", dict(n=12)),
+                ("sparks", dict(n=5), dict(cls="mo-breathe", dur="6.5s")),
+                ("motes", dict(n=70, twinkle=0.34))],
+        ambient=[("sweeps", dict(n=2))]),
     "idols": dict(
         seed=12, label="Saturated rainbow burst with gears and neon shards",
         c=dict(bg1="#3a0a5e", bg2="#12042c", deep="#0a0220", a1="#ff3ce0",
                a2="#3cf0ff", hi="#ffe94d"),
-        motifs=[("burst", dict(cx=0.55, cy=0.36, n=26)), ("slabs", dict(n=4)),
-                ("gears", dict(n=3)), ("tris", dict(n=18)), ("motes", {})]),
+        motifs=[("burst", dict(cx=0.55, cy=0.36, n=26),
+                 dict(cls="mo-spin", dur="150s")),
+                ("slabs", dict(n=4)),
+                ("gears", dict(n=3), dict(cls="mo-spin-r", dur="70s")),
+                ("tris", dict(n=18)), ("motes", dict(twinkle=0.4))],
+        ambient=[("sweeps", dict(n=1))]),
     "subsonic": dict(
         seed=13, label="Magenta and cyan light smeared into speed lines over wireframe boxes",
         c=dict(bg1="#1b0a3e", bg2="#0a0420", deep="#050213", a1="#ff4de0",
                a2="#4de0ff", hi="#f0e6ff"),
-        motifs=[("speedlines", dict(n=70)), ("slabs", dict(n=5)),
-                ("gears", dict(n=3)), ("tris", dict(n=10)),
-                ("motes", {})]),
+        motifs=[("speedlines", dict(n=70),
+                 dict(cls="mo-drift", dur="7s", dx=190, dy=0)),
+                ("slabs", dict(n=5)),
+                ("gears", dict(n=3), dict(cls="mo-spin", dur="26s")),
+                ("tris", dict(n=10)), ("motes", dict(twinkle=0.3))],
+        ambient=[("sweeps", dict(n=2))]),
     "codependence": dict(
         seed=14, label="A frame split red above and cyan below, with paired icons strung between",
         c=dict(bg1="#4a0510", bg2="#02181f", deep="#050b12", a1="#ff2a3c",
                a2="#2ae0ff", hi="#ffffff"), split=True,
-        motifs=[("duals", dict(n=9)), ("gears", dict(n=4)),
-                ("tris", dict(n=14)), ("motes", {})]),
+        motifs=[("duals", dict(n=9), dict(cls="mo-bob", dur="7s", dy=22)),
+                ("gears", dict(n=4), dict(cls="mo-spin", dur="60s")),
+                ("tris", dict(n=14)), ("motes", dict(twinkle=0.3))]),
     "zodiac": dict(
         seed=15, label="A neon astrological wheel over a deep violet starfield",
         c=dict(bg1="#241243", bg2="#0d0620", deep="#070313", a1="#6b7cff",
                a2="#ff6bd0", hi="#eae6ff"),
-        motifs=[("wheel", dict(cx=0.5, cy=0.24, r=0.38, marks=12)),
-                ("wheel", dict(cx=0.5, cy=0.92, r=0.34, marks=12)),
-                ("motes", dict(n=150))]),
+        motifs=[("wheel", dict(cx=0.5, cy=0.24, r=0.38, marks=12),
+                 dict(cls="mo-spin", dur="110s")),
+                ("wheel", dict(cx=0.5, cy=0.92, r=0.34, marks=12),
+                 dict(cls="mo-spin-r", dur="76s")),
+                ("motes", dict(n=150, twinkle=0.42))],
+        ambient=[("shooting", dict(n=7))]),
     "bloodlust": dict(
         seed=16, label="A pixelated blood orb behind horned skulls and pentagram sigils",
         c=dict(bg1="#3a0304", bg2="#120102", deep="#0a0001", a1="#ff1414",
                a2="#ff5a2a", hi="#ffd6d6"),
-        motifs=[("orb", dict(cx=0.5, cy=0.42, r=0.28)), ("sigils", dict(n=4)),
+        motifs=[("orb", dict(cx=0.5, cy=0.42, r=0.28),
+                 dict(cls="mo-breathe", dur="2.6s", **{"from": 0.97, "to": 1.04})),
+                ("sigils", dict(n=4), dict(cls="mo-spin-r", dur="180s")),
                 ("skull", dict(cx=0.12, cy=0.78, s=0.7)),
-                ("skull", dict(cx=0.88, cy=0.78, s=0.7)), ("motes", dict(n=60))]),
+                ("skull", dict(cx=0.88, cy=0.78, s=0.7)),
+                ("motes", dict(n=60, twinkle=0.3))]),
     "black-blizzard": dict(
         seed=17, haze=0, shafts=0, dust=40, label="A white funnel of debris turning against pure black",
         c=dict(bg1="#131417", bg2="#050506", deep="#000000", a1="#c9cdd4",
                a2="#8f959e", hi="#ffffff"),
-        motifs=[("tornado", dict(cx=0.52, w=0.34)), ("net", dict(n=16)),
-                ("motes", dict(n=70))]),
+        motifs=[("tornado", dict(cx=0.52, w=0.34),
+                 dict(cls="mo-spin", dur="34s")),
+                ("net", dict(n=16), dict(cls="mo-drift", dur="24s", dx=40, dy=-18)),
+                ("motes", dict(n=70, twinkle=0.5))]),
     "maniacal-chains": dict(
         seed=18, label="A cyan beam through mirrored zigzags and hanging chains",
         c=dict(bg1="#04181c", bg2="#010708", deep="#000203", a1="#25e8e0",
                a2="#8ff5f0", hi="#e8fffe"),
-        motifs=[("chains", dict(n=7)), ("zigzag", dict(y=0.5, amp=80, rows=3)),
-                ("beam", dict(y=0.5)), ("motes", dict(n=70))]),
+        motifs=[("chains", dict(n=7), dict(cls="mo-bob", dur="5.5s", dy=16)),
+                ("zigzag", dict(y=0.5, amp=80, rows=3),
+                 dict(cls="mo-drift", dur="18s", dx=-70, dy=0)),
+                ("beam", dict(y=0.5)), ("motes", dict(n=70, twinkle=0.35))],
+        ambient=[("sweeps", dict(n=2))]),
     "titan-complex": dict(
         seed=19, label="Crimson structures and black saw gears on deep red",
         c=dict(bg1="#4d0512", bg2="#160205", deep="#080102", a1="#ff2d5a",
                a2="#ff7a95", hi="#ffd9e2"),
-        motifs=[("slabs", dict(n=5)), ("gears", dict(n=5, teeth=14)),
-                ("tris", dict(n=14)), ("motes", dict(n=60))]),
+        motifs=[("slabs", dict(n=5)),
+                ("gears", dict(n=5, teeth=14), dict(cls="mo-spin", dur="88s")),
+                ("tris", dict(n=14), dict(cls="mo-bob", dur="9s", dy=10)),
+                ("motes", dict(n=60, twinkle=0.28))]),
     "firework": dict(
         seed=20, haze=3, shafts=2, dust=55, label="Chrome and crimson shards with small tech rings and sparks",
         c=dict(bg1="#2a1016", bg2="#0c0508", deep="#050203", a1="#ff2f45",
                a2="#7ad4e8", hi="#f4f6f8"),
-        motifs=[("burst", dict(cx=0.5, cy=0.44, n=18, r=0.4)),
-                ("gears", dict(n=4)), ("tris", dict(n=16)), ("sparks", dict(n=6)),
-                ("motes", {})]),
+        motifs=[("burst", dict(cx=0.5, cy=0.44, n=18, r=0.4),
+                 dict(cls="mo-spin-r", dur="120s")),
+                ("gears", dict(n=4), dict(cls="mo-spin", dur="54s")),
+                ("tris", dict(n=16)),
+                ("sparks", dict(n=6), dict(cls="mo-breathe", dur="3.4s")),
+                ("motes", dict(twinkle=0.45))]),
     "andromeda": dict(
         seed=21, label="Violet and cyan gas clouds around a lit core in deep space",
         c=dict(bg1="#1a0b46", bg2="#080326", deep="#040115", a1="#7c5cff",
                a2="#3ccfff", hi="#eae6ff"),
-        motifs=[("nebula", dict(n=10)), ("orb", dict(cx=0.66, cy=0.4, r=0.15)),
-                ("swirl", dict(n=4)), ("motes", dict(n=170))]),
+        motifs=[("nebula", dict(n=10),
+                 dict(cls="mo-drift", dur="46s", dx=70, dy=-34)),
+                ("orb", dict(cx=0.66, cy=0.4, r=0.15),
+                 dict(cls="mo-breathe", dur="9s")),
+                ("swirl", dict(n=4), dict(cls="mo-spin", dur="200s")),
+                ("motes", dict(n=170, twinkle=0.5))],
+        ambient=[("shooting", dict(n=11))]),
     "the-golden": dict(
         seed=22, label="Acid-green overgrowth creeping over dark gold ridges",
         c=dict(bg1="#123312", bg2="#050f06", deep="#020703", a1="#b6ff2a",
                a2="#ffe14d", hi="#f4ffe0"),
-        motifs=[("vines", dict(n=26)), ("peaks", dict(y=0.8, amp=140)),
-                ("sparks", dict(n=6)), ("motes", dict(n=70))]),
+        motifs=[("vines", dict(n=26), dict(cls="mo-bob", dur="11s", dy=9)),
+                ("peaks", dict(y=0.8, amp=140)),
+                ("sparks", dict(n=6), dict(cls="mo-breathe", dur="5s")),
+                ("motes", dict(n=70, twinkle=0.35))]),
     "ocular-miracle": dict(
         seed=23, label="A vast lit iris ringed with light against a red starfield",
         c=dict(bg1="#0d1038", bg2="#05061a", deep="#02030c", a1="#ff2f4a",
                a2="#4a8bff", hi="#eef2ff"),
-        motifs=[("eye", dict(cx=0.5, cy=0.44, r=0.2)),
-                ("swirl", dict(n=5)), ("motes", dict(n=180))]),
+        motifs=[("eye", dict(cx=0.5, cy=0.44, r=0.2),
+                 dict(cls="mo-breathe", dur="8s", **{"from": 0.97, "to": 1.03})),
+                ("swirl", dict(n=5), dict(cls="mo-spin", dur="240s")),
+                ("motes", dict(n=180, twinkle=0.55))],
+        ambient=[("shooting", dict(n=6))]),
     "killbot": dict(
         seed=24, label="Torn scanlines and hazard chevrons breaking up a red and green frame",
         c=dict(bg1="#2a0d0d", bg2="#0a1a08", deep="#050b04", a1="#ff2020",
                a2="#3cff3c", hi="#ffe8e8"),
-        motifs=[("glitch", dict(rows=30)), ("skull", dict(cx=0.5, cy=0.46, s=1.1)),
-                ("tris", dict(n=14)), ("motes", dict(n=60))]),
+        motifs=[("glitch", dict(rows=30)),
+                ("skull", dict(cx=0.5, cy=0.46, s=1.1),
+                 dict(cls="mo-tear", dur="6.5s", sx=14)),
+                ("tris", dict(n=14), dict(cls="mo-flicker", dur="4.2s")),
+                ("motes", dict(n=60, twinkle=0.3))],
+        ambient=[("tears", dict(n=14)), ("rips", dict(n=3)),
+                 ("flickers", dict(n=6))]),
     "edge-of-destiny": dict(
         seed=25, label="Blades of cyan light sweeping past a blazing core",
         c=dict(bg1="#0a1f52", bg2="#040a28", deep="#020616", a1="#2ad4ff",
                a2="#6b8cff", hi="#eafaff"),
-        motifs=[("blade", dict(n=5)), ("orb", dict(cx=0.5, cy=0.42, r=0.16)),
-                ("slabs", dict(n=4)), ("motes", dict(n=110))]),
+        motifs=[("blade", dict(n=5), dict(cls="mo-drift", dur="16s", dx=90, dy=0)),
+                ("orb", dict(cx=0.5, cy=0.42, r=0.16),
+                 dict(cls="mo-breathe", dur="4.5s")),
+                ("slabs", dict(n=4)), ("motes", dict(n=110, twinkle=0.42))],
+        ambient=[("sweeps", dict(n=3))]),
 }
 
 
@@ -718,8 +880,17 @@ def build(slug, cfg):
     haze(p, rng, c, n=cfg.get("haze", 8))
     shafts(p, rng, c, n=cfg.get("shafts", 5))
 
-    for name, kw in cfg["motifs"]:
+    for entry in cfg["motifs"]:
+        name, kw = entry[0], entry[1]
+        start = len(p)
         MOTIFS[name](p, rng, c, **kw)
+        if len(entry) > 2 and entry[2]:
+            wrap(p, start, entry[2])
+
+    # Ambient motion sits above the motifs and below the grading passes, so
+    # the band and the vignette still read over it.
+    for name, kw in cfg.get("ambient", []):
+        AMBIENT[name](p, rng, c, **kw)
 
     dust(p, rng, c, n=cfg.get("dust", 90))
 

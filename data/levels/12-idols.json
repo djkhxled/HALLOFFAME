@@ -60,6 +60,7 @@
       "accent": "#ff3ce0",
       "accent2": "#3cf0ff"
     },
+    "artDrift": "26s",
     "texture": "grain",
     "signature": "ignite",
     "mood": null,

@@ -1,4 +1,5 @@
 import pathlib
+import re
 import subprocess
 import unittest
 
@@ -246,3 +247,55 @@ class TestBuild(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ArtMotion(unittest.TestCase):
+    """The hero art animates as elements, not as a picture."""
+
+    def test_no_animated_element_also_carries_a_transform_attribute(self):
+        """A CSS transform property beats a presentation attribute outright.
+
+        Animating an element that already has transform="..." therefore
+        discards its positioning on the first frame — motifs are drawn with
+        transform="translate(x y)", so they snap to the canvas origin. The
+        generator wraps those in a bare <g> and animates the wrapper.
+
+        This caught a real one: sweeps() put transform="skewX(n)" on the same
+        rect as .mo-sweep, and the raking light bars were crossing the frame
+        bolt upright.
+
+        mo-twinkle is exempt because it only animates opacity.
+        """
+        pattern = re.compile(r'<[a-z]+[^>]*class="(mo-[a-z-]+)"[^>]*>')
+        clashes = []
+        for svg in sorted((ROOT / "src" / "art").glob("*.svg")):
+            text = svg.read_text(encoding="utf-8")
+            for match in re.finditer(pattern, text):
+                if match.group(1) == "mo-twinkle":
+                    continue
+                if 'transform="' in match.group(0):
+                    clashes.append(f"{svg.name}: {match.group(1)}")
+        self.assertEqual(clashes, [], "CSS transform would override these")
+
+    def test_every_motion_class_used_in_the_art_is_implemented(self):
+        css = (ROOT / "src" / "css" / "art.css").read_text(encoding="utf-8")
+        used = set()
+        for svg in sorted((ROOT / "src" / "art").glob("*.svg")):
+            used |= set(re.findall(r'class="(mo-[a-z-]+)"',
+                                   svg.read_text(encoding="utf-8")))
+        self.assertTrue(used, "no motion hooks found in any art")
+        for cls in sorted(used):
+            self.assertIn(f".art .{cls}", css, f"{cls} has no rule")
+
+    def test_reduced_motion_stops_every_motion_class(self):
+        """base.css clamps animation-duration globally, which freezes these
+        mid-animation rather than restoring them — and .mo-shoot opens at
+        opacity 0, so its stars would simply vanish."""
+        css = (ROOT / "src" / "css" / "art.css").read_text(encoding="utf-8")
+        guard = css.split("prefers-reduced-motion")[-1]
+        used = set()
+        for svg in sorted((ROOT / "src" / "art").glob("*.svg")):
+            used |= set(re.findall(r'class="(mo-[a-z-]+)"',
+                                   svg.read_text(encoding="utf-8")))
+        for cls in sorted(used):
+            self.assertIn(cls, guard, f"{cls} keeps running under reduced motion")
