@@ -2,7 +2,7 @@
   "rank": 6,
   "slug": "tidal-wave",
   "name": "Tidal Wave",
-  "tagline": "Three minutes of wave, 255,394 objects, and the longest Top 1 reign in the game's history.",
+  "tagline": "Three minutes of wave, 220,134 objects, and the longest Top 1 reign in the game's history.",
   "published": true,
   "facts": {
     "creators": [
@@ -14,13 +14,14 @@
     "ratedDate": null,
     "attempts": "~49,534",
     "levelId": "86407629",
-    "objects": "255,394",
+    "objects": "220,134",
     "length": "3m 01s",
     "gdVersion": "2.1",
     "song": {
       "name": "Shiawase (VIP)",
       "artist": "Dion Timmer",
-      "newgroundsId": null
+      "newgroundsId": null,
+      "nong": true
     },
     "peakRank": "#1 on the Demonlist (18 February 2024)",
     "note": "Published 4 December 2022. Held the #1 position for roughly 15 months — the longest any level has consecutively held Top 1 — until Amethyst passed it on 4 June 2025. Contains 200 frame perfects at 60 FPS, the most of any rated level; the previous record was 82.",

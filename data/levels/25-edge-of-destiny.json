@@ -31,10 +31,10 @@
     "verifier": "Polterghast",
     "verifiedDate": "2023-03-09",
     "ratedDate": null,
-    "attempts": null,
+    "attempts": "~100,000",
     "levelId": "89187968",
-    "objects": null,
-    "length": null,
+    "objects": "192,332",
+    "length": "2m 6s",
     "gdVersion": "2.1",
     "song": {
       "name": "Betrayal of Fear",
@@ -48,7 +48,7 @@
       "https://pointercrate.com/demonlist/permalink/485/",
       "https://gdbrowser.com/89187968"
     ],
-    "note": "Formerly titled Blade of Destiny. Hosted by CDMusic, co-hosted by Days of Thunder and verified by polterghast on 9 March 2023. A buffed and redecorated remake of Blade of Justice, based on DuaL KiKi's unnerfed version, and it kept that level's Goukisan theme. Won Best Extreme Demon at the Geometry Dash 2023 Awards."
+    "note": "Formerly titled Blade of Destiny. Hosted by CDMusic, co-hosted by Days of Thunder and verified by polterghast on 9 March 2023 after roughly 100,000 attempts, including two deaths at 95%. A buffed and redecorated remake of Blade of Justice based on DuaL KiKi's unnerfed version, and it kept that level's Goukisan theme. Won Best Extreme Demon at the Geometry Dash 2023 Awards."
   },
   "theme": {
     "tier": "themed",

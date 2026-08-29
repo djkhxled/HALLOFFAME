@@ -27,8 +27,8 @@
       "Namtar",
       "Quasar"
     ],
-    "host": "Zafkiel",
-    "verifier": "DoSh7t",
+    "host": "Herdys",
+    "verifier": "Dorami",
     "verifiedDate": null,
     "ratedDate": null,
     "attempts": null,
@@ -37,7 +37,7 @@
     "length": null,
     "gdVersion": "2.1",
     "song": {
-      "name": "Idols",
+      "name": "Idols (Sparkler remix)",
       "artist": "Virtual Riot",
       "newgroundsId": null,
       "nong": true
@@ -49,7 +49,7 @@
       "https://pointercrate.com/demonlist/permalink/168/",
       "https://gdbrowser.com/48175126"
     ],
-    "note": "A twenty-creator mega-collaboration founded by Herdys and published by Zafkiel, blending 1.9, 2.0 and 2.1 design styles in one level. Sources disagree on who verified it: Pointercrate credits DoSh7t, while the wikis name Dorami and describe DoSh7t as having fixed the level."
+    "note": "A twenty-creator mega-collaboration hosted by Herdys and Zafkiel, blending 1.9, 2.0 and 2.1 design styles in one level. The level's own in-game description settles a conflict between sources: Dorami verified it and Dosh7t bugfixed it, which is why Pointercrate credits Dosh7t. The track is Sparkler's remix of Virtual Riot's 'Idols'."
   },
   "theme": {
     "tier": "themed",
