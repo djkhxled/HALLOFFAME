@@ -290,9 +290,9 @@ def m_tornado(p, rng, c, cx=0.5, w=0.3, turns=17):
         ry = rx * 0.22
         off = math.sin(t * 7.0) * rx * 0.22
         p.append(f'<ellipse cx="{f(x + off)}" cy="{f(y)}" rx="{f(rx)}" '
-                 f'ry="{f(ry)}" fill="none" stroke="{c["a1"]}" '
-                 f'stroke-width="{f(1.0 + 2.2 * (1 - t))}" '
-                 f'opacity="{f(0.16 + 0.5 * (1 - t))}"/>')
+                 f'ry="{f(ry)}" fill="none" stroke="{c["hi"]}" '
+                 f'stroke-width="{f(1.4 + 3.4 * (1 - t))}" '
+                 f'opacity="{f(0.3 + 0.62 * (1 - t))}"/>')
     # debris caught in the draught
     for _ in range(70):
         t = rng.random()
@@ -524,7 +524,7 @@ LEVELS = {
                 ("skull", dict(cx=0.12, cy=0.78, s=0.7)),
                 ("skull", dict(cx=0.88, cy=0.78, s=0.7)), ("motes", dict(n=60))]),
     "black-blizzard": dict(
-        seed=17, label="A white funnel of debris turning against pure black",
+        seed=17, haze=0, shafts=0, dust=40, label="A white funnel of debris turning against pure black",
         c=dict(bg1="#131417", bg2="#050506", deep="#000000", a1="#c9cdd4",
                a2="#8f959e", hi="#ffffff"),
         motifs=[("tornado", dict(cx=0.52, w=0.34)), ("net", dict(n=16)),
@@ -542,7 +542,7 @@ LEVELS = {
         motifs=[("slabs", dict(n=5)), ("gears", dict(n=5, teeth=14)),
                 ("tris", dict(n=14)), ("motes", dict(n=60))]),
     "firework": dict(
-        seed=20, label="Chrome and crimson shards with small tech rings and sparks",
+        seed=20, haze=3, shafts=2, dust=55, label="Chrome and crimson shards with small tech rings and sparks",
         c=dict(bg1="#2a1016", bg2="#0c0508", deep="#050203", a1="#ff2f45",
                a2="#7ad4e8", hi="#f4f6f8"),
         motifs=[("burst", dict(cx=0.5, cy=0.44, n=18, r=0.4)),
