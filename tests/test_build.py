@@ -210,6 +210,21 @@ class TestBuild(unittest.TestCase):
         self.assertTrue((DOCS / "assets" / "fonts" / first).is_file(),
                         f"fonts.css points at a file that is not there: {first}")
 
+    def test_the_index_art_is_built_from_the_current_palettes(self):
+        """The landing hero draws one shaft per level in that level's own
+        accent. It is generated separately from the build, so a palette edit
+        would silently leave it stale; this catches the drift."""
+        import json
+        svg = (DOCS / "assets" / "art" / "index.svg").read_text(encoding="utf-8")
+        missing = []
+        for jf in sorted((ROOT / "data" / "levels").glob("*.json")):
+            rec = json.loads(jf.read_text(encoding="utf-8"))
+            accent = rec["theme"]["palette"].get("accent")
+            if accent and accent.lower() not in svg.lower():
+                missing.append(f"{rec['slug']} ({accent})")
+        self.assertEqual(missing, [],
+                         "run tools/gen_index_art.py — these palettes changed")
+
     def test_notes_are_not_published(self):
         self.assertFalse((DOCS / "superpowers").exists())
         self.assertFalse((DOCS / "specs").exists())
