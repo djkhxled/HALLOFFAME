@@ -344,8 +344,20 @@ a.countdown__hit:focus-visible {
   display: grid;
   gap: var(--space-1);
   align-content: start;
-  padding-block: var(--space-4);
-  border-bottom: var(--rule) solid var(--rule-colour);
+  /* Top rule only. Rows stack with no row gap, so a bottom rule as well
+     would double up against the next row's. */
+  padding-block: var(--space-4) var(--space-5);
+}
+
+/* An accent tick per cell, matching the rule the arc rail uses, so "The
+   record" and "The shape of it" read as the same family. */
+.statblock__row {
+  border-top: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.statblock__row:hover {
+  border-top-color: var(--accent);
 }
 
 .statblock__key {
@@ -356,10 +368,15 @@ a.countdown__hit:focus-visible {
   line-height: 1.3;
 }
 
+/* The value carries the cell, not the label: these were the same size and
+   the block read as an undifferentiated wall of mono. */
 .statblock__val {
   margin: 0;
   text-align: left;
-  line-height: 1.45;
+  font-size: var(--step-0);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--ink);
   overflow-wrap: anywhere;
   text-wrap: pretty;
 }
