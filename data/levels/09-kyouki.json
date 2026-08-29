@@ -39,6 +39,8 @@
       "accent": "#4fe0ff",
       "accent2": "#a45cff"
     },
+    "artDrift": "18s",
+    "artAmbient": [["tears", 8], ["drops", 18]],
     "texture": "grain",
     "signature": "fracture",
     "mood": "Green, blue and violet at full intensity over deep blue. Slabs carved with circuit line work, nested diamonds rimmed in a pink-to-green gradient, segmented discs, and square particles tumbling through everything.",

@@ -41,6 +41,7 @@
       "accent2": "#3cff3c"
     },
     "artDrift": "14s",
+    "artAmbient": [["tears", 14], ["rips", 3], ["flickers", 6]],
     "texture": "grain",
     "signature": "corrupt",
     "mood": null,

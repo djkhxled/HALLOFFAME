@@ -176,9 +176,9 @@
 <circle cx="1349.5" cy="387.6" r="1.7" class="mo-twinkle" style="--dur:1.9s;--delay:-0.9s"/>
 <circle cx="881.9" cy="195.8" r="1.8" opacity="0.35"/>
 </g>
-<g transform="skewX(15)"><rect class="mo-sweep" style="--dur:16.8s;--delay:-0.1s" x="1253.4" y="-120" width="224.2" height="1140" fill="url(#g-blade)" opacity="0"/></g>
-<g transform="skewX(-8)"><rect class="mo-sweep" style="--dur:13.7s;--delay:-10.9s" x="818.8" y="-120" width="104.9" height="1140" fill="url(#g-blade)" opacity="0"/></g>
-<circle cx="1501.7" cy="863.5" r="1.4" fill="#25e8e0" opacity="0.5"/>
+<circle cx="1564.7" cy="635.5" r="4.6" fill="#e8fffe" opacity="0.1" filter="url(#g-soft)"/>
+<circle cx="764.9" cy="552.8" r="4.2" fill="#e8fffe" opacity="0.2" filter="url(#g-soft)"/>
+<circle cx="66.7" cy="844.7" r="3.4" fill="#25e8e0" opacity="0.5"/>
 <circle cx="552.6" cy="211.9" r="2.6" fill="#e8fffe" opacity="0.5"/>
 <circle cx="1271.5" cy="530.7" r="5.5" fill="#e8fffe" opacity="0.2" filter="url(#g-soft)"/>
 <circle cx="544.2" cy="38.1" r="2.2" fill="#25e8e0" opacity="0.4"/>
@@ -266,8 +266,6 @@
 <circle cx="334.2" cy="726.1" r="4.5" fill="#8ff5f0" opacity="0.2" filter="url(#g-soft)"/>
 <circle cx="696.5" cy="336" r="4.2" fill="#25e8e0" opacity="0.1" filter="url(#g-soft)"/>
 <circle cx="742.7" cy="705.2" r="2.3" fill="#25e8e0" opacity="0.3"/>
-<circle cx="1481.5" cy="544.7" r="4" fill="#25e8e0" opacity="0.1" filter="url(#g-soft)"/>
-<circle cx="562.5" cy="405" r="1.6" fill="#25e8e0" opacity="0.3"/>
 <linearGradient id="g-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#010708" stop-opacity="0"/><stop offset="34%" stop-color="#010708" stop-opacity="0.62"/><stop offset="66%" stop-color="#010708" stop-opacity="0.62"/><stop offset="100%" stop-color="#010708" stop-opacity="0"/></linearGradient>
 <rect x="0" y="216" width="1600" height="468" fill="url(#g-band)"/>
 <rect width="1600" height="900" fill="url(#g-corner)"/>

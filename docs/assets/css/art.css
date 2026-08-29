@@ -128,6 +128,50 @@
   }
 }
 
+/* Rising, falling, pinging ------------------------------------------------ */
+/* These three are spliced in by hall/ambient.py rather than authored into
+   the art, so they land on the bespoke pieces and the landing page too. */
+
+.art .mo-rise {
+  animation: mo-rise var(--dur, 11s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-rise {
+  0%   { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  12%  { opacity: 0.85; }
+  78%  { opacity: 0.5; }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--dx, 40) * 1px), -820px) scale(0.2);
+  }
+}
+
+.art .mo-fall {
+  animation: mo-fall var(--dur, 13s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-fall {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  10%  { opacity: 0.75; }
+  85%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translate(calc(var(--dx, 60) * 1px), 1000px); }
+}
+
+/* r is animated rather than scale: scaling a circle scales its stroke with
+   it, and the ring is meant to thin as it widens. */
+.art .mo-ping {
+  animation: mo-ping var(--dur, 8s) ease-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes mo-ping {
+  0%   { r: 20px; opacity: 0; stroke-width: 4; }
+  8%   { opacity: 0.5; }
+  100% { r: 460px; opacity: 0; stroke-width: 0.6; }
+}
+
 /* Glitch ------------------------------------------------------------------ */
 /* Killbot's whole trick is that the screen is lying, so these snap between
    states with no interpolation at all. */
@@ -190,6 +234,31 @@
   to   { transform: scale(1.07) translate(1.1%, 0.7%); }
 }
 
+/* Narrow screens ---------------------------------------------------------- */
+/* Andromeda's hero carries 111 animated elements and Ocular Miracle 109,
+   most of them twinkling motes. Opacity on an SVG child is not composited,
+   so every one of those is main-thread work each frame — affordable on a
+   desktop, not on a phone that is also scrolling. The motes are the cheapest
+   thing to lose and the least missed: they are texture, not subject. */
+
+@media (max-width: 44rem) {
+  .art .mo-twinkle {
+    animation: none;
+    opacity: 0.55;
+  }
+}
+
+/* Someone on a phone with the tab in the background is paying for this and
+   seeing none of it. */
+@media (max-width: 44rem) and (update: slow) {
+  .art .mo-shoot,
+  .art .mo-rise,
+  .art .mo-fall,
+  .art .mo-ping {
+    display: none;
+  }
+}
+
 /* Reduced motion ---------------------------------------------------------- */
 /* base.css clamps animation-duration globally, which stops these but leaves
    each one frozen at whatever its first frame happens to be — and .mo-shoot
@@ -208,13 +277,21 @@
   .art .mo-tear,
   .art .mo-rip,
   .art .mo-sweep,
+  .art .mo-rise,
+  .art .mo-fall,
+  .art .mo-ping,
   [data-art-drift] .hero__art > svg {
     animation: none !important;
     transform: none !important;
   }
 
-  /* These exist only to move. Standing still they are debris on the frame. */
-  .art .mo-shoot {
+  /* These exist only to move, and every one of them opens at opacity 0.
+     Stopped, they are invisible debris on the frame — or worse, visible
+     debris parked mid-flight. */
+  .art .mo-shoot,
+  .art .mo-rise,
+  .art .mo-fall,
+  .art .mo-ping {
     display: none;
   }
 }

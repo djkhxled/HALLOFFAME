@@ -13,6 +13,7 @@ import shutil
 import sys
 
 from hall import render
+from hall.ambient import ambient_svg
 from hall.data import load_levels, validate_levels, voice_progress
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -102,6 +103,23 @@ def meta_pair(level: dict) -> tuple[str, str]:
     return left, right
 
 
+def splice_ambient(art_html: str, theme: dict, seed: int) -> str:
+    """Insert the ambient motion layer just inside the artwork's </svg>.
+
+    Splicing rather than overlaying, so the layer shares the art's viewBox
+    and scales with it. An overlay would need its own element, its own
+    sizing, and would sit outside .hero__art's clip.
+    """
+    effects = (theme or {}).get("artAmbient")
+    if not effects or "</svg>" not in art_html:
+        return art_html
+    layer = ambient_svg(effects, (theme or {}).get("palette") or {}, seed)
+    if not layer:
+        return art_html
+    head, _, tail = art_html.rpartition("</svg>")
+    return f"{head}{layer}</svg>{tail}"
+
+
 def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: str) -> str:
     slug = level["slug"]
     theme = level.get("theme") or {}
@@ -120,6 +138,10 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
                 f'<img class="hero__img" src="/assets/art/{name}" alt="" '
                 f'fetchpriority="high" decoding="async">'
             )
+
+    # The rank is the seed, so a level's stars stay where they are between
+    # builds and only move when the level itself does.
+    art_html = splice_ambient(art_html, theme, level["rank"])
 
     bespoke_path = ROOT / "bespoke" / f"{slug}.html"
     bespoke_html = read(bespoke_path) if bespoke_path.exists() else ""
@@ -259,8 +281,12 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
             "meta_left": site["metaLeft"],
             "meta_right": site["metaRight"],
             "lede": site["lede"],
-            "art_html": read(ROOT / "src" / "art" / "index.svg")
-            if (ROOT / "src" / "art" / "index.svg").exists() else "",
+            "art_html": splice_ambient(
+                read(ROOT / "src" / "art" / "index.svg"),
+                {"artAmbient": site.get("artAmbient"),
+                 "palette": site.get("palette") or {}},
+                0,
+            ) if (ROOT / "src" / "art" / "index.svg").exists() else "",
             "countdown_html": render.countdown_html(levels),
             "about_html": site["aboutHtml"],
         },
@@ -269,14 +295,20 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
         base_tpl,
         {
             "slug": "index",
-            "html_attrs_html": "",
+            "html_attrs_html": " data-art-drift" if site.get("artDrift") else "",
             "signature": "static",
             "texture_class": "texture texture--starfield",
             "title": site["title"],
             "description": site["description"],
             "head_extra_html": (
                 "<style>[data-level=\"index\"] .hero__title{font-size:"
-                f"{render.hero_size(site['heroLongestLine'])}}}</style>"
+                f"{render.hero_size(site['heroLongestLine'])}}}"
+                # On the root, not on the title: the animation this feeds
+                # runs on .hero__art > svg, which does not inherit from
+                # .hero__title.
+                + (f'[data-level="index"]{{--art-drift-dur:'
+                   f"{site['artDrift']};}}" if site.get("artDrift") else "")
+                + "</style>"
             ),
             "body_html": body,
             "disclaimer": site["disclaimer"],

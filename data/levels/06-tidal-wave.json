@@ -40,6 +40,8 @@
       "accent": "#2ac9ff",
       "accent2": "#74f0d6"
     },
+    "artDrift": "23s",
+    "artAmbient": [["drops", 30], ["sweeps", 2]],
     "texture": "caustics",
     "signature": "surge",
     "mood": "A black ocean lit from inside. One enormous curling wave with neon foam, caustic light rippling through the water, and the level's own glowing triangle lattice buried in the swell.",

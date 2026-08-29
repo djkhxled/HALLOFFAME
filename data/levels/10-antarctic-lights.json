@@ -42,6 +42,8 @@
       "accent": "#3ff0c8",
       "accent2": "#5cc8ff"
     },
+    "artDrift": "48s",
+    "artAmbient": [["drops", 34], ["shooting", 4]],
     "texture": "snow",
     "signature": "aurora",
     "mood": "A polar night. Green and teal curtains of light drifting over jagged ice peaks, a hard starfield above, and one twelve-pointed snow medallion burning white.",

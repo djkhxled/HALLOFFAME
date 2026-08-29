@@ -32,5 +32,8 @@
       "lede": "Geometry Dash belongs to RobTop. The levels belong to their creators. The art here is original."
     }
   ],
+  "artDrift": "40s",
+  "artAmbient": [["shooting", 9], ["pulses", 3], ["embers", 20]],
+  "palette": {"ink": "#f2f2f4", "accent": "#d8d8e0", "accent2": "#8a8a96"},
   "domain": "www.b4ylor.com"
 }

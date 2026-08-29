@@ -60,6 +60,7 @@
       "accent2": "#6b8cff"
     },
     "artDrift": "19s",
+    "artAmbient": [["sweeps", 3], ["embers", 18]],
     "texture": "caustics",
     "signature": "surge",
     "mood": null,

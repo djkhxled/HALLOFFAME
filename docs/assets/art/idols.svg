@@ -260,9 +260,9 @@
 <circle cx="449.3" cy="531.7" r="2.4" class="mo-twinkle" style="--dur:5.7s;--delay:-5.0s"/>
 <circle cx="35.3" cy="444" r="2.5" opacity="0.77"/>
 </g>
-<g transform="skewX(6)"><rect class="mo-sweep" style="--dur:16.3s;--delay:-2.6s" x="1456.2" y="-120" width="257.6" height="1140" fill="url(#g-blade)" opacity="0"/></g>
-<circle cx="1447.8" cy="495" r="5" fill="#ff3ce0" opacity="0.2" filter="url(#g-soft)"/>
-<circle cx="1574.3" cy="19.2" r="5.2" fill="#3cf0ff" opacity="0.1" filter="url(#g-soft)"/>
+<circle cx="1114.8" cy="596.7" r="5.4" fill="#ffe94d" opacity="0.1" filter="url(#g-soft)"/>
+<circle cx="552" cy="886.6" r="4.1" fill="#ff3ce0" opacity="0.1" filter="url(#g-soft)"/>
+<circle cx="700.4" cy="158.1" r="1.9" fill="#3cf0ff" opacity="0.2"/>
 <circle cx="1262.1" cy="230.8" r="5.3" fill="#3cf0ff" opacity="0.1" filter="url(#g-soft)"/>
 <circle cx="537.6" cy="843.8" r="2.4" fill="#ff3ce0" opacity="0.5"/>
 <circle cx="9" cy="575.3" r="4.2" fill="#3cf0ff" opacity="0.1" filter="url(#g-soft)"/>
@@ -350,7 +350,6 @@
 <circle cx="1145.6" cy="180.1" r="2.5" fill="#3cf0ff" opacity="0.5"/>
 <circle cx="1072.5" cy="618.1" r="3.4" fill="#ffe94d" opacity="0.4"/>
 <circle cx="563.5" cy="509.3" r="4.1" fill="#ff3ce0" opacity="0.1" filter="url(#g-soft)"/>
-<circle cx="1260.6" cy="33.6" r="4.3" fill="#ffe94d" opacity="0.1" filter="url(#g-soft)"/>
 <linearGradient id="g-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#12042c" stop-opacity="0"/><stop offset="34%" stop-color="#12042c" stop-opacity="0.62"/><stop offset="66%" stop-color="#12042c" stop-opacity="0.62"/><stop offset="100%" stop-color="#12042c" stop-opacity="0"/></linearGradient>
 <rect x="0" y="216" width="1600" height="468" fill="url(#g-band)"/>
 <rect width="1600" height="900" fill="url(#g-corner)"/>

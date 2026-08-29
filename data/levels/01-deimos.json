@@ -67,6 +67,8 @@
       "accent": "#ff3b23",
       "accent2": "#ff8b5e"
     },
+    "artDrift": "44s",
+    "artAmbient": [["shooting", 5], ["pulses", 2]],
     "texture": "grain",
     "signature": "eclipse",
     "mood": "Gothic horror, not science fiction. A blood eclipse burning behind a ruined keep, blackened cliffs, bats, bone. Heavy grain over everything and an engraved-serif title lit like carved stone.",
