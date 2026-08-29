@@ -905,3 +905,43 @@ a.countdown__hit:focus-visible {
 .site-foot__nav a:focus-visible {
   color: var(--ink);
 }
+
+/* Hero title legibility -------------------------------------------------- */
+/* Measured across the tier: sampling the band the title occupies, peak
+   backdrop luminance ran from 0.18 to 0.80 while the mean looked fine
+   everywhere. Against a light title that is 3.4:1 at best and 1.1:1 on
+   Freedom08 -- the mean is what makes this invisible in review, the peak is
+   what you actually read against.
+
+   The scrim is painted in the level's own --field, so it darkens a dark page
+   and lightens a light one, and the title always lands on something close to
+   the palette the contrast gate already validates. */
+
+.hero__title {
+  position: relative;
+}
+
+/* Adjacent sibling, not a page-level guard: the art div sits immediately
+   before the title, so this applies exactly where there is art behind the
+   text and nowhere else. The landing page and the policy pages have no
+   .hero__art, so they simply never match. */
+.hero__art + .hero__title::before {
+  content: "";
+  position: absolute;
+  inset: -0.16em -7vw;
+  z-index: -1;
+  pointer-events: none;
+  backdrop-filter: blur(12px) saturate(0.72);
+  -webkit-backdrop-filter: blur(12px) saturate(0.72);
+  background: radial-gradient(
+    ellipse 60% 88% at 50% 50%,
+    color-mix(in srgb, var(--field) 86%, transparent) 0%,
+    color-mix(in srgb, var(--field) 66%, transparent) 54%,
+    transparent 84%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 64% 94% at 50% 50%, #000 44%, transparent 86%);
+  mask-image: radial-gradient(
+    ellipse 64% 94% at 50% 50%, #000 44%, transparent 86%);
+}
+

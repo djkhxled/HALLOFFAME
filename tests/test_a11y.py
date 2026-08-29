@@ -124,6 +124,22 @@ class TestAccessibility(unittest.TestCase):
         # and the focus rule has to come after the base rule to win
         self.assertLess(css.index(".skip {"), css.index(".skip:focus"))
 
+    def test_hero_titles_over_art_get_a_scrim(self):
+        """Sampling the band each hero title occupies, peak backdrop luminance
+        ran 0.18-0.80 across the themed tier while the mean looked fine
+        everywhere. Against a light title that is 1.09:1 at worst. The scrim
+        is what makes those titles readable, so it must stay attached to every
+        title that has art behind it."""
+        css = (ROOT / "src" / "css" / "components.css").read_text(encoding="utf-8")
+        self.assertIn(".hero__art + .hero__title::before", css,
+                      "the scrim must key off the art, not a page-level guard")
+        block = css[css.index(".hero__art + .hero__title::before"):]
+        block = block[: block.index("}")]
+        self.assertIn("var(--field)", block,
+                      "scrim must use the level's own field so light-field "
+                      "levels lighten rather than darken")
+        self.assertIn("backdrop-filter", block)
+
     def test_no_third_party_requests_on_load(self):
         """Fonts and GSAP are self-hosted. A page load must not hand the
         visitor's IP to anyone the visitor did not choose to contact."""
