@@ -300,9 +300,9 @@ def player_html(facts: dict) -> str:
         return ""
     artist = song.get("artist")
     ng = song.get("newgroundsId")
-    line = esc(song["name"])
+    line = '<span class="player__name">' + esc(song["name"]) + "</span>"
     if artist:
-        line += f" &middot; {esc(artist)}"
+        line += '<span class="player__artist">' + esc(artist) + "</span>"
     link = ""
     if ng:
         link = (

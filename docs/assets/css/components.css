@@ -458,11 +458,32 @@ a.countdown__hit:focus-visible {
   margin-top: var(--space-3);
 }
 
+/* The song is a credit, not a heading: give the track the display face and
+   let the artist sit under it in the same mono as the stat block keys. */
 .player__title {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-4);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 60%, transparent);
+  padding-left: var(--space-4);
+}
+
+.player__name {
   font-family: var(--font-display);
   font-weight: 900;
   font-size: var(--step-3);
+  line-height: 1.02;
   letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.player__artist {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .player__ng {
