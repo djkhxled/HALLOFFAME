@@ -348,11 +348,17 @@ def countdown_html(levels: list[dict]) -> str:
         slug = lv["slug"]
         published = lv.get("published")
         creators = (lv.get("facts") or {}).get("creators") or lv.get("creators") or []
-        by = ", ".join(str(c) for c in creators) if creators else ""
+        # Deimos alone has 29 credited builders; the whole list in a list row
+        # is what was dragging the countdown past the viewport on a phone.
+        if len(creators) > 3:
+            by = f"{creators[0]} and {len(creators) - 1} more"
+        else:
+            by = ", ".join(str(c) for c in creators)
         classes = "countdown__entry"
         if published:
             classes += " countdown__entry--live"
         inner = (
+            f'<span class="countdown__chip" aria-hidden="true"></span>'
             f'<span class="countdown__rank" aria-hidden="true">'
             f'{lv["rank"]:02d}</span>'
             f'<span class="countdown__name">{esc(lv["name"])}</span>'
