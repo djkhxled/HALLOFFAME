@@ -39,10 +39,10 @@
     "verifier": "Pukklez",
     "verifiedDate": "2023-06-04",
     "ratedDate": null,
-    "attempts": null,
+    "attempts": "~165,000",
     "levelId": "62556400",
-    "objects": null,
-    "length": null,
+    "objects": "140,297",
+    "length": "2m 5s",
     "gdVersion": "2.1",
     "song": {
       "name": null,
@@ -56,7 +56,7 @@
       "https://pointercrate.com/demonlist/permalink/511/",
       "https://gdbrowser.com/62556400"
     ],
-    "note": "Built for two players. Kapinapi and ViralDl verified it as a pair on 4 July 2020; Pukklez then verified it solo on 4 June 2023, one hand on each icon, which is the completion the community actually talks about."
+    "note": "Flagged two-player in the game data itself, and described by its creators as 'Duelo Maestro but better'. Kapinapi and ViralDl verified it as a pair on 4 July 2020; Pukklez then verified it solo on 4 June 2023 after roughly 165,000 attempts, one hand on each icon, which is the completion the community actually talks about."
   },
   "theme": {
     "tier": "themed",

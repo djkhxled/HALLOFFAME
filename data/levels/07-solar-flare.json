@@ -15,8 +15,8 @@
     "ratedDate": null,
     "attempts": null,
     "levelId": "90390075",
-    "objects": null,
-    "length": null,
+    "objects": "68,272",
+    "length": "1m 5s",
     "gdVersion": "2.1",
     "song": {
       "name": "Solar Wind",
@@ -24,7 +24,7 @@
       "newgroundsId": "493898"
     },
     "peakRank": null,
-    "note": "A heavily buffed remake of the 1.9 Medium Demon Solar Circles. Text reading 'GLHF' flashes at 31%, during the half-speed ball section. The smiling sun at 52-54% is named Janet. Contains 89 frame perfects at 60 FPS. The fourth-hardest Nine Circles level, behind Sakupen Circles, The Hallucination and Subsuming Vortex.",
+    "note": "A heavily buffed remake of Solar Circles, the 1.9 Medium Demon by D4rkGryf. Text reading 'GLHF' flashes at 31%, during the half-speed ball section. The smiling sun at 52-54% is named Janet — the level's own description asks you to be nice to her. Contains 89 frame perfects at 60 FPS. The fourth-hardest Nine Circles level, behind Sakupen Circles, The Hallucination and Subsuming Vortex.",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Solar_Flare",
       "https://geometry-dash-fan.fandom.com/wiki/Solar_Flare",

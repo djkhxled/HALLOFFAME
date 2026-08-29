@@ -15,13 +15,13 @@
     "verifiedDate": null,
     "ratedDate": "2020-06-30",
     "attempts": null,
-    "levelId": "62419473",
-    "objects": null,
-    "length": null,
+    "levelId": "62152040",
+    "objects": "548,393",
+    "length": "5m 36s",
     "gdVersion": "2.1",
     "song": {
-      "name": "Exit This Earths Atmosphere",
-      "artist": "Cametek",
+      "name": "Exit This Earth's Atmosphere",
+      "artist": "Camellia",
       "newgroundsId": "938115"
     },
     "peakRank": null,
@@ -29,7 +29,7 @@
       "https://geometry-dash-fan.fandom.com/wiki/Ocular_Miracle",
       "https://geometrydash.wiki.gg/wiki/Ocular_Miracle"
     ],
-    "note": "Hosted by GaidenHertuny, ZeroSR and Davphla. The finished level was large enough to crash the game on most devices, so the team split it into three rated extremes — Reverie, Faith and Diligence — uploaded on 27 June 2020 to GaidenHertuny's, ZeroSR's and Davphla's accounts respectively and all rated on 30 June 2020. The level ID here is Diligence, the closing part."
+    "note": "Hosted by GaidenHertuny, ZeroSR and Davphla. At 548,393 objects and five and a half minutes the finished level crashed the game on most devices, so the team split it into three rated extremes: Reverie (62419638, 1m 49s, 205,676 objects), Faith (62419475, 2m 8s, 276,201) and Diligence (62419473, 1m 52s, 350,182). All three were uploaded on 27 June 2020 and rated on 30 June 2020."
   },
   "theme": {
     "tier": "themed",
