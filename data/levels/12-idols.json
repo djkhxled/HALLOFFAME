@@ -79,7 +79,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": null,
+      "title": null,
+      "channel": null
+    },
     "art": "src/art/idols.svg",
     "images": []
   }

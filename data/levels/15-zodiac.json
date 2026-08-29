@@ -80,7 +80,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "HCQK_y8JutU",
+      "title": "Zodiac | Full Showcase",
+      "channel": "xander"
+    },
     "art": "src/art/zodiac.svg",
     "images": []
   }

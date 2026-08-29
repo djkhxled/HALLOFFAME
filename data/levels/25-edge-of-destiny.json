@@ -78,7 +78,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "rUphe3H59yU",
+      "title": "Edge of Destiny VERIFIED! - Extreme Demon By CDmusic & More",
+      "channel": "polterghast"
+    },
     "art": "src/art/edge-of-destiny.svg",
     "images": []
   }

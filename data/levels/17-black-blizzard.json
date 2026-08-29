@@ -59,7 +59,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "lsT5TjQ1Ubc",
+      "title": "Geometry Dash - Black Blizzard Verified (Live)",
+      "channel": "KrmaL"
+    },
     "art": "src/art/black-blizzard.svg",
     "images": []
   }

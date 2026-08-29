@@ -59,7 +59,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "mk3TDemdkC0",
+      "title": "[VERIFIED] Andromeda by Insxne97 // TOP 5",
+      "channel": "Taiago"
+    },
     "art": "src/art/andromeda.svg",
     "images": []
   }

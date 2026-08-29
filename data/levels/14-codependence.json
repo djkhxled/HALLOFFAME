@@ -86,7 +86,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "IKGk41hSnDo",
+      "title": "Codependence Solo 100%",
+      "channel": "Pukklez"
+    },
     "art": "src/art/codependence.svg",
     "images": []
   }
