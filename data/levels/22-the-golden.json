@@ -18,7 +18,7 @@
     "host": "BoBoBoBoBoBoBo",
     "verifier": "nSwish",
     "verifiedDate": "2020-04-17",
-    "ratedDate": null,
+    "ratedDate": "2020-05-31",
     "attempts": null,
     "levelId": "60978746",
     "objects": "117,647",
@@ -29,14 +29,14 @@
       "artist": "Waterflame",
       "newgroundsId": "638150"
     },
-    "peakRank": null,
+    "peakRank": "#1 on the Demonlist",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/The_Golden",
       "https://geometry-dash-fan.fandom.com/wiki/The_Golden",
       "https://pointercrate.com/demonlist/permalink/274/",
       "https://gdbrowser.com/60978746"
     ],
-    "note": "Hosted by BoBoBoBoBoBoBo (Bo) and co-hosted by El3cTr0, published by Bo and verified by nSwish on 17 April 2020. A spiritual successor to El Dorado."
+    "note": "Hosted by BoBoBoBoBoBoBo (Bo) and co-hosted by El3cTr0, published by Bo and verified by nSwish on 17 April 2020. A spiritual successor to El Dorado. It took #1 from Tartarus on 31 May 2020 and held it for 105 days, until the two were swapped back on 12 September 2020."
   },
   "theme": {
     "tier": "themed",
