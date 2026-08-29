@@ -65,7 +65,12 @@
     "googleFonts": [
       "Saira:wght@300;700"
     ],
-    "displayFont": "\"Saira\", sans-serif"
+    "displayFont": "\"Saira\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Best Extreme Demon",
+      "big": "2023",
+      "sub": "A remake of Blade of Justice that kept its Goukisan theme, and won the year it landed."
+    }
   },
   "voice": {
     "hook": "A triumphant, cinematic grand finale.",

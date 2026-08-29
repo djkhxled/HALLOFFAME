@@ -122,6 +122,29 @@ def sources_html(facts: dict) -> str:
     )
 
 
+def spotlight_html(theme: dict) -> str:
+    """A full-bleed statement panel for the themed tier.
+
+    The bespoke levels each get a pinned set-piece; the themed ones had
+    nothing between the stat block and the commentary, and the signature they
+    declare in their theme drives no markup at all. This gives them one
+    moment at full size, built from a fact the level's own record already
+    states rather than from decoration.
+    """
+    spot = (theme or {}).get("spotlight")
+    if not spot:
+        return ""
+    sub = spot.get("sub")
+    return (
+        '<section class="spotlight" data-motion aria-labelledby="spot-h">'
+        '<div class="spotlight__inner page">'
+        f'<p class="eyebrow" id="spot-h">{esc(spot.get("eyebrow", ""))}</p>'
+        f'<p class="spotlight__big">{esc(spot["big"])}</p>'
+        + (f'<p class="spotlight__sub measure">{esc(sub)}</p>' if sub else "")
+        + "</div></section>"
+    )
+
+
 def roster_html(facts: dict) -> str:
     """The full credit list, for collabs too large to sit in the stat block."""
     creators = (facts or {}).get("creators") or []

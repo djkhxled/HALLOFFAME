@@ -141,6 +141,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
             "meta_left": left,
             "meta_right": right,
             "bespoke_html": bespoke_html,
+            "spotlight_html": render.spotlight_html(theme),
             "statblock_html": render.statblock_html(level.get("facts")),
             "roster_html": render.roster_html(level.get("facts")),
             "arc_html": render.arc_html(level.get("voice")),

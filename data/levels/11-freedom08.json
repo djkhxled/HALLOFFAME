@@ -72,7 +72,12 @@
     "googleFonts": [
       "Poppins:wght@300;600"
     ],
-    "displayFont": "\"Poppins\", sans-serif"
+    "displayFont": "\"Poppins\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Verified after",
+      "big": "20,423 attempts",
+      "sub": "Golden took it after Pennutoh built his Spicy Layout #8 out into a twenty-six creator collaboration."
+    }
   },
   "voice": {
     "hook": "An absolute test of human endurance.",

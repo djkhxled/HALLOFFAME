@@ -73,7 +73,12 @@
     "googleFonts": [
       "Chakra+Petch:wght@500;700"
     ],
-    "displayFont": "\"Chakra Petch\", sans-serif"
+    "displayFont": "\"Chakra Petch\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Built for two players",
+      "big": "Beaten by one",
+      "sub": "Two icons, two hands, unsymmetrical gameplay. Solo completions are the ones the community talks about."
+    }
   },
   "voice": {
     "hook": "A level designed for two people, beaten by one.",

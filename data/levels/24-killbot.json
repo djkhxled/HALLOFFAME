@@ -46,7 +46,12 @@
     "googleFonts": [
       "Bungee"
     ],
-    "displayFont": "\"Bungee\", sans-serif"
+    "displayFont": "\"Bungee\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Before Nhelv took the title",
+      "big": "Hardest memory level",
+      "sub": "Lithifusion built it alone. Reading the real path out of the noise is the whole difficulty."
+    }
   },
   "voice": {
     "hook": "A computer virus turned into an Extreme Demon.",

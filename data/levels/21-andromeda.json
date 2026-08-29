@@ -46,7 +46,12 @@
     "googleFonts": [
       "Saira:wght@300;600"
     ],
-    "displayFont": "\"Saira\", sans-serif"
+    "displayFont": "\"Saira\", sans-serif",
+    "spotlight": {
+      "eyebrow": "One creator",
+      "big": "Solo",
+      "sub": "Insxne built it alone; Taiago verified it."
+    }
   },
   "voice": {
     "hook": "The terrifying, empty scale of deep space.",

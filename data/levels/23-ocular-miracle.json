@@ -46,7 +46,12 @@
     "googleFonts": [
       "Saira:wght@200;500"
     ],
-    "displayFont": "\"Saira\", sans-serif"
+    "displayFont": "\"Saira\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Too large to ship as one level",
+      "big": "Split into 3",
+      "sub": "Reverie, Faith and Diligence — uploaded across three accounts on the same day so the game could load it at all."
+    }
   },
   "voice": {
     "hook": "The magnum opus of the Geometry Dash editor.",

@@ -66,7 +66,12 @@
     "googleFonts": [
       "Bungee"
     ],
-    "displayFont": "\"Bungee\", sans-serif"
+    "displayFont": "\"Bungee\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Three eras of design",
+      "big": "20 creators",
+      "sub": "1.9, 2.0 and 2.1 styles in one level, and it still reads as a single continuous piece."
+    }
   },
   "voice": {
     "hook": "Pure, unadulterated joy in megacollab form.",

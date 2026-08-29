@@ -73,7 +73,12 @@
     "googleFonts": [
       "Kaushan+Script"
     ],
-    "displayFont": "\"Kaushan Script\", cursive"
+    "displayFont": "\"Kaushan Script\", cursive",
+    "spotlight": {
+      "eyebrow": "A fortress built by",
+      "big": "28 creators",
+      "sub": "Balanced deliberately across every game mode rather than leaning on the wave or the ship."
+    }
   },
   "voice": {
     "hook": "A colossal fortress you have to dismantle.",

@@ -46,7 +46,12 @@
     "googleFonts": [
       "Saira:wght@300;600"
     ],
-    "displayFont": "\"Saira\", sans-serif"
+    "displayFont": "\"Saira\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Made alone, in",
+      "big": "29,089 objects",
+      "sub": "Created, verified and published solo by KrmaL over about four months, with no colour in it at all."
+    }
   },
   "voice": {
     "hook": "A psychological thriller of a level.",
