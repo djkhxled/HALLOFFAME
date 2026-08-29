@@ -275,6 +275,197 @@ def m_motes(p, rng, c, n=110):
     p.append("</g>")
 
 
+
+# --------------------------------------------------- motifs from the writing
+# Each of these exists because Baylor's commentary named something specific
+# that the generic motif library could not draw.
+
+def m_tornado(p, rng, c, cx=0.5, w=0.3, turns=17):
+    """Black Blizzard: a minimalist funnel, drawn only as its edges."""
+    x = cx * W
+    for i in range(turns):
+        t = i / (turns - 1)
+        y = H * (0.06 + 0.92 * t)
+        rx = w * W * (0.16 + 0.84 * (1 - t) ** 1.7)
+        ry = rx * 0.22
+        off = math.sin(t * 7.0) * rx * 0.22
+        p.append(f'<ellipse cx="{f(x + off)}" cy="{f(y)}" rx="{f(rx)}" '
+                 f'ry="{f(ry)}" fill="none" stroke="{c["a1"]}" '
+                 f'stroke-width="{f(1.0 + 2.2 * (1 - t))}" '
+                 f'opacity="{f(0.16 + 0.5 * (1 - t))}"/>')
+    # debris caught in the draught
+    for _ in range(70):
+        t = rng.random()
+        y = H * (0.06 + 0.92 * t)
+        rx = w * W * (0.16 + 0.84 * (1 - t) ** 1.7)
+        x2 = x + math.sin(t * 7.0) * rx * 0.22 + rng.uniform(-rx, rx)
+        p.append(f'<rect x="{f(x2)}" y="{f(y + rng.uniform(-14, 14))}" '
+                 f'width="{f(rng.uniform(2, 7))}" height="{f(rng.uniform(1, 3))}" '
+                 f'fill="{c["hi"]}" opacity="{f(rng.uniform(0.15, 0.7))}" '
+                 f'transform="rotate({rng.uniform(-30, 30):.0f} {f(x2)} {f(y)})"/>')
+
+
+def m_glitch(p, rng, c, rows=26):
+    """Killbot: torn scanline displacement, warning bars, false pathways."""
+    for _ in range(rows):
+        y = rng.uniform(0, H)
+        h = rng.uniform(3, 26)
+        x = rng.uniform(-100, W * 0.5)
+        w = rng.uniform(W * 0.25, W * 1.1)
+        col = rng.choice([c["a1"], c["a2"], c["hi"]])
+        p.append(f'<rect x="{f(x)}" y="{f(y)}" width="{f(w)}" height="{f(h)}" '
+                 f'fill="{col}" opacity="{f(rng.uniform(0.06, 0.3))}"/>')
+    for _ in range(7):  # hazard chevrons
+        x, y = rng.uniform(0, W), rng.uniform(0, H)
+        s = rng.uniform(26, 70)
+        p.append(f'<path d="M{f(x)} {f(y)} l{f(s)} {f(s * 0.6)} l{f(-s)} '
+                 f'{f(s * 0.6)}" fill="none" stroke="{c["hi"]}" '
+                 f'stroke-width="4" opacity="{f(rng.uniform(0.25, 0.6))}"/>')
+
+
+def m_eye(p, rng, c, cx=0.5, cy=0.44, r=0.2):
+    """Ocular Miracle: an iris, ringed and lashed with light."""
+    x, y, rr = cx * W, cy * H, r * W
+    p.append(f'<circle cx="{f(x)}" cy="{f(y)}" r="{f(rr * 2.4)}" fill="url(#g-halo)"/>')
+    p.append(f'<ellipse cx="{f(x)}" cy="{f(y)}" rx="{f(rr * 1.9)}" ry="{f(rr)}" '
+             f'fill="none" stroke="{c["a1"]}" stroke-width="5" opacity="0.75"/>')
+    p.append(f'<circle cx="{f(x)}" cy="{f(y)}" r="{f(rr * 0.72)}" fill="url(#g-orb)"/>')
+    for i in range(56):  # iris fibres
+        ang = i / 56 * math.tau
+        r0, r1 = rr * 0.3, rr * 0.72 * rng.uniform(0.8, 1.0)
+        p.append(f'<line x1="{f(x + math.cos(ang) * r0)}" '
+                 f'y1="{f(y + math.sin(ang) * r0)}" '
+                 f'x2="{f(x + math.cos(ang) * r1)}" '
+                 f'y2="{f(y + math.sin(ang) * r1)}" stroke="{c["hi"]}" '
+                 f'stroke-width="1.3" opacity="{f(rng.uniform(0.15, 0.6))}"/>')
+    p.append(f'<circle cx="{f(x)}" cy="{f(y)}" r="{f(rr * 0.26)}" fill="{c["deep"]}"/>')
+
+
+def m_vines(p, rng, c, n=14):
+    """The Golden: overgrowth creeping in from the edges."""
+    for _ in range(n):
+        side = rng.choice([0, 1])
+        x0 = rng.uniform(-60, 60) if side else rng.uniform(W - 60, W + 60)
+        y0 = rng.uniform(-40, H + 40)
+        d = [f"M{f(x0)} {f(y0)}"]
+        x, y = x0, y0
+        dirx = 1 if side else -1
+        for _ in range(rng.randint(3, 6)):
+            x += dirx * rng.uniform(70, 200)
+            y += rng.uniform(-140, 140)
+            d.append(f"q {f(dirx * rng.uniform(40, 110))} {f(rng.uniform(-90, 90))} "
+                     f"{f(dirx * rng.uniform(80, 170))} {f(rng.uniform(-60, 60))}")
+        p.append(f'<path d="{" ".join(d)}" fill="none" stroke="{c["a1"]}" '
+                 f'stroke-width="{f(rng.uniform(1.5, 4.5))}" '
+                 f'opacity="{f(rng.uniform(0.2, 0.6))}"/>')
+        for _ in range(rng.randint(3, 8)):  # leaves
+            lx, ly = x0 + dirx * rng.uniform(40, 420), y0 + rng.uniform(-160, 160)
+            p.append(f'<ellipse cx="{f(lx)}" cy="{f(ly)}" rx="{f(rng.uniform(5, 15))}" '
+                     f'ry="{f(rng.uniform(2, 6))}" fill="{c["a2"]}" '
+                     f'opacity="{f(rng.uniform(0.2, 0.55))}" '
+                     f'transform="rotate({rng.uniform(0, 180):.0f} {f(lx)} {f(ly)})"/>')
+
+
+def m_duals(p, rng, c, n=9):
+    """Codependence: paired icons, always two, never quite symmetrical."""
+    for i in range(n):
+        t = (i + 0.5) / n
+        x = t * W
+        yt = H * (0.3 + 0.12 * math.sin(t * 6))
+        yb = H * (0.7 - 0.12 * math.sin(t * 6 + 1.3))
+        s = rng.uniform(14, 26)
+        for y, col in ((yt, c["a1"]), (yb, c["a2"])):
+            p.append(f'<rect x="{f(x - s / 2)}" y="{f(y - s / 2)}" width="{f(s)}" '
+                     f'height="{f(s)}" fill="none" stroke="{col}" stroke-width="3" '
+                     f'opacity="0.85" transform="rotate(45 {f(x)} {f(y)})"/>')
+        p.append(f'<line x1="{f(x)}" y1="{f(yt)}" x2="{f(x)}" y2="{f(yb)}" '
+                 f'stroke="{c["hi"]}" stroke-width="1.2" opacity="0.2" '
+                 'stroke-dasharray="4 7"/>')
+
+
+def m_speedlines(p, rng, c, n=60):
+    """Subsonic: everything smeared by velocity."""
+    for _ in range(n):
+        y = rng.uniform(0, H)
+        w = rng.uniform(90, 620)
+        x = rng.uniform(-200, W)
+        p.append(f'<rect x="{f(x)}" y="{f(y)}" width="{f(w)}" '
+                 f'height="{f(rng.uniform(1, 4))}" '
+                 f'fill="{rng.choice([c["a1"], c["a2"], c["hi"]])}" '
+                 f'opacity="{f(rng.uniform(0.1, 0.55))}"/>')
+
+
+def m_nebula(p, rng, c, n=9):
+    """Andromeda: gas, not geometry."""
+    for _ in range(n):
+        cx, cy = rng.uniform(0, W), rng.uniform(0, H * 0.85)
+        p.append(f'<ellipse cx="{f(cx)}" cy="{f(cy)}" rx="{f(rng.uniform(120, 380))}" '
+                 f'ry="{f(rng.uniform(60, 190))}" '
+                 f'fill="{rng.choice([c["a1"], c["a2"]])}" '
+                 f'opacity="{f(rng.uniform(0.05, 0.16))}" filter="url(#g-soft)" '
+                 f'transform="rotate({rng.uniform(-40, 40):.0f} {f(cx)} {f(cy)})"/>')
+
+
+def m_blade(p, rng, c, n=5):
+    """Edge of Destiny: long light blades sweeping the frame."""
+    for i in range(n):
+        x = W * (0.1 + 0.2 * i) + rng.uniform(-60, 60)
+        ln = rng.uniform(H * 0.5, H * 1.15)
+        wd = rng.uniform(10, 34)
+        ang = rng.uniform(-26, 26)
+        p.append(f'<g transform="rotate({ang:.1f} {f(x)} {f(H/2)})">'
+                 f'<rect x="{f(x - wd/2)}" y="{f(H/2 - ln/2)}" width="{f(wd)}" '
+                 f'height="{f(ln)}" fill="url(#g-blade)" opacity="0.75"/>'
+                 f'<rect x="{f(x - 1)}" y="{f(H/2 - ln/2)}" width="2" '
+                 f'height="{f(ln)}" fill="{c["hi"]}" opacity="0.6"/></g>')
+
+
+
+# ------------------------------------------------------------- atmosphere
+# Applied to every level in this tier. The motifs were reading as flat
+# shapes pasted on a gradient; these three passes give the frame depth
+# behind, light through, and grit in front of the subject.
+
+def haze(p, rng, c, n=8):
+    """Soft coloured fog behind the subject, so the background has volume."""
+    p.append('<g filter="url(#g-soft)">')
+    for _ in range(n):
+        cx, cy = rng.uniform(-100, W + 100), rng.uniform(0, H)
+        p.append(f'<ellipse cx="{f(cx)}" cy="{f(cy)}" '
+                 f'rx="{f(rng.uniform(160, 460))}" ry="{f(rng.uniform(80, 240))}" '
+                 f'fill="{rng.choice([c["a1"], c["a2"], c["bg1"]])}" '
+                 f'opacity="{f(rng.uniform(0.05, 0.15))}"/>')
+    p.append("</g>")
+
+
+def shafts(p, rng, c, n=5):
+    """Volumetric light falling through the frame."""
+    p.append('<g filter="url(#g-soft)" opacity="0.5">')
+    for _ in range(n):
+        x = rng.uniform(0, W)
+        top = rng.uniform(-120, 60)
+        wtop = rng.uniform(30, 110)
+        wbot = wtop * rng.uniform(1.6, 3.4)
+        drift = rng.uniform(-160, 160)
+        p.append(f'<path d="M{f(x - wtop/2)} {f(top)} L{f(x + wtop/2)} {f(top)} '
+                 f'L{f(x + drift + wbot/2)} {f(H + 60)} '
+                 f'L{f(x + drift - wbot/2)} {f(H + 60)} Z" '
+                 f'fill="{c["hi"]}" opacity="{f(rng.uniform(0.04, 0.11))}"/>')
+    p.append("</g>")
+
+
+def dust(p, rng, c, n=90):
+    """Foreground particles, larger and softer than the mid-ground motes so
+    the frame reads as having a near plane."""
+    for _ in range(n):
+        r = rng.uniform(1.2, 5.5)
+        near = r > 3.6
+        p.append(f'<circle cx="{f(rng.uniform(0, W))}" cy="{f(rng.uniform(0, H))}" '
+                 f'r="{f(r)}" fill="{rng.choice([c["hi"], c["a1"], c["a2"]])}" '
+                 f'opacity="{f(rng.uniform(0.06, 0.2) if near else rng.uniform(0.2, 0.6))}"'
+                 f'{" filter=\"url(#g-soft)\"" if near else ""}/>')
+
+
 MOTIFS = {
     "orb": m_orb, "burst": m_burst, "wheel": m_wheel, "gears": m_gears,
     "slabs": m_slabs, "tris": m_tris, "net": m_net, "chains": m_chains,
@@ -282,6 +473,10 @@ MOTIFS = {
     "columns": m_columns, "swirl": m_swirl, "skull": m_skull,
     "sigils": m_sigils, "sparks": m_sparks, "confetti": m_confetti,
     "motes": m_motes,
+    # drawn for what the commentary actually describes
+    "tornado": m_tornado, "glitch": m_glitch, "eye": m_eye, "vines": m_vines,
+    "duals": m_duals, "speedlines": m_speedlines, "nebula": m_nebula,
+    "blade": m_blade,
 }
 
 
@@ -302,17 +497,18 @@ LEVELS = {
         motifs=[("burst", dict(cx=0.55, cy=0.36, n=26)), ("slabs", dict(n=4)),
                 ("gears", dict(n=3)), ("tris", dict(n=18)), ("motes", {})]),
     "subsonic": dict(
-        seed=13, label="Magenta and cyan neon over wireframe boxes and gears",
+        seed=13, label="Magenta and cyan light smeared into speed lines over wireframe boxes",
         c=dict(bg1="#1b0a3e", bg2="#0a0420", deep="#050213", a1="#ff4de0",
                a2="#4de0ff", hi="#f0e6ff"),
-        motifs=[("slabs", dict(n=6)), ("gears", dict(n=4)), ("tris", dict(n=14)),
+        motifs=[("speedlines", dict(n=70)), ("slabs", dict(n=5)),
+                ("gears", dict(n=3)), ("tris", dict(n=10)),
                 ("motes", {})]),
     "codependence": dict(
-        seed=14, label="A frame split between red above and cyan below, with gears and triangles",
+        seed=14, label="A frame split red above and cyan below, with paired icons strung between",
         c=dict(bg1="#4a0510", bg2="#02181f", deep="#050b12", a1="#ff2a3c",
                a2="#2ae0ff", hi="#ffffff"), split=True,
-        motifs=[("gears", dict(n=5)), ("tris", dict(n=20)), ("slabs", dict(n=3)),
-                ("motes", {})]),
+        motifs=[("duals", dict(n=9)), ("gears", dict(n=4)),
+                ("tris", dict(n=14)), ("motes", {})]),
     "zodiac": dict(
         seed=15, label="A neon astrological wheel over a deep violet starfield",
         c=dict(bg1="#241243", bg2="#0d0620", deep="#070313", a1="#6b7cff",
@@ -328,10 +524,11 @@ LEVELS = {
                 ("skull", dict(cx=0.12, cy=0.78, s=0.7)),
                 ("skull", dict(cx=0.88, cy=0.78, s=0.7)), ("motes", dict(n=60))]),
     "black-blizzard": dict(
-        seed=17, label="A thin white polygon net scattered across pure black",
+        seed=17, label="A white funnel of debris turning against pure black",
         c=dict(bg1="#131417", bg2="#050506", deep="#000000", a1="#c9cdd4",
                a2="#8f959e", hi="#ffffff"),
-        motifs=[("net", dict(n=30)), ("tris", dict(n=10)), ("motes", dict(n=60))]),
+        motifs=[("tornado", dict(cx=0.52, w=0.34)), ("net", dict(n=16)),
+                ("motes", dict(n=70))]),
     "maniacal-chains": dict(
         seed=18, label="A cyan beam through mirrored zigzags and hanging chains",
         c=dict(bg1="#04181c", bg2="#010708", deep="#000203", a1="#25e8e0",
@@ -352,39 +549,35 @@ LEVELS = {
                 ("gears", dict(n=4)), ("tris", dict(n=16)), ("sparks", dict(n=6)),
                 ("motes", {})]),
     "andromeda": dict(
-        seed=21, label="Violet maze tubing around a white core burst in deep space",
+        seed=21, label="Violet and cyan gas clouds around a lit core in deep space",
         c=dict(bg1="#1a0b46", bg2="#080326", deep="#040115", a1="#7c5cff",
                a2="#3ccfff", hi="#eae6ff"),
-        motifs=[("slabs", dict(n=5)), ("orb", dict(cx=0.52, cy=0.44, r=0.09)),
-                ("burst", dict(cx=0.52, cy=0.44, n=16, r=0.28)),
-                ("gears", dict(n=4)), ("motes", dict(n=120))]),
+        motifs=[("nebula", dict(n=10)), ("orb", dict(cx=0.66, cy=0.4, r=0.15)),
+                ("swirl", dict(n=4)), ("motes", dict(n=170))]),
     "the-golden": dict(
-        seed=22, label="Gold-green light over dark ridges with sharp star sparkles",
+        seed=22, label="Acid-green overgrowth creeping over dark gold ridges",
         c=dict(bg1="#123312", bg2="#050f06", deep="#020703", a1="#b6ff2a",
                a2="#ffe14d", hi="#f4ffe0"),
-        motifs=[("peaks", dict(y=0.62, amp=210, n=7)),
-                ("peaks", dict(y=0.82, amp=150, n=9)),
-                ("sparks", dict(n=6)), ("tris", dict(n=12)), ("motes", dict(n=70))]),
+        motifs=[("vines", dict(n=16)), ("peaks", dict(y=0.8, amp=140)),
+                ("sparks", dict(n=6)), ("motes", dict(n=70))]),
     "ocular-miracle": dict(
-        seed=23, label="A banded planet and red nebula arcs across a starfield",
+        seed=23, label="A vast lit iris ringed with light against a red starfield",
         c=dict(bg1="#0d1038", bg2="#05061a", deep="#02030c", a1="#ff2f4a",
                a2="#4a8bff", hi="#eef2ff"),
-        motifs=[("swirl", dict(cx=0.56, cy=0.44, n=6)),
-                ("orb", dict(cx=0.44, cy=0.46, r=0.22)),
-                ("motes", dict(n=200))]),
+        motifs=[("eye", dict(cx=0.5, cy=0.44, r=0.2)),
+                ("swirl", dict(n=5)), ("motes", dict(n=180))]),
     "killbot": dict(
-        seed=24, label="Clashing red and green with halftone blocks and hard shards",
+        seed=24, label="Torn scanlines and hazard chevrons breaking up a red and green frame",
         c=dict(bg1="#2a0d0d", bg2="#0a1a08", deep="#050b04", a1="#ff2020",
                a2="#3cff3c", hi="#ffe8e8"),
-        motifs=[("tris", dict(n=24, size=(24, 80))), ("slabs", dict(n=4)),
-                ("confetti", dict(n=90)), ("motes", dict(n=60))]),
+        motifs=[("glitch", dict(rows=30)), ("skull", dict(cx=0.5, cy=0.46, s=1.1)),
+                ("tris", dict(n=14)), ("motes", dict(n=60))]),
     "edge-of-destiny": dict(
-        seed=25, label="A blazing cyan core beside layered blue platforms",
+        seed=25, label="Blades of cyan light sweeping past a blazing core",
         c=dict(bg1="#0a1f52", bg2="#040a28", deep="#020616", a1="#2ad4ff",
                a2="#6b8cff", hi="#eafaff"),
-        motifs=[("orb", dict(cx=0.78, cy=0.46, r=0.26)),
-                ("slabs", dict(n=5)), ("tris", dict(n=14)),
-                ("confetti", dict(n=40)), ("motes", dict(n=90))]),
+        motifs=[("blade", dict(n=5)), ("orb", dict(cx=0.5, cy=0.42, r=0.16)),
+                ("slabs", dict(n=4)), ("motes", dict(n=110))]),
 }
 
 
@@ -439,6 +632,10 @@ def build(slug, cfg):
       '<feMerge><feMergeNode in="g"/><feMergeNode in="g"/>'
       '<feMergeNode in="SourceGraphic"/></feMerge></filter>')
     a('<filter id="g-soft"><feGaussianBlur stdDeviation="20"/></filter>')
+    a(f'<radialGradient id="g-corner" cx="50%" cy="46%" r="72%">'
+      f'<stop offset="55%" stop-color="{c["deep"]}" stop-opacity="0"/>'
+      f'<stop offset="100%" stop-color="{c["deep"]}" stop-opacity="0.72"/>'
+      "</radialGradient>")
     a('<filter id="g-grain">'
       '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4"/>'
       '<feColorMatrix type="saturate" values="0"/></filter>')
@@ -454,9 +651,15 @@ def build(slug, cfg):
         a(f'<rect y="{f(H*0.5)}" width="{W}" height="{f(H*0.04)}" '
           f'fill="{c["hi"]}" opacity="0.18" filter="url(#g-soft)"/>')
 
+    haze(p, rng, c, n=cfg.get("haze", 8))
+    shafts(p, rng, c, n=cfg.get("shafts", 5))
+
     for name, kw in cfg["motifs"]:
         MOTIFS[name](p, rng, c, **kw)
 
+    dust(p, rng, c, n=cfg.get("dust", 90))
+
+    a(f'<rect width="{W}" height="{H}" fill="url(#g-corner)"/>')
     a(f'<rect width="{W}" height="{H}" fill="url(#g-vig)"/>')
     a(f'<rect width="{W}" height="{H}" filter="url(#g-grain)" '
       f'opacity="{0.08 if cfg.get("light") else 0.12}"/>')
