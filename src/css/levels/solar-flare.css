@@ -70,7 +70,9 @@
   left: 50%;
   top: 46%;
   translate: -50% -50%;
-  width: min(130vmin, 80rem);
+  /* vmin tracks the short edge, so 130vmin overruns the width on a
+     tall phone. Cap against the viewport width too. */
+  width: min(130vmin, 100vw, 80rem);
   aspect-ratio: 1;
   border-radius: 50%;
   background: repeating-conic-gradient(

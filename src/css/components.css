@@ -477,7 +477,7 @@ a.countdown__hit:focus-visible {
 
 .ranknav {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: var(--space-5);
   padding-block: var(--space-7);
@@ -488,6 +488,26 @@ a.countdown__hit:focus-visible {
   display: grid;
   gap: var(--space-1);
   text-decoration: none;
+  /* Grid tracks default to min-width:auto, so a long neighbour name kept the
+     1fr column from shrinking and pushed the row past the viewport. */
+  min-width: 0;
+}
+
+.ranknav__name {
+  overflow-wrap: anywhere;
+}
+
+/* On a phone the three-across layout has nowhere left to go: stack it. */
+@media (max-width: 34rem) {
+  .ranknav {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: var(--space-6);
+  }
+
+  .ranknav__link--next {
+    text-align: left;
+  }
 }
 
 .ranknav__link--next {
