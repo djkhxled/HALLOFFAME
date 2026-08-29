@@ -148,6 +148,21 @@ class TestAccessibility(unittest.TestCase):
         block = css[css.index(".countdown__hit > * {"):]
         self.assertIn("min-width: 0", block[: block.index("}")])
 
+    def test_the_spotlight_entrance_cannot_hide_content(self):
+        """Two guarantees. The hidden state is scoped to [data-enter], which
+        only scroll.js sets, so a page whose JS never runs shows the panel.
+        And the resting rule carries the [data-signature] prefix, because the
+        per-signature entrance rules outrank a bare .spotlight[data-enter=in]
+        and would otherwise park the headline at its entrance transform."""
+        css = (ROOT / "src" / "css" / "components.css").read_text(encoding="utf-8")
+        self.assertIn('.spotlight[data-enter] .spotlight__big', css)
+        self.assertIn('[data-signature] .spotlight[data-enter="in"] '
+                      '.spotlight__big', css)
+        js = (ROOT / "src" / "js" / "scroll.js").read_text(encoding="utf-8")
+        self.assertIn('setAttribute("data-enter", "")', js)
+        self.assertIn("seenScroll", js,
+                      "the failsafe must reveal when no scroll event arrives")
+
     def test_no_third_party_requests_on_load(self):
         """Fonts and GSAP are self-hosted. A page load must not hand the
         visitor's IP to anyone the visitor did not choose to contact."""

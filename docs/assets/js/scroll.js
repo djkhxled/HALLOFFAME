@@ -536,6 +536,86 @@
     }).observe(document.body);
   }
 
+  /* Spotlight — the themed tier's one full-size moment. --------------------
+
+     Those fifteen levels each declare a theme.signature that drove no markup
+     and no motion at all; every signature function below looks for a
+     [data-sig] element that only bespoke fragments contain.
+
+     Reveal and parallax both run off live geometry read on scroll, which is
+     the same approach that fixed the countdown palette. Two earlier attempts
+     failed in ways worth recording: gsap.from left the panel at opacity 0
+     when its ScrollTrigger did not fire, and IntersectionObserver never
+     reports at all in an offscreen or zero-height viewport. Reading the rect
+     each frame cannot go stale and cannot depend on the page being visible
+     to some other API.
+
+     The hidden state lives behind [data-enter], set here, so a page whose
+     JavaScript never runs simply shows the panel. */
+  function spotlight() {
+    var stage = document.querySelector(".spotlight");
+    if (!stage) return;
+
+    var inner = stage.querySelector(".spotlight__inner");
+    stage.setAttribute("data-enter", "");
+
+    var shown = false;
+    var ticking = false;
+    var seenScroll = false;
+
+    /* The reveal runs synchronously in the scroll handler, not inside the
+       rAF callback with the parallax. requestAnimationFrame is throttled or
+       suspended entirely for a document the browser considers not visible,
+       and a reveal that never runs leaves the panel invisible. It costs one
+       rect read per scroll and stops entirely once the panel has appeared. */
+    function reveal() {
+      if (shown) return;
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      if (!vh) return;
+      var r = stage.getBoundingClientRect();
+      if (r.top < vh * 0.82 && r.bottom > 0) {
+        shown = true;
+        stage.setAttribute("data-enter", "in");
+      }
+    }
+
+    function frame() {
+      ticking = false;
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      if (!vh) return;
+      var r = stage.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      var off = ((r.top + r.bottom) / 2 - vh / 2) / vh;
+      inner.style.transform =
+        "translate3d(0," + (off * -34).toFixed(1) + "px,0)";
+    }
+
+    function onScroll() {
+      seenScroll = true;
+      reveal();
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(frame);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    reveal();
+    frame();
+
+    /* Failsafe. Everything above depends on scroll events arriving, and there
+       are real conditions where they never do -- a background or offscreen
+       document has its scroll events and animation frames suspended
+       entirely. If not one scroll event has landed after a few seconds, the
+       page is not being driven the way this assumes, so show the panel
+       rather than leave it invisible. Losing an animation is a far cheaper
+       failure than losing the content. */
+    setTimeout(function () {
+      if (!shown && !seenScroll) stage.setAttribute("data-enter", "in");
+    }, 2500);
+  }
+
   var sig = document.documentElement.dataset.signature;
   if (sig === "fracture") fracture();
   if (sig === "aurora") aurora();
@@ -548,4 +628,5 @@
   if (sig === "slash") slash();
   if (sig === "prism") prism();
   if (sig === "descend") descend();
+  spotlight();
 })();
