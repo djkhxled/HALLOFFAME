@@ -10,13 +10,13 @@
     ],
     "host": "Insxne",
     "verifier": "Taiago",
-    "verifiedDate": null,
+    "verifiedDate": "2025-01-19",
     "ratedDate": null,
-    "attempts": null,
+    "attempts": "56,637",
     "levelId": "114283297",
     "objects": null,
     "length": null,
-    "gdVersion": "2.2",
+    "gdVersion": "2.1/2.2",
     "song": {
       "name": "omnipresent (AIM 2023)",
       "artist": "WakerLink",
@@ -29,7 +29,7 @@
       "https://pointercrate.com/demonlist/permalink/613/",
       "https://gdbrowser.com/114283297"
     ],
-    "note": "A solo level by Insxne, verified by Taiago."
+    "note": "A solo level by Insxne, released 21 October 2024 and verified by Taiago on 19 January 2025 after 56,637 attempts."
   },
   "theme": {
     "tier": "themed",

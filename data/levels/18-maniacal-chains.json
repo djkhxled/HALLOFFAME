@@ -10,13 +10,13 @@
     ],
     "host": "LordDivinity",
     "verifier": "spcreat",
-    "verifiedDate": null,
+    "verifiedDate": "2026-04-09",
     "ratedDate": null,
     "attempts": null,
     "levelId": "48991380",
     "objects": null,
     "length": null,
-    "gdVersion": "2.1",
+    "gdVersion": "2.0/2.1",
     "song": {
       "name": "Sweet Dreams",
       "artist": "Rukkus",
@@ -29,7 +29,7 @@
       "https://pointercrate.com/demonlist/permalink/697/",
       "https://gdbrowser.com/48991380"
     ],
-    "note": "A solo level by LordDivinity, verified by spcreat."
+    "note": "A solo level by LordDivinity, verified by spcreat on 9 April 2026."
   },
   "theme": {
     "tier": "themed",
