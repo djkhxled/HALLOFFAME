@@ -56,7 +56,12 @@
     "googleFonts": [
       "Kaushan+Script"
     ],
-    "displayFont": "\"Kaushan Script\", cursive"
+    "displayFont": "\"Kaushan Script\", cursive",
+    "spotlight": {
+      "eyebrow": "The Sonic lineage",
+      "big": "11 creators",
+      "sub": "A Viprin collaboration, and the shape that mega-collabs still follow."
+    }
   },
   "voice": {
     "hook": "Speed pushed to the absolute brink.",

@@ -53,7 +53,12 @@
     "googleFonts": [
       "Cinzel:wght@600;800"
     ],
-    "displayFont": "\"Cinzel\", serif"
+    "displayFont": "\"Cinzel\", serif",
+    "spotlight": {
+      "eyebrow": "Not gold at all",
+      "big": "Acid green",
+      "sub": "Eight creators under Bo, and the hardest colour in the game to make look good."
+    }
   },
   "voice": {
     "hook": "A masterclass in atmospheric pressure.",

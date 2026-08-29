@@ -69,7 +69,12 @@
     "googleFonts": [
       "Cinzel:wght@600;800"
     ],
-    "displayFont": "\"Cinzel\", serif"
+    "displayFont": "\"Cinzel\", serif",
+    "spotlight": {
+      "eyebrow": "knobbelboy verified it after",
+      "big": "121,296 attempts",
+      "sub": "He took the verification over when the previous verifier stepped away, and died at 98% on the way."
+    }
   },
   "voice": {
     "hook": "The ultimate realisation of the most famous level in GD history.",

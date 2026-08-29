@@ -67,7 +67,12 @@
     "googleFonts": [
       "Cinzel:wght@600"
     ],
-    "displayFont": "\"Cinzel\", serif"
+    "displayFont": "\"Cinzel\", serif",
+    "spotlight": {
+      "eyebrow": "It reached",
+      "big": "#1",
+      "sub": "Taking the position from Bloodlust. Four months later the verifier admitted he had hacked it, and the title passed to Technical, who had already beaten it legitimately."
+    }
   },
   "voice": {
     "hook": "An epic, sprawling odyssey.",

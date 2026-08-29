@@ -57,7 +57,12 @@
     "googleFonts": [
       "Cinzel:wght@600"
     ],
-    "displayFont": "\"Cinzel\", serif"
+    "displayFont": "\"Cinzel\", serif",
+    "spotlight": {
+      "eyebrow": "It held number one for",
+      "big": "18 seconds",
+      "sub": "The shortest reign in the history of the Demonlist. Slaughterhouse was rated the same day and took it straight back."
+    }
   },
   "voice": {
     "hook": "A hauntingly beautiful, rhythmic nightmare.",

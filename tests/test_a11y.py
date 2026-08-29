@@ -140,6 +140,14 @@ class TestAccessibility(unittest.TestCase):
                       "levels lighten rather than darken")
         self.assertIn("backdrop-filter", block)
 
+    def test_grid_rows_can_shrink_on_narrow_screens(self):
+        """Grid items default to min-width:auto, so a long level name refused
+        to shrink and pushed the countdown past the viewport on a phone."""
+        css = (ROOT / "src" / "css" / "components.css").read_text(encoding="utf-8")
+        self.assertIn(".countdown__hit > * {", css)
+        block = css[css.index(".countdown__hit > * {"):]
+        self.assertIn("min-width: 0", block[: block.index("}")])
+
     def test_no_third_party_requests_on_load(self):
         """Fonts and GSAP are self-hosted. A page load must not hand the
         visitor's IP to anyone the visitor did not choose to contact."""

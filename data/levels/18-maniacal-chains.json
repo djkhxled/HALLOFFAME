@@ -46,7 +46,12 @@
     "googleFonts": [
       "Saira:wght@300;700"
     ],
-    "displayFont": "\"Saira\", sans-serif"
+    "displayFont": "\"Saira\", sans-serif",
+    "spotlight": {
+      "eyebrow": "One creator",
+      "big": "Solo",
+      "sub": "LordDivinity built the whole thing; spcreat verified it."
+    }
   },
   "voice": {
     "hook": "A hostile, mechanical hellscape.",

@@ -233,6 +233,16 @@ a.countdown__hit:focus-visible {
   opacity: 0.42;
 }
 
+/* Grid items default to min-width:auto, so a long name refuses to shrink
+   below its content and drags the row past the viewport on a phone. */
+.countdown__hit > * {
+  min-width: 0;
+}
+
+.countdown__name {
+  overflow-wrap: anywhere;
+}
+
 .countdown__rank {
   grid-area: rank;
   font-family: var(--font-mono);
@@ -928,7 +938,7 @@ a.countdown__hit:focus-visible {
 .hero__art + .hero__title::before {
   content: "";
   position: absolute;
-  inset: -0.16em -7vw;
+  inset: -0.16em calc(var(--gutter) * -0.85);
   z-index: -1;
   pointer-events: none;
   backdrop-filter: blur(12px) saturate(0.72);
@@ -945,3 +955,78 @@ a.countdown__hit:focus-visible {
     ellipse 64% 94% at 50% 50%, #000 44%, transparent 86%);
 }
 
+
+/* Spotlight -------------------------------------------------------------- */
+/* The themed tier's one full-size moment. Built entirely from the level's
+   palette tokens, so fifteen levels get fifteen different panels with no
+   per-level CSS and no extra asset to download. */
+
+.spotlight {
+  position: relative;
+  min-height: 78svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border-top: var(--rule) solid var(--rule-colour);
+  background:
+    radial-gradient(ellipse 70% 90% at 22% 18%,
+      color-mix(in srgb, var(--accent) 26%, transparent) 0%, transparent 62%),
+    radial-gradient(ellipse 80% 70% at 82% 84%,
+      color-mix(in srgb, var(--accent2) 22%, transparent) 0%, transparent 60%),
+    linear-gradient(168deg,
+      color-mix(in srgb, var(--accent) 7%, var(--field)) 0%,
+      var(--field) 58%,
+      color-mix(in srgb, var(--accent2) 9%, var(--field)) 100%);
+}
+
+/* A slow drift across the accent fields, so the panel is not a still image.
+   Transform on a pseudo-element, so nothing in the flow is animated. */
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 40% 40% at 50% 50%,
+    color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 70%);
+  animation: spotlight-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes spotlight-drift {
+  from { transform: translate3d(-8%, -6%, 0) scale(1); }
+  to   { transform: translate3d(9%, 7%, 0) scale(1.18); }
+}
+
+.spotlight__inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.spotlight__big {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.6rem, 11vw, 9rem);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-5);
+  text-wrap: balance;
+  background: linear-gradient(
+    172deg,
+    var(--ink) 0%,
+    color-mix(in srgb, var(--accent) 55%, var(--ink)) 62%,
+    var(--accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 2.4rem color-mix(in srgb, var(--accent) 35%, transparent));
+}
+
+.spotlight__sub {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.7;
+  color: var(--ink);
+  margin-inline: auto;
+  opacity: 0.86;
+}
