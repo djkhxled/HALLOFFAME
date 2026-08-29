@@ -217,16 +217,18 @@
   gap: 0 var(--space-5);
   align-items: baseline;
   padding-block: var(--space-5);
+  /* Clears the palette rail, which sits at left:0 and was running straight
+     into the rank number. Fixed rather than applied on hover, so the row
+     does not shift sideways when you point at it. */
+  padding-inline: var(--space-5) 0;
   text-decoration: none;
   color: inherit;
-  transition: background-color var(--dur) var(--ease),
-    padding-inline var(--dur) var(--ease);
+  transition: background var(--dur) var(--ease);
 }
 
 a.countdown__hit:hover,
 a.countdown__hit:focus-visible {
   background: color-mix(in srgb, var(--accent) 10%, transparent);
-  padding-inline: var(--space-4);
 }
 
 .countdown__hit--soon {
@@ -296,6 +298,7 @@ a.countdown__hit:focus-visible {
 
 @media (max-width: 44rem) {
   .countdown__hit {
+    padding-inline: var(--space-4) 0;
     grid-template-columns: 3rem 1fr;
     grid-template-areas:
       "rank name"
