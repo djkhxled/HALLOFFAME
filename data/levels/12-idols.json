@@ -29,12 +29,12 @@
     ],
     "host": "Herdys",
     "verifier": "Dorami",
-    "verifiedDate": 2018-08-18,
+    "verifiedDate": "2018-08-18",
     "ratedDate": null,
     "attempts": null,
     "levelId": "48175126",
-    "objects": "256547",
-    "length": "3 minutes and 51 seconds",
+    "objects": "256,547",
+    "length": "3m 51s",
     "gdVersion": "2.1",
     "song": {
       "name": "Idols",
@@ -42,7 +42,7 @@
       "newgroundsId": null,
       "nong": true
     },
-    "peakRank": #51,
+    "peakRank": "#51 on the Demonlist",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Idols",
       "https://geometry-dash-fan.fandom.com/wiki/Idols",

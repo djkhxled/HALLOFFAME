@@ -3,7 +3,9 @@ import pathlib
 import tempfile
 import unittest
 
-from hall.data import load_levels, validate_levels
+from hall.data import ValidationError, load_levels, validate_levels
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
 def minimal(rank, slug, **over):
@@ -139,3 +141,35 @@ class TestRealData(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class HandEditedJson(unittest.TestCase):
+    """These records are edited by hand, often in GitHub's web editor."""
+
+    def _load(self, body):
+        import tempfile, shutil
+        d = pathlib.Path(tempfile.mkdtemp())
+        try:
+            (d / "01-x.json").write_text(body, encoding="utf-8")
+            return load_levels(d)
+        finally:
+            shutil.rmtree(d)
+
+    def test_an_unquoted_number_names_its_file_and_line(self):
+        """A thousands separator without quotes is the mistake that actually
+        happens: "attempts": 25,000 parses as 25 followed by junk. json's own
+        traceback names neither the file nor the line."""
+        with self.assertRaises(ValidationError) as caught:
+            self._load('{"slug": "x", "facts": {"attempts": 25,000}}')
+        message = str(caught.exception)
+        self.assertIn("01-x.json", message)
+        self.assertIn("line", message)
+        self.assertIn("quoted string", message)
+
+    def test_an_unquoted_date_is_caught_the_same_way(self):
+        with self.assertRaises(ValidationError) as caught:
+            self._load('{"slug": "x", "facts": {"ratedDate": 2021-10-29}}')
+        self.assertIn("01-x.json", str(caught.exception))
+
+    def test_every_shipped_record_parses(self):
+        load_levels(ROOT / "data" / "levels")
