@@ -1030,3 +1030,51 @@ a.countdown__hit:focus-visible {
   margin-inline: auto;
   opacity: 0.86;
 }
+
+/* Countdown palette rail -------------------------------------------------- */
+/* Every row already carries its level's palette inline, so each one can
+   preview the page it leads to at no extra cost in data or requests. */
+
+.countdown__hit {
+  position: relative;
+}
+
+.countdown__chip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 0 2px 2px 0;
+  background: linear-gradient(
+    180deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 50%, var(--accent2)) 50%,
+    var(--accent2) 100%
+  );
+  opacity: 0.7;
+  transition: width var(--dur) var(--ease), opacity var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+a.countdown__hit:hover .countdown__chip,
+a.countdown__hit:focus-visible .countdown__chip {
+  width: 8px;
+  opacity: 1;
+  box-shadow: 0 0 1.4rem color-mix(in srgb, var(--accent) 65%, transparent);
+}
+
+.countdown__hit--soon .countdown__chip {
+  opacity: 0.3;
+}
+
+/* The row's own accent, so hovering previews the destination's colour. */
+a.countdown__hit:hover,
+a.countdown__hit:focus-visible {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent) 16%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 4%, transparent) 55%,
+    transparent 100%
+  );
+}
