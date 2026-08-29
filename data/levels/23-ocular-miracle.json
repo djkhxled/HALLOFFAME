@@ -15,21 +15,21 @@
     "verifiedDate": null,
     "ratedDate": "2020-06-30",
     "attempts": null,
-    "levelId": null,
+    "levelId": "62419473",
     "objects": null,
     "length": null,
     "gdVersion": "2.1",
     "song": {
-      "name": null,
-      "artist": null,
-      "newgroundsId": null
+      "name": "Exit This Earths Atmosphere",
+      "artist": "Cametek",
+      "newgroundsId": "938115"
     },
     "peakRank": null,
     "sources": [
       "https://geometry-dash-fan.fandom.com/wiki/Ocular_Miracle",
       "https://geometrydash.wiki.gg/wiki/Ocular_Miracle"
     ],
-    "note": "Hosted by GaidenHertuny, ZeroSR and Davphla. Too large to ship as one level: Davphla reworked it into three separate extremes — Reverie, Faith and Diligence — uploaded on 27 June 2020 to GaidenHertuny's, ZeroSR's and Davphla's accounts respectively, and all rated on 30 June 2020."
+    "note": "Hosted by GaidenHertuny, ZeroSR and Davphla. The finished level was large enough to crash the game on most devices, so the team split it into three rated extremes — Reverie, Faith and Diligence — uploaded on 27 June 2020 to GaidenHertuny's, ZeroSR's and Davphla's accounts respectively and all rated on 30 June 2020. The level ID here is Diligence, the closing part."
   },
   "theme": {
     "tier": "themed",
