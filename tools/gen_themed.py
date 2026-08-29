@@ -341,29 +341,52 @@ def m_eye(p, rng, c, cx=0.5, cy=0.44, r=0.2):
     p.append(f'<circle cx="{f(x)}" cy="{f(y)}" r="{f(rr * 0.26)}" fill="{c["deep"]}"/>')
 
 
-def m_vines(p, rng, c, n=14):
-    """The Golden: overgrowth creeping in from the edges."""
-    for _ in range(n):
-        side = rng.choice([0, 1])
-        x0 = rng.uniform(-60, 60) if side else rng.uniform(W - 60, W + 60)
-        y0 = rng.uniform(-40, H + 40)
-        d = [f"M{f(x0)} {f(y0)}"]
+def m_vines(p, rng, c, n=22):
+    """The Golden: overgrowth closing in from every edge.
+
+    Baylor's line is "suffocating, deeply overgrown", so this frames the
+    centre rather than scattering. Spawning points walk the perimeter in
+    order instead of picking a side at random, which left one seed with
+    almost every vine on the left and two-thirds of the frame empty.
+    """
+    for i in range(n):
+        t = i / n
+        edge = i % 4
+        if edge == 0:                       # top
+            x0, y0, ang = rng.uniform(0, W), -40, math.pi / 2
+        elif edge == 1:                     # right
+            x0, y0, ang = W + 40, rng.uniform(0, H), math.pi
+        elif edge == 2:                     # bottom
+            x0, y0, ang = rng.uniform(0, W), H + 40, -math.pi / 2
+        else:                               # left
+            x0, y0, ang = -40, rng.uniform(0, H), 0.0
+        ang += rng.uniform(-0.5, 0.5)
+
         x, y = x0, y0
-        dirx = 1 if side else -1
-        for _ in range(rng.randint(3, 6)):
-            x += dirx * rng.uniform(70, 200)
-            y += rng.uniform(-140, 140)
-            d.append(f"q {f(dirx * rng.uniform(40, 110))} {f(rng.uniform(-90, 90))} "
-                     f"{f(dirx * rng.uniform(80, 170))} {f(rng.uniform(-60, 60))}")
+        d = [f"M{f(x)} {f(y)}"]
+        pts = [(x, y)]
+        for _ in range(rng.randint(4, 7)):
+            step = rng.uniform(80, 190)
+            ang += rng.uniform(-0.55, 0.55)
+            x += math.cos(ang) * step
+            y += math.sin(ang) * step
+            d.append(f"L{f(x)} {f(y)}")
+            pts.append((x, y))
         p.append(f'<path d="{" ".join(d)}" fill="none" stroke="{c["a1"]}" '
-                 f'stroke-width="{f(rng.uniform(1.5, 4.5))}" '
-                 f'opacity="{f(rng.uniform(0.2, 0.6))}"/>')
-        for _ in range(rng.randint(3, 8)):  # leaves
-            lx, ly = x0 + dirx * rng.uniform(40, 420), y0 + rng.uniform(-160, 160)
-            p.append(f'<ellipse cx="{f(lx)}" cy="{f(ly)}" rx="{f(rng.uniform(5, 15))}" '
-                     f'ry="{f(rng.uniform(2, 6))}" fill="{c["a2"]}" '
-                     f'opacity="{f(rng.uniform(0.2, 0.55))}" '
-                     f'transform="rotate({rng.uniform(0, 180):.0f} {f(lx)} {f(ly)})"/>')
+                 f'stroke-width="{f(rng.uniform(2.0, 5.5))}" '
+                 f'stroke-linecap="round" stroke-linejoin="round" '
+                 f'opacity="{f(rng.uniform(0.28, 0.7))}"/>')
+
+        for (lx, ly) in pts[1:]:            # leaves along the run
+            for _ in range(rng.randint(1, 3)):
+                ox, oy = lx + rng.uniform(-26, 26), ly + rng.uniform(-26, 26)
+                p.append(f'<ellipse cx="{f(ox)}" cy="{f(oy)}" '
+                         f'rx="{f(rng.uniform(7, 20))}" '
+                         f'ry="{f(rng.uniform(3, 8))}" '
+                         f'fill="{rng.choice([c["a1"], c["a2"]])}" '
+                         f'opacity="{f(rng.uniform(0.18, 0.5))}" '
+                         f'transform="rotate({rng.uniform(0, 180):.0f} '
+                         f'{f(ox)} {f(oy)})"/>')
 
 
 def m_duals(p, rng, c, n=9):
@@ -558,7 +581,7 @@ LEVELS = {
         seed=22, label="Acid-green overgrowth creeping over dark gold ridges",
         c=dict(bg1="#123312", bg2="#050f06", deep="#020703", a1="#b6ff2a",
                a2="#ffe14d", hi="#f4ffe0"),
-        motifs=[("vines", dict(n=16)), ("peaks", dict(y=0.8, amp=140)),
+        motifs=[("vines", dict(n=26)), ("peaks", dict(y=0.8, amp=140)),
                 ("sparks", dict(n=6)), ("motes", dict(n=70))]),
     "ocular-miracle": dict(
         seed=23, label="A vast lit iris ringed with light against a red starfield",
