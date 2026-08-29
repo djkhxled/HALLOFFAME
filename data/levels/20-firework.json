@@ -70,7 +70,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "QBe5x2o9v2w",
+      "title": "\"Firework\" VERIFIED! (IMPOSSIBLE DEMON) By Trick & More",
+      "channel": "Trick"
+    },
     "art": "src/art/firework.svg",
     "images": []
   }

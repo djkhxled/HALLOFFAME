@@ -56,9 +56,9 @@
   },
   "media": {
     "video": {
-      "youtubeId": null,
-      "title": null,
-      "channel": null
+      "youtubeId": "tBpEPXGhQug",
+      "title": "Geometry Dash - Cold Sweat by notpara Verified [144Hz]",
+      "channel": "Kapinapi"
     },
     "art": "src/art/cold-sweat.svg",
     "images": []

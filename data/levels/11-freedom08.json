@@ -85,7 +85,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "b1DE6OTFS4U",
+      "title": "FREEDOM08 VERIFIED | EXTREME DEMON BY PENNUTOH & MORE | Geometry Dash",
+      "channel": "Golden"
+    },
     "art": "src/art/freedom08.svg",
     "images": []
   }

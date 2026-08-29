@@ -69,7 +69,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "F-AfSPnjIcM",
+      "title": "SUBSONIC [EXTREME DEMON] - Viprin & more (Verified 100%)",
+      "channel": "combi"
+    },
     "art": "src/art/subsonic.svg",
     "images": []
   }

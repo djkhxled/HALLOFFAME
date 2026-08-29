@@ -86,7 +86,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "nI7AvT0qUks",
+      "title": "Titan Complex by TCTeam (Extreme Demon) | Verified by Me | Geometry Dash [2.11]",
+      "channel": "MrDash"
+    },
     "art": "src/art/titan-complex.svg",
     "images": []
   }

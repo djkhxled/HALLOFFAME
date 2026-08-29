@@ -59,7 +59,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "UQvPvOGYdpw",
+      "title": "Geometry Dash - Killbot (Extreme Demon) - By Lithifusion - Verified by me",
+      "channel": "BoldStep"
+    },
     "art": "src/art/killbot.svg",
     "images": []
   }

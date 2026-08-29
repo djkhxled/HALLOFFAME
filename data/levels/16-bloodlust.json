@@ -82,7 +82,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "5SzKetF2btw",
+      "title": "BLOODLUST VERIFIED!!! | LEGENDARY DEMON 100% | MANIX AND MORE",
+      "channel": "knobbelboy"
+    },
     "art": "src/art/bloodlust.svg",
     "images": []
   }

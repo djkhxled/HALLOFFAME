@@ -41,10 +41,24 @@ class TestBuild(unittest.TestCase):
         self.assertIn("Silentroom", html)
         self.assertIn("Why", html)
 
-    def test_no_youtube_iframe_ships_in_the_html(self):
-        for slug in ("deimos", "nhelv"):
-            html = (DOCS / "levels" / slug / "index.html").read_text(encoding="utf-8")
-            self.assertNotIn("<iframe", html, f"{slug} ships an iframe on load")
+    def test_no_youtube_iframe_ships_on_any_page(self):
+        """Footage is click-to-load on every page, so nothing is requested
+        from YouTube until a reader asks for it. The privacy page says so."""
+        for f in sorted(DOCS.rglob("index.html")):
+            html = f.read_text(encoding="utf-8")
+            self.assertNotIn("<iframe", html,
+                             f"{f.relative_to(DOCS)} ships an iframe on load")
+
+    def test_footage_links_are_real_video_ids(self):
+        import json
+        import re
+        bad = []
+        for jf in sorted((ROOT / "data" / "levels").glob("*.json")):
+            rec = json.loads(jf.read_text(encoding="utf-8"))
+            vid = (rec["media"].get("video") or {}).get("youtubeId")
+            if vid and not re.fullmatch(r"[A-Za-z0-9_-]{11}", vid):
+                bad.append(f"{rec['slug']}: {vid!r}")
+        self.assertEqual(bad, [])
 
     def test_unknown_facts_render_as_a_dash(self):
         html = (DOCS / "levels" / "nhelv" / "index.html").read_text(encoding="utf-8")

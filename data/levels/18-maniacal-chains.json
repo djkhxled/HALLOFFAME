@@ -59,7 +59,11 @@
     "draftedByClaude": false
   },
   "media": {
-    "video": {},
+    "video": {
+      "youtubeId": "TzeMJeIu6bY",
+      "title": "Maniacal Chains VERIFIED // by LordDivinity",
+      "channel": "spcreat"
+    },
     "art": "src/art/maniacal-chains.svg",
     "images": []
   }
