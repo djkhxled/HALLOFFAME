@@ -70,12 +70,13 @@ def m_wheel(p, rng, c, cx=0.5, cy=0.3, r=0.34, marks=12):
     p.append("</g>")
 
 
-def m_gears(p, rng, c, n=4, teeth=12):
+def m_gears(p, rng, c, n=4, teeth=12, cols=None):
     for _ in range(n):
         x, y = rng.uniform(0.05, 0.95) * W, rng.uniform(0.1, 0.9) * H
         r = rng.uniform(28, 62)
+        col = rng.choice(cols) if cols else c["a1"]
         p.append(f'<g transform="translate({f(x)} {f(y)})" fill="none" '
-                 f'stroke="{c["a1"]}" opacity="{rng.uniform(0.25, 0.6):.2f}">')
+                 f'stroke="{col}" opacity="{rng.uniform(0.25, 0.6):.2f}">')
         p.append(f'<circle r="{f(r)}" stroke-width="{f(r*0.26)}"/>')
         p.append(f'<circle r="{f(r*0.36)}" stroke-width="{f(r*0.13)}"/>')
         for i in range(teeth):
@@ -86,9 +87,10 @@ def m_gears(p, rng, c, n=4, teeth=12):
         p.append("</g>")
 
 
-def m_slabs(p, rng, c, n=5):
+def m_slabs(p, rng, c, n=5, cols=None):
     """Rimmed rectangles with an inner frame — the game's basic block."""
     for _ in range(n):
+        rim = rng.choice(cols) if cols else c["a1"]
         x, y = rng.uniform(0.06, 0.94) * W, rng.uniform(0.08, 0.92) * H
         w, h = rng.uniform(130, 300), rng.uniform(90, 190)
         rot = rng.uniform(-14, 14)
@@ -97,7 +99,7 @@ def m_slabs(p, rng, c, n=5):
         p.append(f'<rect x="{f(-w/2)}" y="{f(-h/2)}" width="{f(w)}" '
                  f'height="{f(h)}" fill="url(#g-slab)"/>')
         p.append(f'<rect x="{f(-w/2)}" y="{f(-h/2)}" width="{f(w)}" '
-                 f'height="{f(h)}" fill="none" stroke="{c["a1"]}" '
+                 f'height="{f(h)}" fill="none" stroke="{rim}" '
                  'stroke-width="6" filter="url(#g-glow)"/>')
         p.append(f'<rect x="{f(-w/2+13)}" y="{f(-h/2+13)}" width="{f(w-26)}" '
                  f'height="{f(h-26)}" fill="none" stroke="{c["hi"]}" '
@@ -105,11 +107,14 @@ def m_slabs(p, rng, c, n=5):
         p.append("</g>")
 
 
-def m_tris(p, rng, c, n=18, size=(18, 54)):
+def m_tris(p, rng, c, n=18, size=(18, 54), cols=None):
+    """cols overrides the level's two accents with a full list, for the
+    levels whose whole identity is that they use every colour at once."""
     for _ in range(n):
         x, y = rng.uniform(0, W), rng.uniform(0.05, 0.95) * H
         s = rng.uniform(*size)
-        col = c["a1"] if rng.random() < 0.6 else c["a2"]
+        col = rng.choice(cols) if cols else (
+            c["a1"] if rng.random() < 0.6 else c["a2"])
         p.append(f'<path d="M{f(x)} {f(y-s)} L{f(x+s*0.85)} {f(y+s*0.6)} '
                  f'L{f(x-s*0.85)} {f(y+s*0.6)} Z" fill="none" stroke="{col}" '
                  f'stroke-width="3" opacity="{rng.uniform(0.3, 0.8):.2f}"/>')
@@ -283,6 +288,85 @@ def m_motes(p, rng, c, n=110, twinkle=0.0):
             p.append(f'<circle {base} opacity="{rng.uniform(0.2, 0.85):.2f}"/>')
     p.append("</g>")
 
+
+
+
+def m_beacon(p, rng, c, cx=0.44, cy=0.7, r=0.1, width=0.05, top=0.66):
+    """A column of light falling into a bright dome, blooming as it lands.
+
+    The shaft is waisted rather than straight-sided: a parallel column reads
+    as a rectangle of paint, and the narrowing is what makes it read as
+    light with a source somewhere above the frame.
+
+    top is the half-width where the shaft leaves the frame, as a fraction of
+    width. It is separate from width because the hero title crosses the
+    upper shaft, and how much of a letter the light passes behind is decided
+    entirely up there.
+    """
+    x, y, rr, w = cx * W, cy * H, r * W, width * W
+    p.append(f'<circle cx="{f(x)}" cy="{f(y)}" r="{f(rr * 4.6)}" '
+             'fill="url(#g-bloom)"/>')
+    p.append(f'<path d="M{f(x - w * top)} -20 '
+             f'C{f(x - w * 0.44)} {f(y * 0.38)} {f(x - w * 0.98)} {f(y * 0.74)} '
+             f'{f(x - w)} {f(y)} L{f(x + w)} {f(y)} '
+             f'C{f(x + w * 0.98)} {f(y * 0.74)} {f(x + w * 0.44)} {f(y * 0.38)} '
+             f'{f(x + w * top)} -20 Z" fill="{c["hi"]}"/>')
+    p.append(f'<circle cx="{f(x)}" cy="{f(y)}" r="{f(rr)}" fill="{c["hi"]}"/>')
+    p.append(f'<circle cx="{f(x)}" cy="{f(y)}" r="{f(rr * 1.9)}" '
+             'fill="url(#g-bloom)"/>')
+
+
+def m_spikes(p, rng, c, y=0.74, n=44, height=(70, 330), fill=None, opacity=1.0):
+    """A field of tall thin spikes along the floor, leaning at random."""
+    fill = fill or c["deep"]
+    base = y * H
+    p.append(f'<g fill="{fill}" opacity="{opacity}">')
+    for i in range(n):
+        x = -50 + (W + 100) * (i + rng.uniform(0.05, 0.95)) / n
+        h = rng.uniform(*height)
+        wd = rng.uniform(16, 52)
+        lean = rng.uniform(-26, 26)
+        p.append(f'<path d="M{f(x - wd / 2)} {f(H + 50)} '
+                 f'L{f(x + lean)} {f(base - h)} L{f(x + wd / 2)} {f(H + 50)} Z"/>')
+    p.append("</g>")
+
+
+def m_shards(p, rng, c, n=30, size=(14, 70), fill=None):
+    """Solid debris thrown through the frame. Filled, not outlined: these
+    are silhouettes against the light, which is the whole effect."""
+    fill = fill or c["deep"]
+    p.append(f'<g fill="{fill}">')
+    for _ in range(n):
+        x, y = rng.uniform(0, W), rng.uniform(0, H * 0.86)
+        s = rng.uniform(*size)
+        skew = rng.uniform(0.25, 0.9)
+        p.append(f'<path d="M{f(x)} {f(y)} L{f(x + s * skew)} {f(y + s)} '
+                 f'L{f(x - s * 0.5)} {f(y + s * 0.62)} Z" '
+                 f'transform="rotate({rng.uniform(0, 360):.0f} {f(x)} {f(y)})" '
+                 f'opacity="{rng.uniform(0.55, 1):.2f}"/>')
+    p.append("</g>")
+
+
+def m_bloom(p, rng, c, cx=0.5, cy=0.5, r=0.3, opacity=0.7):
+    """A single soft bloom, placed by the config rather than scattered.
+
+    Its whole purpose is to be drawn AFTER a foreground layer, so light
+    spills in front of the silhouettes instead of stopping behind them.
+    That spill is what separates a lit scene from a cut-out.
+    """
+    p.append(f'<circle cx="{f(cx * W)}" cy="{f(cy * H)}" r="{f(r * W)}" '
+             f'fill="url(#g-bloom)" opacity="{opacity}"/>')
+
+
+def m_bokeh(p, rng, c, n=7):
+    """Soft lit blooms in the haze behind everything."""
+    p.append('<g filter="url(#g-soft)">')
+    for _ in range(n):
+        p.append(f'<circle cx="{f(rng.uniform(0, W))}" '
+                 f'cy="{f(rng.uniform(0, H * 0.8))}" '
+                 f'r="{f(rng.uniform(34, 120))}" fill="{c["hi"]}" '
+                 f'opacity="{rng.uniform(0.06, 0.22):.2f}"/>')
+    p.append("</g>")
 
 
 # --------------------------------------------------- motifs from the writing
@@ -571,11 +655,19 @@ MOTIFS = {
     "tornado": m_tornado, "glitch": m_glitch, "eye": m_eye, "vines": m_vines,
     "duals": m_duals, "speedlines": m_speedlines, "nebula": m_nebula,
     "blade": m_blade,
+    "beacon": m_beacon, "spikes": m_spikes, "shards": m_shards,
+    "bloom": m_bloom,
+    "bokeh": m_bokeh,
 }
 
 
 # ---------------------------------------------------------------- configs
 # c: bg deep/mid, a1/a2 accents, hi highlight. Motifs run in order given.
+
+# Every hue at once, for the levels whose identity is that they use
+# all of them. Ordered so neighbours in the cycle contrast.
+RAINBOW = ["#ff3cc8", "#2ff0e0", "#3cff9d", "#8b5cff",
+           "#ffd23c", "#ff6b3c", "#4fa8ff"]
 
 LEVELS = {
     "freedom08": dict(
@@ -710,24 +802,47 @@ LEVELS = {
                 ("sparks", dict(n=5), dict(cls="mo-breathe", dur="5.5s")),
                 ("motes", dict(n=120, twinkle=0.45))]),
     "nullscapes": dict(
-        seed=27, haze=5, shafts=2, label="A sparse violet lattice dissolving into empty dark",
-        c=dict(bg1="#1a1230", bg2="#0c0818", deep="#08060f", a1="#7b5cff",
-               a2="#2ad6c8", hi="#ece8ff"),
-        motifs=[("net", dict(n=22), dict(cls="mo-drift", dur="34s", dx=34, dy=-22)),
-                ("slabs", dict(n=4)),
-                ("tris", dict(n=16), dict(cls="mo-flicker", dur="5.5s")),
-                ("motes", dict(n=90, twinkle=0.5))]),
+        # Monochrome on purpose: the whole image is one brilliant white
+        # source against desaturated blue-grey, and any second hue would
+        # break it. a1/a2 are two greys, not two accents.
+        seed=27, haze=7, shafts=0, dust=34, band=0.88,
+        label="A column of white light falling into a field of dark spikes",
+        c=dict(bg1="#39415a", bg2="#232a3d", deep="#0d111b", a1="#c8d4f5",
+               a2="#6d7896", hi="#ffffff"),
+        motifs=[("bokeh", dict(n=8)),
+                # The dome sits below the title band on purpose. With it at
+                # 0.63 the artwork peaked at 0.372 luminance right behind the
+                # type — a white title on that measures 2.49:1, under the 3:1
+                # floor for large text. Dropping it clear lets the light be
+                # as bright as the reference instead of as bright as the
+                # title can survive.
+                ("beacon", dict(cx=0.42, cy=0.76, r=0.12, width=0.048, top=0.2),
+                 dict(cls="mo-breathe", dur="5.5s",
+                      **{"from": 0.985, "to": 1.02})),
+                ("shards", dict(n=40, size=(16, 82))),
+                ("spikes", dict(y=0.78, n=52, height=(90, 400))),
+                ("spikes", dict(y=0.92, n=30, height=(50, 190), opacity=0.55),
+                 dict(cls="mo-bob", dur="13s", dy=7)),
+                ("motes", dict(n=70, twinkle=0.4))],
+        corner=0.4, vig=0.35,
+        after=[("bloom", dict(cx=0.42, cy=0.76, r=0.44, opacity=0.95),
+                dict(cls="mo-breathe", dur="6.5s",
+                     **{"from": 0.94, "to": 1.06})),
+               ("bloom", dict(cx=0.42, cy=0.76, r=0.17, opacity=0.9))]),
     "atomic-cannon-mk-ii": dict(
-        seed=28, label="An orange blast core behind heavy industrial gearing",
-        c=dict(bg1="#4a2a05", bg2="#1c1004", deep="#120c05", a1="#ffb020",
-               a2="#ff4a1e", hi="#fff4e0"),
-        motifs=[("burst", dict(cx=0.5, cy=0.42, n=22, r=0.5),
-                 dict(cls="mo-spin", dur="140s")),
-                ("orb", dict(cx=0.5, cy=0.42, r=0.17),
-                 dict(cls="mo-breathe", dur="3.2s")),
-                ("gears", dict(n=5, teeth=15), dict(cls="mo-spin-r", dur="48s")),
-                ("slabs", dict(n=4)), ("tris", dict(n=12)),
-                ("motes", dict(n=70, twinkle=0.4))]),
+        seed=28, label="Neon rainbow structures, gears and chevrons over deep magenta",
+        c=dict(bg1="#5c1470", bg2="#2a0840", deep="#160528", a1="#ff3cc8",
+               a2="#2ff0e0", hi="#ffffff"),
+        motifs=[("burst", dict(cx=0.5, cy=0.44, n=20, r=0.52),
+                 dict(cls="mo-spin", dur="150s")),
+                ("slabs", dict(n=9, cols=RAINBOW)),
+                ("gears", dict(n=9, teeth=13, cols=RAINBOW),
+                 dict(cls="mo-spin-r", dur="52s")),
+                ("tris", dict(n=38, cols=RAINBOW, size=(14, 50))),
+                ("orb", dict(cx=0.5, cy=0.44, r=0.11),
+                 dict(cls="mo-breathe", dur="3.4s")),
+                ("sparks", dict(n=5), dict(cls="mo-breathe", dur="4s")),
+                ("motes", dict(n=90, twinkle=0.5))]),
     "wow": dict(
         seed=29, label="A pink and cyan space battle over a deep navy starfield",
         c=dict(bg1="#141b45", bg2="#0a0e28", deep="#070a1c", a1="#ff4fa3",
@@ -795,6 +910,11 @@ def build(slug, cfg):
       f'<stop offset="38%" stop-color="{c["a1"]}"/>'
       f'<stop offset="78%" stop-color="{c["a2"]}" stop-opacity="0.7"/>'
       f'<stop offset="100%" stop-color="{c["deep"]}"/></radialGradient>')
+    a(f'<radialGradient id="g-bloom" cx="50%" cy="50%" r="50%">'
+      f'<stop offset="0%" stop-color="{c["hi"]}" stop-opacity="0.85"/>'
+      f'<stop offset="34%" stop-color="{c["hi"]}" stop-opacity="0.3"/>'
+      f'<stop offset="100%" stop-color="{c["hi"]}" stop-opacity="0"/>'
+      "</radialGradient>")
     a(f'<radialGradient id="g-halo" cx="50%" cy="50%" r="50%">'
       f'<stop offset="0%" stop-color="{c["a1"]}" stop-opacity="0.42"/>'
       f'<stop offset="100%" stop-color="{c["a1"]}" stop-opacity="0"/>'
@@ -844,8 +964,23 @@ def build(slug, cfg):
 
     band(p, rng, c, cfg.get("band", 0.62),
          colour=page_field(slug, c["deep"]))
-    a(f'<rect width="{W}" height="{H}" fill="url(#g-corner)"/>')
-    a(f'<rect width="{W}" height="{H}" fill="url(#g-vig)"/>')
+    # The two grading passes are configurable because they are opaque enough
+    # to swallow a subject. Nullscapes is a scene about one brilliant light,
+    # and between them they were laying roughly half a stop of black over it
+    # — the dome rendered grey no matter how bright it was drawn.
+    a(f'<rect width="{W}" height="{H}" fill="url(#g-corner)" '
+      f'opacity="{cfg.get("corner", 1)}"/>')
+    a(f'<rect width="{W}" height="{H}" fill="url(#g-vig)" '
+      f'opacity="{cfg.get("vig", 1)}"/>')
+
+    # Anything that is emitted light rather than a lit object belongs above
+    # the grading, because that is where light goes.
+    for entry in cfg.get("after", []):
+        name, kw = entry[0], entry[1]
+        start = len(p)
+        MOTIFS[name](p, rng, c, **kw)
+        if len(entry) > 2 and entry[2]:
+            wrap(p, start, entry[2])
     a(f'<rect width="{W}" height="{H}" filter="url(#g-grain)" '
       f'opacity="{0.08 if cfg.get("light") else 0.12}"/>')
     a("</svg>")
