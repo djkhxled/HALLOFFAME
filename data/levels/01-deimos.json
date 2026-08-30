@@ -46,9 +46,13 @@
     "length": "2m 57s",
     "gdVersion": "2.1",
     "song": {
-      "name": "Deimos",
-      "artist": "Solkrieg",
-      "newgroundsId": "830628"
+      "name": "SR20DET",
+      "artist": "Blksmiith",
+      "newgroundsId": "830628",
+      "uploadedAs": {
+        "name": "Deimos",
+        "artist": "Solkrieg"
+      }
     },
     "peakRank": "#13 on the Demonlist (22 September 2023)",
     "note": "The sequel to the 1.9/2.0 extreme demon Phobos. Not to be confused with the unrelated Deimos by EndLevel.",
