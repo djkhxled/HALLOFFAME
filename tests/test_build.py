@@ -344,3 +344,63 @@ class NotFoundPage(unittest.TestCase):
         self.assertIsNotNone(match, "no random link found")
         target = DOCS / match.group(1).strip("/") / "index.html"
         self.assertTrue(target.exists(), f"random link points at {target}")
+
+
+class CountdownMarks(unittest.TestCase):
+    """Every level's row carries a glyph built from its signature."""
+
+    @classmethod
+    def setUpClass(cls):
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True,
+                       capture_output=True)
+        cls.index = (DOCS / "index.html").read_text(encoding="utf-8")
+
+    def test_every_row_has_one(self):
+        rows = self.index.count('class="countdown__entry')
+        marks = self.index.count('class="mark"')
+        self.assertEqual(marks, rows, "a row is missing its mark")
+
+    def test_every_declared_signature_has_a_glyph(self):
+        """Same shape of check as the texture one. A signature with no glyph
+        falls back to a plain circle, which is silent — the row looks fine
+        and just stops saying anything about the level."""
+        import json
+        from hall.marks import known_signatures
+        have = known_signatures()
+        missing = []
+        for path in sorted((ROOT / "data" / "levels").glob("*.json")):
+            rec = json.loads(path.read_text(encoding="utf-8"))
+            sig = (rec.get("theme") or {}).get("signature")
+            if sig and sig not in have:
+                missing.append(f"{rec['slug']}: {sig}")
+        self.assertEqual(missing, [], "these signatures fall back to a circle")
+
+
+class RunReadout(unittest.TestCase):
+    """The progress readout is on every page and needs no GSAP."""
+
+    @classmethod
+    def setUpClass(cls):
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True,
+                       capture_output=True)
+        cls.pages = {str(f.relative_to(DOCS)): f.read_text(encoding="utf-8")
+                     for f in sorted(DOCS.rglob("*.html"))}
+
+    def test_it_is_on_every_page(self):
+        missing = [p for p, s in self.pages.items()
+                   if "data-attempt-fill" not in s]
+        self.assertEqual(missing, [])
+
+    def test_it_does_not_depend_on_the_animation_layer(self):
+        """scroll.js bails on reduced motion and again if the GSAP CDN
+        fails. A progress indicator is information, not decoration, so it
+        must not be behind either gate."""
+        js = (ROOT / "src" / "js" / "attempt.js").read_text(encoding="utf-8")
+        # Comments only, stripped: the file's own docstring names both of
+        # these while explaining why it does not use them, and matching that
+        # prose is what this test did on its first run.
+        code = re.sub(r"/\*.*?\*/", "", js, flags=re.S)
+        code = re.sub(r"//.*", "", code)
+        self.assertNotIn("gsap", code.lower())
+        self.assertNotIn("prefers-reduced-motion", code)
+        self.assertIn("scrollY", code, "it should still read the scroll")

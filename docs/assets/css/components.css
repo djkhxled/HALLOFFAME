@@ -209,11 +209,11 @@
 
 .countdown__hit {
   display: grid;
-  grid-template-columns: 4.5rem 1fr auto;
+  grid-template-columns: 4.5rem 1.6rem 1fr auto;
   grid-template-areas:
-    "rank name cta"
-    "rank by   cta"
-    "rank tag  cta";
+    "rank mark name cta"
+    "rank mark by   cta"
+    "rank mark tag  cta";
   gap: 0 var(--space-5);
   align-items: baseline;
   padding-block: var(--space-5);
@@ -299,12 +299,12 @@ a.countdown__hit:focus-visible {
 @media (max-width: 44rem) {
   .countdown__hit {
     padding-inline: var(--space-4) 0;
-    grid-template-columns: 3rem 1fr;
+    grid-template-columns: 3rem 1.4rem 1fr;
     grid-template-areas:
-      "rank name"
-      "rank by"
-      "tag  tag"
-      "cta  cta";
+      "rank mark name"
+      "rank mark by"
+      "tag  tag  tag"
+      "cta  cta  cta";
   }
   .countdown__cta {
     padding-top: var(--space-3);
@@ -1330,4 +1330,214 @@ a.countdown__hit:focus-visible {
 @media (max-width: 44rem) {
   .dead__cursor { height: 1.6rem; }
   .dead__go { padding: var(--space-3) var(--space-4); }
+}
+
+/* The run ---------------------------------------------------------------- */
+/* Geometry Dash shows you one number while you play: how far through you
+   are. The site is a countdown, so every page carries the same readout —
+   a fill across the top and a percentage in the corner. It is the thing
+   that makes thirty separate pages feel like one attempt. */
+
+.attempt {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 90;
+  background: color-mix(in srgb, var(--ink) 9%, transparent);
+  pointer-events: none;
+}
+
+.attempt__fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--accent2) 0%, var(--accent) 100%);
+  box-shadow: 0 0 0.9rem color-mix(in srgb, var(--accent) 70%, transparent);
+  /* No transition: the value is written every frame from the scroll
+     position, and easing a per-frame write only makes it lag the page. */
+}
+
+.attempt__read {
+  position: fixed;
+  top: 0.75rem;
+  right: var(--gutter);
+  z-index: 90;
+  margin: 0;
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  pointer-events: none;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0 0 3px 3px;
+  /* Not mix-blend-mode. It was unpredictable across thirty palettes and
+     this readout is information, so it gets a guaranteed ground instead. */
+  /* 92%, not 82%: --muted only clears 4.5:1 against a full --field, and
+     this sits over whatever the hero art is doing up there. */
+  background: color-mix(in srgb, var(--field) 92%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.attempt__rank {
+  color: color-mix(in srgb, var(--accent) 60%, var(--ink));
+}
+
+[data-run="complete"] .attempt__read {
+  color: var(--accent);
+}
+
+@media (max-width: 44rem) {
+  /* The readout sits where a phone browser puts its own chrome, and it is
+     the least important thing on the page. */
+  .attempt__read { display: none; }
+}
+
+/* Countdown marks -------------------------------------------------------- */
+/* Thirty rows of identical text became thirty rows with a glyph each,
+   built from the signature the level already declares. currentColor, so
+   the row's own palette drives it. */
+
+.countdown__mark {
+  grid-area: mark;
+  align-self: start;
+  display: block;
+  color: color-mix(in srgb, var(--accent) 62%, var(--muted));
+  opacity: 0.7;
+  transition: opacity var(--dur) var(--ease), color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+a.countdown__hit:hover .countdown__mark,
+a.countdown__hit:focus-visible .countdown__mark {
+  opacity: 1;
+  color: var(--accent);
+  transform: rotate(-8deg) scale(1.14);
+}
+
+.countdown__hit--soon .countdown__mark { opacity: 0.28; }
+
+/* The charts ------------------------------------------------------------- */
+
+.nchart {
+  margin: 0 0 var(--space-8);
+}
+
+.nchart__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-4);
+  align-items: baseline;
+  margin-bottom: var(--space-4);
+}
+
+.nchart__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--step-2);
+  letter-spacing: -0.02em;
+}
+
+.nchart__note,
+.nchart__caveat {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nchart__bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: end;
+  gap: clamp(2px, 0.5vw, 7px);
+  height: clamp(7rem, 18vh, 12rem);
+  border-bottom: var(--rule) solid var(--rule-colour);
+}
+
+.nchart__bar {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  min-width: 0;
+}
+
+.nchart__fill {
+  display: block;
+  width: 100%;
+  min-height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(
+    180deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent2) 70%, transparent) 100%
+  );
+  transition: filter var(--dur) var(--ease);
+}
+
+/* A level with no count is drawn as an empty column rather than dropped.
+   Hiding it would make the chart look complete and overstate what is
+   actually known, which is the opposite of what every level page does with
+   a missing fact. */
+.nchart__bar--nil .nchart__fill {
+  height: 100% !important;
+  background: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--ink) 12%, transparent) 0 3px,
+    transparent 3px 7px
+  );
+  border-radius: 2px;
+}
+
+.nchart__bar:hover .nchart__fill {
+  filter: brightness(1.35);
+}
+
+.nchart__tip {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  translate: -50% 0;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  padding: 0.3rem 0.55rem;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--field) 92%, var(--ink));
+  border: var(--rule) solid var(--rule-colour);
+  color: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease);
+  z-index: 3;
+}
+
+.nchart__bar:hover .nchart__tip { opacity: 1; }
+
+.nchart__axis {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--muted);
+}
+
+@media (max-width: 44rem) {
+  /* Thirty bars in a phone's width is four pixels each. The tooltip needs a
+     hover that is not there anyway, so the chart becomes a strip: still the
+     shape of the data, no longer pretending to be readable per level. */
+  .nchart__bars { height: 5.5rem; gap: 1px; }
+  .nchart__tip { display: none; }
 }

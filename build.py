@@ -240,6 +240,9 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
         {
             "slug": slug,
             "html_attrs_html": html_attrs,
+            "attempt_label_html": (
+                f'<span class="attempt__rank">#{level["rank"]}</span>'
+            ),
             "signature": theme.get("signature") or "static",
             "texture_class": texture_class(theme),
             "title": f'{level["name"]} — #{level["rank"]} · {site["title"]}',
@@ -260,6 +263,12 @@ def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str) -> str:
         page_tpl,
         {
             "eyebrow": doc["eyebrow"],
+            # The policy pages were the only ones with no artwork, which made
+            # them read as a different website. Deliberately the quietest
+            # piece in src/art: nobody is here for the mood, and a set-piece
+            # behind a liability clause is a joke at the reader's expense.
+            "art_html": (read(ROOT / "src" / "art" / "doc.svg")
+                         if (ROOT / "src" / "art" / "doc.svg").exists() else ""),
             "heading": doc["heading"],
             "lede": doc["lede"],
             "meta_left": site["title"],
@@ -273,6 +282,7 @@ def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str) -> str:
         {
             "slug": f"doc-{doc['slug']}",
             "html_attrs_html": "",
+            "attempt_label_html": "",
             "signature": "static",
             "texture_class": "texture texture--grain",
             "title": f"{strip_tags(doc['heading'])} · {site['title']}",
@@ -311,6 +321,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
                 0,
             ) if (ROOT / "src" / "art" / "index.svg").exists() else "",
             "countdown_html": render.countdown_html(levels),
+            "numbers_html": render.numbers_html(levels),
             "about_html": site["aboutHtml"],
         },
     )
@@ -319,6 +330,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
         {
             "slug": "index",
             "html_attrs_html": " data-art-drift" if site.get("artDrift") else "",
+            "attempt_label_html": '<span class="attempt__rank">30&rarr;1</span>',
             "signature": "static",
             "texture_class": "texture texture--starfield",
             "title": site["title"],
@@ -382,6 +394,7 @@ def build_404(levels: list[dict], site: dict, base_tpl: str) -> str:
         {
             "slug": "notfound",
             "html_attrs_html": "",
+            "attempt_label_html": "",
             "signature": "static",
             "texture_class": "texture texture--ember",
             # Its own palette. Every level page ships one and this is the
