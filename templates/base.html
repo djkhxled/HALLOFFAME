@@ -18,6 +18,10 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<div class="attempt" aria-hidden="true">
+  <span class="attempt__fill" data-attempt-fill></span>
+</div>
+<p class="attempt__read" aria-hidden="true">{{ attempt_label_html }}<span data-attempt-pct>0%</span></p>
 <div class="{{ texture_class }}" aria-hidden="true"></div>
 <main id="main" class="site-main">
 {{ body_html }}
@@ -33,5 +37,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/scroll.js" defer></script>
 <script src="/assets/js/media.js" defer></script>
+<script src="/assets/js/attempt.js" defer></script>
 </body>
 </html>

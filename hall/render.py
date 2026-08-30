@@ -3,6 +3,8 @@
 import html
 import re
 
+from hall.marks import mark_svg
+
 SLOT = re.compile(r"\{\{\s*(\w+)\s*\}\}")
 
 
@@ -159,6 +161,73 @@ def spotlight_html(theme: dict) -> str:
         + (f'<p class="spotlight__sub measure">{esc(sub)}</p>' if sub else "")
         + "</div></section>"
     )
+
+
+def _digits(value) -> int | None:
+    """The number inside a formatted fact. "220,134" is stored as written
+    because that is how it is displayed; charting it needs the integer."""
+    if not value:
+        return None
+    only = re.sub(r"[^0-9]", "", str(value))
+    return int(only) if only else None
+
+
+def numbers_html(levels: list[dict]) -> str:
+    """The whole list as data, in the two facts that carry it.
+
+    Crew size is the only figure known for every single level, which is why
+    it leads: thirty bars, no gaps, from one person to twenty-nine. Object
+    counts run second and are known for twenty-three, so seven bars are
+    drawn as voids rather than dropped. Hiding them would make the chart
+    look complete and quietly overstate what is actually known, which is the
+    opposite of what every other page here does with a missing fact.
+    """
+    ordered = sorted(levels, key=lambda lv: lv["rank"])
+
+    def chart(key, getter, heading, note, unit):
+        values = [(lv, getter(lv)) for lv in ordered]
+        known = [v for _, v in values if v]
+        if not known:
+            return ""
+        top = max(known)
+        bars = []
+        for lv, value in values:
+            pct = (value / top) * 100 if value else 0
+            cls = "nchart__bar" if value else "nchart__bar nchart__bar--nil"
+            reading = f"{value:,} {unit}" if value else "not known"
+            bars.append(
+                f'<li class="{cls}" style="{palette_style(lv)}">'
+                f'<span class="nchart__fill" style="height:{pct:.1f}%"></span>'
+                f'<span class="nchart__tip">{esc(lv["name"])} &mdash; '
+                f"{esc(reading)}</span></li>"
+            )
+        missing = len(values) - len(known)
+        caveat = (f"{missing} of {len(values)} not known, shown as gaps."
+                  if missing else f"Known for all {len(values)}.")
+        return (
+            f'<figure class="nchart" data-chart="{key}">'
+            f'<figcaption class="nchart__head"><span class="nchart__title">'
+            f"{heading}</span> <span class=\"nchart__note\">{note}</span>"
+            f'</figcaption>'
+            f'<ol class="nchart__bars">{"".join(bars)}</ol>'
+            f'<p class="nchart__axis"><span>#{ordered[0]["rank"]}</span>'
+            f'<span class="nchart__caveat">{caveat}</span>'
+            f'<span>#{ordered[-1]["rank"]}</span></p></figure>'
+        )
+
+    crew = chart(
+        "crew", lambda lv: len((lv.get("facts") or {}).get("creators") or []),
+        "Everyone who built it",
+        "one bar per level, ordered #1 to #30", "credited")
+    objects = chart(
+        "objects", lambda lv: _digits((lv.get("facts") or {}).get("objects")),
+        "Objects placed", "same order", "objects")
+    return crew + objects
+
+
+def countdown_mark(level: dict) -> str:
+    theme = level.get("theme") or {}
+    return mark_svg(theme.get("signature"))
 
 
 def roster_html(facts: dict) -> str:
@@ -398,6 +467,8 @@ def countdown_html(levels: list[dict]) -> str:
             f'<span class="countdown__chip" aria-hidden="true"></span>'
             f'<span class="countdown__rank" aria-hidden="true">'
             f'{lv["rank"]:02d}</span>'
+            f'<span class="countdown__mark" aria-hidden="true">'
+            f'{countdown_mark(lv)}</span>'
             f'<span class="countdown__name">{esc(lv["name"])}</span>'
             + (f'<span class="countdown__by">{esc(by)}</span>' if by else "")
             + f'<span class="countdown__tag">{esc(lv.get("tagline",""))}</span>'
