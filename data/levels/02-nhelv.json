@@ -39,14 +39,19 @@
       "field": "#eeedea",
       "ink": "#1b1b1e",
       "muted": "#5e5e66",
-      "accent": "#3f43c9",
-      "accent2": "#8f9c00"
+      "accent": "#d10a25",
+      "accent2": "#2a2a30"
     },
     "artDrift": "16s",
-    "artAmbient": [["tears", 9], ["rips", 2]],
+    "artAmbient": [
+      [
+        "drops",
+        16
+      ]
+    ],
     "texture": "none",
     "signature": "glitch-assemble",
-    "mood": "Bright, not dark. A near-white paper field with black shards through it, chromatic yellow-green and blue fringing on the edges, and the credits tiled across the background in typewriter mono.",
+    "mood": "Bright, not dark. A near-white paper field with black shards through it, a red fringe on one edge of each and a graphite one on the other, and the credits tiled across the background in typewriter mono.",
     "googleFonts": [
       "Bodoni+Moda:opsz,wght@6..96,400;6..96,600",
       "Cutive+Mono"
