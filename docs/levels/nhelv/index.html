@@ -8,13 +8,13 @@
 <meta property="og:title" content="Nhelv — #2 · Baylor&#x27;s Hall of Extremes">
 <meta property="og:description" content="A level built to be the music video for its own song. Widely held to be the best-decorated extreme demon ever made.">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="../../assets/css/fonts.css?v=452727c447">
-<link rel="stylesheet" href="../../assets/css/tokens.css?v=452727c447">
-<link rel="stylesheet" href="../../assets/css/base.css?v=452727c447">
-<link rel="stylesheet" href="../../assets/css/components.css?v=452727c447">
-<link rel="stylesheet" href="../../assets/css/stage.css?v=452727c447">
-<link rel="stylesheet" href="../../assets/css/art.css?v=452727c447">
-<style>:root{--field:#eeedea;--ink:#1b1b1e;--muted:#5e5e66;--accent:#3f43c9;--accent2:#8f9c00;}</style><style>[data-level="nhelv"]{--art-drift-dur:16s;}</style><style>[data-level="nhelv"]{}[data-level="nhelv"] .hero__title{font-size:clamp(2.75rem, 24.4vw, 15rem)}</style><link rel="stylesheet" href="../../assets/css/levels/nhelv.css?v=452727c447">
+<link rel="stylesheet" href="../../assets/css/fonts.css?v=503cee5045">
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=503cee5045">
+<link rel="stylesheet" href="../../assets/css/base.css?v=503cee5045">
+<link rel="stylesheet" href="../../assets/css/components.css?v=503cee5045">
+<link rel="stylesheet" href="../../assets/css/stage.css?v=503cee5045">
+<link rel="stylesheet" href="../../assets/css/art.css?v=503cee5045">
+<style>:root{--field:#eeedea;--ink:#1b1b1e;--muted:#5e5e66;--accent:#d10a25;--accent2:#2a2a30;}</style><style>[data-level="nhelv"]{--art-drift-dur:16s;}</style><style>[data-level="nhelv"]{}[data-level="nhelv"] .hero__title{font-size:clamp(2.75rem, 24.4vw, 15rem)}</style><link rel="stylesheet" href="../../assets/css/levels/nhelv.css?v=503cee5045">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -26,7 +26,7 @@
 <main id="main" class="site-main">
 <section class="hero page" data-motion>
   <p class="hero__eyebrow"><span class="level-hero__rank">Rank 2 of 30</span></p>
-  <div class="hero__art" aria-hidden="true"><svg class="art art--nhelv" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Black angular shards radiating across a bright white field, edged in yellow-green and blue">
+  <div class="hero__art" aria-hidden="true"><svg class="art art--nhelv" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Black angular shards radiating across a bright white field, each edged in red on one side and graphite on the other">
   <defs>
     <radialGradient id="nh-burst" cx="50%" cy="48%" r="52%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -39,10 +39,10 @@
     </linearGradient>
     <filter id="nh-chroma" x="-20%" y="-20%" width="140%" height="140%">
       <feOffset in="SourceGraphic" dx="-2.5" dy="0" result="l"/>
-      <feFlood flood-color="#b6c400" result="lc"/>
+      <feFlood flood-color="#d10a25" result="lc"/>
       <feComposite in="lc" in2="l" operator="in" result="lch"/>
       <feOffset in="SourceGraphic" dx="2.5" dy="0" result="r"/>
-      <feFlood flood-color="#3f43c9" result="rc"/>
+      <feFlood flood-color="#2a2a30" result="rc"/>
       <feComposite in="rc" in2="r" operator="in" result="rch"/>
       <feMerge>
         <feMergeNode in="lch"/>
@@ -50,26 +50,13 @@
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
+    <filter id="nh-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
   </defs>
 
   <rect width="1600" height="900" fill="url(#nh-burst)"/>
-
-  <!-- Long thin arcs sweeping through the burst -->
-  <g fill="none" stroke="#1b1b1e" stroke-width="1.6" opacity="0.55">
-    <path d="M-60 250 Q 520 40 1660 330"/>
-    <path d="M-60 470 Q 640 700 1660 380"/>
-    <path d="M-60 640 Q 480 300 1660 620"/>
-    <path d="M120 -40 Q 400 480 260 940"/>
-    <path d="M1420 -40 Q 1180 460 1340 940"/>
-  </g>
-  <g fill="none" stroke="#b6c400" stroke-width="2.4" opacity="0.5">
-    <path d="M-60 254 Q 520 44 1660 334"/>
-    <path d="M124 -40 Q 404 480 264 940"/>
-  </g>
-  <g fill="none" stroke="#3f43c9" stroke-width="2.2" opacity="0.42">
-    <path d="M-60 466 Q 640 696 1660 376"/>
-    <path d="M1416 -40 Q 1176 460 1336 940"/>
-  </g>
 
   <!-- Shards, radiating outward from the centre -->
   <g filter="url(#nh-chroma)">
@@ -112,7 +99,8 @@
     <rect x="908" y="556" width="16" height="3"/>
     <rect x="960" y="556" width="16" height="3"/>
   </g>
-<g class="ambient" aria-hidden="true"><defs><linearGradient id="amb-sweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1b1b1e" stop-opacity="0"/><stop offset="50%" stop-color="#1b1b1e" stop-opacity="0.5"/><stop offset="100%" stop-color="#1b1b1e" stop-opacity="0"/></linearGradient></defs><rect class="mo-tear" style="--dur:6.8s;--delay:-5.7s;--sx:22" x="-55.5" y="751.9" width="1480.9" height="21.4" fill="#8f9c00" opacity="0.1"/><rect class="mo-tear" style="--dur:3.4s;--delay:-0.2s;--sx:67" x="639.8" y="574.6" width="1573" height="26.4" fill="#1b1b1e" opacity="0.3"/><rect class="mo-tear" style="--dur:4.9s;--delay:-2.7s;--sx:37" x="-92.7" y="24.7" width="1112.3" height="12.3" fill="#8f9c00" opacity="0.2"/><rect class="mo-tear" style="--dur:6.5s;--delay:-1.0s;--sx:31" x="55.3" y="159" width="716.1" height="17.3" fill="#8f9c00" opacity="0.3"/><rect class="mo-tear" style="--dur:5.5s;--delay:-1.1s;--sx:82" x="485.5" y="661" width="1713" height="23.8" fill="#1b1b1e" opacity="0.2"/><rect class="mo-tear" style="--dur:6.9s;--delay:-5.8s;--sx:30" x="453" y="643.6" width="1107.5" height="17.8" fill="#8f9c00" opacity="0.1"/><rect class="mo-tear" style="--dur:4.7s;--delay:-3.1s;--sx:75" x="382.9" y="409.2" width="1708.3" height="13.1" fill="#1b1b1e" opacity="0.3"/><rect class="mo-tear" style="--dur:5.7s;--delay:-2.9s;--sx:34" x="126.7" y="629.6" width="705.9" height="27.6" fill="#8f9c00" opacity="0.3"/><rect class="mo-tear" style="--dur:4.6s;--delay:-1.8s;--sx:76" x="511.6" y="506" width="1170" height="20" fill="#8f9c00" opacity="0.2"/><rect class="mo-rip" style="--dur:6.2s;--delay:-4.6s" x="0" y="53.4" width="1600" height="9.9" fill="#1b1b1e" opacity="0"/><rect class="mo-rip" style="--dur:5.5s;--delay:-7.4s" x="0" y="32.6" width="1600" height="13" fill="#1b1b1e" opacity="0"/></g></svg>
+  <rect width="1600" height="900" filter="url(#nh-grain)" opacity="0.055" style="mix-blend-mode:multiply"/>
+<g class="ambient" aria-hidden="true"><defs><linearGradient id="amb-sweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1b1b1e" stop-opacity="0"/><stop offset="50%" stop-color="#1b1b1e" stop-opacity="0.5"/><stop offset="100%" stop-color="#1b1b1e" stop-opacity="0"/></linearGradient></defs><circle class="mo-fall" style="--dur:19.4s;--delay:-18.0s;--dx:-124" cx="135.8" cy="212.4" r="2.8" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:15.7s;--delay:-5.9s;--dx:30" cx="970.9" cy="123.4" r="1.4" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:12.6s;--delay:-7.5s;--dx:62" cx="1591.7" cy="252.3" r="2.3" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:12.8s;--delay:-5.1s;--dx:-130" cx="43.9" cy="82.7" r="1.8" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:11.9s;--delay:-16.9s;--dx:7" cx="896.8" cy="2.6" r="1.1" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:11.2s;--delay:-2.6s;--dx:3" cx="1597.9" cy="156.1" r="1.4" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:18.6s;--delay:-15.1s;--dx:66" cx="1450.5" cy="187" r="2.9" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:11.6s;--delay:-18.6s;--dx:129" cx="257.9" cy="183.9" r="2.7" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:13.0s;--delay:-10.1s;--dx:-3" cx="1479.7" cy="95.3" r="3.0" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:11.6s;--delay:-16.8s;--dx:112" cx="737.6" cy="118.7" r="3.2" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:16.4s;--delay:-9.2s;--dx:-78" cx="519.5" cy="164.9" r="1.4" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:18.8s;--delay:-5.1s;--dx:115" cx="495.3" cy="255.1" r="2.7" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:13.6s;--delay:-9.8s;--dx:42" cx="940.7" cy="29.1" r="1.5" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:13.7s;--delay:-17.7s;--dx:35" cx="120.6" cy="207.1" r="2.7" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:18.8s;--delay:-3.6s;--dx:69" cx="94" cy="148.5" r="1.7" fill="#1b1b1e" opacity="0"/><circle class="mo-fall" style="--dur:9.9s;--delay:-16.6s;--dx:-110" cx="835.8" cy="218.9" r="1.6" fill="#1b1b1e" opacity="0"/></g></svg>
 </div>
   <h1 class="hero__title level-hero__title">Nhelv</h1>
   
@@ -206,10 +194,10 @@
     <nav class="site-foot__nav" aria-label="Site information"><ul><li><a href="../../terms/">Terms of Use</a></li><li><a href="../../privacy/">Privacy</a></li><li><a href="../../credits/">Credits &amp; Copyright</a></li></ul></nav>
   </div>
 </footer>
-<script src="../../assets/js/vendor/gsap.min.js?v=452727c447" defer></script>
-<script src="../../assets/js/vendor/ScrollTrigger.min.js?v=452727c447" defer></script>
-<script src="../../assets/js/scroll.js?v=452727c447" defer></script>
-<script src="../../assets/js/media.js?v=452727c447" defer></script>
-<script src="../../assets/js/attempt.js?v=452727c447" defer></script>
+<script src="../../assets/js/vendor/gsap.min.js?v=503cee5045" defer></script>
+<script src="../../assets/js/vendor/ScrollTrigger.min.js?v=503cee5045" defer></script>
+<script src="../../assets/js/scroll.js?v=503cee5045" defer></script>
+<script src="../../assets/js/media.js?v=503cee5045" defer></script>
+<script src="../../assets/js/attempt.js?v=503cee5045" defer></script>
 </body>
 </html>

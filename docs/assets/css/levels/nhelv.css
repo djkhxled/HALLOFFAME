@@ -1,6 +1,9 @@
 /* Nhelv — rank 2.
-   Bright, not dark. Paper-white field, black shards, chromatic yellow-green
-   and blue fringing, credits tiled in typewriter mono. */
+   Bright, not dark. Paper-white field, black shards, a red fringe one side
+   and graphite the other, credits tiled in typewriter mono.
+
+   The split is asymmetric on purpose: two saturated hues either side reads
+   as an RGB artefact, and this level is black and white with red in it. */
 
 [data-level="nhelv"] {
   --font-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
@@ -38,17 +41,6 @@
     0 0 0.5rem var(--field),
     0 0 0.9rem var(--field),
     0 0 1.4rem var(--field);
-}
-
-[data-level="nhelv"] .hero__art::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    118deg,
-    color-mix(in srgb, var(--ink) 4%, transparent) 0 34px,
-    transparent 34px 96px
-  );
 }
 
 /* The credits wall ------------------------------------------------------- */
