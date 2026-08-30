@@ -1,0 +1,87 @@
+{
+  "rank": 29,
+  "slug": "wow",
+  "name": "WOW",
+  "tagline": "Eight creators, one word, and F-777 at full volume.",
+  "published": true,
+  "facts": {
+    "creators": [
+      "TrusTa",
+      "Eggnog",
+      "Marwec",
+      "Pennutoh",
+      "Disp",
+      "SlimJim",
+      "Splash",
+      "ChaSe"
+    ],
+    "host": "TrusTa",
+    "verifier": "Kandai",
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": "49291867",
+    "objects": null,
+    "length": null,
+    "gdVersion": "2.1",
+    "song": {
+      "name": "Space Battle",
+      "artist": "F-777",
+      "newgroundsId": "661012"
+    },
+    "peakRank": null,
+    "sources": [
+      "https://pointercrate.com/demonlist/permalink/122/",
+      "https://gdbrowser.com/49291867",
+      "https://pointercrate.com/demonlist/"
+    ],
+    "note": "Ranked #384 on the Demonlist as of 30 August 2026. GDBrowser reports 65,535 objects, which is the 16-bit ceiling its API returns for larger levels rather than a real count, so the object count is left unknown. An XL level in GDBrowser's length bucket, which is a bracket rather than a duration."
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#070a1c",
+      "ink": "#f0f2ff",
+      "muted": "#9aa0c8",
+      "accent": "#ff4fa3",
+      "accent2": "#4fd8ff"
+    },
+    "artDrift": "29s",
+    "artAmbient": [
+      [
+        "shooting",
+        8
+      ],
+      [
+        "sweeps",
+        2
+      ]
+    ],
+    "texture": "starfield",
+    "signature": "orbit",
+    "mood": null,
+    "googleFonts": [
+      "Bangers"
+    ],
+    "displayFont": "\"Bangers\", cursive",
+    "spotlight": {
+      "eyebrow": "Eight creators, and a title that is",
+      "big": "One word",
+      "sub": "TrusTa hosted it, Kandai verified it, and F-777's Space Battle carries the whole thing."
+    }
+  },
+  "voice": {
+    "hook": "A 2.1 megacollab that never stopped being fun.",
+    "why": "<p>WOW is a 2.1 megacollab hosted by TrusTa, with Eggnog, Marwec, Pennutoh, Disp, SlimJim, Splash and ChaSe building parts. It is an XL level set to F-777's Space Battle, and it plays like the era it came from — bright, loud and unembarrassed.</p><p>Kandai verified it. It has drifted a long way down the Demonlist since, to #384, which says more about how much harder the top has become than about the level.</p>",
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {
+      "youtubeId": "uLiCEb4QP4E",
+      "title": "WOW showcase",
+      "channel": "Demon List"
+    },
+    "art": "src/art/wow.svg",
+    "images": []
+  }
+}

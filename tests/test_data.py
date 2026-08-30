@@ -135,7 +135,8 @@ class TestRealData(unittest.TestCase):
     def test_the_shipped_records_are_valid(self):
         root = pathlib.Path(__file__).resolve().parent.parent
         levels = load_levels(root / "data" / "levels")
-        self.assertEqual(len(levels), 25)
+        expected = len(list((ROOT / "data" / "levels").glob("*.json")))
+        self.assertEqual(len(levels), expected)
         self.assertEqual(validate_levels(levels, root), [])
 
 

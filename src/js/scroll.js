@@ -508,6 +508,43 @@
      vocabulary had no way to describe.
      ------------------------------------------------------------------- */
 
+  /* Signature: ascend — the ground leaves. Aerial Gleam. --------------- */
+  function ascend() {
+    var stage = document.querySelector("[data-sig='ascend']");
+    if (!stage) return;
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: "top top",
+        end: "+=195%",
+        scrub: 0.85,
+        pin: true,
+      },
+    });
+
+    /* Positive yPercent, and the near ridge moves most. descend runs these
+       negative, which is the entire difference between the two: there the
+       world rises past a falling camera, here it drops away beneath a
+       rising one. */
+    tl.to(stage.querySelectorAll("[data-lift='far']"), { yPercent: 22, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-lift='mid']"), { yPercent: 48, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-lift='near']"), { yPercent: 86, ease: "none" }, 0)
+      .to(stage.querySelectorAll("[data-cloud]"), { yPercent: 130, ease: "none" }, 0)
+      .fromTo(
+        stage.querySelector("[data-sky]"),
+        { yPercent: -12, opacity: 0.55 },
+        { yPercent: 0, opacity: 1, ease: "none" },
+        0
+      )
+      .fromTo(
+        stage.querySelectorAll("[data-asc-line]"),
+        { opacity: 0, y: 34 },
+        { opacity: 1, y: 0, stagger: 0.22, ease: "power2.out" },
+        0.14
+      );
+  }
+
   /* Signature: flood — the tide climbs the pillars. Freedom08. ---------- */
   function flood() {
     var stage = document.querySelector("[data-sig='flood']");
@@ -942,5 +979,6 @@
   if (sig === "overgrow") overgrow();
   if (sig === "iris") iris();
   if (sig === "corrupt") corrupt();
+  if (sig === "ascend") ascend();
   spotlight();
 })();

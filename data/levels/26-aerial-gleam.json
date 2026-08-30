@@ -1,0 +1,88 @@
+{
+  "rank": 26,
+  "slug": "aerial-gleam",
+  "name": "Aerial Gleam",
+  "tagline": "Height as a difficulty, and the prettiest thing this far down the list.",
+  "published": true,
+  "facts": {
+    "creators": [
+      "Endlevel",
+      "CuLuC",
+      "El3cTr0",
+      "Antares",
+      "Deadlox"
+    ],
+    "host": "Endlevel",
+    "verifier": "Doggie",
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": "79771070",
+    "objects": null,
+    "length": null,
+    "gdVersion": "2.2",
+    "song": {
+      "name": "Jawbreaker",
+      "artist": "NK",
+      "newgroundsId": "546561",
+      "uploadedAs": {
+        "name": "NK - Jawbreaker",
+        "artist": "Rukkus"
+      }
+    },
+    "peakRank": null,
+    "sources": [
+      "https://pointercrate.com/demonlist/permalink/412/",
+      "https://gdbrowser.com/79771070",
+      "https://pointercrate.com/demonlist/"
+    ],
+    "note": "Pointercrate credits Antares, Endlevel, Deadlox and Culuc; Baylor also credits El3cTr0, and that name is carried here on his say-so rather than from a source. The level's own description reads “fixed by doggie”. Ranked #140 on the Demonlist as of 30 August 2026. GDBrowser reports 65,535 objects, which is the 16-bit ceiling its API returns for larger levels rather than a real count, so the object count is left unknown."
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#05101f",
+      "ink": "#eaf6ff",
+      "muted": "#8fb6cf",
+      "accent": "#56d8ff",
+      "accent2": "#b78cff"
+    },
+    "artDrift": "33s",
+    "artAmbient": [
+      [
+        "shooting",
+        5
+      ],
+      [
+        "embers",
+        18
+      ]
+    ],
+    "texture": "starfield",
+    "signature": "ascend",
+    "mood": null,
+    "googleFonts": [
+      "Saira:wght@300;700"
+    ],
+    "displayFont": "\"Saira\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Built, then fixed, then beaten by",
+      "big": "Doggie",
+      "sub": "Endlevel hosted it. The level's own description gives Doggie the fix as well as the verification."
+    }
+  },
+  "voice": {
+    "hook": "The list gets prettier the further down you go.",
+    "why": "<p>Aerial Gleam is a 2.2 level that spends its whole runtime in the air. Endlevel hosted it with Antares, Deadlox and CuLuC, and the decoration leans into altitude rather than into hell — pale light, open space, and a sense of being a long way off the ground.</p><p>Doggie verified it, and the level's own description credits him with fixing it too. It sits at #140 on the Demonlist, which is further down than most of this list, and it is here on looks and feel rather than on difficulty.</p>",
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {
+      "youtubeId": "eyZjKtrGVYw",
+      "title": "Aerial Gleam showcase",
+      "channel": "Demon List"
+    },
+    "art": "src/art/aerial-gleam.svg",
+    "images": []
+  }
+}

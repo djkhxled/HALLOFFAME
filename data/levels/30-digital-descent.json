@@ -1,0 +1,101 @@
+{
+  "rank": 30,
+  "slug": "digital-descent",
+  "name": "Digital Descent",
+  "tagline": "Eighteen builders taking the digital era down with them.",
+  "published": true,
+  "facts": {
+    "creators": [
+      "ViPriN",
+      "KrmaL",
+      "Rustam",
+      "Hinds",
+      "Codex",
+      "Manix648",
+      "Loogiah",
+      "nasgubb",
+      "AbstractDark",
+      "Etzer",
+      "Serponge",
+      "G4lvatron",
+      "Terron",
+      "LazerBlitz",
+      "Vlacc",
+      "TheDevon",
+      "Kips",
+      "Samifying"
+    ],
+    "host": "ViPriN",
+    "verifier": "Combined",
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": "37456092",
+    "objects": null,
+    "length": null,
+    "gdVersion": "2.2",
+    "song": {
+      "name": "Carnivores",
+      "artist": "hyperdemented",
+      "newgroundsId": "690265"
+    },
+    "peakRank": null,
+    "sources": [
+      "https://pointercrate.com/demonlist/permalink/125/",
+      "https://gdbrowser.com/37456092",
+      "https://pointercrate.com/demonlist/"
+    ],
+    "note": "Pointercrate names the verifier “combi”; the level's own description says “Verified by Combined”, and that is the name used here. Ranked #403 on the Demonlist as of 30 August 2026. GDBrowser reports 65,535 objects, the API's 16-bit ceiling rather than a real count."
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#04100a",
+      "ink": "#e6ffee",
+      "muted": "#86b89a",
+      "accent": "#3cff9d",
+      "accent2": "#00c8ff"
+    },
+    "artDrift": "21s",
+    "artAmbient": [
+      [
+        "tears",
+        10
+      ],
+      [
+        "rips",
+        2
+      ],
+      [
+        "embers",
+        12
+      ]
+    ],
+    "texture": "scanline",
+    "signature": "descend",
+    "mood": null,
+    "googleFonts": [
+      "Chakra Petch:wght@500;700"
+    ],
+    "displayFont": "\"Chakra Petch\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Eighteen builders, one",
+      "big": "Collapse",
+      "sub": "ViPriN hosted it and Combined verified it. The level's description: the digital era is going down."
+    }
+  },
+  "voice": {
+    "hook": "Eighteen names, and a level about something ending.",
+    "why": "<p>Digital Descent is a ViPriN megacollab with eighteen credited builders, including KrmaL, Manix648, Serponge and LazerBlitz. It runs on hyperdemented's Carnivores and it is XL length.</p><p>The level's own description sets it out: revolution is not always made by the ones who rule, and this time the digital era is going down. Combined verified it.</p>",
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {
+      "youtubeId": "mX8j8jG-Um8",
+      "title": "Digital Descent showcase",
+      "channel": "Demon List"
+    },
+    "art": "src/art/digital-descent.svg",
+    "images": []
+  }
+}

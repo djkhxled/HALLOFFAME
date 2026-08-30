@@ -121,7 +121,27 @@ def splice_ambient(art_html: str, theme: dict, seed: int) -> str:
     return f"{head}{layer}</svg>{tail}"
 
 
-def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: str) -> str:
+NUMBER_WORDS = {
+    20: "twenty", 30: "thirty", 40: "forty", 50: "fifty",
+    60: "sixty", 70: "seventy", 80: "eighty", 90: "ninety",
+}
+ONES = ("zero one two three four five six seven eight nine ten eleven twelve "
+        "thirteen fourteen fifteen sixteen seventeen eighteen nineteen").split()
+
+
+def spell(n: int) -> str:
+    """Small numbers in words, for prose. The list length appears in prose in
+    several places and it was written out by hand every time, so all of them
+    still said twenty-five once it was thirty."""
+    if n < 20:
+        return ONES[n]
+    tens, rest = divmod(n, 10)
+    word = NUMBER_WORDS.get(tens * 10, str(n))
+    return f"{word}-{ONES[rest]}" if rest else word
+
+
+def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
+                level_tpl: str, total: int) -> str:
     slug = level["slug"]
     theme = level.get("theme") or {}
     media = level.get("media") or {}
@@ -153,6 +173,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
         level_tpl,
         {
             "rank": level["rank"],
+            "total": total,
             "name": level["name"],
             "native_html": (
                 f'<p class="hero__native" lang="{theme.get("nativeLang", "ja")}">'
@@ -171,7 +192,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str, level_tpl: st
             "voice_html": render.voice_html(level.get("voice")),
             "video_html": render.video_html(media, level["name"]),
             "player_html": render.player_html(level.get("facts")),
-            "ranknav_html": render.ranknav_html(prev, nxt),
+            "ranknav_html": render.ranknav_html(prev, nxt, total),
             "sources_html": render.sources_html(level.get("facts")),
         },
     )
@@ -277,6 +298,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
     body = render.fill(
         index_tpl,
         {
+            "total": len(levels),
             "eyebrow": site["eyebrow"],
             "title_line_html": site["titleHtml"],
             "meta_left": site["metaLeft"],
@@ -340,6 +362,7 @@ def build_404(levels: list[dict], site: dict, base_tpl: str) -> str:
     body = render.fill(
         read(TEMPLATES / "notfound.html"),
         {
+            "total_words": spell(len(published)),
             "random_href": f'/levels/{pick["slug"]}/',
             "top_href": f'/levels/{top["slug"]}/',
             "top_name": top["name"],
@@ -439,12 +462,20 @@ def main() -> int:
     published = [lv for lv in levels if lv.get("published")]
     by_rank = {lv["rank"]: lv for lv in levels}
     for level in published:
-        prev = by_rank.get(level["rank"] - 1)
-        nxt = by_rank.get(level["rank"] + 1)
+        # Neighbours in COUNTDOWN order, not in rank order. The list runs
+        # 30 down to 1, so the level before this one is the higher number
+        # and the level after it is the lower one. Keying these off rank
+        # arithmetic put the better level on the left under the word
+        # "Previous", which is backwards twice over: it labelled the page
+        # you had not seen yet as the one behind you, and it made moving
+        # right mean moving back up the list.
+        prev = by_rank.get(level["rank"] + 1)
+        nxt = by_rank.get(level["rank"] - 1)
         prev = prev if prev and prev.get("published") else None
         nxt = nxt if nxt and nxt.get("published") else None
         html = stamped(
-            build_level(level, site, prev, nxt, base_tpl, level_tpl), 2)
+            build_level(level, site, prev, nxt, base_tpl, level_tpl,
+                        len(levels)), 2)
         write(DOCS / "levels" / level["slug"] / "index.html", html)
         pages += 1
 

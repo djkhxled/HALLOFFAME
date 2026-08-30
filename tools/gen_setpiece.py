@@ -168,6 +168,43 @@ def copy_block(sig, hook, eyebrow, big, sub):
 # copy, in paint order, and each satisfies the data attributes its timeline
 # in scroll.js already reaches for.
 
+def s_ascend(rng, cfg):
+    """Aerial Gleam: the mirror of descend. There, the world rushes up past
+    a falling camera; here the ground drops away and the light opens above.
+    [data-lift=far|mid|near] [data-cloud] [data-sky]"""
+    out = ['  <div class="as__sky" data-sky data-motion aria-hidden="true"></div>']
+    for depth, y, h in (("far", 62, 26), ("mid", 76, 22), ("near", 90, 20)):
+        out.append(
+            f'  <div class="as__ridge as__ridge--{depth}" data-lift="{depth}" '
+            'data-motion aria-hidden="true" style="'
+            + sty(top=f"{y}%", height=f"{h}vmin")
+            + '"></div>'
+        )
+    for i in range(8):
+        out.append(
+            '  <span class="as__cloud" data-cloud data-motion aria-hidden="true" style="'
+            + sty(left=f"{rng.uniform(-8, 92):.1f}%",
+                  top=f"{rng.uniform(8, 78):.1f}%",
+                  width=f"{rng.uniform(22, 62):.0f}vmin",
+                  height=f"{rng.uniform(4, 12):.0f}vmin",
+                  opacity=f"{rng.uniform(0.12, 0.4):.2f}",
+                  **{"--dur": f"{rng.uniform(9, 22):.1f}s",
+                     "--delay": f"-{rng.uniform(0, 18):.1f}s"})
+            + '"></span>'
+        )
+    for i in range(5):
+        out.append(
+            '  <span class="as__shaft" data-motion aria-hidden="true" style="'
+            + sty(left=f"{rng.uniform(4, 92):.1f}%",
+                  width=f"{rng.uniform(4, 16):.1f}vmin",
+                  **{"--dur": f"{rng.uniform(6, 13):.1f}s",
+                     "--delay": f"-{rng.uniform(0, 11):.1f}s"})
+            + '"></span>'
+        )
+    out += specks(rng, 48, cls="stage__speck stage__speck--rise")
+    return out
+
+
 def s_ignite(rng, cfg):
     """Exposure ramps and the corona opens. [data-rays] [data-core]
     [data-cog] [data-cog-rev]"""
@@ -580,7 +617,7 @@ def s_corrupt(rng, cfg):
 
 
 STAGES = {
-    "ignite": s_ignite, "orbit": s_orbit, "pulse": s_pulse,
+    "ascend": s_ascend, "ignite": s_ignite, "orbit": s_orbit, "pulse": s_pulse,
     "fracture": s_fracture, "descend": s_descend, "surge": s_surge,
     "prism": s_prism,
     "flood": s_flood, "twin": s_twin, "whiteout": s_whiteout,
@@ -592,7 +629,7 @@ STAGES = {
 # slash skews [data-cut], so using the wrong one leaves the copy at its
 # entrance state.
 HOOKS = {
-    "ignite": "data-ignite-line", "orbit": "data-orbit-line",
+    "ascend": "data-asc-line", "ignite": "data-ignite-line", "orbit": "data-orbit-line",
     "pulse": "data-pulse-line", "fracture": "data-frac-line",
     "descend": "data-desc-line", "surge": "data-surge-line",
     "prism": "data-split",
@@ -663,6 +700,26 @@ COPY = {
         sig="corrupt", seed=124, title="the noise",
         eyebrow="The screen is lying to you on purpose",
         big="Read the<br>real path"),
+    "aerial-gleam": dict(
+        sig="ascend", seed=126, title="the climb",
+        eyebrow="Two point two, spent entirely in the air",
+        big="The ground<br>drops away"),
+    "nullscapes": dict(
+        sig="fracture", seed=127, title="the void",
+        eyebrow="Its own description, in full",
+        big="Get out of<br>my head"),
+    "atomic-cannon-mk-ii": dict(
+        sig="ignite", seed=128, title="the blast",
+        eyebrow="Second of four, and the series is the point",
+        big="Ordnance,<br>not architecture"),
+    "wow": dict(
+        sig="orbit", seed=129, title="the battle",
+        eyebrow="Eight builders, 2.1, and F-777",
+        big="Loud, and<br>unembarrassed"),
+    "digital-descent": dict(
+        sig="descend", seed=130, title="the collapse",
+        eyebrow="Revolution is not always made by the ones who rule",
+        big="The digital era,<br>going down"),
     "edge-of-destiny": dict(
         sig="surge", seed=125, title="the climax",
         eyebrow="Blade of Justice, rebuilt and optimised",

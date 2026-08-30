@@ -1,0 +1,84 @@
+{
+  "rank": 27,
+  "slug": "nullscapes",
+  "name": "Nullscapes",
+  "tagline": "GET OUT OF MY HEAD. Kiba built the whole thing alone.",
+  "published": true,
+  "facts": {
+    "creators": [
+      "ItzKiba"
+    ],
+    "host": "ItzKiba",
+    "verifier": "Zoink",
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": "109780665",
+    "objects": "63,308",
+    "length": null,
+    "gdVersion": "2.2",
+    "song": {
+      "name": "Flow",
+      "artist": "Creo",
+      "newgroundsId": "1132447",
+      "uploadedAs": {
+        "name": "Creo - Flow",
+        "artist": "CreoMusic"
+      }
+    },
+    "peakRank": null,
+    "sources": [
+      "https://pointercrate.com/demonlist/permalink/589/",
+      "https://gdbrowser.com/109780665",
+      "https://pointercrate.com/demonlist/"
+    ],
+    "note": "Ranked #9 on the Pointercrate Demonlist as of 30 August 2026, the highest current position of anything on this list. GDBrowser reports 63,308 objects, which is under the API's 16-bit ceiling and so is a real figure. The level's in-game description is “GET OUT OF MY HEAD”."
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#08060f",
+      "ink": "#ece8ff",
+      "muted": "#9a93b8",
+      "accent": "#7b5cff",
+      "accent2": "#2ad6c8"
+    },
+    "artDrift": "26s",
+    "artAmbient": [
+      [
+        "tears",
+        6
+      ],
+      [
+        "drops",
+        20
+      ]
+    ],
+    "texture": "grain",
+    "signature": "fracture",
+    "mood": null,
+    "googleFonts": [
+      "Bodoni Moda:wght@600;800"
+    ],
+    "displayFont": "\"Bodoni Moda\", serif",
+    "spotlight": {
+      "eyebrow": "Currently ninth in the world, and built by",
+      "big": "One person",
+      "sub": "ItzKiba made, decorated and published it alone. Zoink verified it."
+    }
+  },
+  "voice": {
+    "hook": "One person, 63,308 objects, and ninth in the world.",
+    "why": "<p>Nullscapes is the hardest level on this list by current Demonlist position, sitting at #9. ItzKiba built it alone — no megacollab, no roster, one person and 63,308 objects.</p><p>The in-game description is three words long: GET OUT OF MY HEAD. Zoink verified it. It is a 2.2 level and it feels like one, using the update's effects to make empty space genuinely unpleasant to look at.</p>",
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {
+      "youtubeId": "EztneTPp5CU",
+      "title": "Nullscapes showcase",
+      "channel": "Demon List"
+    },
+    "art": "src/art/nullscapes.svg",
+    "images": []
+  }
+}

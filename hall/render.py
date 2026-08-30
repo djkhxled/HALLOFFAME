@@ -341,10 +341,17 @@ def player_html(facts: dict) -> str:
     )
 
 
-def ranknav_html(prev: dict | None, nxt: dict | None) -> str:
+def ranknav_html(prev: dict | None, nxt: dict | None, total: int = 25) -> str:
     """Previous/next, each carrying the palette of the page it leads to so the
     link previews its destination rather than borrowing the current level's
-    colour."""
+    colour.
+
+    prev and nxt are neighbours in COUNTDOWN order, so prev is the higher
+    rank number. build.py resolves that; this only lays them out.
+
+    total is passed in rather than hardcoded because it was hardcoded, in
+    six places, and every one of them still said 25 the moment the list grew.
+    """
     parts = ['<nav class="ranknav" aria-label="Rank navigation">']
 
     def link(lv, direction, css_class):
@@ -359,7 +366,7 @@ def ranknav_html(prev: dict | None, nxt: dict | None) -> str:
 
     parts.append(link(prev, "Previous", "ranknav__link--prev") if prev
                  else "<span></span>")
-    parts.append('<a class="ranknav__home" href="/">All 25</a>')
+    parts.append(f'<a class="ranknav__home" href="/">All {total}</a>')
     parts.append(link(nxt, "Next", "ranknav__link--next") if nxt
                  else "<span></span>")
     parts.append("</nav>")

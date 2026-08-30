@@ -27,6 +27,8 @@ SIGNATURES = frozenset(
         "overgrow",
         "iris",
         "corrupt",
+        # the mirror of descend: the ground falls away instead
+        "ascend",
     }
 )
 
