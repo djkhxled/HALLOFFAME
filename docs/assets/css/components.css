@@ -1141,6 +1141,7 @@ a.countdown__hit:focus-visible {
 [data-signature="overgrow"] .spotlight[data-enter] .spotlight__big { transform: scale(0.7) rotate(-4deg); }
 [data-signature="iris"]     .spotlight[data-enter] .spotlight__big { transform: scale(1.35); }
 [data-signature="corrupt"]  .spotlight[data-enter] .spotlight__big { transform: translateX(9%) skewY(-4deg); }
+[data-signature="ascend"]   .spotlight[data-enter] .spotlight__big { transform: translateY(-24%) scale(0.88); }
 
 /* The [data-signature=...] rules above are (0,4,0); a plain
    .spotlight[data-enter="in"] .spotlight__big is (0,3,0) and loses to them,

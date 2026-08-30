@@ -32,9 +32,10 @@ class TestBuild(unittest.TestCase):
         built = {d.name for d in (DOCS / "levels").iterdir() if d.is_dir()}
         self.assertEqual(built, published)
 
-    def test_index_lists_all_25_ranks(self):
+    def test_index_lists_every_rank(self):
         html = (DOCS / "index.html").read_text(encoding="utf-8")
-        self.assertEqual(html.count('class="countdown__entry'), 25)
+        expected = len(list((ROOT / "data" / "levels").glob("*.json")))
+        self.assertEqual(html.count('class="countdown__entry'), expected)
 
     def test_content_is_server_rendered_not_js_injected(self):
         html = (DOCS / "levels" / "nhelv" / "index.html").read_text(encoding="utf-8")

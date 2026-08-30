@@ -1,0 +1,86 @@
+{
+  "rank": 28,
+  "slug": "atomic-cannon-mk-ii",
+  "name": "ATOMIC CANNON Mk II",
+  "tagline": "Two of four, and dj-Nate's Robotic Nightmares weaponised.",
+  "published": true,
+  "facts": {
+    "creators": [
+      "LIEB",
+      "Zeronium",
+      "Giron"
+    ],
+    "host": "LIEB",
+    "verifier": "Zeronium",
+    "verifiedDate": null,
+    "ratedDate": null,
+    "attempts": null,
+    "levelId": "91180835",
+    "objects": null,
+    "length": null,
+    "gdVersion": "2.2",
+    "song": {
+      "name": "Robotic Nightmares",
+      "artist": "dj-Nate",
+      "newgroundsId": "444332",
+      "uploadedAs": {
+        "name": "{dj-N} Robotic Nightmares",
+        "artist": "dj-Nate"
+      }
+    },
+    "peakRank": null,
+    "sources": [
+      "https://pointercrate.com/demonlist/permalink/509/",
+      "https://gdbrowser.com/91180835",
+      "https://pointercrate.com/demonlist/"
+    ],
+    "note": "The level's own description reads “Verified by Zeronium. Level 2/4 in the ATOMIC CANNON series”. Ranked #193 on the Demonlist as of 30 August 2026. GDBrowser reports an object count of 0, which is what it returns when the value is unavailable, so the count is left unknown."
+  },
+  "theme": {
+    "tier": "themed",
+    "palette": {
+      "field": "#120c05",
+      "ink": "#fff4e0",
+      "muted": "#c0a077",
+      "accent": "#ffb020",
+      "accent2": "#ff4a1e"
+    },
+    "artDrift": "16s",
+    "artAmbient": [
+      [
+        "embers",
+        30
+      ],
+      [
+        "flickers",
+        5
+      ]
+    ],
+    "texture": "ember",
+    "signature": "ignite",
+    "mood": null,
+    "googleFonts": [
+      "Dela Gothic One"
+    ],
+    "displayFont": "\"Dela Gothic One\", sans-serif",
+    "spotlight": {
+      "eyebrow": "Second of",
+      "big": "Four",
+      "sub": "Lieb's ATOMIC CANNON series, with Giron building alongside and Zeronium verifying."
+    }
+  },
+  "voice": {
+    "hook": "A series, not a level — and this is the second shot.",
+    "why": "<p>ATOMIC CANNON Mk II is the middle of a four-level series by Lieb, and it commits completely to the idea. Heavy industrial decoration, dj-Nate's Robotic Nightmares underneath, and a level that reads like ordnance rather than architecture.</p><p>Giron built alongside Lieb and Zeronium verified it, which the level says in its own description. It sits at #193 on the Demonlist.</p>",
+    "draftedByClaude": true
+  },
+  "media": {
+    "video": {
+      "youtubeId": "4-lOnZsfhNQ",
+      "title": "ATOMIC CANNON Mk II showcase",
+      "channel": "Demon List"
+    },
+    "art": "src/art/atomic-cannon-mk-ii.svg",
+    "images": []
+  }
+}
