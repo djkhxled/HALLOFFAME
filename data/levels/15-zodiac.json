@@ -62,7 +62,7 @@
       "accent2": "#ff6bd0"
     },
     "artDrift": "38s",
-    "artAmbient": [["shooting", 7], ["pulses", 2]],
+    "artAmbient": [["shooting", 7]],
     "texture": "starfield",
     "signature": "orbit",
     "mood": null,

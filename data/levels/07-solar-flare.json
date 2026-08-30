@@ -41,7 +41,7 @@
       "accent2": "#ffe459"
     },
     "artDrift": "27s",
-    "artAmbient": [["embers", 30], ["pulses", 3]],
+    "artAmbient": [["embers", 30]],
     "texture": "ember",
     "signature": "ignite",
     "mood": "Molten gold on near-black. A sun disc with a hard corona, radiating sunburst blades, spoked medallions turning like gears, and heavy beveled letters lit white-hot from inside.",

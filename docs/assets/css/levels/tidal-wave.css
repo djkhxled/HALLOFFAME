@@ -18,15 +18,26 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  /* The art behind this is dense, so the title needs a dark rim before any
-     glow will read. Stacked tight shadows build the outline; the wide one
-     puts the light back around it. */
+  /* background-clip:text rules out a stroke, so the rim is stacked passes of
+     one tight white shadow — the same construction Antarctic Lights uses.
+     The dark cast stays, but pushed wide and soft and offset downward, so it
+     separates the title from dense water without laying a black line against
+     the letterforms. Then the accent glow last. */
   filter:
-    drop-shadow(0 0 2px #01060c)
-    drop-shadow(0 0 4px #01060c)
-    drop-shadow(0 0 9px rgba(1, 6, 12, 0.95))
-    drop-shadow(0 0 20px rgba(1, 6, 12, 0.75))
-    drop-shadow(0 0 2.8rem color-mix(in srgb, var(--accent) 60%, transparent));
+    drop-shadow(0 0 1.5px #ffffff)
+    drop-shadow(0 0 1.5px #ffffff)
+    drop-shadow(0 0 2px rgba(255, 255, 255, 0.92))
+    drop-shadow(0 0 3.5px rgba(217, 251, 255, 0.7))
+    /* Beyond the white rim, not under it. Sampling the band this title
+       occupies, the artwork peaks at 0.88 luminance where the letters cross
+       the bright chevrons -- white on white, 1.13:1 -- while the mean is
+       0.127 and looks perfectly safe. Each drop-shadow filters the result of
+       the one before, so a tight dark pass here rings the white edge instead
+       of sitting under the type, and the outline still reads white. */
+    drop-shadow(0 0 7px rgba(1, 6, 12, 0.85))
+    drop-shadow(0 0 14px rgba(1, 6, 12, 0.6))
+    drop-shadow(0 8px 30px rgba(1, 6, 12, 0.55))
+    drop-shadow(0 0 2.8rem color-mix(in srgb, var(--accent) 45%, transparent));
 }
 
 /* surge set-piece -------------------------------------------------------- */

@@ -129,18 +129,6 @@ def _drops(out, rng, c, n=30):
         )
 
 
-def _pulses(out, rng, c, n=3):
-    """Rings that expand out of a point and fade — a sonar ping."""
-    for _ in range(n):
-        cx, cy = rng.uniform(W * 0.2, W * 0.8), rng.uniform(H * 0.2, H * 0.7)
-        out.append(
-            f'<circle class="mo-ping" style="--dur:{rng.uniform(5, 11):.1f}s;'
-            f'--delay:-{rng.uniform(0, 10):.1f}s" '
-            f'cx="{f(cx)}" cy="{f(cy)}" r="40" fill="none" '
-            f'stroke="{c["a1"]}" stroke-width="2" opacity="0"/>'
-        )
-
-
 def _flickers(out, rng, c, n=5):
     """Panels that cut out and back. Never a fade — a fade reads as a pulse,
     and this has to read as a fault."""
@@ -158,7 +146,7 @@ def _flickers(out, rng, c, n=5):
 
 EFFECTS = {
     "shooting": _shooting, "sweeps": _sweeps, "tears": _tears,
-    "rips": _rips, "embers": _embers, "drops": _drops, "pulses": _pulses,
+    "rips": _rips, "embers": _embers, "drops": _drops,
     "flickers": _flickers,
 }
 

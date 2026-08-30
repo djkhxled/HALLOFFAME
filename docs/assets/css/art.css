@@ -159,19 +159,6 @@
   100% { opacity: 0; transform: translate(calc(var(--dx, 60) * 1px), 1000px); }
 }
 
-/* r is animated rather than scale: scaling a circle scales its stroke with
-   it, and the ring is meant to thin as it widens. */
-.art .mo-ping {
-  animation: mo-ping var(--dur, 8s) ease-out infinite;
-  animation-delay: var(--delay, 0s);
-}
-
-@keyframes mo-ping {
-  0%   { r: 20px; opacity: 0; stroke-width: 4; }
-  8%   { opacity: 0.5; }
-  100% { r: 460px; opacity: 0; stroke-width: 0.6; }
-}
-
 /* Glitch ------------------------------------------------------------------ */
 /* Killbot's whole trick is that the screen is lying, so these snap between
    states with no interpolation at all. */
@@ -253,8 +240,7 @@
 @media (max-width: 44rem) and (update: slow) {
   .art .mo-shoot,
   .art .mo-rise,
-  .art .mo-fall,
-  .art .mo-ping {
+  .art .mo-fall {
     display: none;
   }
 }
@@ -279,7 +265,6 @@
   .art .mo-sweep,
   .art .mo-rise,
   .art .mo-fall,
-  .art .mo-ping,
   [data-art-drift] .hero__art > svg {
     animation: none !important;
     transform: none !important;
@@ -290,8 +275,7 @@
      debris parked mid-flight. */
   .art .mo-shoot,
   .art .mo-rise,
-  .art .mo-fall,
-  .art .mo-ping {
+  .art .mo-fall {
     display: none;
   }
 }

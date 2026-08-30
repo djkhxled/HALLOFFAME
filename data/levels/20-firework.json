@@ -52,7 +52,7 @@
       "accent2": "#7ad4e8"
     },
     "artDrift": "24s",
-    "artAmbient": [["embers", 28], ["pulses", 3]],
+    "artAmbient": [["embers", 28]],
     "texture": "ember",
     "signature": "ignite",
     "mood": null,
