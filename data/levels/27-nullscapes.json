@@ -37,21 +37,21 @@
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#08060f",
-      "ink": "#ece8ff",
-      "muted": "#9a93b8",
-      "accent": "#7b5cff",
-      "accent2": "#2ad6c8"
+      "field": "#0d111b",
+      "ink": "#f2f5ff",
+      "muted": "#98a3c0",
+      "accent": "#c8d4f5",
+      "accent2": "#6d7896"
     },
     "artDrift": "26s",
     "artAmbient": [
       [
-        "tears",
-        6
+        "drops",
+        24
       ],
       [
-        "drops",
-        20
+        "embers",
+        16
       ]
     ],
     "texture": "grain",

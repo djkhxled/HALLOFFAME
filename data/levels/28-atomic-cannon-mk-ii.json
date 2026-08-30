@@ -39,11 +39,11 @@
   "theme": {
     "tier": "themed",
     "palette": {
-      "field": "#120c05",
-      "ink": "#fff4e0",
-      "muted": "#c0a077",
-      "accent": "#ffb020",
-      "accent2": "#ff4a1e"
+      "field": "#160528",
+      "ink": "#ffffff",
+      "muted": "#c49ad8",
+      "accent": "#ff3cc8",
+      "accent2": "#2ff0e0"
     },
     "artDrift": "16s",
     "artAmbient": [
@@ -71,7 +71,7 @@
   },
   "voice": {
     "hook": "A series, not a level — and this is the second shot.",
-    "why": "<p>ATOMIC CANNON Mk II is the middle of a four-level series by Lieb, and it commits completely to the idea. Heavy industrial decoration, dj-Nate's Robotic Nightmares underneath, and a level that reads like ordnance rather than architecture.</p><p>Giron built alongside Lieb and Zeronium verified it, which the level says in its own description. It sits at #193 on the Demonlist.</p>",
+    "why": "<p>ATOMIC CANNON Mk II is the middle of a four-level series by Lieb, and the series is the point: each one is a shot, numbered, with the same name and a bigger number. dj-Nate's Robotic Nightmares runs underneath it.</p><p>Giron built alongside Lieb and Zeronium verified it, which the level says in its own description. It sits at #193 on the Demonlist.</p>",
     "draftedByClaude": true
   },
   "media": {
