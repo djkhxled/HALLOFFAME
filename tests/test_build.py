@@ -299,3 +299,47 @@ class ArtMotion(unittest.TestCase):
                                    svg.read_text(encoding="utf-8")))
         for cls in sorted(used):
             self.assertIn(cls, guard, f"{cls} keeps running under reduced motion")
+
+
+class NotFoundPage(unittest.TestCase):
+    """404.html is the one page that must NOT be relativized."""
+
+    @classmethod
+    def setUpClass(cls):
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True,
+                       capture_output=True)
+        cls.html = (DOCS / "404.html").read_text(encoding="utf-8")
+
+    def test_it_is_built(self):
+        self.assertIn("40.4", self.html, "the death screen lost its percentage")
+
+    def test_every_url_is_absolute(self):
+        """GitHub Pages serves this file for any missing path, so the same
+        document has to work at /nope, /levels/nope and /a/b/c/nope. A
+        relative asset URL is correct at exactly one of those depths and
+        silently breaks at every other one — the page would render unstyled,
+        which is the failure that already cost this site a day when Pages was
+        serving from the wrong source.
+
+        This is deliberately the opposite of the rule every other page
+        follows, and the reason is that every other page knows its depth.
+        """
+        bad = [u for u in re.findall(r'(?:href|src)="([^"]+)"', self.html)
+               if u.startswith(("./", "../"))]
+        self.assertEqual(bad, [], "404.html must use absolute URLs")
+
+    def test_assets_are_still_cache_stamped(self):
+        """Skipping relativize must not also skip the stamp."""
+        assets = re.findall(r'(?:href|src)="(/assets/(?:css|js)/[^"]+)"',
+                            self.html)
+        self.assertTrue(assets)
+        for url in assets:
+            self.assertIn("?v=", url, f"{url} is unstamped")
+
+    def test_the_random_link_works_without_javascript(self):
+        """The href is filled at build time; the script only re-rolls it."""
+        match = re.search(r'<a[^>]*data-random[^>]*href="([^"]+)"', self.html) \
+            or re.search(r'<a[^>]*href="([^"]+)"[^>]*data-random', self.html)
+        self.assertIsNotNone(match, "no random link found")
+        target = DOCS / match.group(1).strip("/") / "index.html"
+        self.assertTrue(target.exists(), f"random link points at {target}")

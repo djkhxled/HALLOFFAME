@@ -8,6 +8,7 @@ Exit 0 on success, 1 if validation fails (nothing is written on failure).
 import hashlib
 import json
 import pathlib
+import random
 import re
 import shutil
 import sys
@@ -318,6 +319,67 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
     )
 
 
+def build_404(levels: list[dict], site: dict, base_tpl: str) -> str:
+    """The death screen. 404 reads as 40.4%, so the page is a run that fell
+    short — which is the one joke Geometry Dash hands you for free.
+
+    Deliberately NOT relativized by the caller. GitHub Pages serves this
+    file for any missing path, so the same document has to work at /nope,
+    /levels/nope and /a/b/c/nope. Relative asset URLs are correct at exactly
+    one of those depths and silently break at the rest; absolute ones are
+    correct at all of them. That is the opposite of the rule every other
+    page follows, and the reason is that every other page knows its depth.
+    """
+    published = [lv for lv in levels if lv.get("published")]
+    # Chosen at build time so the link works with JavaScript off; the inline
+    # script below re-rolls it per visit for anyone who has it on.
+    pick = random.Random(len(published)).choice(published)
+    top = min(published, key=lambda lv: lv["rank"])
+
+    slugs = json.dumps([lv["slug"] for lv in published])
+    body = render.fill(
+        read(TEMPLATES / "notfound.html"),
+        {
+            "random_href": f'/levels/{pick["slug"]}/',
+            "top_href": f'/levels/{top["slug"]}/',
+            "top_name": top["name"],
+        },
+    )
+    body += (
+        "<script>"
+        f"(function(){{var s={slugs},a=document.querySelector('[data-random]');"
+        "if(!a)return;var r=function(){"
+        "a.href='/levels/'+s[Math.floor(Math.random()*s.length)]+'/';};"
+        "r();a.addEventListener('mouseenter',r);a.addEventListener('focus',r);"
+        "}());</script>"
+    )
+
+    return render.fill(
+        base_tpl,
+        {
+            "slug": "notfound",
+            "html_attrs_html": "",
+            "signature": "static",
+            "texture_class": "texture texture--ember",
+            # Its own palette. Every level page ships one and this is the
+            # only page that would otherwise render in the neutral default,
+            # which for a death screen is the wrong note entirely.
+            # A literal dash: the title slot is not _html-suffixed, so
+            # render.fill escapes it and "&mdash;" would ship as text.
+            "title": f"Not found \u2014 {site['title']}",
+            "description": "That page is not in the Hall.",
+            "head_extra_html": (
+                "<style>:root{--field:#0c0406;--ink:#ffeef0;"
+                "--muted:#c08a90;--accent:#ff3b46;--accent2:#ff8a5c;}</style>"
+            ),
+            "body_html": body,
+            "disclaimer": site["disclaimer"],
+            "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
+        },
+    )
+
+
 def main() -> int:
     site = json.loads(read(ROOT / "data" / "site.json"))
     levels = load_levels(ROOT / "data" / "levels")
@@ -385,6 +447,16 @@ def main() -> int:
             build_level(level, site, prev, nxt, base_tpl, level_tpl), 2)
         write(DOCS / "levels" / level["slug"] / "index.html", html)
         pages += 1
+
+    # Absolute URLs on purpose — see build_404. stamped() would relativize
+    # them, so the stamping is applied by hand and relativize is skipped.
+    stamp_only = re.sub(
+        r'(/assets/(?:css|js)/[^"\']+?\.(?:css|js))',
+        lambda m: f"{m.group(1)}?v={stamp}",
+        build_404(levels, site, base_tpl),
+    )
+    write(DOCS / "404.html", stamp_only)
+    pages += 1
 
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
 
