@@ -1156,3 +1156,18 @@ a.countdown__hit:focus-visible {
 }
 
 .spotlight[data-enter="in"] .spotlight__sub { transition-delay: 0.12s; }
+
+/* Song: the track, and the upload the level actually points at ----------- */
+
+.player__as {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 52ch;
+  margin: calc(var(--space-3) * -1) 0 var(--space-4);
+}
+
+.player__as-name {
+  color: color-mix(in srgb, var(--accent) 40%, var(--ink));
+}

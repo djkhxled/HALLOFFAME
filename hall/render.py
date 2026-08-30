@@ -318,10 +318,26 @@ def player_html(facts: dict) -> str:
             '<p class="player__nong">Not on Newgrounds &mdash; the level '
             "carries this track as a custom song.</p>"
         )
+    # A Geometry Dash level can only point at a Newgrounds upload, and those
+    # are routinely re-uploaded under the level's own name rather than the
+    # track's. Deimos plays SR20DET by Blksmiith from an upload titled
+    # "Deimos" by Solkrieg. Naming the track and hiding that would make the
+    # link look wrong; naming the upload and hiding the track would credit
+    # the wrong artist. Both are stated.
+    as_uploaded = ""
+    upload = song.get("uploadedAs") or {}
+    if upload.get("name"):
+        who = f' by {esc(upload["artist"])}' if upload.get("artist") else ""
+        as_uploaded = (
+            '<p class="player__as">Carried in game as '
+            f'<span class="player__as-name">{esc(upload["name"])}</span>'
+            f"{who} &mdash; the Newgrounds upload the level points at.</p>"
+        )
+
     return (
         '<section class="player" aria-labelledby="song-h">'
         '<h2 id="song-h" class="eyebrow">Song</h2>'
-        f'<p class="player__title">{line}</p>{link}</section>'
+        f'<p class="player__title">{line}</p>{as_uploaded}{link}</section>'
     )
 
 

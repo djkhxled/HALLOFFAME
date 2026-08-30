@@ -65,14 +65,101 @@ def boulder(cx, cy, rx, ry, seed, n=26):
 
 # ---------------------------------------------------------------- lighting
 
-def bolt(x, y, segs, spread, drop, seed):
-    r = random.Random(seed)
-    d = f"M{f(x)} {f(y)}"
-    for _ in range(segs):
+def _channel(r, x, y, drop, segs, spread):
+    """One run of a bolt, as a list of points.
+
+    The step length varies wildly rather than jittering around a constant.
+    That is the difference between lightning and a crack: a crack propagates
+    evenly, lightning falls in long runs punctuated by sharp short kinks.
+    """
+    pts = [(x, y)]
+    left = drop
+    for i in range(segs):
+        step = min(left, left / max(segs - i, 1) * r.uniform(0.4, 1.9))
+        left -= step
         x += r.uniform(-spread, spread)
-        y += drop * r.uniform(0.6, 1.4)
-        d += f" L{f(x)} {f(y)}"
-    return d
+        y += step
+        pts.append((x, y))
+        if left <= 0.5:
+            break
+    return pts
+
+
+def _path(pts):
+    return "M" + " L".join(f"{f(x)} {f(y)}" for x, y in pts)
+
+
+def _clear_of(pts, keep_out):
+    if not keep_out:
+        return True
+    cx, cy, rad = keep_out
+    return all(math.hypot(x - cx, y - cy) > rad for x, y in pts)
+
+
+def bolt(x, y, drop, seed, spread=44, segs=11, keep_out=None):
+    """A forked bolt: the main channel, plus the branches off it.
+
+    The previous version was a single random walk with a fixed downward
+    step, and every one of the four was struck from a point inside the
+    disc — all four origins sat within 179px of a centre with r=182. Drawn
+    across a lit body with no taper and no fork, they read as scratches on
+    the moon rather than as light in the air.
+
+    keep_out is a (cx, cy, r) the bolt may not touch. Starting outside the
+    disc is not enough on its own: a walk with spread 44 over eleven
+    segments drifts far enough to wander back onto it, which is exactly
+    what the strike at x=1300 did. Re-seeding until the whole figure clears
+    is deterministic, and cheap at five bolts.
+    """
+    for attempt in range(200):
+        r = random.Random(seed * 1000 + attempt)
+        main = _channel(r, x, y, drop, segs, spread)
+        forks = []
+        for _ in range(r.randint(1, 3)):
+            i = r.randrange(1, max(2, len(main) - 2))
+            fx, fy = main[i]
+            forks.append(_channel(r, fx, fy, drop * r.uniform(0.16, 0.38),
+                                  r.randint(3, 5), spread * 0.75))
+        if _clear_of(main, keep_out) and all(_clear_of(fk, keep_out)
+                                             for fk in forks):
+            return main, forks
+    raise ValueError(
+        f"no bolt from ({x}, {y}) clears {keep_out} in 200 tries — "
+        "move the origin or narrow the spread"
+    )
+
+
+def strike(x, y, drop, seed, dur, delay, keep_out=None):
+    """A bolt rendered as glow, tapered core and thinner forks.
+
+    SVG cannot taper a stroke, so the core is drawn as three overlapping
+    slices at decreasing widths — thick where the channel is strongest,
+    thin at the tip. The whole thing sits in a group that flashes, because
+    lightning that simply hangs there is a drawing of lightning.
+    """
+    main, forks = bolt(x, y, drop, seed, keep_out=keep_out)
+    n = len(main)
+    out = [f'<g class="mo-strike" style="--dur:{dur};--delay:{delay};'
+           '--lo:0.16">']
+    out.append(f'<path d="{_path(main)}" fill="none" stroke="#ff7a3c" '
+               'stroke-width="17" opacity="0.3" stroke-linecap="round" '
+               'stroke-linejoin="round" filter="url(#dm-soft)"/>')
+    for frm, to, w in ((0, n // 3 + 1, 4.2), (n // 3, 2 * n // 3 + 1, 2.9),
+                       (2 * n // 3, n, 1.5)):
+        seg = main[frm:to]
+        if len(seg) > 1:
+            out.append(f'<path d="{_path(seg)}" fill="none" stroke="#fff1e6" '
+                       f'stroke-width="{w}" stroke-linecap="round" '
+                       'stroke-linejoin="round" opacity="0.95"/>')
+    for fk in forks:
+        out.append(f'<path d="{_path(fk)}" fill="none" stroke="#ff7a3c" '
+                   'stroke-width="8" opacity="0.22" stroke-linejoin="round" '
+                   'filter="url(#dm-soft)"/>')
+        out.append(f'<path d="{_path(fk)}" fill="none" stroke="#ffd9c2" '
+                   'stroke-width="1.4" stroke-linecap="round" '
+                   'stroke-linejoin="round" opacity="0.82"/>')
+    out.append("</g>")
+    return "".join(out)
 
 
 # ---------------------------------------------------------------- cathedral
@@ -282,13 +369,17 @@ def build():
     a(f'<circle cx="{cx}" cy="{cy}" r="{r + 20}" fill="none" stroke="#ff5a2e" '
       'stroke-width="1.6" opacity="0.4"/>')
 
-    # lightning clawing across the disc
-    for i, (bx, by) in enumerate(((880, 90), (1156, 74), (1120, 300), (836, 210))):
-        d = bolt(bx, by, 5, 26, 34, 40 + i)
-        a(f'<path d="{d}" fill="none" stroke="#ff5a2e" stroke-width="9" '
-          f'opacity="0.3" filter="url(#dm-soft)"/>')
-        a(f'<path d="{d}" fill="none" stroke="#ffe4d2" stroke-width="2.3" '
-          'stroke-linejoin="round" opacity="0.92"/>')
+    # Lightning in the sky beside the disc, never across its face. The disc
+    # spans x 828..1192 in this group's coordinates, so every strike starts
+    # outside that and falls past it. They flash on their own clocks, offset
+    # so two never land together.
+    for bx, by, drop, seed, dur, delay in (
+            (430, -40, 520, 40, "7.5s", "-1.2s"),
+            (690, -70, 430, 41, "11s", "-6.4s"),
+            (1300, -50, 470, 42, "9s", "-3.8s"),
+            (1455, -30, 350, 43, "13s", "-9.1s")):
+        a(strike(bx, by, drop, seed, dur, delay,
+                 keep_out=(cx, cy, r + 14)))
 
     a(cathedral())
 
@@ -327,12 +418,9 @@ def build():
           'opacity="0.32"/>')
     a("</g>")
 
-    # a ground strike, as in the thumbnail
-    d = bolt(612, 520, 4, 22, 30, 91)
-    a(f'<path d="{d}" fill="none" stroke="#ff3b1e" stroke-width="11" '
-      'opacity="0.28" filter="url(#dm-soft)"/>')
-    a(f'<path d="{d}" fill="none" stroke="#ff7a52" stroke-width="2.6" '
-      'stroke-linejoin="round" opacity="0.9"/>')
+    # A ground strike, as in the thumbnail. Slower clock than the sky bolts
+    # and offset from all of them, so it reads as its own event.
+    a(strike(612, 470, 240, 91, "17s", "-11.5s"))
 
     a(marker())
     a(bones())
