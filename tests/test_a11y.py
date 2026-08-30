@@ -21,9 +21,11 @@ class TestAccessibility(unittest.TestCase):
     def setUpClass(cls):
         subprocess.run(["python3", "build.py"], cwd=ROOT, check=True,
                        capture_output=True)
+        # Every HTML page, not only index.html: 404.html is a real page a
+        # visitor lands on and it was outside every rule below.
         cls.pages = {
             str(f.relative_to(DOCS)): f.read_text(encoding="utf-8")
-            for f in sorted(DOCS.rglob("index.html"))
+            for f in sorted(DOCS.rglob("*.html"))
         }
         assert cls.pages, "no pages were built"
 

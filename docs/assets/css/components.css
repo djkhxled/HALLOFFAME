@@ -1171,3 +1171,162 @@ a.countdown__hit:focus-visible {
 .player__as-name {
   color: color-mix(in srgb, var(--accent) 40%, var(--ink));
 }
+
+/* 404 — the death screen ------------------------------------------------- */
+/* 404 reads as 40.4%, so the page is a run that fell short. Everything here
+   is drawn in CSS: this file is served for any missing path, and a missing
+   path is exactly when you do not want to be fetching more assets. */
+
+.dead {
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-4);
+  position: relative;
+  padding-block: var(--space-8);
+}
+
+.dead__art {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.dead__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 46% at 34% 46%,
+    color-mix(in srgb, var(--accent) 26%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+/* The row that killed you. 24 spikes as one clip-path: no repeating
+   gradient draws a reliable triangle across engines, and a row of elements
+   for scenery is not worth the markup. */
+.dead__spikes {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 4.5rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 40%, var(--field)) 0%,
+    var(--field) 100%
+  );
+  clip-path: polygon(0% 100%, 2.083% 0%, 4.167% 100%, 6.25% 0%, 8.333% 100%, 10.42% 0%, 12.5% 100%, 14.58% 0%, 16.67% 100%, 18.75% 0%, 20.83% 100%, 22.92% 0%, 25% 100%, 27.08% 0%, 29.17% 100%, 31.25% 0%, 33.33% 100%, 35.42% 0%, 37.5% 100%, 39.58% 0%, 41.67% 100%, 43.75% 0%, 45.83% 100%, 47.92% 0%, 50% 100%, 52.08% 0%, 54.17% 100%, 56.25% 0%, 58.33% 100%, 60.42% 0%, 62.5% 100%, 64.58% 0%, 66.67% 100%, 68.75% 0%, 70.83% 100%, 72.92% 0%, 75% 100%, 77.08% 0%, 79.17% 100%, 81.25% 0%, 83.33% 100%, 85.42% 0%, 87.5% 100%, 89.58% 0%, 91.67% 100%, 93.75% 0%, 95.83% 100%, 97.92% 0%, 100% 100%);
+  opacity: 0.75;
+}
+
+.dead__attempt {
+  font-family: var(--font-mono);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+.dead__n {
+  color: color-mix(in srgb, var(--accent) 55%, var(--ink));
+}
+
+.dead__pct {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(4rem, 22vw, 16rem);
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.dead__sign {
+  font-size: 0.42em;
+  color: var(--accent);
+  vertical-align: baseline;
+  margin-left: 0.06em;
+}
+
+/* The bar stops where the run did. */
+.dead__bar {
+  position: relative;
+  width: min(100%, 46rem);
+  height: 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  overflow: visible;
+}
+
+.dead__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 40.4%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent2) 0%, var(--accent) 100%);
+}
+
+.dead__cursor {
+  position: absolute;
+  top: 50%;
+  left: 40.4%;
+  width: 0.2rem;
+  height: 2.2rem;
+  translate: -50% -50%;
+  border-radius: 2px;
+  background: var(--ink);
+  box-shadow: 0 0 1.4rem color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.dead__lede {
+  color: var(--muted);
+  margin: var(--space-3) 0 0;
+}
+
+.dead__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.dead__go {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: var(--space-3) var(--space-5);
+  border: var(--rule) solid var(--rule-colour);
+  border-radius: 2px;
+  transition: background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.dead__go:hover,
+.dead__go:focus-visible {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.dead__go--primary {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.dead__best {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--muted);
+  margin: var(--space-4) 0 0;
+}
+
+@media (max-width: 44rem) {
+  .dead__cursor { height: 1.6rem; }
+  .dead__go { padding: var(--space-3) var(--space-4); }
+}
