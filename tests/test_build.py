@@ -404,3 +404,60 @@ class RunReadout(unittest.TestCase):
         self.assertNotIn("gsap", code.lower())
         self.assertNotIn("prefers-reduced-motion", code)
         self.assertIn("scrollY", code, "it should still read the scroll")
+
+
+class BrowserChrome(unittest.TestCase):
+    """theme-color and color-scheme, both taken from the page's ground."""
+
+    @classmethod
+    def setUpClass(cls):
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True,
+                       capture_output=True)
+        cls.pages = {str(f.relative_to(DOCS)): f.read_text(encoding="utf-8")
+                     for f in sorted(DOCS.rglob("*.html"))}
+
+    def test_the_default_ground_matches_the_stylesheet(self):
+        """build.DEFAULT_FIELD is what the pages with no palette of their own
+        tell the browser. If tokens.css moves and this does not, their chrome
+        renders a colour the page never uses."""
+        import build
+        tokens = (ROOT / "src" / "css" / "tokens.css").read_text(encoding="utf-8")
+        declared = re.search(r"--field:\s*(#[0-9a-fA-F]{3,6})\s*;", tokens)
+        self.assertIsNotNone(declared, "no --field in tokens.css")
+        self.assertEqual(declared.group(1).lower(), build.DEFAULT_FIELD.lower())
+
+    def test_every_page_declares_one(self):
+        missing = [p for p, s in self.pages.items()
+                   if 'name="theme-color"' not in s]
+        self.assertEqual(missing, [])
+
+    def test_each_level_uses_its_own_field(self):
+        import json
+        bad = []
+        for path in sorted((ROOT / "data" / "levels").glob("*.json")):
+            rec = json.loads(path.read_text(encoding="utf-8"))
+            field = rec["theme"]["palette"]["field"]
+            page = self.pages[f"levels/{rec['slug']}/index.html"]
+            got = re.search(r'name="theme-color" content="([^"]+)"', page).group(1)
+            if got.lower() != field.lower():
+                bad.append(f"{rec['slug']}: {got} vs {field}")
+        self.assertEqual(bad, [])
+
+    def test_the_scheme_follows_the_grounds_luminance(self):
+        """Nhelv is the one light page on the site. If it were told dark, its
+        scrollbar would come back black against paper."""
+        from hall.contrast import parse_hex, relative_luminance
+        from hall.render import LIGHT_ABOVE
+        bad = []
+        for name, page in self.pages.items():
+            ground = re.search(r'name="theme-color" content="([^"]+)"', page).group(1)
+            scheme = re.search(r"color-scheme:\s*(light|dark)", page).group(1)
+            want = ("light" if relative_luminance(parse_hex(ground)) > LIGHT_ABOVE
+                    else "dark")
+            if scheme != want:
+                bad.append(f"{name}: {scheme} on {ground}")
+        self.assertEqual(bad, [])
+        light = [n for n, s in self.pages.items()
+                 if re.search(r"color-scheme:\s*light", s)]
+        self.assertEqual(light, ["levels/nhelv/index.html"],
+                         "the set of light pages changed")

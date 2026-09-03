@@ -21,6 +21,12 @@ ROOT = pathlib.Path(__file__).resolve().parent
 DOCS = ROOT / "docs"
 TEMPLATES = ROOT / "templates"
 
+# Must match --field on :root in src/css/tokens.css. The pages that
+# declare no palette of their own render on it, and their browser
+# chrome has to be told the same colour. A test holds the two together.
+DEFAULT_FIELD = "#06070b"
+NOTFOUND_FIELD = "#0c0406"
+
 
 def relativize(text: str, depth: int) -> str:
     """Turn site-internal absolute URLs into relative ones.
@@ -240,6 +246,8 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
         {
             "slug": slug,
             "html_attrs_html": html_attrs,
+            "chrome_meta_html": render.chrome_html(
+                (theme.get("palette") or {}).get("field") or DEFAULT_FIELD),
             "attempt_label_html": (
                 f'<span class="attempt__rank">#{level["rank"]}</span>'
             ),
@@ -282,6 +290,7 @@ def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str) -> str:
         {
             "slug": f"doc-{doc['slug']}",
             "html_attrs_html": "",
+            "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
             "attempt_label_html": "",
             "signature": "static",
             "texture_class": "texture texture--grain",
@@ -330,6 +339,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
         {
             "slug": "index",
             "html_attrs_html": " data-art-drift" if site.get("artDrift") else "",
+            "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
             "attempt_label_html": '<span class="attempt__rank">30&rarr;1</span>',
             "signature": "static",
             "texture_class": "texture texture--starfield",
@@ -394,6 +404,7 @@ def build_404(levels: list[dict], site: dict, base_tpl: str) -> str:
         {
             "slug": "notfound",
             "html_attrs_html": "",
+            "chrome_meta_html": render.chrome_html(NOTFOUND_FIELD),
             "attempt_label_html": "",
             "signature": "static",
             "texture_class": "texture texture--ember",
@@ -405,7 +416,7 @@ def build_404(levels: list[dict], site: dict, base_tpl: str) -> str:
             "title": f"Not found \u2014 {site['title']}",
             "description": "That page is not in the Hall.",
             "head_extra_html": (
-                "<style>:root{--field:#0c0406;--ink:#ffeef0;"
+                "<style>:root{--field:" + NOTFOUND_FIELD + ";--ink:#ffeef0;"
                 "--muted:#c08a90;--accent:#ff3b46;--accent2:#ff8a5c;}</style>"
             ),
             "body_html": body,
