@@ -114,7 +114,7 @@ def build():
       '<feGaussianBlur stdDeviation="13"/></filter>')
     a('<filter id="sh-bloom" x="-40%" y="-40%" width="180%" height="180%">'
       '<feGaussianBlur stdDeviation="30"/></filter>')
-    a('<filter id="sh-fine"><feGaussianBlur stdDeviation="3"/></filter>')
+    a('<filter id="sh-fine" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3"/></filter>')
     a("</defs>")
 
     a(f'<rect width="{W}" height="{H}" fill="#050101"/>')

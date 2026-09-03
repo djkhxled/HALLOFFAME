@@ -74,9 +74,9 @@ def build():
       '<stop offset="52%" stop-color="#040407" stop-opacity="0"/>'
       '<stop offset="100%" stop-color="#040407" stop-opacity="0.8"/>'
       "</radialGradient>")
-    a('<filter id="ix-wide"><feGaussianBlur stdDeviation="46"/></filter>')
-    a('<filter id="ix-soft"><feGaussianBlur stdDeviation="16"/></filter>')
-    a('<filter id="ix-fine"><feGaussianBlur stdDeviation="4"/></filter>')
+    a('<filter id="ix-wide" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="46"/></filter>')
+    a('<filter id="ix-soft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="16"/></filter>')
+    a('<filter id="ix-fine" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>')
     a("</defs>")
 
     a(f'<rect width="{W}" height="{H}" fill="url(#ix-sky)"/>')

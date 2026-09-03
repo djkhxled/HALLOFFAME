@@ -25,7 +25,7 @@
       <stop offset="40%" stop-color="#080405" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#080405" stop-opacity="0.94"/>
     </linearGradient>
-    <filter id="ac-soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="ac-soft" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
     <filter id="ac-grain">
       <feTurbulence type="fractalNoise" baseFrequency="0.86" numOctaves="4"/>
       <feColorMatrix type="saturate" values="0"/>

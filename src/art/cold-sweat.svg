@@ -18,7 +18,7 @@
       <stop offset="42%" stop-color="#05070d" stop-opacity="0.06"/>
       <stop offset="100%" stop-color="#05070d" stop-opacity="0.9"/>
     </linearGradient>
-    <filter id="cs-soft"><feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="cs-soft" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7"/></filter>
     <filter id="cs-grain">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/>
       <feColorMatrix type="saturate" values="0"/>

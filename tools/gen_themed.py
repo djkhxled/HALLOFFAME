@@ -209,7 +209,7 @@ def m_swirl(p, rng, c, cx=0.6, cy=0.45, n=5):
         col = c["a1"] if i % 2 else c["a2"]
         p.append(f'<path d="M{f(x0)} {f(y0)} A{f(r)} {f(r)} 0 0 1 {f(x1)} {f(y1)}" '
                  f'fill="none" stroke="{col}" stroke-width="{f(rng.uniform(14, 44))}" '
-                 f'opacity="{rng.uniform(0.12, 0.3):.2f}" filter="url(#g-soft)"/>')
+                 f'opacity="{rng.uniform(0.12, 0.3):.2f}" filter="url(#g-soft-sm)"/>')
 
 
 def m_skull(p, rng, c, cx=0.5, cy=0.46, s=1.0):
@@ -360,7 +360,7 @@ def m_bloom(p, rng, c, cx=0.5, cy=0.5, r=0.3, opacity=0.7):
 
 def m_bokeh(p, rng, c, n=7):
     """Soft lit blooms in the haze behind everything."""
-    p.append('<g filter="url(#g-soft)">')
+    p.append('<g filter="url(#g-soft-sm)">')
     for _ in range(n):
         p.append(f'<circle cx="{f(rng.uniform(0, W))}" '
                  f'cy="{f(rng.uniform(0, H * 0.8))}" '
@@ -518,7 +518,7 @@ def m_nebula(p, rng, c, n=9):
         p.append(f'<ellipse cx="{f(cx)}" cy="{f(cy)}" rx="{f(rng.uniform(120, 380))}" '
                  f'ry="{f(rng.uniform(60, 190))}" '
                  f'fill="{rng.choice([c["a1"], c["a2"]])}" '
-                 f'opacity="{f(rng.uniform(0.05, 0.16))}" filter="url(#g-soft)" '
+                 f'opacity="{f(rng.uniform(0.05, 0.16))}" filter="url(#g-soft-sm)" '
                  f'transform="rotate({rng.uniform(-40, 40):.0f} {f(cx)} {f(cy)})"/>')
 
 
@@ -579,7 +579,7 @@ def dust(p, rng, c, n=90):
         p.append(f'<circle cx="{f(rng.uniform(0, W))}" cy="{f(rng.uniform(0, H))}" '
                  f'r="{f(r)}" fill="{rng.choice([c["hi"], c["a1"], c["a2"]])}" '
                  f'opacity="{f(rng.uniform(0.06, 0.2) if near else rng.uniform(0.2, 0.6))}"'
-                 f'{" filter=\"url(#g-soft)\"" if near else ""}/>')
+                 f'{" filter=\"url(#g-dust)\"" if near else ""}/>')
 
 
 
@@ -930,7 +930,25 @@ def build(slug, cfg):
       '<feComposite in="fc" in2="b" operator="in" result="g"/>'
       '<feMerge><feMergeNode in="g"/><feMergeNode in="g"/>'
       '<feMergeNode in="SourceGraphic"/></feMerge></filter>')
-    a('<filter id="g-soft"><feGaussianBlur stdDeviation="20"/></filter>')
+    # Every one of these needs an explicit region. An SVG filter defaults to
+    # -10%,120% of the element's bounding box, and a Gaussian blur needs
+    # roughly 3x stdDeviation of margin — so a 20px blur on anything under
+    # ~600px wide was being hard-clipped, and rendered as a rectangle with
+    # cut edges rather than as a glow. That was true of every blur on the
+    # site, in all thirty pieces.
+    #
+    # Two of them, because the region is a multiple of the element: a
+    # generous percentage is right for a small shape and enormous for a
+    # canvas-spanning group, where it would allocate a buffer of tens of
+    # megabytes. g-soft is for large subjects, g-soft-sm for small ones.
+    a('<filter id="g-soft" x="-25%" y="-25%" width="150%" height="150%">'
+      '<feGaussianBlur stdDeviation="20"/></filter>')
+    a('<filter id="g-soft-sm" x="-120%" y="-120%" width="340%" height="340%">'
+      '<feGaussianBlur stdDeviation="20"/></filter>')
+    # Foreground dust is 7-11px across. A 20px blur on that is four times the
+    # shape, which smears it to nothing and boxes what is left.
+    a('<filter id="g-dust" x="-150%" y="-150%" width="400%" height="400%">'
+      '<feGaussianBlur stdDeviation="2.4"/></filter>')
     a(f'<radialGradient id="g-corner" cx="50%" cy="46%" r="72%">'
       f'<stop offset="55%" stop-color="{c["deep"]}" stop-opacity="0"/>'
       f'<stop offset="100%" stop-color="{c["deep"]}" stop-opacity="0.72"/>'

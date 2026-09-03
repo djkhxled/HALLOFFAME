@@ -197,7 +197,7 @@ def build():
       '<feComposite in="c" in2="b" operator="in" result="g"/>'
       '<feMerge><feMergeNode in="g"/><feMergeNode in="g"/>'
       '<feMergeNode in="SourceGraphic"/></feMerge></filter>')
-    a('<filter id="ky-soft"><feGaussianBlur stdDeviation="16"/></filter>')
+    a('<filter id="ky-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="16"/></filter>')
     a('<filter id="ky-grain">'
       '<feTurbulence type="fractalNoise" baseFrequency="0.84" numOctaves="4"/>'
       '<feColorMatrix type="saturate" values="0"/></filter>')

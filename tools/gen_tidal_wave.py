@@ -183,7 +183,7 @@ def build():
       '<feComposite in="c" in2="b" operator="in" result="g"/>'
       '<feMerge><feMergeNode in="g"/><feMergeNode in="g"/>'
       '<feMergeNode in="SourceGraphic"/></feMerge></filter>')
-    a('<filter id="tw-soft"><feGaussianBlur stdDeviation="14"/></filter>')
+    a('<filter id="tw-soft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="14"/></filter>')
     a('<linearGradient id="tw-foamfade" x1="0" y1="0" x2="0" y2="1">'
       '<stop offset="0%" stop-color="#000"/>'
       '<stop offset="38%" stop-color="#888"/>'
