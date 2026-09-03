@@ -46,7 +46,7 @@ def build():
       '<stop offset="55%" stop-color="#06070b" stop-opacity="0.55"/>'
       '<stop offset="100%" stop-color="#06070b" stop-opacity="1"/>'
       "</linearGradient>")
-    a('<filter id="dc-soft"><feGaussianBlur stdDeviation="26"/></filter>')
+    a('<filter id="dc-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="26"/></filter>')
     a('<filter id="dc-grain">'
       '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4"/>'
       '<feColorMatrix type="saturate" values="0"/></filter>')

@@ -33,9 +33,9 @@
 <linearGradient id="ix-g29" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff8b5e" stop-opacity="0"/><stop offset="34%" stop-color="#ff8b5e" stop-opacity="0.5"/><stop offset="62%" stop-color="#ff3b23" stop-opacity="0.9"/><stop offset="84%" stop-color="#ff3b23" stop-opacity="0.5"/><stop offset="100%" stop-color="#ff3b23" stop-opacity="0"/></linearGradient>
 <linearGradient id="ix-vig" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#040407" stop-opacity="0.62"/><stop offset="34%" stop-color="#040407" stop-opacity="0"/><stop offset="100%" stop-color="#040407" stop-opacity="0.9"/></linearGradient>
 <radialGradient id="ix-corner" cx="50%" cy="52%" r="70%"><stop offset="52%" stop-color="#040407" stop-opacity="0"/><stop offset="100%" stop-color="#040407" stop-opacity="0.8"/></radialGradient>
-<filter id="ix-wide"><feGaussianBlur stdDeviation="46"/></filter>
-<filter id="ix-soft"><feGaussianBlur stdDeviation="16"/></filter>
-<filter id="ix-fine"><feGaussianBlur stdDeviation="4"/></filter>
+<filter id="ix-wide" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="46"/></filter>
+<filter id="ix-soft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="16"/></filter>
+<filter id="ix-fine" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>
 </defs>
 <rect width="1600" height="900" fill="url(#ix-sky)"/>
 <g fill="#dfe3f2">

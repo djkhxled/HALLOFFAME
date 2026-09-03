@@ -89,11 +89,11 @@ def build():
       '<stop offset="34%" stop-color="#050a20" stop-opacity="0"/>'
       '<stop offset="100%" stop-color="#030b16" stop-opacity="0.72"/>'
       "</linearGradient>")
-    a('<filter id="al-wide"><feGaussianBlur stdDeviation="42"/></filter>')
-    a('<filter id="al-soft"><feGaussianBlur stdDeviation="13"/></filter>')
-    a('<filter id="al-fine"><feGaussianBlur stdDeviation="5"/></filter>')
-    a('<filter id="al-cloud"><feGaussianBlur stdDeviation="22"/></filter>')
-    a('<filter id="al-haze"><feGaussianBlur stdDeviation="26"/></filter>')
+    a('<filter id="al-wide" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="42"/></filter>')
+    a('<filter id="al-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="13"/></filter>')
+    a('<filter id="al-fine" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>')
+    a('<filter id="al-cloud" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>')
+    a('<filter id="al-haze" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="26"/></filter>')
     a("</defs>")
 
     a(f'<rect width="{W}" height="{H}" fill="url(#al-sky)"/>')

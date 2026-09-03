@@ -340,9 +340,9 @@ def build():
     a('<radialGradient id="dm-vig" cx="50%" cy="44%" r="72%">'
       '<stop offset="54%" stop-color="#0a0506" stop-opacity="0"/>'
       '<stop offset="100%" stop-color="#000" stop-opacity="0.78"/></radialGradient>')
-    a('<filter id="dm-blur"><feGaussianBlur stdDeviation="10"/></filter>')
-    a('<filter id="dm-fogblur"><feGaussianBlur stdDeviation="34"/></filter>')
-    a('<filter id="dm-soft"><feGaussianBlur stdDeviation="4"/></filter>')
+    a('<filter id="dm-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"/></filter>')
+    a('<filter id="dm-fogblur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="34"/></filter>')
+    a('<filter id="dm-soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>')
     a('<filter id="dm-grain">'
       '<feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="5"/>'
       '<feColorMatrix type="saturate" values="0"/></filter>')

@@ -6,9 +6,9 @@
 <radialGradient id="dm-rose" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffd6ad"/><stop offset="55%" stop-color="#ff6a36"/><stop offset="100%" stop-color="#8c1c0a"/></radialGradient>
 <linearGradient id="dm-fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a0506" stop-opacity="0"/><stop offset="72%" stop-color="#0a0506" stop-opacity="0.34"/><stop offset="100%" stop-color="#0a0506" stop-opacity="0.72"/></linearGradient>
 <radialGradient id="dm-vig" cx="50%" cy="44%" r="72%"><stop offset="54%" stop-color="#0a0506" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.78"/></radialGradient>
-<filter id="dm-blur"><feGaussianBlur stdDeviation="10"/></filter>
-<filter id="dm-fogblur"><feGaussianBlur stdDeviation="34"/></filter>
-<filter id="dm-soft"><feGaussianBlur stdDeviation="4"/></filter>
+<filter id="dm-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"/></filter>
+<filter id="dm-fogblur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="34"/></filter>
+<filter id="dm-soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>
 <filter id="dm-grain"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="5"/><feColorMatrix type="saturate" values="0"/></filter>
 </defs>
 <rect width="1600" height="900" fill="#0a0506"/>

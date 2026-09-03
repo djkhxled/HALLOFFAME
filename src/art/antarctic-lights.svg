@@ -5,11 +5,11 @@
 <linearGradient id="al-ice" x1="0.25" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="#bcdff0"/><stop offset="22%" stop-color="#a5d2e8"/><stop offset="55%" stop-color="#7ab8d6"/><stop offset="100%" stop-color="#2b6285"/></linearGradient>
 <linearGradient id="al-glow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7dffca" stop-opacity="0"/><stop offset="52%" stop-color="#7dffca" stop-opacity="0.30"/><stop offset="100%" stop-color="#9ff0ff" stop-opacity="0.06"/></linearGradient>
 <linearGradient id="al-vig" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#050a20" stop-opacity="0.42"/><stop offset="34%" stop-color="#050a20" stop-opacity="0"/><stop offset="100%" stop-color="#030b16" stop-opacity="0.72"/></linearGradient>
-<filter id="al-wide"><feGaussianBlur stdDeviation="42"/></filter>
-<filter id="al-soft"><feGaussianBlur stdDeviation="13"/></filter>
-<filter id="al-fine"><feGaussianBlur stdDeviation="5"/></filter>
-<filter id="al-cloud"><feGaussianBlur stdDeviation="22"/></filter>
-<filter id="al-haze"><feGaussianBlur stdDeviation="26"/></filter>
+<filter id="al-wide" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="42"/></filter>
+<filter id="al-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="13"/></filter>
+<filter id="al-fine" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+<filter id="al-cloud" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+<filter id="al-haze" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="26"/></filter>
 </defs>
 <rect width="1600" height="900" fill="url(#al-sky)"/>
 <g fill="#eafaff">
