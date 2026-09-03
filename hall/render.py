@@ -3,6 +3,7 @@
 import html
 import re
 
+from hall.contrast import parse_hex, relative_luminance
 from hall.marks import mark_svg
 
 SLOT = re.compile(r"\{\{\s*(\w+)\s*\}\}")
@@ -228,6 +229,31 @@ def numbers_html(levels: list[dict]) -> str:
 def countdown_mark(level: dict) -> str:
     theme = level.get("theme") or {}
     return mark_svg(theme.get("signature"))
+
+
+# Above this the page counts as light. Every field on the site is either
+# near-black or near-white, so the exact threshold does not matter much --
+# Nhelv's paper white sits at 0.84 and the darkest fields are under 0.01.
+LIGHT_ABOVE = 0.5
+
+
+def chrome_html(field: str) -> str:
+    """Hand the browser's own furniture the page's ground colour.
+
+    theme-color paints the address bar and status bar on a phone, so
+    Slaughterhouse arrives with red chrome and Nhelv with white. color-scheme
+    is the same fact told to a different consumer: it decides the scrollbar,
+    and a dark page with a bright system scrollbar down the side is the one
+    piece of the window that gives away that this is a document.
+
+    Both come from --field rather than from an accent. The chrome sits
+    against the page's ground, not against its highlights.
+    """
+    ground = field or "#000000"
+    light = relative_luminance(parse_hex(ground)) > LIGHT_ABOVE
+    scheme = "light" if light else "dark"
+    return (f'<meta name="theme-color" content="{esc(ground)}">'
+            f"<style>:root{{color-scheme:{scheme};}}</style>")
 
 
 def roster_html(facts: dict) -> str:
