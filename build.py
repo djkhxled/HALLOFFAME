@@ -256,6 +256,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
             "foot_extra_html": "",
             "texture_class": texture_class(theme),
             "title": f'{level["name"]} — #{level["rank"]} · {site["title"]}',
+            "og_title": f'{level["name"]} — #{level["rank"]} · {site["title"]}',
             "description": level.get("tagline", ""),
             "head_extra_html": head_extra,
             "body_html": body,
@@ -305,6 +306,7 @@ def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str,
             "foot_extra_html": "",
             "texture_class": "texture texture--grain",
             "title": f"{strip_tags(doc['heading'])} · {site['title']}",
+            "og_title": f"{strip_tags(doc['heading'])} · {site['title']}",
             "description": doc["lede"],
             "head_extra_html": (
                 f'<style>[data-level="doc-{doc["slug"]}"] .hero__title'
@@ -356,6 +358,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
             "foot_extra_html": "",
             "texture_class": "texture texture--starfield",
             "title": site["title"],
+            "og_title": site["title"],
             "description": site["description"],
             "head_extra_html": (
                 "<style>[data-level=\"index\"] .hero__title{font-size:"
@@ -427,6 +430,7 @@ def build_404(levels: list[dict], site: dict, base_tpl: str) -> str:
             # A literal dash: the title slot is not _html-suffixed, so
             # render.fill escapes it and "&mdash;" would ship as text.
             "title": f"Not found \u2014 {site['title']}",
+            "og_title": f"Not found \u2014 {site['title']}",
             "description": "That page is not in the Hall.",
             "head_extra_html": (
                 "<style>:root{--field:" + NOTFOUND_FIELD + ";--ink:#ffeef0;"
@@ -459,6 +463,8 @@ def build_game(site: dict, base_tpl: str) -> str:
     except ValueError as exc:
         raise SystemExit(f"records: {exc}")
 
+    copy = {"title": "Name every extreme demon", "lede": "", **(site.get("game") or {})}
+
     total = len(levels)
     when = datetime.date.fromisoformat(snap["fetched"])
     fetched_label = f"{when.day} {when.strftime('%B %Y')}"
@@ -471,8 +477,7 @@ def build_game(site: dict, base_tpl: str) -> str:
             if (ROOT / "src" / "art" / "doc.svg").exists() else "",
             "topnav_html": render.topnav_html("game"),
             "meta_left": "The Extreme Demon List",
-            "lede": ("Type a level\u2019s name and it lands on the list. "
-                     "No time limit, and you can leave and come back."),
+            "lede": copy["lede"],
             "meta_right": f"As of {fetched_label}",
             "total": total,
             "game_attrs_html": (
@@ -499,7 +504,10 @@ def build_game(site: dict, base_tpl: str) -> str:
                 + '<script src="/assets/js/game.js" defer></script>'),
             "signature": "static",
             "texture_class": "texture texture--grain",
-            "title": f"Name every extreme demon \u2014 {site['title']}",
+            # From data/site.json, so an edit there survives a build. The tab
+            # title is just the page's name; the social title adds the site's.
+            "title": copy["title"],
+            "og_title": f"{copy['title']} \u2014 {site['title']}",
             "description": (f"Name all {total:,} extreme demons on the Extreme "
                             "Demon List. Type them in; they fill the list."),
             "head_extra_html": (
@@ -515,8 +523,23 @@ def build_game(site: dict, base_tpl: str) -> str:
     )
 
 
+def load_site() -> dict:
+    """data/site.json is edited by hand, often in GitHub's web editor, and the
+    usual slip is a missing quote or comma. json's own traceback names neither
+    the file nor the line."""
+    path = ROOT / "data" / "site.json"
+    text = read(path)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:
+        line = text.splitlines()[exc.lineno - 1].strip() if exc.lineno else ""
+        raise SystemExit(
+            f"build failed \u2014 {path.name} is not valid JSON: {exc.msg} "
+            f"(line {exc.lineno}, column {exc.colno})\n    {line}")
+
+
 def main() -> int:
-    site = json.loads(read(ROOT / "data" / "site.json"))
+    site = load_site()
     levels = load_levels(ROOT / "data" / "levels")
 
     try:
