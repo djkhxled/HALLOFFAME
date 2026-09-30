@@ -52,45 +52,32 @@ class Normalising(unittest.TestCase):
 class Rules(unittest.TestCase):
     def test_a_name_shared_by_several_levels_fills_them_in_rank_order(self):
         levels = [lv(40, "Deimos (ItsHybrid)"), lv(270, "Deimos (EndLevel)")]
-        index, _ = game.build_index(levels)
+        index = game.build_index(levels)
         self.assertEqual(index["deimos"], [0, 1])
 
     def test_the_full_form_aims_at_exactly_one(self):
         levels = [lv(40, "Deimos (ItsHybrid)"), lv(270, "Deimos (EndLevel)")]
-        index, _ = game.build_index(levels)
+        index = game.build_index(levels)
         self.assertEqual(index["deimosendlevel"], [1])
         self.assertEqual(index["deimositshybrid"], [0])
 
     def test_a_leading_the_is_optional(self):
-        index, _ = game.build_index([lv(1, "The Golden")])
+        index = game.build_index([lv(1, "The Golden")])
         self.assertEqual(index["thegolden"], [0])
         self.assertEqual(index["golden"], [0])
 
     def test_a_name_that_merely_starts_with_the_is_left_alone(self):
         """"Theory" must not become "ory"."""
-        index, _ = game.build_index([lv(1, "Theory")])
+        index = game.build_index([lv(1, "Theory")])
         self.assertIn("theory", index)
         self.assertNotIn("ory", index)
 
-    def test_a_prefix_waits_only_while_the_longer_level_is_unnamed(self):
-        levels = [lv(1, "Aurora"), lv(2, "Aurorae")]
-        index, plain = game.build_index(levels)
-        hold = game.build_hold(levels, index, plain)
-        self.assertEqual(hold["aurora"], [1])
-        self.assertNotIn("aurorae", hold)   # nothing longer to be mistaken for
-
-    def test_creator_suffixes_do_not_make_shared_names_wait(self):
-        """"deimos" is the start of "deimositshybrid", and nobody types that by
-        accident. If it counted, every shared name would lag 750ms."""
-        levels = [lv(1, "Deimos (ItsHybrid)"), lv(2, "Deimos (EndLevel)")]
-        index, plain = game.build_index(levels)
-        self.assertNotIn("deimos", game.build_hold(levels, index, plain))
-
-    def test_a_key_never_waits_on_the_levels_it_already_answers_to(self):
-        levels = [lv(1, "Aurora (A)"), lv(2, "Aurora (B)"), lv(3, "Aurorae")]
-        index, plain = game.build_index(levels)
-        hold = game.build_hold(levels, index, plain)
-        self.assertFalse(set(hold["aurora"]) & set(index["aurora"]))
+    def test_a_name_that_starts_a_longer_one_still_answers_to_itself(self):
+        """"Aurora" is the start of "Aurorae". Answers are taken the instant
+        they match, so both must be reachable as separate answers."""
+        index = game.build_index([lv(1, "Aurora"), lv(2, "Aurorae")])
+        self.assertEqual(index["aurora"], [0])
+        self.assertEqual(index["aurorae"], [1])
 
     def test_unnameable_levels_are_caught(self):
         errors = game.validate([lv(1, "!!!"), lv(2, "Fine")])
@@ -106,8 +93,7 @@ class RealSnapshot(unittest.TestCase):
     def setUpClass(cls):
         cls.snap = game.load_snapshot(SNAPSHOT)
         cls.levels = cls.snap["levels"]
-        cls.index, cls.plain = game.build_index(cls.levels)
-        cls.hold = game.build_hold(cls.levels, cls.index, cls.plain)
+        cls.index = game.build_index(cls.levels)
 
     def test_it_is_the_whole_list(self):
         self.assertGreaterEqual(len(self.levels), 1500)
@@ -136,17 +122,6 @@ class RealSnapshot(unittest.TestCase):
             ranks = [self.levels[i]["p"] for i in bucket]
             self.assertEqual(ranks, sorted(ranks), key)
 
-    def test_hold_points_at_real_levels_and_never_at_its_own(self):
-        for key, rivals in self.hold.items():
-            for i in rivals:
-                self.assertTrue(0 <= i < len(self.levels))
-            self.assertFalse(set(rivals) & set(self.index[key]), key)
-
-    def test_the_known_prefix_cases_are_held_and_the_shared_names_are_not(self):
-        self.assertIn("aurora", self.hold)
-        self.assertNotIn("deimos", self.hold)
-        self.assertNotIn("firepower", self.hold)
-
     def test_blocks_cover_every_level_exactly_once(self):
         seen = [i for _, idxs in game.blocks(self.levels) for i in idxs]
         self.assertEqual(sorted(seen), list(range(len(self.levels))))
@@ -156,7 +131,7 @@ class RealSnapshot(unittest.TestCase):
         self.assertTrue(titles[-1].startswith("Legacy"))
 
     def test_the_payload_round_trips_and_cannot_close_its_script_tag(self):
-        text = game.data_json(self.levels, self.index, self.hold, "2026-01-01")
+        text = game.data_json(self.levels, self.index, "2026-01-01")
         self.assertNotIn("<", text)
         payload = json.loads(text)
         self.assertEqual(len(payload["levels"]), len(self.levels))
@@ -222,6 +197,24 @@ class Promises(unittest.TestCase):
         for call in ("fetch(", "XMLHttpRequest", "sendBeacon", "WebSocket",
                      "EventSource", "new Image", "importScripts"):
             self.assertNotIn(call, self.code, call)
+
+    def test_answers_are_taken_instantly(self):
+        """Removed on purpose: an earlier version held answers that start a
+        longer level for 750ms. The game takes an exact match at once, like
+        Sporcle, and nothing in the matching path may wait."""
+        self.assertNotRegex(self.code, r"\bhold\b|HOLD_MS|holdTimer")
+        self.assertNotIn("mayBeLonger", self.code)
+        match = re.search(r"function onInput\(.*?\n  \}", self.code, re.S).group(0)
+        self.assertNotIn("setTimeout", match)
+
+    def test_typing_on_past_a_named_level_is_not_interrupted(self):
+        """With answers instant, clearing the box on an ALREADY-named match
+        would make "aurorae" untypeable once Aurora was in: the box would
+        empty at "aurora" every time."""
+        match = re.search(r"function onInput\(.*?\n  \}", self.code, re.S).group(0)
+        already = match[match.index("firstUnnamed(list_) === -1"):]
+        already = already[:already.index("return;")]
+        self.assertNotIn('input.value = ""', already)
 
     def test_it_reaches_no_other_host(self):
         self.assertNotRegex(self.code, r"https?://")

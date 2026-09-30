@@ -101,54 +101,28 @@ def _forms(name: str) -> tuple[set[str], set[str]]:
             {norm(f) for f in full if norm(f)})
 
 
-def build_index(levels: list[dict]) -> tuple[dict[str, list[int]], set[str]]:
-    """(answer key -> indices, the keys that are plain names).
+def build_index(levels: list[dict]) -> dict[str, list[int]]:
+    """answer key -> indices into `levels`, lowest position first.
 
-    A key that several levels share lists them all, lowest position first;
-    the browser fills the first one not yet named.
+    A key that several levels share lists them all; the browser fills the
+    first one not yet named.
+
+    Answers are taken the instant they match, as on Sporcle. That means a
+    name that is the start of a longer one ("Aurora" / "Aurorae") claims the
+    short level first, and the longer has to be typed once the short one is
+    named. That is deliberate: an earlier version made such answers wait for
+    a pause, and it was taken out because the wait felt wrong.
     """
     index: dict[str, list[int]] = {}
-    plain_keys: set[str] = set()
     for i, lv in enumerate(levels):
         plain, full = _forms(lv["name"])
-        plain_keys |= plain
         for key in plain | full:
             bucket = index.setdefault(key, [])
             if i not in bucket:
                 bucket.append(i)
     for bucket in index.values():
         bucket.sort(key=lambda i: levels[i]["p"])
-    return index, plain_keys
-
-
-def build_hold(levels: list[dict], index: dict[str, list[int]],
-               plain_keys: set[str]) -> dict[str, list[int]]:
-    """answer key -> the longer levels it could still turn out to be the
-    start of.
-
-    "Aurora" is also the first six letters of "Aurorae". Accepting on an exact
-    match the way Sporcle does would clear the box before the "e" could be
-    typed, so a key listed here waits for a pause or for Enter -- but only
-    while one of these levels is still unnamed. Once Aurorae is named, Aurora
-    has nothing left to be confused with and is taken at once.
-
-    Only plain names are considered on the longer side. Counting the
-    creator-suffixed forms would make every shared name wait: "deimos" is
-    the start of "deimositshybrid", and nobody types that by accident.
-    """
-    hold: dict[str, list[int]] = {}
-    longer = sorted(plain_keys)
-    for key in index:
-        rivals = sorted({
-            i for other in longer
-            if other != key and other.startswith(key)
-            for i in index[other]
-            if norm(split_name(levels[i]["name"])[0]) == other
-            or other in _forms(levels[i]["name"])[0]
-        })
-        if rivals:
-            hold[key] = rivals
-    return hold
+    return index
 
 
 def blocks(levels: list[dict]) -> list[tuple[str, list[int]]]:
@@ -196,8 +170,7 @@ def list_html(levels: list[dict]) -> str:
     return "".join(parts)
 
 
-def data_json(levels: list[dict], index: dict, hold: dict,
-              fetched: str) -> str:
+def data_json(levels: list[dict], index: dict, fetched: str) -> str:
     """The page's data, safe to sit inside a <script type=application/json>.
 
     A single-entry bucket is written as a bare number; most are.
@@ -208,7 +181,6 @@ def data_json(levels: list[dict], index: dict, hold: dict,
         "levels": [[lv["p"], lv["id"], lv["name"], 1 if lv["legacy"] else 0]
                    for lv in levels],
         "keys": keys,
-        "hold": dict(sorted(hold.items())),
     }
     text = json.dumps(payload, ensure_ascii=True, separators=(",", ":"))
     # "</script" and "<!--" are the two things that can end the element early.

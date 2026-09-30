@@ -24,7 +24,6 @@
   var data = JSON.parse(dataEl.textContent);
   var levels = data.levels;            // [position, id, name, legacy]
   var keys = data.keys;                // answer -> index | [index, ...]
-  var hold = data.hold;                // answer -> longer levels it may become
   var total = levels.length;
 
   function $(sel) { return root.querySelector(sel); }
@@ -161,22 +160,11 @@
     return -1;
   }
 
-  /* True while a longer, still-unnamed level could be what is being typed.
-     "aurora" is the start of "aurorae"; taking it instantly would clear the
-     box before the "e". */
-  function mayBeLonger(key) {
-    var rivals = hold[key];
-    if (!rivals) return false;
-    for (var k = 0; k < rivals.length; k++) if (!found[rivals[k]]) return true;
-    return false;
-  }
-
-  var HOLD_MS = 750;
-  var holdTimer = null;
-
+  /* Answers are taken the instant they match, as on Sporcle. So typing
+     "aurora" on the way to "aurorae" names Aurora at once and clears the box;
+     Aurorae is typed afterwards. */
   function onInput(e) {
     if (e && e.isComposing) return;
-    clearTimeout(holdTimer);
     if (over) return;
     if (!started) begin();
 
@@ -186,15 +174,17 @@
     var list_ = bucket(key);
     if (!list_) { say(""); return; }
 
-    if (mayBeLonger(key)) {
-      say("Enter to lock it in, or keep typing");
-      holdTimer = setTimeout(function () { settle(key); }, HOLD_MS);
+    if (firstUnnamed(list_) === -1) {
+      /* Already named: leave the box alone. Clearing it here would make
+         "aurorae" untypeable once Aurora was in, since the box would empty
+         at "aurora" every time. Enter clears it. */
+      say("Already named");
+      pulse(rows[list_[0]]);
       return;
     }
     settle(key);
   }
 
-  /* Take the answer for `key`, whatever the hold table says. */
   function settle(key) {
     var list_ = bucket(key);
     if (!list_) return false;
@@ -212,7 +202,6 @@
   function onKey(e) {
     if (e.key === "Enter") {
       e.preventDefault();
-      clearTimeout(holdTimer);
       if (over) return;
       var key = norm(input.value);
       if (!key) return;
@@ -505,7 +494,6 @@
   function finish(how, quiet) {
     if (over) return;
     over = how;
-    clearTimeout(holdTimer);
     pause();
     input.disabled = true;
     input.value = "";
@@ -536,7 +524,6 @@
   }
 
   function reset() {
-    clearTimeout(holdTimer);
     pause();
     for (var i = 0; i < total; i++) {
       var li = rows[i];

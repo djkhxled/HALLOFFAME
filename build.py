@@ -445,8 +445,7 @@ def build_game(site: dict, base_tpl: str) -> str:
     errors = game.validate(levels)
     if errors:
         raise SystemExit("game data invalid:\n  " + "\n  ".join(errors[:10]))
-    index, plain = game.build_index(levels)
-    hold = game.build_hold(levels, index, plain)
+    index = game.build_index(levels)
 
     total = len(levels)
     when = datetime.date.fromisoformat(snap["fetched"])
@@ -467,7 +466,7 @@ def build_game(site: dict, base_tpl: str) -> str:
             "total_label": f"{total:,}",
             "list_html": game.list_html(levels),
             "fetched_label": fetched_label,
-            "data_json_html": game.data_json(levels, index, hold, snap["fetched"]),
+            "data_json_html": game.data_json(levels, index, snap["fetched"]),
         },
     )
     return render.fill(

@@ -99,9 +99,9 @@ python3 tools/fetch_aredl.py   # refresh data/game/aredl.json, then rebuild
 
 The list is a committed snapshot, never fetched by a visitor's browser.
 What counts as a correct answer is computed at build time in `hall/game.py`
-(AREDL's "Name (Creator)" suffixes, names shared by several levels, names that
-are the start of longer ones) so it can be tested; `src/js/game.js` only looks
-answers up. Progress is saved in `localStorage` on the visitor's device, keyed
+(AREDL's "Name (Creator)" suffixes, names shared by several levels) so it can
+be tested; `src/js/game.js` only looks answers up. Answers are taken the
+instant they match, as on Sporcle. Progress is saved in `localStorage` on the visitor's device, keyed
 by a short hash of AREDL's id because ranks move, and the privacy page says so.
 
 ## Accessibility
