@@ -282,3 +282,147 @@
 @media (max-height: 30rem) {
   .gbar { position: static; }
 }
+
+/* Modes ------------------------------------------------------------------- */
+
+.gmodes {
+  border: 0;
+  margin: var(--space-5) 0 var(--space-4);
+  padding: 0;
+  min-width: 0;
+}
+
+.gmodes__legend {
+  padding: 0;
+  margin-bottom: var(--space-3);
+  font: 500 var(--step--2) / 1 var(--font-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.gmodes__row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+/* The radio is real and covers the whole label, invisible, so it keeps its
+   keyboard behaviour and its focus; the label draws the segment. */
+.gmode {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 5.6rem;
+  padding: 0.65rem 0.9rem;
+  border: var(--rule) solid var(--rule-colour);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+
+.gmode input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.gmode__name { font: 600 var(--step-0) / 1.1 var(--font-display); }
+.gmode__best { min-height: 1em; font: 400 var(--step--2) / 1 var(--font-mono); color: var(--muted); }
+
+.gmode:hover { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+.gmode:has(input:checked) {
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+}
+.gmode:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Locked once the run starts: the chosen one stays lit, the rest recede. */
+.gmodes.is-locked .gmode { cursor: default; }
+.gmodes.is-locked .gmode:hover { background: none; }
+.gmodes.is-locked .gmode:not(:has(input:checked)) { opacity: 0.4; }
+.gmodes.is-locked .gmode:has(input:checked):hover {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+.gmodes__note {
+  margin: var(--space-3) 0 0;
+  max-width: 68ch;
+  font: var(--step--2) / 1.7 var(--font-mono);
+  color: var(--muted);
+}
+
+/* The last thirty seconds of a timed run. */
+.gtime.is-low { color: color-mix(in srgb, #ff5a4d 78%, var(--ink)); }
+
+/* Submitting a score ------------------------------------------------------ */
+
+.gsubmit { margin: var(--space-4) 0 var(--space-5); max-width: 40rem; }
+.gsubmit[hidden] { display: none; }
+.gsubmit__lede { font-size: var(--step-0); margin-bottom: var(--space-3); }
+.gsubmit__row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+.gsubmit__input {
+  flex: 1 1 12rem;
+  min-width: 0;
+  font: 600 var(--step-0) / 1.1 var(--font-display);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: var(--rule) solid var(--rule-colour);
+  border-radius: 3px;
+  padding: 0.65rem 0.85rem;
+}
+
+.gsubmit__input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gsubmit__input::placeholder { color: var(--muted); font-weight: 400; }
+
+.gsubmit__note,
+.grecords__note,
+.grecords__lede {
+  font: var(--step--2) / 1.7 var(--font-mono);
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+.gsubmit__note { margin: var(--space-3) 0 0; }
+.gsubmit__status { min-height: 1.4em; margin: var(--space-2) 0 0; font: var(--step--1) / 1.4 var(--font-mono); color: var(--accent); }
+
+/* The boards -------------------------------------------------------------- */
+
+.grecords { margin-top: var(--space-6); padding-top: var(--space-5); border-top: var(--rule) solid var(--rule-colour); }
+.grecords__title { font-size: var(--step-3); margin-bottom: var(--space-3); }
+.grecords__lede { margin: 0 0 var(--space-4); }
+.grecords__note { margin: var(--space-3) 0 0; }
+.grecords__status { min-height: 1.4em; margin: var(--space-2) 0 0; font: var(--step--1) / 1.4 var(--font-mono); color: var(--muted); }
+
+.grecords__boards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: var(--space-6) var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.gboard__title { font-size: var(--step-1); margin-bottom: var(--space-2); }
+
+.gboard table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.gboard th,
+.gboard td { text-align: left; padding: 0.4rem 0.3rem; border-bottom: 1px solid color-mix(in srgb, var(--ink) 9%, transparent); }
+.gboard th { font: 500 var(--step--2) / 1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.gboard td:first-child,
+.gboard th:first-child { width: 2.6rem; font-family: var(--font-mono); color: var(--muted); }
+.gboard td:nth-child(2) { font-weight: 600; overflow-wrap: anywhere; }
+.gboard td:nth-child(3),
+.gboard th:nth-child(3) { text-align: right; font-family: var(--font-mono); }
+/* Your own row. Colour alone was too faint on the default palette, where the
+   accent is nearly the same grey as the text. */
+.gboard tr.is-you td {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.gboard tr.is-you td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
+.gboard__empty { font: var(--step--1) / 1.5 var(--font-mono); color: var(--muted); margin: 0; }
+
+@media (max-width: 44rem) {
+  .gmode { min-width: 4.6rem; padding: 0.55rem 0.7rem; }
+  .gsubmit__row .gbtn { flex: 1 1 100%; }
+}

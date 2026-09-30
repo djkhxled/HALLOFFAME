@@ -262,3 +262,233 @@ class Promises(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# ---------------------------------------------------------------- the records
+
+WORKER = ROOT / "worker" / "records.js"
+
+
+def _code(path):
+    """Source with comments stripped, so a test is about what the file does
+    and not about the prose that explains why it avoids things."""
+    raw = path.read_text(encoding="utf-8")
+    raw = re.sub(r"/\*.*?\*/", "", raw, flags=re.S)
+    return re.sub(r"(?m)^\s*//.*$", "", raw)
+
+
+class TimedModes(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.js = _code(ROOT / "src" / "js" / "game.js")
+        cls.template = (ROOT / "templates" / "game.html").read_text(encoding="utf-8")
+
+    def test_the_five_modes_are_offered(self):
+        values = re.findall(r'<input type="radio" name="mode" value="([^"]+)"',
+                            self.template)
+        self.assertEqual(values, ["free", "5", "10", "30", "60"])
+
+    def test_the_browser_and_the_service_agree_on_the_limits(self):
+        """5, 10, 30 and 60 minutes. If the script's limit and the service's
+        drift apart, every score in that mode is refused as impossible."""
+        js = dict(re.findall(r'"(\d+)": (\d+)', re.search(
+            r"var MODE_MS = \{(.*?)\};", self.js, re.S).group(1)))
+        worker = dict(re.findall(r'"(\d+)": (\d+)', re.search(
+            r"const MODES = \{(.*?)\};", _code(WORKER), re.S).group(1)))
+        self.assertEqual({k: int(v) // 1000 for k, v in js.items()},
+                         {k: int(v) for k, v in worker.items()})
+
+    def test_a_reload_resumes_the_clock(self):
+        """After a reload `started` is true from the saved run but nothing ran
+        the clock, so the timer froze -- unlimited time in a timed mode."""
+        on_input = re.search(r"function onInput\(.*?\n  \}", self.js, re.S).group(0)
+        self.assertRegex(on_input, r"if \(!started\) begin\(\); else resume\(\);")
+
+    def test_an_answer_after_the_deadline_cannot_count(self):
+        settle = re.search(r"function settle\(.*?\n  \}", self.js, re.S).group(0)
+        self.assertLess(settle.index("limit && nowMs() >= limit"),
+                        settle.index("name(target, true)"))
+
+    def test_the_mode_locks_when_the_run_starts(self):
+        begin = re.search(r"function begin\(\) \{.*?\}", self.js, re.S).group(0)
+        self.assertIn("lockModes()", begin)
+
+
+class RecordsSwitch(unittest.TestCase):
+    """The board is off until a service is connected, and the wording of the
+    policy pages follows the switch."""
+
+    @classmethod
+    def setUpClass(cls):
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True,
+                       capture_output=True)
+        cls.privacy_raw = (ROOT / "pages" / "privacy.html").read_text(encoding="utf-8")
+        cls.terms_raw = (ROOT / "pages" / "terms.html").read_text(encoding="utf-8")
+        cls.site = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+
+    def test_blocks_are_paired(self):
+        for raw in (self.privacy_raw, self.terms_raw):
+            for kind in ("on", "off"):
+                self.assertEqual(raw.count(f"<!-- records:{kind} -->"),
+                                 raw.count(f"<!-- /records:{kind} -->"), kind)
+
+    def test_switching_on_and_off_leaves_no_markers(self):
+        for raw in (self.privacy_raw, self.terms_raw):
+            for enabled in (True, False):
+                out = game.apply_records_blocks(raw, enabled)
+                self.assertNotIn("records:", out)
+
+    def test_off_says_nothing_is_collected_and_never_mentions_the_board(self):
+        out = game.apply_records_blocks(self.privacy_raw, False)
+        self.assertIn("does not collect anything about you", out)
+        self.assertNotIn("Cloudflare", out)
+        self.assertNotIn("record board", out.lower())
+        terms = game.apply_records_blocks(self.terms_raw, False)
+        self.assertRegex(terms, r"accepts no\s+submissions")
+
+    def test_on_describes_what_is_sent_where_and_how_to_get_it_removed(self):
+        out = game.apply_records_blocks(self.privacy_raw, True)
+        for promise in ("Show records", "Submit to", "username", "Cloudflare",
+                        "[[contact]]", "not your real name"):
+            self.assertIn(promise, out, promise)
+        self.assertNotIn("does not collect anything about you", out)
+        terms = game.apply_records_blocks(self.terms_raw, True)
+        self.assertNotRegex(terms, r"accepts no\s+submissions")
+        self.assertIn("[[contact]]", terms)
+
+    def test_the_privacy_page_states_the_number_the_service_keeps(self):
+        """"Each board keeps its best 100" is a claim about worker/records.js."""
+        keep = int(re.search(r"const KEEP = (\d+);", _code(WORKER)).group(1))
+        on = game.apply_records_blocks(self.privacy_raw, True)
+        self.assertIn(f"best {keep}", on)
+
+    def test_it_is_off_until_a_service_is_connected(self):
+        self.assertIsNone(self.site["records"]["endpoint"])
+        page = (DOCS / "game" / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("data-records", page)
+        self.assertNotIn("records.js", page)
+        self.assertNotIn("Cloudflare",
+                         (DOCS / "privacy" / "index.html").read_text(encoding="utf-8"))
+
+    def test_the_endpoint_is_validated(self):
+        ok = {"discord": "bperk"}
+        self.assertIsNone(game.records_endpoint({**ok, "records": {"endpoint": None}}))
+        self.assertIsNone(game.records_endpoint(ok))
+        for good in ("https://hall.example.workers.dev", "http://127.0.0.1:3010",
+                     "http://localhost:3010"):
+            self.assertEqual(game.records_endpoint({**ok, "records": {"endpoint": good}}), good)
+        for bad in ("https://hall.example.workers.dev/", "https://x.dev/path",
+                    "http://hall.example.workers.dev", "ftp://x.dev", "x.dev"):
+            with self.assertRaises(ValueError, msg=bad):
+                game.records_endpoint({**ok, "records": {"endpoint": bad}})
+
+    def test_the_board_will_not_switch_on_with_nobody_to_ask(self):
+        """It stores usernames, and the privacy page promises removal on
+        request. With no contact of any kind that promise cannot be kept."""
+        with self.assertRaises(ValueError):
+            game.records_endpoint({"records": {"endpoint": "https://a.workers.dev"}})
+        for contact in ({"contact": "a@b.c"}, {"discord": "bperk"}):
+            game.records_endpoint({**contact, "records": {"endpoint": "https://a.workers.dev"}})
+
+    def test_contact_can_be_an_email_a_discord_handle_or_both(self):
+        from hall import render
+        self.assertIsNone(render.contact_html({}))
+        self.assertIn("mailto:a@b.c", render.contact_html({"contact": "a@b.c"}))
+        self.assertIn("@bperk", render.contact_html({"discord": "bperk"}))
+        self.assertIn("@bperk", render.contact_html({"discord": "@bperk"}))
+        both = render.contact_html({"contact": "a@b.c", "discord": "bperk"})
+        self.assertIn("mailto:a@b.c", both)
+        self.assertIn("@bperk", both)
+
+    def test_every_policy_page_says_how_to_reach_the_owner(self):
+        for slug in ("terms", "privacy", "credits"):
+            page = (DOCS / slug / "index.html").read_text(encoding="utf-8")
+            self.assertNotIn("Contact address not set yet", page, slug)
+            self.assertRegex(page, r"Contact: .*@bperk", slug)
+
+
+class RecordsScript(unittest.TestCase):
+    """records.js is the one script that can send anything anywhere."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.code = _code(ROOT / "src" / "js" / "records.js")
+
+    def test_there_is_exactly_one_place_a_request_is_made(self):
+        self.assertEqual(len(re.findall(r"\bfetch\(", self.code)), 1)
+        self.assertEqual(len(re.findall(r"\bnew XMLHttpRequest|sendBeacon|WebSocket|EventSource", self.code)), 0)
+
+    def test_requests_are_only_made_from_a_button_press(self):
+        """Nothing on load. request() is called from loadBoards and submit,
+        and those are reached only through event listeners."""
+        callers = set(re.findall(r"function (\w+)\([^)]*\) \{(?:(?!\n  function ).)*?request\(",
+                                 self.code, re.S))
+        self.assertEqual(callers - {"request"}, {"loadBoards", "submit"})
+        # No direct call to loadBoards() anywhere, and the only direct call to
+        # submit() is the Enter key in the username box -- which is a button
+        # press by another route. Everything else is an event listener.
+        self.assertEqual(re.findall(r"(?<!function )\bloadBoards\(\)", self.code), [])
+        self.assertEqual(len(re.findall(r"(?<!function )\bsubmit\(\)", self.code)), 1)
+        self.assertIn('if (e.key === "Enter") { e.preventDefault(); submit(); }', self.code)
+        self.assertIn('btnLoad.addEventListener("click", loadBoards)', self.code)
+        self.assertIn('btnSubmit.addEventListener("click", submit)', self.code)
+
+    def test_requests_carry_no_cookies_and_no_referrer(self):
+        self.assertIn('credentials: "omit"', self.code)
+        self.assertIn('referrerPolicy: "no-referrer"', self.code)
+
+    def test_it_never_touches_storage(self):
+        for bad in ("localStorage", "sessionStorage", "indexedDB", "document.cookie"):
+            self.assertNotIn(bad, self.code)
+
+    def test_names_from_strangers_are_never_written_as_markup(self):
+        for bad in ("innerHTML", "outerHTML", "insertAdjacentHTML", "document.write"):
+            self.assertNotIn(bad, self.code)
+
+    def test_it_sends_only_the_four_fields_the_privacy_page_lists(self):
+        body = re.search(r"JSON\.stringify\(\{(.*?)\}\)", self.code, re.S).group(1)
+        fields = set(re.findall(r"(\w+):", body))
+        self.assertEqual(fields, {"mode", "name", "score", "t"})
+
+    def test_the_browser_and_the_service_apply_the_same_username_rule(self):
+        client = re.search(r"var NAME_OK = (/.*?/u);", self.code).group(1)
+        server = re.search(r"const NAME_OK = (/.*?/u);", _code(WORKER)).group(1)
+        self.assertEqual(client, server)
+
+
+class RecordsService(unittest.TestCase):
+    """worker/records.js cannot be run by a test -- there is no Node here --
+    so these pin what it is promised not to do. The behaviour itself was
+    checked by loading the file in a browser against a stand-in for KV;
+    worker/records.check.js is that check, and README says how to run it."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.code = _code(WORKER)
+
+    def test_it_stores_nothing_about_the_visitor_but_the_four_fields(self):
+        for bad in ("CF-Connecting-IP", "X-Forwarded-For", "cf-ipcountry",
+                    "User-Agent", "Set-Cookie", "Cookie", "console."):
+            self.assertNotIn(bad.lower(), self.code.lower(), bad)
+        entry = re.search(r"const entry = \{(.*?)\};", self.code).group(1)
+        entry = re.sub(r"\([^()]*\)", "()", entry)          # drop call arguments
+        keys = [re.match(r"\s*(\w+)", part).group(1) for part in entry.split(",")]
+        self.assertEqual(keys, ["n", "s", "t", "d"])
+
+    def test_a_mode_cannot_be_a_prototype_key(self):
+        """"constructor" in {...} is true. Object.hasOwn is what stops a
+        request naming a mode that does not exist."""
+        self.assertIn("Object.hasOwn(MODES", self.code)
+        self.assertNotRegex(self.code, r"\bin MODES\b")
+
+    def test_it_only_writes_when_something_changed(self):
+        self.assertRegex(self.code, r"if \(improved\) await env\.RECORDS\.put")
+
+    def test_it_checks_the_origin_before_accepting_a_submission(self):
+        submit = re.search(r"async function submit\(.*?\n\}", self.code, re.S).group(0)
+        self.assertLess(submit.index("cors.ok"), submit.index("request.text()"))
+
+    def test_it_refuses_the_plainly_impossible(self):
+        for guard in ("MAX_LEVELS", "MAX_PER_SECOND", "NAME_OK.test(name)",
+                      "Number.isInteger(score)", "Number.isInteger(t)"):
+            self.assertIn(guard, self.code, guard)

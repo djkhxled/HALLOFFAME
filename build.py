@@ -266,9 +266,16 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
     )
 
 
-def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str) -> str:
+def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str,
+              records_on: bool = False) -> str:
     body = read(ROOT / "pages" / f"{doc['slug']}.html")
-    body += render.doc_footer_html(site.get("contact"), site.get("updated", ""))
+    # The policy pages describe the site as it is running, so the passages
+    # about the record board exist only while the board does.
+    body = game.apply_records_blocks(body, records_on)
+    body = body.replace("[[contact]]", render.contact_html(site) or "the site owner")
+    body += render.doc_footer_html(site)
+    if records_on and doc.get("ledeRecords"):
+        doc = {**doc, "lede": doc["ledeRecords"]}
     inner = render.fill(
         page_tpl,
         {
@@ -447,6 +454,11 @@ def build_game(site: dict, base_tpl: str) -> str:
         raise SystemExit("game data invalid:\n  " + "\n  ".join(errors[:10]))
     index = game.build_index(levels)
 
+    try:
+        endpoint = game.records_endpoint(site)
+    except ValueError as exc:
+        raise SystemExit(f"records: {exc}")
+
     total = len(levels)
     when = datetime.date.fromisoformat(snap["fetched"])
     fetched_label = f"{when.day} {when.strftime('%B %Y')}"
@@ -463,6 +475,10 @@ def build_game(site: dict, base_tpl: str) -> str:
                      "No time limit, and you can leave and come back."),
             "meta_right": f"As of {fetched_label}",
             "total": total,
+            "game_attrs_html": (
+                f' data-records-endpoint="{render.esc(endpoint)}"' if endpoint else ""),
+            "submit_html": game.submit_html(render.contact_html(site)) if endpoint else "",
+            "records_html": game.records_html(render.contact_html(site)) if endpoint else "",
             "total_label": f"{total:,}",
             "list_html": game.list_html(levels),
             "fetched_label": fetched_label,
@@ -476,7 +492,11 @@ def build_game(site: dict, base_tpl: str) -> str:
             "html_attrs_html": " data-attempt-manual",
             "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
             "attempt_label_html": '<span class="attempt__rank">Game</span>',
-            "foot_extra_html": '<script src="/assets/js/game.js" defer></script>',
+            # records.js goes first: game.js fires game:finished while it
+            # loads, when it restores a run that had already ended.
+            "foot_extra_html": (
+                ('<script src="/assets/js/records.js" defer></script>' if endpoint else "")
+                + '<script src="/assets/js/game.js" defer></script>'),
             "signature": "static",
             "texture_class": "texture texture--grain",
             "title": f"Name every extreme demon \u2014 {site['title']}",
@@ -498,6 +518,12 @@ def build_game(site: dict, base_tpl: str) -> str:
 def main() -> int:
     site = json.loads(read(ROOT / "data" / "site.json"))
     levels = load_levels(ROOT / "data" / "levels")
+
+    try:
+        records_on = game.records_endpoint(site) is not None
+    except ValueError as exc:
+        print(f"build failed \u2014 records: {exc}", file=sys.stderr)
+        return 1
 
     errors = validate_levels(levels, ROOT)
     if errors:
@@ -545,10 +571,10 @@ def main() -> int:
     page_tpl = read(TEMPLATES / "page.html")
     for doc in site.get("docs", []):
         write(DOCS / doc["slug"] / "index.html",
-              stamped(build_doc(doc, site, base_tpl, page_tpl), 1))
+              stamped(build_doc(doc, site, base_tpl, page_tpl, records_on), 1))
         pages += 1
-    if not site.get("contact"):
-        print("  ! no site.contact set — the policy pages say so in place "
+    if not render.contact_html(site):
+        print("  ! no site.contact or site.discord set — the policy pages say so in place "
               "of an address", file=sys.stderr)
 
     published = [lv for lv in levels if lv.get("published")]

@@ -1,0 +1,17 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>running&hellip;</title>
+<style>body{font:14px/1.6 ui-monospace,Menlo,monospace;padding:2rem;background:#111;color:#ddd}
+.pass{color:#6c6}.FAIL{color:#f66;font-weight:700}h1{font-size:1rem}</style>
+<h1 id="h">records.js checks</h1>
+<pre id="out"></pre>
+<script type="module">
+  import worker from "./records.js";
+  import { run } from "./records.check.js";
+  const { results, total, failed } = await run(worker);
+  document.title = failed ? `FAIL (${failed}/${total})` : `PASS (${total})`;
+  document.getElementById("h").textContent = document.title;
+  document.getElementById("out").innerHTML = Object.entries(results)
+    .map(([k, v]) => `<span class="${v === "pass" ? "pass" : "FAIL"}">${v === "pass" ? "pass" : "FAIL"}</span>  ${k}${v === "pass" ? "" : "\n      " + v}`)
+    .join("\n");
+</script>

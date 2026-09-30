@@ -43,6 +43,13 @@
   var fill = document.querySelector("[data-attempt-fill]");
   var readout = document.querySelector("[data-attempt-pct]");
 
+  /* Modes. "free" is the open-ended game; the rest count down and are the ones
+     that can go on a record board (most levels named before time runs out). */
+  var MODE_MS = { free: 0, "5": 300000, "10": 600000, "30": 1800000, "60": 3600000 };
+  var MODE_LABEL = { "5": "5-minute", "10": "10-minute", "30": "30-minute", "60": "1-hour" };
+  var modeBox = $("[data-modes]");
+  var elTimeLabel = $("[data-time-label]");
+
   var calm = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -107,6 +114,12 @@
   var runningSince = null;
   var started = false;
   var clock = null;
+  var mode = "free";
+  var limit = 0;                       // ms, 0 = no limit
+  var lastAt = 0;                      // ms into the run when the last one was named
+  var submitted = false;
+  var lastName = "";
+  var best = {};                       // mode -> most named, on this device
 
   /* Storage --------------------------------------------------------------- */
   /* Everything is wrapped: private windows and blocked storage throw, and
@@ -130,12 +143,15 @@
 
   var saved = read() || {};
   var soundOn = saved.sound !== false;
+  best = saved.best || {};
+  lastName = typeof saved.name === "string" ? saved.name : "";
   var saveTimer = null;
 
   function snapshot() {
     var ids = [];
     for (var i = 0; i < total; i++) if (found[i]) ids.push(levels[i][1]);
-    return { v: 1, found: ids, ms: Math.round(nowMs()), over: over, sound: soundOn };
+    return { v: 1, found: ids, ms: Math.round(nowMs()), over: over, sound: soundOn,
+             mode: mode, lastAt: lastAt, submitted: submitted, name: lastName, best: best };
   }
 
   function save() { clearTimeout(saveTimer); write(snapshot()); }
@@ -166,7 +182,11 @@
   function onInput(e) {
     if (e && e.isComposing) return;
     if (over) return;
-    if (!started) begin();
+    /* begin() only on the very first keystroke. After a reload `started` is
+       already true from the saved run but the clock is not running, and
+       nothing else restarts it: without resume() here the timer stayed
+       frozen, which in a timed mode would be unlimited time. */
+    if (!started) begin(); else resume();
 
     var key = norm(input.value);
     if (!key) { say(""); return; }
@@ -195,6 +215,9 @@
       pulse(rows[list_[0]]);
       return true;
     }
+    /* The clock ticks four times a second, so an answer can land after the
+       limit and before the tick that notices. It does not count. */
+    if (limit && nowMs() >= limit) { expire(); return true; }
     name(target, true);
     return true;
   }
@@ -263,6 +286,7 @@
     showLast(i);
 
     if (live) {
+      lastAt = Math.round(nowMs());
       announce(levels[i][2] + ", number " + levels[i][0] + ". " +
                foundCount + " of " + total + " named.");
       bump(elScore);
@@ -352,12 +376,33 @@
     return h ? h + ":" + two(m) + ":" + two(sec) : m + ":" + two(sec);
   }
 
-  function renderTime() { elTime.textContent = fmt(nowMs()); }
+  var shownTime = "";
+
+  /* Counts up in free play, down in a timed mode. Only touches the DOM when
+     the text changes: in a timed mode this runs four times a second. */
+  function renderTime() {
+    var text;
+    var low = false;
+    if (limit) {
+      var left = Math.max(0, limit - nowMs());
+      text = fmt(Math.ceil(left / 1000) * 1000);
+      low = left <= 30000 && !over;
+    } else {
+      text = fmt(nowMs());
+    }
+    if (text !== shownTime) { shownTime = text; elTime.textContent = text; }
+    elTime.parentNode.classList.toggle("is-low", low);
+  }
+
+  function tick() {
+    renderTime();
+    if (limit && nowMs() >= limit) expire();
+  }
 
   function resume() {
     if (over || !started || runningSince !== null || document.hidden) return;
     runningSince = performance.now();
-    clock = setInterval(renderTime, 1000);
+    clock = setInterval(tick, limit ? 250 : 1000);
   }
 
   function pause() {
@@ -368,7 +413,11 @@
     renderTime();
   }
 
-  function begin() { started = true; resume(); }
+  function expire() {
+    if (!over) finish("timeup");
+  }
+
+  function begin() { started = true; lockModes(); resume(); }
 
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) { pause(); save(); } else { resume(); }
@@ -440,6 +489,19 @@
     } catch (e) { /* the game must never break over a beep */ }
   }
 
+  /* Two falling notes. Quieter and shorter than the chime: it ends a run, it
+     should not startle. */
+  function buzz() {
+    if (!soundOn) return;
+    try {
+      unlock();
+      if (!ctx || ctx.state !== "running") return;
+      var t = ctx.currentTime + 0.005;
+      tone(392.0, t, 0.22, "triangle", 0.55);
+      tone(261.63, t + 0.2, 0.42, "triangle", 0.55);
+    } catch (e) { /* as above */ }
+  }
+
   ["pointerdown", "keydown"].forEach(function (ev) {
     root.addEventListener(ev, unlock, { passive: true });
   });
@@ -453,6 +515,54 @@
     soundOn = !soundOn;
     renderSoundButton();
     if (soundOn) { unlock(); chime(false, false); }
+    save();
+  });
+
+  /* Modes ----------------------------------------------------------------- */
+
+  function modeInputs() {
+    return modeBox ? modeBox.querySelectorAll("input[name=mode]") : [];
+  }
+
+  function renderBests() {
+    if (!modeBox) return;
+    Array.prototype.forEach.call(modeBox.querySelectorAll("[data-best]"), function (el) {
+      var n = best[el.getAttribute("data-best")];
+      el.textContent = n ? "best " + n.toLocaleString("en-US") : "";
+    });
+  }
+
+  function applyMode(m) {
+    mode = MODE_MS[m] === undefined ? "free" : m;
+    limit = MODE_MS[mode];
+    Array.prototype.forEach.call(modeInputs(), function (r) { r.checked = r.value === mode; });
+    if (elTimeLabel) elTimeLabel.textContent = limit ? "Time left " : "Time ";
+    renderTime();
+    renderBests();
+  }
+
+  /* The mode is chosen before the first keystroke and then fixed. Letting it
+     change mid-run would turn a 5-minute score into a 1-hour one. */
+  function lockModes() {
+    var locked = started || foundCount > 0 || !!over;
+    Array.prototype.forEach.call(modeInputs(), function (r) { r.disabled = locked; });
+    if (modeBox) modeBox.classList.toggle("is-locked", locked);
+  }
+
+  if (modeBox) {
+    modeBox.addEventListener("change", function (e) {
+      if (started || foundCount || over) return;
+      applyMode(e.target.value);
+      save();
+    });
+  }
+
+  /* records.js (loaded only when a record board is configured) tells us a
+     score went in, so the state that says so lives in the one place that
+     writes storage. */
+  document.addEventListener("records:submitted", function (e) {
+    submitted = true;
+    if (e.detail && typeof e.detail.name === "string") lastName = e.detail.name;
     save();
   });
 
@@ -495,11 +605,15 @@
     if (over) return;
     over = how;
     pause();
+    /* The tick can notice the end a fraction after it happened. */
+    if (limit) elapsed = Math.min(elapsed, limit);
     input.disabled = true;
     input.value = "";
-    input.placeholder = how === "done" ? "You named every one." : "Finished";
+    input.placeholder = how === "done" ? "You named every one."
+      : how === "timeup" ? "Time\u2019s up" : "Finished";
+    lockModes();
 
-    if (how === "gaveup") {
+    if (how === "gaveup" || how === "timeup") {
       for (var i = 0; i < total; i++) {
         if (found[i]) continue;
         paint(i, false);
@@ -508,19 +622,39 @@
       }
     }
 
-    $("[data-result-title]").textContent =
-      how === "done" ? "All " + total.toLocaleString("en-US") + "." :
-      foundCount.toLocaleString("en-US") + " of " + total.toLocaleString("en-US");
-    $("[data-result-line]").textContent =
-      how === "done" ? "Every extreme demon on the list, in " + fmt(nowMs()) + "."
-                     : pctText() + " of the list, in " + fmt(nowMs()) + ".";
+    var timed = !!limit;
+    var prior = timed ? (best[mode] || 0) : 0;
+    if (timed && !quiet && foundCount > prior) best[mode] = foundCount;
+    renderBests();
+
+    var t = timed ? fmt(limit) : fmt(nowMs());
+    if (timed) {
+      $("[data-result-title]").textContent = foundCount.toLocaleString("en-US") + " named";
+      $("[data-result-line]").textContent =
+        pctText() + " of the list in " + MODE_LABEL[mode] + " mode" +
+        (how === "done" ? ", all of it, in " + fmt(nowMs()) : "") + "." +
+        (!quiet && foundCount > prior && foundCount > 0 ? " A new best on this device." : "");
+    } else {
+      $("[data-result-title]").textContent =
+        how === "done" ? "All " + total.toLocaleString("en-US") + "." :
+        foundCount.toLocaleString("en-US") + " of " + total.toLocaleString("en-US");
+      $("[data-result-line]").textContent =
+        how === "done" ? "Every extreme demon on the list, in " + t + "."
+                       : pctText() + " of the list, in " + t + ".";
+    }
     result.hidden = false;
     /* Restoring a finished game on load must not yank the page down to it. */
     if (!quiet) {
       result.scrollIntoView({ block: "nearest" });
-      announce("Finished. " + foundCount + " of " + total + " named in " + fmt(nowMs()) + ".");
+      announce((how === "timeup" ? "Time is up. " : "Finished. ") + foundCount +
+               " of " + total + " named" + (timed ? " in " + MODE_LABEL[mode] + " mode." : " in " + t + "."));
+      if (how === "timeup") buzz();
     }
     save();
+
+    document.dispatchEvent(new CustomEvent("game:finished", { detail: {
+      mode: mode, score: foundCount, lastAt: lastAt, how: how,
+      submitted: submitted, name: lastName, quiet: !!quiet } }));
   }
 
   function reset() {
@@ -541,6 +675,8 @@
     over = null;
     elapsed = 0;
     started = false;
+    lastAt = 0;
+    submitted = false;
     combo = 0;
     lastIndex = -1;
     btnLast.hidden = true;
@@ -550,8 +686,10 @@
     input.value = "";
     renderScore();
     renderTime();
+    lockModes();
     say("");
-    write({ v: 1, found: [], ms: 0, over: null, sound: soundOn });
+    save();
+    document.dispatchEvent(new CustomEvent("game:reset"));
     input.focus();
   }
 
@@ -559,9 +697,12 @@
 
   $("[data-copy]").addEventListener("click", function () {
     var note = $("[data-copied]");
-    var text = "I named " + foundCount.toLocaleString("en-US") + "/" +
-      total.toLocaleString("en-US") + " extreme demons in " + fmt(nowMs()) +
-      " — " + location.href.split("#")[0];
+    var text = limit
+      ? "I named " + foundCount.toLocaleString("en-US") + " extreme demons in the " +
+        MODE_LABEL[mode] + " mode \u2014 " + location.href.split("#")[0]
+      : "I named " + foundCount.toLocaleString("en-US") + "/" +
+        total.toLocaleString("en-US") + " extreme demons in " + fmt(nowMs()) +
+        " \u2014 " + location.href.split("#")[0];
     var done = function (msg) { note.textContent = msg; };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(
@@ -581,6 +722,9 @@
     });
     elapsed = saved.ms || 0;
     started = foundCount > 0 || elapsed > 0;
+    lastAt = saved.lastAt || 0;
+    submitted = !!saved.submitted;
+    applyMode(saved.mode);
     /* Saved in rank order, not in the order they were named, so there is no
        honest "last one" to show; name() just set it to the highest rank. */
     lastIndex = -1;
@@ -588,8 +732,14 @@
     renderScore();
     renderTime();
     renderSoundButton();
-    if (saved.over === "gaveup" || saved.over === "done" || foundCount === total) {
+    lockModes();
+    var ended = saved.over === "gaveup" || saved.over === "done" || saved.over === "timeup";
+    if (ended || foundCount === total) {
       finish(foundCount === total ? "done" : saved.over, true);
+    } else if (limit && elapsed >= limit) {
+      /* The limit passed while the page was closed, or the last save landed
+         just after it. */
+      finish("timeup", true);
     }
   })();
 

@@ -9,8 +9,9 @@
   "description": "Baylor's thirty favourite Geometry Dash extreme demons of all time, one page each.",
   "aboutHtml": "<p>This is a personal list. It is <strong>not</strong> a difficulty ranking, and it is not trying to be Pointercrate or AREDL. Every level here earned its place for its own reason &mdash; some for how they play, some for how they look, some for what they meant at the time.</p><p>Facts on each level page are researched and sourced, and anything that could not be confirmed is shown as an em dash rather than guessed. Every creator, host, verifier, and song artist is credited.</p>",
   "disclaimer": "A fan project by Baylor. Unaffiliated with RobTop Games. Levels and songs belong to their creators.",
-  "colophon": "No cookies, no analytics, no third-party requests. Nothing loads from YouTube until you press play.",
+  "colophon": "No cookies, no analytics, no third-party requests on load. Videos, and the Game\u2019s record boards, only load when you press their buttons.",
   "contact": null,
+  "discord": "bperk",
   "updated": "2026-08-28",
   "docs": [
     {
@@ -23,7 +24,8 @@
       "slug": "privacy",
       "heading": "Privacy",
       "eyebrow": "What this site knows about you",
-      "lede": "Nothing. No cookies, no analytics, no accounts, and no third-party requests on load."
+      "lede": "Nothing. No cookies, no analytics, no accounts, and no third-party requests on load.",
+      "ledeRecords": "Nothing, unless you post a score. No cookies, no analytics, no accounts, and no third-party requests on load."
     },
     {
       "slug": "credits",
@@ -32,6 +34,7 @@
       "lede": "Geometry Dash belongs to RobTop. The levels belong to their creators. The art here is original."
     }
   ],
+  "records": {"endpoint": null},
   "artDrift": "40s",
   "artAmbient": [["embers", 22]],
   "palette": {"ink": "#f2f2f4", "accent": "#d8d8e0", "accent2": "#8a8a96"},

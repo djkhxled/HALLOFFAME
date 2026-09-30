@@ -104,6 +104,25 @@ be tested; `src/js/game.js` only looks answers up. Answers are taken the
 instant they match, as on Sporcle. Progress is saved in `localStorage` on the visitor's device, keyed
 by a short hash of AREDL's id because ranks move, and the privacy page says so.
 
+### Timed modes and the record boards
+
+The game has a free-play mode and four timed ones (5, 10, 30, 60 minutes); the
+score in a timed mode is how many levels were named before the clock ran out.
+Each keeps a personal best on the player's own device.
+
+The shared boards are optional and **off** until a service is connected:
+`worker/records.js` is a small Cloudflare Worker, and `notes/records-setup.md`
+is the checklist for switching it on. They are built so that nothing is
+requested until a button is pressed (`src/js/records.js` is the only script that
+can send anything, and a test holds it to that), and so that the privacy and
+terms pages describe the site as it is running -- the records wording exists
+only while a service is configured. The build refuses to switch the boards on
+with nobody listed to contact for removals.
+
+The service's behaviour is checked in a browser rather than by `unittest`, since
+there is no Node here: `python3 -m http.server 3010 --directory worker` and open
+`http://127.0.0.1:3010/check.html`.
+
 ## Accessibility
 
 - `prefers-reduced-motion` disables every pinned, scrubbed, and parallaxed
