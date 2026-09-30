@@ -1541,3 +1541,50 @@ a.countdown__hit:focus-visible .countdown__mark {
   .nchart__bars { height: 5.5rem; gap: 1px; }
   .nchart__tip { display: none; }
 }
+
+/* The tabs, top right of the hero --------------------------------------- */
+
+.hero--nav {
+  /* Room for the tabs above the eyebrow rule, so the two never share a line. */
+  padding-block-start: calc(var(--space-6) + 2.6rem);
+}
+
+.topnav {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--gutter);
+  z-index: 6;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.topnav__link {
+  font: 500 var(--step--2) / 1 var(--font-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 0.55rem 0.95rem;
+  border: var(--rule) solid var(--rule-colour);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--field) 72%, transparent);
+  transition: background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.topnav__link:hover,
+.topnav__link:focus-visible {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.topnav__link[aria-current="page"] {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* The scroll readout lives top right on every page, which is where the tabs
+   are. On the landing page it moves to the left; on the game, scroll position
+   means nothing and the bar across the top shows the game instead. */
+[data-level="index"] .attempt__read { right: auto; left: var(--gutter); }
+[data-level="game"] .attempt__read { display: none; }

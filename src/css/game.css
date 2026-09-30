@@ -1,0 +1,284 @@
+/* game.css — the name-every-demon game.
+ *
+ * Deliberately plain: the site's own default palette and type, no artwork of
+ * its own beyond the quiet header. The one thing that matters here is that it
+ * stays fast with 1,621 rows on the page, so:
+ *
+ *  - each block of a hundred is content-visibility:auto, which makes the
+ *    browser skip layout and paint for every block not near the viewport;
+ *  - the sticky bar has a solid ground, not backdrop-filter, which would be
+ *    re-blurred over a long list on every scroll frame;
+ *  - nothing animates except one row at a time, and only transform/opacity.
+ */
+
+.hero--game { min-height: 38svh; }
+
+.game { position: relative; }
+
+/* The bar ---------------------------------------------------------------- */
+
+.gbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--field) 97%, transparent);
+  border-block: var(--rule) solid var(--rule-colour);
+  padding-block: var(--space-3);
+}
+
+.gbar__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: var(--space-3) var(--space-5);
+  align-items: center;
+}
+
+.ginput {
+  width: 100%;
+  min-width: 0;
+  font: 600 var(--step-2) / 1.1 var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: var(--rule) solid var(--rule-colour);
+  border-radius: 3px;
+  padding: 0.7rem 1rem;
+}
+
+.ginput::placeholder { color: var(--muted); font-weight: 400; }
+.ginput:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ginput:disabled { opacity: 0.6; }
+
+.gscore,
+.gtime {
+  margin: 0;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.gscore { display: flex; align-items: baseline; gap: 0.45rem; }
+
+.gscore__n {
+  display: inline-block;
+  font: 900 var(--step-4) / 1 var(--font-display);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.gscore__of { font-size: var(--step--1); color: var(--muted); }
+.gscore__pct { font-size: var(--step--1); color: var(--accent); }
+.gtime { font-size: var(--step-1); color: var(--ink); min-width: 4.2ch; text-align: right; }
+
+.gbar__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.gstatus {
+  margin: 0;
+  min-height: 1.5em;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.glast {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  min-width: 0;
+  max-width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 0.15rem 0;
+  cursor: pointer;
+}
+
+.glast[hidden] { display: none; }
+.glast:hover .glast__name { text-decoration: underline; }
+
+.glast__label,
+.glast__rank {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.glast__name {
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gtools { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-left: auto; }
+
+.gbtn {
+  font: 500 var(--step--2) / 1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: none;
+  border: var(--rule) solid var(--rule-colour);
+  border-radius: 2px;
+  padding: 0.6rem 0.85rem;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.gbtn:hover,
+.gbtn:focus-visible {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.gbtn[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.gbtn__state { color: var(--accent); margin-left: 0.25rem; }
+.gbtn--primary { border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+
+/* The list --------------------------------------------------------------- */
+
+.glist { margin-top: var(--space-7); }
+
+.gblock {
+  content-visibility: auto;
+  /* The remembered size ("auto") takes over once a block has been drawn;
+     this only steadies the scrollbar before then. */
+  contain-intrinsic-block-size: auto 42rem;
+  margin-bottom: var(--space-7);
+}
+
+.gblock__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  font-size: var(--step-2);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
+  border-bottom: var(--rule) solid var(--rule-colour);
+}
+
+.gblock__count {
+  margin-left: auto;
+  font: 500 var(--step--1) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.gblock.is-done .gblock__count { color: var(--accent); }
+
+.gblock__rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  column-gap: var(--space-5);
+}
+
+.slot {
+  display: grid;
+  grid-template-columns: 3.3rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-3);
+  min-height: 2.15rem;
+  padding: 0.3rem 0.4rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+}
+
+.slot__rank {
+  font: 400 var(--step--2) / 1 var(--font-mono);
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+.slot__name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
+/* An unnamed slot is a dash, not a blank, and says nothing about the length
+   of the name behind it. */
+.slot__name:empty::before {
+  content: "";
+  display: block;
+  width: 3.2rem;
+  height: 2px;
+  margin-top: 0.62em;
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+.slot.is-found .slot__rank { color: var(--accent); opacity: 1; }
+.slot__by { font-weight: 400; font-size: 0.82em; color: var(--muted); }
+
+.slot.is-missed { box-shadow: inset 2px 0 0 color-mix(in srgb, #e5484d 65%, transparent); }
+.slot.is-missed .slot__name { color: var(--muted); font-weight: 400; }
+
+/* Hides the blanks so the list is only what has been named. A block with
+   nothing named goes with them. */
+.glist.is-named-only .slot:not(.is-found) { display: none; }
+.glist.is-named-only .gblock:not(:has(.is-found)) { display: none; }
+
+/* The end ---------------------------------------------------------------- */
+
+.gresult {
+  margin-top: var(--space-6);
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  border: var(--rule) solid color-mix(in srgb, var(--accent) 50%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.gresult[hidden] { display: none; }
+.gresult__title { font-size: var(--step-6); margin-bottom: var(--space-3); }
+.gresult__line { font-size: var(--step-1); color: var(--muted); margin-bottom: var(--space-4); }
+.gresult__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.gresult__copied { font: var(--step--2) / 1 var(--font-mono); color: var(--accent); }
+
+.gsource,
+.gnote {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 68ch;
+  margin-block: var(--space-6);
+}
+
+/* Narrow screens --------------------------------------------------------- */
+
+@media (max-width: 44rem) {
+  .gbar__top { grid-template-columns: minmax(0, 1fr) auto; }
+  .gtime { grid-column: 2; grid-row: 1; font-size: var(--step-0); }
+  .gscore { grid-column: 1 / -1; grid-row: 2; }
+  .gscore__n { font-size: var(--step-3); }
+  .ginput { font-size: var(--step-1); padding: 0.6rem 0.8rem; }
+
+  /* This bar is on screen the whole time, so it has to be short. The four
+     buttons share one row and stretch to fill it, which also makes each a
+     decent thumb target. */
+  .gbar__bottom { margin-top: var(--space-2); gap: var(--space-1) var(--space-3); }
+  .gstatus { min-height: 1.2em; }
+  .gtools { width: 100%; margin-left: 0; gap: 0.35rem; }
+  .gbtn { flex: 1 1 auto; padding: 0.6rem 0.5rem; letter-spacing: 0.08em; text-align: center; }
+}
+
+/* The sticky bar takes a lot of a short landscape phone. */
+@media (max-height: 30rem) {
+  .gbar { position: static; }
+}

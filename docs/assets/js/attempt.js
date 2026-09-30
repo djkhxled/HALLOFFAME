@@ -21,6 +21,10 @@
   var out = document.querySelector("[data-attempt-pct]");
   if (!bar && !out) return;
 
+  /* The game fills this bar with how much of the list has been named, which
+     is a better answer to "how far through are you" than scroll position. */
+  if (document.documentElement.hasAttribute("data-attempt-manual")) return;
+
   var ticking = false;
   var last = -1;
 
