@@ -119,6 +119,13 @@ terms pages describe the site as it is running -- the records wording exists
 only while a service is configured. The build refuses to switch the boards on
 with nobody listed to contact for removals.
 
+When the boards are on, the Game opens behind a notice (`src/js/gate.js`, a native
+`<dialog>`): read the privacy policy, accept that the only way to have a record
+removed is to message the owner on Discord, and press Accept. Deny keeps the Game
+closed. "Don't ask me again" stores a version marker under its own key, and the
+marker is a hash of the notice and the privacy page, so **editing the privacy
+page or the notice asks everyone again**, including people who ticked the box.
+
 The service's behaviour is checked in a browser rather than by `unittest`, since
 there is no Node here: `python3 -m http.server 3010 --directory worker` and open
 `http://127.0.0.1:3010/check.html`.

@@ -225,9 +225,11 @@ class Promises(unittest.TestCase):
         self.assertNotIn("indexedDB", self.code)
         self.assertNotIn("document.cookie", self.code)
 
-    def test_no_other_script_touches_storage(self):
+    def test_only_the_game_and_the_notice_touch_storage(self):
+        """Two scripts write to localStorage, each under its own key, and the
+        privacy page describes exactly those two."""
         for js in (ROOT / "src" / "js").glob("*.js"):
-            if js.name == "game.js":
+            if js.name in ("game.js", "gate.js"):
                 continue
             self.assertNotIn("localStorage",
                              js.read_text(encoding="utf-8"), js.name)
@@ -349,12 +351,12 @@ class RecordsSwitch(unittest.TestCase):
     def test_on_describes_what_is_sent_where_and_how_to_get_it_removed(self):
         out = game.apply_records_blocks(self.privacy_raw, True)
         for promise in ("Show records", "Submit to", "username", "Cloudflare",
-                        "[[contact]]", "not your real name"):
+                        "[[dm]]", "not your real name"):
             self.assertIn(promise, out, promise)
         self.assertNotIn("does not collect anything about you", out)
         terms = game.apply_records_blocks(self.terms_raw, True)
         self.assertNotRegex(terms, r"accepts no\s+submissions")
-        self.assertIn("[[contact]]", terms)
+        self.assertIn("[[dm]]", terms)
 
     def test_the_privacy_page_states_the_number_the_service_keeps(self):
         """"Each board keeps its best 100" is a claim about worker/records.js."""
@@ -544,3 +546,202 @@ class GamePageCopy(unittest.TestCase):
         message = str(caught.exception)
         self.assertIn("site.json", message)
         self.assertIn("line 3", message)
+
+
+
+# ------------------------------------------------------------------- the notice
+
+class NoticeMarkup(unittest.TestCase):
+    DM = "privately message <strong>@bperk</strong> on Discord"
+
+    def test_it_asks_for_what_it_needs_to(self):
+        html_ = game.gate_html(self.DM, "abcd1234")
+        self.assertIn("<dialog", html_)
+        self.assertNotIn(" open", html_.split(">")[0], "it must start closed")
+        self.assertIn('href="/privacy/" target="_blank" rel="noopener"', html_)
+        self.assertIn("Accept</button>", html_)
+        self.assertIn("Deny</button>", html_)
+        self.assertIn("Don&rsquo;t ask me again", html_)
+        self.assertIn('type="checkbox"', html_)
+        self.assertIn("only way", html_)
+        self.assertIn("@bperk", html_)
+        self.assertIn('data-version="abcd1234"', html_)
+
+    def test_it_is_labelled_for_assistive_tech(self):
+        html_ = game.gate_html(self.DM, "abcd1234")
+        self.assertIn('aria-labelledby="gate-h"', html_)
+        self.assertIn('id="gate-h"', html_)
+        self.assertIn('aria-describedby="gate-d"', html_)
+        self.assertIn('id="gate-d"', html_)
+
+    def test_the_version_changes_with_the_wording_and_only_then(self):
+        a = game.gate_version("the policy", "the notice")
+        self.assertEqual(a, game.gate_version("the policy", "the notice"))
+        self.assertEqual(a, game.gate_version("the   policy\n", " the notice"))
+        self.assertNotEqual(a, game.gate_version("the policy!", "the notice"))
+        self.assertNotEqual(a, game.gate_version("the policy", "the notice!"))
+        # not the same as running the two together
+        self.assertNotEqual(game.gate_version("ab", "c"), game.gate_version("a", "bc"))
+
+    def test_the_removal_route_is_worded_once(self):
+        from hall import render
+        self.assertEqual(render.dm_html({"discord": "bperk"}), self.DM)
+        self.assertEqual(render.dm_html({"discord": "@bperk"}), self.DM)
+        self.assertIn("a@b.c", render.dm_html({"contact": "a@b.c"}))
+        self.assertIn("contact", render.dm_html({}))
+
+
+class NoticeScript(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.code = _code(ROOT / "src" / "js" / "gate.js")
+        cls.game_code = _code(ROOT / "src" / "js" / "game.js")
+
+    def test_it_makes_no_requests_and_writes_markup_nowhere(self):
+        for bad in ("fetch(", "XMLHttpRequest", "sendBeacon", "WebSocket",
+                    "innerHTML", "document.cookie", "sessionStorage", "indexedDB"):
+            self.assertNotIn(bad, self.code, bad)
+
+    def test_it_keeps_one_marker_under_its_own_key(self):
+        key = re.search(r'var KEY = "([^"]+)"', self.code).group(1)
+        game_key = re.search(r'var KEY = "([^"]+)"', self.game_code).group(1)
+        self.assertNotEqual(key, game_key)
+        self.assertEqual(len(re.findall(r"setItem\(", self.code)), 1)
+        # the marker is the version and nothing else: the privacy page says so
+        self.assertIn("JSON.stringify({ v: version })", self.code)
+
+    def test_only_a_ticked_accept_remembers_and_deny_stores_nothing(self):
+        accept = re.search(r'btnAccept\.addEventListener\("click", function \(\) \{(.*?)\n  \}\);',
+                           self.code, re.S).group(1)
+        self.assertIn("if (again.checked) remember(); else forget();", accept)
+        deny = re.search(r'btnDeny\.addEventListener\("click", function \(\) \{(.*?)\n  \}\);',
+                         self.code, re.S).group(1)
+        for bad in ("remember", "forget", "setItem", "removeItem", "close()"):
+            self.assertNotIn(bad, deny, f"Deny must not call {bad}")
+
+    def test_it_cannot_be_dismissed_without_accepting(self):
+        self.assertIn('dialog.addEventListener("cancel", function (e) { e.preventDefault(); });', self.code)
+        close = re.search(r'dialog\.addEventListener\("close", function \(\) \{(.*?)\}\);',
+                          self.code, re.S).group(1)
+        self.assertIn("if (!accepted) dialog.showModal();", close)
+
+    def test_a_marker_from_other_wording_does_not_count(self):
+        self.assertIn("v.v === version", self.code)
+
+    def test_the_game_is_not_left_reachable_behind_it(self):
+        """showModal() is what makes the page inert; a non-modal show() would
+        leave the game clickable behind a blur."""
+        self.assertIn("dialog.showModal();", self.code)
+        self.assertNotRegex(self.code, r"dialog\.show\(")
+        self.assertNotIn("setAttribute(\"open\"", self.code)
+
+    def test_it_loads_before_the_game_does(self):
+        build_py = (ROOT / "build.py").read_text(encoding="utf-8")
+        tag = lambda name: build_py.index(f'<script src="/assets/js/{name}.js"')
+        self.assertLess(tag("gate"), tag("records"))
+        self.assertLess(tag("records"), tag("game"))
+
+    def test_animation_respects_reduced_motion(self):
+        css = (ROOT / "src" / "css" / "game.css").read_text(encoding="utf-8")
+        block = css[css.index("@media (prefers-reduced-motion: reduce)"):]
+        self.assertIn(".ggate::backdrop", block)
+        self.assertIn("animation: none", block)
+
+
+class NoticeInTheBuild(unittest.TestCase):
+    """The notice exists only while the board does."""
+
+    @classmethod
+    def setUpClass(cls):
+        import build
+        cls.build = build
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True, capture_output=True)
+        cls.site = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+        base = build.read(build.TEMPLATES / "base.html")
+        on = {**cls.site, "records": {"endpoint": "https://hall.example.workers.dev"}}
+        cls.on = build.build_game(on, base)
+        cls.off = build.build_game(cls.site, base)
+
+    def test_off_there_is_no_notice(self):
+        self.assertNotIn("ggate", self.off)
+        self.assertNotIn("gate.js", self.off)
+        self.assertNotIn("<dialog", self.off)
+
+    def test_on_there_is_one_and_its_script_comes_first(self):
+        self.assertEqual(self.on.count("<dialog"), 1)
+        order = [self.on.index(s) for s in ("gate.js", "records.js", "game.js")]
+        self.assertEqual(order, sorted(order))
+
+    def test_the_version_follows_the_privacy_page(self):
+        """Edit the policy and everyone is asked again."""
+        import build
+        a = re.search(r'data-version="([0-9a-f]{8})"', self.on).group(1)
+        priv = ROOT / "pages" / "privacy.html"
+        original = priv.read_text(encoding="utf-8")
+        try:
+            priv.write_text(original.replace("Choose a username", "Please choose a username"),
+                            encoding="utf-8")
+            base = build.read(build.TEMPLATES / "base.html")
+            on = {**self.site, "records": {"endpoint": "https://hall.example.workers.dev"}}
+            b = re.search(r'data-version="([0-9a-f]{8})"', build.build_game(on, base)).group(1)
+        finally:
+            priv.write_text(original, encoding="utf-8")
+        self.assertNotEqual(a, b)
+
+    def test_the_page_with_the_notice_keeps_the_accessibility_rules(self):
+        """The accessibility tests run on the default build, where the board is
+        off. This is the same handful of checks on the page with it on."""
+        page = self.on
+        self.assertEqual(len(re.findall(r"<h1\b", page)), 1)
+        prev = 0
+        for m in re.finditer(r"<h([1-6])\b", page):
+            lvl = int(m.group(1))
+            self.assertLessEqual(lvl, prev + 1, f"h{prev} -> h{lvl}")
+            prev = lvl
+        ids = re.findall(r'\bid="([^"]+)"', page)
+        self.assertEqual(len(ids), len(set(ids)), "duplicate ids")
+        for ref in re.findall(r'aria-(?:labelledby|describedby)="([^"]+)"', page):
+            self.assertIn(ref, ids, f"{ref} points at nothing")
+        for m in re.finditer(r"<button\b([^>]*)>(.*?)</button>", page, re.S):
+            text = re.sub(r"<[^>]+>", "", m.group(2)).strip()
+            self.assertTrue(text or "aria-label" in m.group(1), m.group(0)[:70])
+        for a in re.findall(r'<a\b[^>]*target="_blank"[^>]*>', page):
+            self.assertIn("noopener", a)
+
+
+class PolicyCoversTheNotice(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.raw = (ROOT / "pages" / "privacy.html").read_text(encoding="utf-8")
+        cls.terms = (ROOT / "pages" / "terms.html").read_text(encoding="utf-8")
+        cls.on = game.apply_records_blocks(cls.raw, True)
+        cls.terms_on = game.apply_records_blocks(cls.terms, True)
+
+    def test_it_covers_what_the_notice_asks_people_to_accept(self):
+        for needed in ("The notice you accept first", "Deny", "Don&rsquo;t ask me again",
+                       "version marker", "localStorage", "asked again",
+                       "the only way to have your records removed"):
+            self.assertIn(needed, self.on, needed)
+
+    def test_it_covers_the_rest_of_what_a_board_needs(self):
+        for needed in ("What is sent, and when", "Where it is kept", "What everyone can see",
+                       "Removing an entry", "Cloudflare", "global network",
+                       "best 100", "no accounts", "real name", "cannot check who is asking"):
+            self.assertIn(needed, self.on, needed)
+
+    def test_there_is_one_removal_route_and_it_is_the_same_everywhere(self):
+        """No stray "[[contact]]" in the board's text: it would let an email
+        address or a bare handle appear as a second way, against "the only
+        way"."""
+        for text in (self.on, self.terms_on):
+            self.assertNotIn("[[contact]]", text)
+            self.assertIn("[[dm]]", text)
+
+    def test_it_says_what_the_marker_is_and_the_script_stores_exactly_that(self):
+        self.assertIn("version marker", self.on)
+        self.assertIn("a second, separate item", self.on)
+
+    def test_with_the_board_off_the_notice_is_not_mentioned(self):
+        off = game.apply_records_blocks(self.raw, False)
+        for gone in ("notice", "Don&rsquo;t ask me again", "Deny"):
+            self.assertNotIn(gone, off, gone)

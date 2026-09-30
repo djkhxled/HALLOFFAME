@@ -72,6 +72,23 @@ Play a 5-minute run, let it finish, put a username in and press **Submit to
 records**. Then press **Show records**. Your name should be on the 5-minute
 board.
 
+## What players will see
+
+The first time someone opens the Game after the board is on, it fades in behind a
+notice with the background blurred: please read the privacy policy, and accept
+that the only way to have records removed is to privately message `@bperk` on
+Discord. Accept opens the Game; Deny keeps it shut (with a link back to the
+Hall). A "Don't ask me again" box remembers the choice on that device.
+
+**Editing the privacy page, or the notice's wording, asks everyone again** --
+even people who ticked the box -- because the remembered choice is tied to a
+hash of that text. That is deliberate: nobody should be held to wording they
+never saw. It also means fixing a typo in `pages/privacy.html` re-prompts
+everyone, so batch edits.
+
+The notice only exists while the board does. With the board off, nothing asks
+anything and the privacy page says nothing is collected.
+
 ## Taking an entry off
 
 Cloudflare -> **KV** -> your namespace -> **View** -> open the key for the board
