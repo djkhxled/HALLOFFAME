@@ -388,6 +388,21 @@ def contact_html(site: dict) -> str | None:
     return " or ".join(parts) if parts else None
 
 
+def dm_html(site: dict) -> str:
+    """The sentence fragment for getting an entry removed.
+
+    "Privately message @bperk on Discord" when there is a handle, because that
+    is the route the site names and the one the notice asks people to accept.
+    Falls back to the general contact if there is only an email. Every place
+    that says how to have an entry removed uses this, so it is worded once.
+    """
+    if site.get("discord"):
+        handle = str(site["discord"]).lstrip("@")
+        return f"privately message <strong>@{esc(handle)}</strong> on Discord"
+    who = contact_html(site)
+    return f"contact {who}" if who else "contact the site owner"
+
+
 def doc_footer_html(site: dict) -> str:
     """The contact line. Says plainly when there is no way to reach anyone,
     rather than inventing one or quietly omitting it."""

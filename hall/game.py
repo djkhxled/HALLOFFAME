@@ -219,8 +219,9 @@ def records_endpoint(site: dict) -> str | None:
     return endpoint
 
 
-def _removal(site_contact_html: str) -> str:
-    return f"To have an entry removed, contact {site_contact_html}."
+def _removal(dm: str) -> str:
+    """dm is render.dm_html(): "privately message @x on Discord"."""
+    return f"To have an entry removed, {dm} &mdash; that is the only way."
 
 
 def records_html(contact: str) -> str:
@@ -282,3 +283,55 @@ def apply_records_blocks(text: str, enabled: bool) -> str:
             rf"<!-- records:{kind} -->(.*?)<!-- /records:{kind} -->", re.S)
         text = pattern.sub((lambda m: m.group(1)) if keep else "", text)
     return text
+
+
+# ------------------------------------------------------------------- the notice
+
+def gate_html(dm: str, version: str) -> str:
+    """The notice shown before the Game opens, once the boards are on.
+
+    A native <dialog>, opened with showModal(): that makes everything behind it
+    inert, traps focus, and gives it a ::backdrop to blur, none of which has to
+    be rebuilt by hand. It is closed in the markup, so a visitor without
+    JavaScript is not shown something they cannot dismiss -- and the Game does
+    not run for them anyway.
+
+    The text is what the visitor agrees to, so it is kept in step with the
+    privacy page by hashing both into `version`: change either and everyone,
+    including people who ticked "don't ask me again", is asked again.
+    """
+    return (
+        f'<dialog class="ggate" data-gate data-version="{version}" '
+        'aria-labelledby="gate-h" aria-describedby="gate-d">'
+        '<h2 id="gate-h" class="ggate__title">Before you play</h2>'
+        '<div id="gate-d" class="ggate__body">'
+        "<p>The Game has record boards where you can put a username and a "
+        "score. Please read the "
+        '<a href="/privacy/" target="_blank" rel="noopener">privacy policy</a> '
+        "(it opens in a new tab).</p>"
+        f"<p>By pressing <strong>Accept</strong> you understand that the only "
+        f"way to have your records removed is to {dm}.</p>"
+        '<p class="ggate__fine">Accepting sends nothing. Nothing is sent unless '
+        "you press Submit on a finished timed run.</p>"
+        "</div>"
+        '<label class="ggate__again"><input type="checkbox" data-gate-again> '
+        "Don&rsquo;t ask me again</label>"
+        '<p class="ggate__denied" data-gate-denied role="status" hidden>'
+        "No problem &mdash; the Game stays closed until you accept. Nothing has "
+        "been saved or sent. "
+        '<a href="/">Back to the Hall</a></p>'
+        '<div class="ggate__actions">'
+        '<button class="gbtn gbtn--primary" type="button" data-gate-accept>Accept</button>'
+        '<button class="gbtn" type="button" data-gate-deny>Deny</button>'
+        "</div></dialog>"
+    )
+
+
+def gate_version(*texts: str) -> str:
+    """Eight hex digits that change whenever any of the given text does."""
+    import hashlib
+    h = hashlib.sha256()
+    for text in texts:
+        h.update(re.sub(r"\s+", " ", text).strip().encode("utf-8"))
+        h.update(b"\x00")
+    return h.hexdigest()[:8]

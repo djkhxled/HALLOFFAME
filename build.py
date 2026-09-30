@@ -274,6 +274,7 @@ def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str,
     # about the record board exist only while the board does.
     body = game.apply_records_blocks(body, records_on)
     body = body.replace("[[contact]]", render.contact_html(site) or "the site owner")
+    body = body.replace("[[dm]]", render.dm_html(site))
     body += render.doc_footer_html(site)
     if records_on and doc.get("ledeRecords"):
         doc = {**doc, "lede": doc["ledeRecords"]}
@@ -465,6 +466,17 @@ def build_game(site: dict, base_tpl: str) -> str:
 
     copy = {"title": "Name every extreme demon", "lede": "", **(site.get("game") or {})}
 
+    # The notice people accept is versioned by what it and the privacy page
+    # say, so editing either asks everyone again, including anyone who ticked
+    # "don't ask me again" against the old wording.
+    dm = render.dm_html(site)
+    gate = ""
+    if endpoint:
+        policy = game.apply_records_blocks(
+            read(ROOT / "pages" / "privacy.html"), True).replace("[[dm]]", dm)
+        version = game.gate_version(policy, game.gate_html(dm, ""))
+        gate = game.gate_html(dm, version)
+
     total = len(levels)
     when = datetime.date.fromisoformat(snap["fetched"])
     fetched_label = f"{when.day} {when.strftime('%B %Y')}"
@@ -482,8 +494,9 @@ def build_game(site: dict, base_tpl: str) -> str:
             "total": total,
             "game_attrs_html": (
                 f' data-records-endpoint="{render.esc(endpoint)}"' if endpoint else ""),
-            "submit_html": game.submit_html(render.contact_html(site)) if endpoint else "",
-            "records_html": game.records_html(render.contact_html(site)) if endpoint else "",
+            "submit_html": game.submit_html(dm) if endpoint else "",
+            "records_html": game.records_html(dm) if endpoint else "",
+            "gate_html": gate,
             "total_label": f"{total:,}",
             "list_html": game.list_html(levels),
             "fetched_label": fetched_label,
@@ -497,10 +510,13 @@ def build_game(site: dict, base_tpl: str) -> str:
             "html_attrs_html": " data-attempt-manual",
             "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
             "attempt_label_html": '<span class="attempt__rank">Game</span>',
-            # records.js goes first: game.js fires game:finished while it
-            # loads, when it restores a run that had already ended.
+            # Order matters. The notice goes first so it has taken hold before
+            # anything else runs; records.js goes before game.js because game.js
+            # fires game:finished while it loads, when it restores a run that
+            # had already ended.
             "foot_extra_html": (
-                ('<script src="/assets/js/records.js" defer></script>' if endpoint else "")
+                ('<script src="/assets/js/gate.js" defer></script>'
+                 '<script src="/assets/js/records.js" defer></script>' if endpoint else "")
                 + '<script src="/assets/js/game.js" defer></script>'),
             "signature": "static",
             "texture_class": "texture texture--grain",

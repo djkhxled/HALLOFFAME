@@ -29,7 +29,10 @@ advertising.</p>
     never transmitted, and no other page writes anything to
     <code>localStorage</code>, <code>sessionStorage</code> or IndexedDB.
     Pressing Reset, or clearing this site's data in your browser, erases
-    it.</li>
+    it.
+    <!-- records:on -->If you tick <em>Don&rsquo;t ask me again</em> on the Game&rsquo;s
+    notice, a second, separate item records that you accepted it: a version
+    marker, nothing else. It is not sent anywhere either.<!-- /records:on --></li>
   <!-- records:off -->
   <li><strong>No advertising, and nothing sold or shared.</strong> I hold no
     personal data about visitors, so there is none to sell, share or
@@ -84,7 +87,23 @@ privacy practices.</p>
 
 <p>The Game has timed modes &mdash; 5, 10, 30 and 60 minutes &mdash; and each has a
 record board: the most levels named before the clock runs out. Putting a score
-on a board is optional, and there are no accounts or passwords.</p>
+on a board is optional. There are no accounts and no passwords.</p>
+
+<h3>The notice you accept first</h3>
+
+<p>Before the Game opens, a notice asks you to read this policy and to accept that
+<strong>the only way to have your records removed is to [[dm]]</strong>. You must
+accept it to use the Game. If you press <em>Deny</em>, the Game stays closed and
+nothing is saved or sent; the rest of the site is unaffected. Accepting sends
+nothing by itself.</p>
+
+<p>If you tick <em>Don&rsquo;t ask me again</em>, your browser remembers that you
+accepted, by keeping a short version marker in <code>localStorage</code> on your
+device and nothing else. The marker is tied to the wording of this policy and of
+the notice: if either changes, you will be asked again even if you ticked the
+box. If you do not tick it, you are asked on every visit.</p>
+
+<h3>What is sent, and when</h3>
 
 <p>Playing sends nothing. Two buttons talk to the records service, and only when
 you press them: <em>Show records</em> fetches the four boards, and <em>Submit to
@@ -96,23 +115,43 @@ records</em> sends:</p>
     last one.</li>
 </ul>
 
-<p>That is all of it. It is stored as one line on the board for that mode, with
-the date it was submitted, and each board keeps its best 100. It is not linked
-to anything else. My code does not store or log your IP address, cookies or
-device details.</p>
+<p>That is all of it. Each entry is stored as one line on the board for its mode,
+with the date it was submitted. Each board keeps its best 100; an entry that is
+pushed off the bottom is deleted. The entry is not linked to anything else. My
+code does not store or log your IP address, cookies or device details.</p>
+
+<h3>Where it is kept</h3>
 
 <p>The records service runs on Cloudflare (Workers and KV). Cloudflare receives
-the request, which means it sees your IP address and browser details the way any
-host does, under
+every request to it, which means it sees your IP address and browser details the
+way any host does, under
 <a href="https://www.cloudflare.com/privacypolicy/" rel="nofollow noopener"
 target="_blank">Cloudflare&rsquo;s privacy policy</a>. That makes it a third
-party, which is why nothing is requested until you press a button.</p>
+party, which is why nothing is requested until you press a button. Cloudflare
+runs a global network, so entries and requests may be stored and processed in
+countries other than yours.</p>
 
-<p><strong>Choose a username that is not your real name.</strong> It is shown
-publicly to anyone who opens the records, nobody checks it, and it stays until
-it is removed. To have an entry removed or changed, contact [[contact]] with the
-username and the mode. I may remove entries that are abusive, that impersonate
-someone, or that identify a real person who has not agreed to it.</p>
+<h3>What everyone can see</h3>
+
+<p>Anyone who presses <em>Show records</em> sees the username and the score of each
+entry near the top of each board. The date and the timing are stored but not
+shown. Nobody checks usernames or scores, and they are not private.
+<strong>Choose a username that is not your real name.</strong> Geometry Dash has
+many young players, so please do not use a name that identifies you or anyone
+else.</p>
+
+<h3>Removing an entry</h3>
+
+<p>The only way to have an entry removed or changed is to [[dm]], with the
+username and the mode. There is no form, no email route, and no account to delete
+it from. Because there are no accounts I cannot check who is asking, so I may
+decline a request that looks like an attempt to wipe someone else&rsquo;s score.
+I may also remove an entry without being asked if it is abusive, impersonates
+someone, or identifies a real person who has not agreed to it.</p>
+
+<p>Entries otherwise stay until removed. Clearing your browser&rsquo;s data, or
+pressing Reset in the Game, only clears what is stored on your own device; it does
+not take anything off a board.</p>
 <!-- /records:on -->
 
 <h2>Server logs</h2>
@@ -143,7 +182,7 @@ to access, correct, delete and port personal data held about you, and to object
 to its processing. The only thing this site holds about anyone is a username and
 score on a record board, and only if that person posted it. If a username
 identifies you, it is personal data and those rights apply to it. To see,
-correct or remove an entry, contact [[contact]] with the username and mode.</p>
+correct or remove an entry, [[dm]], with the username and mode.</p>
 <!-- /records:on -->
 
 <h2>Children</h2>
@@ -155,7 +194,7 @@ from anyone, of any age.</p>
 <!-- records:on -->
 <p>This site is not directed at children. The only thing it accepts from anyone
 is a username for a record board, and the boards ask people not to use their real
-name. If an entry belongs to a child and should come down, contact [[contact]]
+name. If an entry belongs to a child and should come down, [[dm]]
 and it will be removed.</p>
 <!-- /records:on -->
 
