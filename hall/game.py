@@ -185,3 +185,100 @@ def data_json(levels: list[dict], index: dict, fetched: str) -> str:
     text = json.dumps(payload, ensure_ascii=True, separators=(",", ":"))
     # "</script" and "<!--" are the two things that can end the element early.
     return text.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+
+
+# ---------------------------------------------------------------- the records
+
+ENDPOINT = re.compile(
+    r"https://[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+"            # a real host, over https
+    r"|http://(localhost|127\.0\.0\.1)(:\d+)?"            # or a local one, for testing
+)
+
+
+def records_endpoint(site: dict) -> str | None:
+    """The address of the record board's service, or None while it is off.
+
+    The board stores a username against a score, which is personal data if
+    the username is someone's name, and the privacy page promises that an
+    entry can be removed on request. There has to be someone to ask. So this
+    refuses to switch the board on without a contact address, instead of
+    building a page that collects names and gives no way to take one back.
+    """
+    endpoint = ((site.get("records") or {}).get("endpoint") or "").strip()
+    if not endpoint:
+        return None
+    if not ENDPOINT.fullmatch(endpoint):
+        raise ValueError(
+            f"records.endpoint {endpoint!r} is not a bare https address "
+            "(no path, no trailing slash)")
+    if not (site.get("contact") or site.get("discord")):
+        raise ValueError(
+            "records are switched on but neither site.contact nor "
+            "site.discord is set. The privacy page promises that an entry "
+            "can be removed on request, and there is nobody to ask.")
+    return endpoint
+
+
+def _removal(site_contact_html: str) -> str:
+    return f"To have an entry removed, contact {site_contact_html}."
+
+
+def records_html(contact: str) -> str:
+    """The board itself. Nothing in it is fetched until the button is pressed,
+    in the same spirit as the YouTube embeds."""
+    return (
+        '<section class="grecords" data-records aria-labelledby="records-h">'
+        '<h2 id="records-h" class="grecords__title">Records</h2>'
+        '<p class="grecords__lede">The most levels named before the clock ran '
+        "out, for each timed mode. Anyone can put a username on the board "
+        "&mdash; there are no accounts.</p>"
+        '<button class="gbtn" type="button" data-records-load>Show records</button>'
+        '<p class="grecords__note">Nothing is requested until you press it. '
+        '<a href="/privacy/">What gets sent</a>. Usernames are public and '
+        "unverified. " + _removal(contact) + "</p>"
+        '<p class="grecords__status" data-records-status role="status"></p>'
+        '<div class="grecords__boards" data-records-boards></div>'
+        "</section>"
+    )
+
+
+def submit_html(contact: str) -> str:
+    """Shown after a timed run ends. Hidden by records.js unless the run is
+    one that can be ranked."""
+    return (
+        '<div class="gsubmit" data-submit hidden>'
+        '<p class="gsubmit__lede">Put it on the <span data-submit-mode></span> '
+        "records.</p>"
+        '<div class="gsubmit__row">'
+        '<label class="visually-hidden" for="submit-name">Username</label>'
+        '<input id="submit-name" class="gsubmit__input" data-submit-name '
+        'type="text" maxlength="20" placeholder="Username" autocomplete="off" '
+        'spellcheck="false">'
+        '<button class="gbtn gbtn--primary" type="button" data-submit-btn>'
+        "Submit to records</button></div>"
+        '<p class="gsubmit__note">Sends your username, the mode, how many you '
+        "named and when you named the last one. No account, nothing else. Use "
+        "a name that isn&rsquo;t your real one &mdash; it&rsquo;s public, and "
+        "I may remove entries. " + _removal(contact) +
+        ' <a href="/privacy/">Privacy</a></p>'
+        '<p class="gsubmit__status" data-submit-status role="status"></p>'
+        "</div>"
+    )
+
+
+def apply_records_blocks(text: str, enabled: bool) -> str:
+    """Keep or drop the passages of a page that only apply when the record
+    board is switched on.
+
+    <!-- records:on -->...<!-- /records:on --> is kept only when it is on, and
+    <!-- records:off -->...<!-- /records:off --> only when it is off. The
+    privacy page has to be true of the site as it is running: while there is
+    no board it must not describe one, and the moment there is it must say
+    what it collects. Having both versions live in the page and letting the
+    build choose means the wording cannot fall out of step with the switch.
+    """
+    for kind, keep in (("on", enabled), ("off", not enabled)):
+        pattern = re.compile(
+            rf"<!-- records:{kind} -->(.*?)<!-- /records:{kind} -->", re.S)
+        text = pattern.sub((lambda m: m.group(1)) if keep else "", text)
+    return text

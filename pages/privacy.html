@@ -1,6 +1,14 @@
+<!-- records:off -->
 <p class="doc__lead">The short version: this site does not collect anything about you.
 There are no cookies, no analytics, no accounts, no forms, and no
 advertising. Nothing you do here is recorded by me.</p>
+<!-- /records:off -->
+<!-- records:on -->
+<p class="doc__lead">The short version: nothing you do here is recorded unless you
+choose to put a score on one of the Game&rsquo;s record boards, and then it is a
+username and a number. There are no cookies, no analytics, no accounts, and no
+advertising.</p>
+<!-- /records:on -->
 
 <h2>What this site does not do</h2>
 
@@ -22,9 +30,16 @@ advertising. Nothing you do here is recorded by me.</p>
     <code>localStorage</code>, <code>sessionStorage</code> or IndexedDB.
     Pressing Reset, or clearing this site's data in your browser, erases
     it.</li>
+  <!-- records:off -->
   <li><strong>No advertising, and nothing sold or shared.</strong> I hold no
     personal data about visitors, so there is none to sell, share or
     transfer.</li>
+  <!-- /records:off -->
+  <!-- records:on -->
+  <li><strong>No advertising, and nothing sold or shared.</strong> Beyond the
+    usernames people choose to post to a record board, I hold no personal data
+    about visitors, and I do not sell or share those.</li>
+  <!-- /records:on -->
 </ul>
 
 <h2>Third-party requests</h2>
@@ -34,7 +49,12 @@ the animation library are served from here rather than from Google Fonts and a
 CDN, specifically so that visiting a page does not hand your IP address and
 browser details to a company you did not choose to contact.</p>
 
+<!-- records:off -->
 <p>There is exactly one exception, and it is opt-in:</p>
+<!-- /records:off -->
+<!-- records:on -->
+<p>There are exactly two exceptions, and both are opt-in:</p>
+<!-- /records:on -->
 
 <ul>
   <li><strong>YouTube footage.</strong> Level pages show a <em>Load video from
@@ -47,9 +67,53 @@ browser details to a company you did not choose to contact.</p>
     never press it, YouTube never learns you were here.</li>
 </ul>
 
+<!-- records:on -->
+<ul>
+  <li><strong>The Game&rsquo;s record boards.</strong> Nothing is requested from
+    the records service until you press <em>Show records</em> or
+    <em>Submit to records</em>. Both are described below.</li>
+</ul>
+<!-- /records:on -->
+
 <p>Links to Newgrounds, Pointercrate, AREDL, the Geometry Dash wikis,
 GDBrowser and YouTube are ordinary links. Following one takes you to a site with its own
 privacy practices.</p>
+
+<!-- records:on -->
+<h2>The Game&rsquo;s record boards</h2>
+
+<p>The Game has timed modes &mdash; 5, 10, 30 and 60 minutes &mdash; and each has a
+record board: the most levels named before the clock runs out. Putting a score
+on a board is optional, and there are no accounts or passwords.</p>
+
+<p>Playing sends nothing. Two buttons talk to the records service, and only when
+you press them: <em>Show records</em> fetches the four boards, and <em>Submit to
+records</em> sends:</p>
+
+<ul>
+  <li>the username you typed;</li>
+  <li>the mode, how many levels you named, and how far into the run you named the
+    last one.</li>
+</ul>
+
+<p>That is all of it. It is stored as one line on the board for that mode, with
+the date it was submitted, and each board keeps its best 100. It is not linked
+to anything else. My code does not store or log your IP address, cookies or
+device details.</p>
+
+<p>The records service runs on Cloudflare (Workers and KV). Cloudflare receives
+the request, which means it sees your IP address and browser details the way any
+host does, under
+<a href="https://www.cloudflare.com/privacypolicy/" rel="nofollow noopener"
+target="_blank">Cloudflare&rsquo;s privacy policy</a>. That makes it a third
+party, which is why nothing is requested until you press a button.</p>
+
+<p><strong>Choose a username that is not your real name.</strong> It is shown
+publicly to anyone who opens the records, nobody checks it, and it stays until
+it is removed. To have an entry removed or changed, contact [[contact]] with the
+username and the mode. I may remove entries that are abusive, that impersonate
+someone, or that identify a real person who has not agreed to it.</p>
+<!-- /records:on -->
 
 <h2>Server logs</h2>
 
@@ -64,6 +128,7 @@ rel="nofollow noopener" target="_blank">GitHub Privacy Statement</a>.</p>
 
 <h2>Your rights</h2>
 
+<!-- records:off -->
 <p>Under the GDPR, the UK GDPR, the CCPA/CPRA and similar laws, you have rights
 to access, correct, delete and port personal data held about you, and to object
 to its processing. Those rights apply to data a site actually holds. Because
@@ -71,11 +136,28 @@ this site collects and stores no personal data, there is nothing here to
 retrieve, correct, export or erase — and no request is needed to achieve that
 result. If you would like to ask about it anyway, use the contact address
 below.</p>
+<!-- /records:off -->
+<!-- records:on -->
+<p>Under the GDPR, the UK GDPR, the CCPA/CPRA and similar laws, you have rights
+to access, correct, delete and port personal data held about you, and to object
+to its processing. The only thing this site holds about anyone is a username and
+score on a record board, and only if that person posted it. If a username
+identifies you, it is personal data and those rights apply to it. To see,
+correct or remove an entry, contact [[contact]] with the username and mode.</p>
+<!-- /records:on -->
 
 <h2>Children</h2>
 
+<!-- records:off -->
 <p>This site is not directed at children and knowingly collects no information
 from anyone, of any age.</p>
+<!-- /records:off -->
+<!-- records:on -->
+<p>This site is not directed at children. The only thing it accepts from anyone
+is a username for a record board, and the boards ask people not to use their real
+name. If an entry belongs to a child and should come down, contact [[contact]]
+and it will be removed.</p>
+<!-- /records:on -->
 
 <h2>Changes</h2>
 

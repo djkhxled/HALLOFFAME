@@ -371,15 +371,34 @@ def docnav_html(docs: list[dict], current: str) -> str:
             + "".join(items) + "</nav>")
 
 
-def doc_footer_html(contact, updated: str) -> str:
-    """The contact line. Says plainly when no address has been set, rather
-    than inventing one or quietly omitting it."""
-    if contact:
-        line = (f'Contact: <a href="mailto:{esc(contact)}">{esc(contact)}</a>')
+def contact_html(site: dict) -> str | None:
+    """How to reach the site's owner, as markup, or None if there is no way.
+
+    An email address and a Discord handle are both accepted; if both are set,
+    both are shown. Everything that tells a visitor "ask me to remove it" goes
+    through here, so the answer is written down once.
+    """
+    parts = []
+    if site.get("contact"):
+        addr = esc(site["contact"])
+        parts.append(f'<a href="mailto:{addr}">{addr}</a>')
+    if site.get("discord"):
+        handle = str(site["discord"]).lstrip("@")
+        parts.append(f"Discord <strong>@{esc(handle)}</strong>")
+    return " or ".join(parts) if parts else None
+
+
+def doc_footer_html(site: dict) -> str:
+    """The contact line. Says plainly when there is no way to reach anyone,
+    rather than inventing one or quietly omitting it."""
+    who = contact_html(site)
+    if who:
+        line = f"Contact: {who}"
     else:
         line = ('<strong class="doc__todo">Contact address not set yet</strong> '
                 "&mdash; add one to data/site.json before relying on these "
                 "pages.")
+    updated = site.get("updated", "")
     return (f'<p class="doc__meta">{line}</p>'
             f'<p class="doc__meta">Last updated {esc(updated)}.</p>')
 
