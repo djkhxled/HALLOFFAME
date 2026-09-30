@@ -88,6 +88,22 @@ Rewrite `why` in your own words, then set `draftedByClaude` to `false`. The
    page footer.
 3. **Creators, hosts, verifiers, and song artists are always credited.**
 
+## The game
+
+`/game/` is a name-every-level quiz over the whole AREDL extreme demon list
+(1,621 levels as of the last snapshot).
+
+```bash
+python3 tools/fetch_aredl.py   # refresh data/game/aredl.json, then rebuild
+```
+
+The list is a committed snapshot, never fetched by a visitor's browser.
+What counts as a correct answer is computed at build time in `hall/game.py`
+(AREDL's "Name (Creator)" suffixes, names shared by several levels, names that
+are the start of longer ones) so it can be tested; `src/js/game.js` only looks
+answers up. Progress is saved in `localStorage` on the visitor's device, keyed
+by a short hash of AREDL's id because ranks move, and the privacy page says so.
+
 ## Accessibility
 
 - `prefers-reduced-motion` disables every pinned, scrubbed, and parallaxed

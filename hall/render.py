@@ -256,6 +256,25 @@ def chrome_html(field: str) -> str:
             f"<style>:root{{color-scheme:{scheme};}}</style>")
 
 
+TABS = [("/", "The Hall", "hall"), ("/game/", "Game", "game")]
+
+
+def topnav_html(current: str) -> str:
+    """The tabs in the top right of the hero, on the landing page and the game.
+
+    Two entries and no more: level pages have their own rank navigation at the
+    bottom and need nothing up here. The tab for the page you are on is marked
+    with aria-current rather than dropped, so the pair reads the same from
+    either side.
+    """
+    links = "".join(
+        f'<a class="topnav__link" href="{href}"'
+        f'{" aria-current=\"page\"" if key == current else ""}>{label}</a>'
+        for href, label, key in TABS
+    )
+    return f'<nav class="topnav" aria-label="Sections">{links}</nav>'
+
+
 def roster_html(facts: dict) -> str:
     """The full credit list, for collabs too large to sit in the stat block."""
     creators = (facts or {}).get("creators") or []

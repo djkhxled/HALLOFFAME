@@ -5,6 +5,7 @@ Usage: python3 build.py
 Exit 0 on success, 1 if validation fails (nothing is written on failure).
 """
 
+import datetime
 import hashlib
 import json
 import pathlib
@@ -13,7 +14,7 @@ import re
 import shutil
 import sys
 
-from hall import render
+from hall import game, render
 from hall.ambient import ambient_svg
 from hall.data import load_levels, validate_levels, voice_progress
 
@@ -252,6 +253,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
                 f'<span class="attempt__rank">#{level["rank"]}</span>'
             ),
             "signature": theme.get("signature") or "static",
+            "foot_extra_html": "",
             "texture_class": texture_class(theme),
             "title": f'{level["name"]} — #{level["rank"]} · {site["title"]}',
             "description": level.get("tagline", ""),
@@ -293,6 +295,7 @@ def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str) -> str:
             "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
             "attempt_label_html": "",
             "signature": "static",
+            "foot_extra_html": "",
             "texture_class": "texture texture--grain",
             "title": f"{strip_tags(doc['heading'])} · {site['title']}",
             "description": doc["lede"],
@@ -329,6 +332,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
                  "palette": site.get("palette") or {}},
                 0,
             ) if (ROOT / "src" / "art" / "index.svg").exists() else "",
+            "topnav_html": render.topnav_html("hall"),
             "countdown_html": render.countdown_html(levels),
             "numbers_html": render.numbers_html(levels),
             "about_html": site["aboutHtml"],
@@ -342,6 +346,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
             "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
             "attempt_label_html": '<span class="attempt__rank">30&rarr;1</span>',
             "signature": "static",
+            "foot_extra_html": "",
             "texture_class": "texture texture--starfield",
             "title": site["title"],
             "description": site["description"],
@@ -407,6 +412,7 @@ def build_404(levels: list[dict], site: dict, base_tpl: str) -> str:
             "chrome_meta_html": render.chrome_html(NOTFOUND_FIELD),
             "attempt_label_html": "",
             "signature": "static",
+            "foot_extra_html": "",
             "texture_class": "texture texture--ember",
             # Its own palette. Every level page ships one and this is the
             # only page that would otherwise render in the neutral default,
@@ -418,6 +424,69 @@ def build_404(levels: list[dict], site: dict, base_tpl: str) -> str:
             "head_extra_html": (
                 "<style>:root{--field:" + NOTFOUND_FIELD + ";--ink:#ffeef0;"
                 "--muted:#c08a90;--accent:#ff3b46;--accent2:#ff8a5c;}</style>"
+            ),
+            "body_html": body,
+            "disclaimer": site["disclaimer"],
+            "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
+        },
+    )
+
+
+def build_game(site: dict, base_tpl: str) -> str:
+    """/game/ -- name every extreme demon on AREDL.
+
+    The list is a snapshot committed to data/game, fetched by
+    tools/fetch_aredl.py. It is never requested by a visitor's browser: the
+    privacy page says loading a page talks to this host and nobody else.
+    """
+    snap = game.load_snapshot(ROOT / "data" / "game" / "aredl.json")
+    levels = snap["levels"]
+    errors = game.validate(levels)
+    if errors:
+        raise SystemExit("game data invalid:\n  " + "\n  ".join(errors[:10]))
+    index, plain = game.build_index(levels)
+    hold = game.build_hold(levels, index, plain)
+
+    total = len(levels)
+    when = datetime.date.fromisoformat(snap["fetched"])
+    fetched_label = f"{when.day} {when.strftime('%B %Y')}"
+
+    body = render.fill(
+        read(TEMPLATES / "game.html"),
+        {
+            "eyebrow": f"AREDL \u00b7 {total:,} extreme demons",
+            "art_html": read(ROOT / "src" / "art" / "doc.svg")
+            if (ROOT / "src" / "art" / "doc.svg").exists() else "",
+            "topnav_html": render.topnav_html("game"),
+            "meta_left": "The Extreme Demon List",
+            "lede": ("Type a level\u2019s name and it lands on the list. "
+                     "No time limit, and you can leave and come back."),
+            "meta_right": f"As of {fetched_label}",
+            "total": total,
+            "total_label": f"{total:,}",
+            "list_html": game.list_html(levels),
+            "fetched_label": fetched_label,
+            "data_json_html": game.data_json(levels, index, hold, snap["fetched"]),
+        },
+    )
+    return render.fill(
+        base_tpl,
+        {
+            "slug": "game",
+            "html_attrs_html": " data-attempt-manual",
+            "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
+            "attempt_label_html": '<span class="attempt__rank">Game</span>',
+            "foot_extra_html": '<script src="/assets/js/game.js" defer></script>',
+            "signature": "static",
+            "texture_class": "texture texture--grain",
+            "title": f"Name every extreme demon \u2014 {site['title']}",
+            "description": (f"Name all {total:,} extreme demons on the Extreme "
+                            "Demon List. Type them in; they fill the list."),
+            "head_extra_html": (
+                '<link rel="stylesheet" href="/assets/css/game.css">'
+                '<style>[data-level="game"] .hero__title'
+                "{font-size:clamp(2.75rem,8vw,7rem)}</style>"
             ),
             "body_html": body,
             "disclaimer": site["disclaimer"],
@@ -502,6 +571,10 @@ def main() -> int:
                         len(levels)), 2)
         write(DOCS / "levels" / level["slug"] / "index.html", html)
         pages += 1
+
+    write(DOCS / "game" / "index.html",
+          stamped(build_game(site, base_tpl), 1))
+    pages += 1
 
     # Absolute URLs on purpose — see build_404. stamped() would relativize
     # them, so the stamping is applied by hand and relativize is skipped.

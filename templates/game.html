@@ -1,0 +1,78 @@
+<section class="hero hero--doc hero--game page" data-motion>
+  <p class="hero__eyebrow">{{ eyebrow }}</p>
+  <div class="hero__art" aria-hidden="true">{{ art_html }}</div>
+  {{ topnav_html }}
+  <h1 class="hero__title doc__title">Name them all</h1>
+  <div class="hero__foot">
+    <p>{{ meta_left }}</p>
+    <p class="hero__lede">{{ lede }}</p>
+    <p class="hero__meta-r">{{ meta_right }}</p>
+    <div class="hero__rule"></div>
+  </div>
+</section>
+
+<div class="game" data-game data-total="{{ total }}">
+  <div class="gbar" role="group" aria-label="Game controls">
+    <div class="gbar__inner page">
+      <div class="gbar__top">
+        <label class="visually-hidden" for="game-input">Type a level name</label>
+        <input id="game-input" class="ginput" type="text" data-input
+               placeholder="Type a level name&hellip;" autocomplete="off"
+               autocapitalize="off" autocorrect="off" spellcheck="false"
+               enterkeyhint="go" disabled>
+        <p class="gscore" aria-hidden="true">
+          <span class="gscore__n" data-score>0</span>
+          <span class="gscore__of">/ {{ total_label }}</span>
+          <span class="gscore__pct" data-pct>0%</span>
+        </p>
+        <p class="gtime"><span class="visually-hidden">Time </span>
+          <span data-time>0:00</span></p>
+      </div>
+      <div class="gbar__bottom">
+        <p class="gstatus" data-status></p>
+        <button class="glast" type="button" data-last hidden>
+          <span class="glast__label">Last</span>
+          <span class="glast__name" data-last-name></span>
+          <span class="glast__rank" data-last-rank></span>
+        </button>
+        <div class="gtools">
+          <button class="gbtn" type="button" data-named-only aria-pressed="false">
+            Only named</button>
+          <button class="gbtn" type="button" data-sound aria-pressed="true">
+            Sound <span class="gbtn__state" data-sound-state aria-hidden="true">on</span></button>
+          <button class="gbtn" type="button" data-giveup>Give up</button>
+          <button class="gbtn" type="button" data-reset>Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="visually-hidden" role="status" aria-live="polite" data-live></p>
+
+  <div class="page">
+    <noscript><p class="gnote">This game runs in your browser and needs JavaScript
+    turned on. Nothing is sent anywhere.</p></noscript>
+
+    <section class="gresult" data-result hidden aria-labelledby="result-h">
+      <h2 id="result-h" class="gresult__title" data-result-title></h2>
+      <p class="gresult__line" data-result-line></p>
+      <div class="gresult__actions">
+        <button class="gbtn gbtn--primary" type="button" data-copy>Copy score</button>
+        <button class="gbtn" type="button" data-again>Play again</button>
+        <span class="gresult__copied" data-copied role="status"></span>
+      </div>
+    </section>
+
+    <div class="glist" data-list>
+      {{ list_html }}
+    </div>
+
+    <p class="gsource">The list is AREDL&rsquo;s &mdash;
+      <a href="https://aredl.net" rel="nofollow noopener" target="_blank">aredl.net</a>
+      &mdash; as it stood on {{ fetched_label }}. Ranks move every week, so the
+      numbers here will drift from the live list; the names don&rsquo;t.
+      Progress is saved in this browser only.</p>
+  </div>
+</div>
+
+<script type="application/json" id="game-data">{{ data_json_html }}</script>
