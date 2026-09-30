@@ -492,3 +492,55 @@ class RecordsService(unittest.TestCase):
         for guard in ("MAX_LEVELS", "MAX_PER_SECOND", "NAME_OK.test(name)",
                       "Number.isInteger(score)", "Number.isInteger(t)"):
             self.assertIn(guard, self.code, guard)
+
+
+class GamePageCopy(unittest.TestCase):
+    """The page's title and intro live in data/site.json so that an edit there
+    survives a build. Baylor edited the generated docs/game/index.html directly
+    once, and the next build would have erased it."""
+
+    @classmethod
+    def setUpClass(cls):
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True,
+                       capture_output=True)
+        cls.site = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+        cls.page = (DOCS / "game" / "index.html").read_text(encoding="utf-8")
+
+    def test_the_title_and_lede_are_the_ones_in_site_json(self):
+        import html
+        copy = self.site["game"]
+        title = html.unescape(re.search(r"<title>(.*?)</title>", self.page).group(1))
+        og = html.unescape(re.search(r'og:title" content="(.*?)"', self.page).group(1))
+        self.assertEqual(title, copy["title"])
+        self.assertEqual(og, f"{copy['title']} — {self.site['title']}")
+        self.assertIn(html.escape(copy["lede"], quote=False), self.page)
+
+    def test_the_intro_does_not_claim_there_is_no_time_limit(self):
+        """True of free play only, and there are timed modes now."""
+        self.assertNotIn("No time limit", self.site["game"]["lede"])
+
+    def test_every_other_page_keeps_its_title_and_social_title_the_same(self):
+        import html
+        for page in DOCS.rglob("*.html"):
+            if page == DOCS / "game" / "index.html":
+                continue
+            s = page.read_text(encoding="utf-8")
+            t = html.unescape(re.search(r"<title>(.*?)</title>", s).group(1))
+            o = html.unescape(re.search(r'og:title" content="(.*?)"', s).group(1))
+            self.assertEqual(t, o, page)
+
+    def test_a_typo_in_site_json_says_where(self):
+        import tempfile
+        from unittest import mock
+        import build
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "data").mkdir()
+            (root / "data" / "site.json").write_text('{\n  "a": 1\n  "b": 2\n}\n',
+                                                     encoding="utf-8")
+            with mock.patch.object(build, "ROOT", root):
+                with self.assertRaises(SystemExit) as caught:
+                    build.load_site()
+        message = str(caught.exception)
+        self.assertIn("site.json", message)
+        self.assertIn("line 3", message)
