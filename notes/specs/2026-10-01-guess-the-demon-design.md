@@ -37,7 +37,7 @@ There is no backend, no network request, and no account.
 |---|---|
 | Which 150 | Pointercrate Demonlist, Main (1–75) + Extended (76–150) |
 | Guesses | 6 per round, in both modes |
-| Stats | Rank, Verification year, Version, Length (real time), Number of creators |
+| Stats | Rank, Peak rank, Verification year, Version, Length (real time), Number of creators |
 | Daily mechanism | Committed schedule file; answer chosen by local calendar date |
 | Navigation | Top-right tab becomes **Games**, opening a hub at `/games/` |
 | Name / path | **Guess the Demon**, `/guess/` (renameable by editing `data/site.json`) |
@@ -58,6 +58,7 @@ There is no backend, no network request, and no account.
   "levelId": 52374843,       // in-game level id; the join key to AREDL and GD History
   "name": "Zodiac",
   "rank": 165,
+  "peak": 1,                 // best position ever held (minimum of the movement history)
   "year": 2019,              // verification year, see rule below
   "version": "2.1",          // one of 1.8, 1.9PS, 2.0, 2.1, 2.2
   "seconds": 194,            // real length, whole seconds
@@ -85,6 +86,9 @@ Python standard library only (matching `tools/fetch_aredl.py`). Steps:
 ### Derivation rules
 
 - **rank**: Pointercrate position.
+- **peak**: the smallest `new_position` in Pointercrate's movement history for the level
+  (`/api/v2/demons/<id>/audit/movement/`), never worse than the current rank. A level with
+  no history stops the run.
 - **year**: year of the *first* verification record on AREDL for the level, matching
   the site's rule of using the legitimate verification. Where AREDL's list holds a
   hack-verification that is known to be void, the tool uses the first verification
@@ -136,7 +140,7 @@ The browser decides "today" from the player's **local** date.
 
 ## Judging rules
 
-The judging function is pure: `judge(guess, answer) -> {rank, year, version, seconds, creators}`,
+The judging function is pure: `judge(guess, answer) -> {rank, peak, year, version, seconds, creators}`,
 each result `{state, arrow}` where `state` is `exact`, `close` or `miss`, and `arrow`
 is `up`, `down` or `none`. `exact` always has no arrow.
 
@@ -147,6 +151,7 @@ guess's, except **Rank**, which is read like a leaderboard: `up` means higher on
 | Stat | exact | close | miss |
 |---|---|---|---|
 | Rank | same rank | `abs(diff) <= 10` | otherwise |
+| Peak | same peak | `abs(diff) <= 5` | otherwise |
 | Year | same year | `abs(diff) <= 1` | otherwise |
 | Version | same | adjacent on 1.8 < 1.9PS < 2.0 < 2.1 < 2.2 | otherwise |
 | Length | same whole second | `abs(diff) <= 30` seconds | otherwise |
@@ -166,7 +171,7 @@ is refused.
   case/diacritic-insensitive, same normalisation as the naming game). Arrow keys +
   Enter, tap to choose. Only levels in the pool are accepted. Matches show name and
   rank.
-- Board: six rows. Each row is the level name plus five cells. Each cell shows the
+- Board: six rows. Each row is the level name plus six cells (two rows of three on a phone). Each cell shows the
   value, a glyph (`✓` exact, `~` close, `✗` miss) and an arrow (`▲`/`▼`). Cell text
   and a visually-hidden label carry the meaning, so colour is never the only signal.
   The Creators cell shows the count; the names are in a tooltip using the existing

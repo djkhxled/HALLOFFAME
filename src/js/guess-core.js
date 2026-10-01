@@ -3,15 +3,16 @@
  * Everything the game decides lives here so it can be checked on its own
  * (tests/guess.check.html). guess.js is only the interface on top.
  *
- * Level objects: { id, n, r, y, v, s, c, cn } = level id, name, rank, year,
- * version, seconds, creator count, creator names (see hall/guess.py data_json).
+ * Level objects: { id, n, r, p, y, v, s, c, cn } = level id, name, rank, peak
+ * rank, year, version, seconds, creator count, creator names (see hall/guess.py
+ * data_json).
  */
 (function (root) {
   "use strict";
 
   var VERSIONS = ["1.8", "1.9PS", "2.0", "2.1", "2.2"];   // must equal hall/guess.py
   var MAX_GUESSES = 6;
-  var STATS = ["rank", "year", "version", "seconds", "creators"];
+  var STATS = ["rank", "peak", "year", "version", "seconds", "creators"];
 
   // Arrows point toward the answer. For year, version, length and creators "up"
   // means a bigger number. Rank is read the other way, as a leaderboard is: "up"
@@ -26,6 +27,7 @@
   function judge(guess, answer) {
     return {
       rank: grade(guess.r, answer.r, 10, true),
+      peak: grade(guess.p, answer.p, 5, true),   // best position ever held; read like Rank
       year: grade(guess.y, answer.y, 1),
       version: grade(VERSIONS.indexOf(guess.v), VERSIONS.indexOf(answer.v), 1),
       seconds: grade(guess.s, answer.s, 30),

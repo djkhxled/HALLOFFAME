@@ -599,8 +599,8 @@ def build_guess(site: dict, base_tpl: str, levels: list[dict]) -> str:
             "texture_class": "texture texture--grain",
             "title": copy["title"],
             "og_title": f"{copy['title']} — {site['title']}",
-            "description": ("Guess the hidden Demonlist level in six tries, using its rank, "
-                            "year, version, length and crew size."),
+            "description": ("Guess the hidden Demonlist level in six tries, using its rank, peak "
+                            "rank, year, version, length and crew size."),
             "head_extra_html": (
                 '<link rel="stylesheet" href="/assets/css/guess.css">'
                 '<style>[data-level="guess"] .hero__title'

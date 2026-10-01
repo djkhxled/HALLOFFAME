@@ -12,7 +12,7 @@ DOCS = ROOT / "docs"
 
 
 def lv(i, **kw):
-    base = {"id": i, "pcId": i, "name": f"Level {i}", "rank": i, "year": 2020,
+    base = {"id": i, "pcId": i, "name": f"Level {i}", "rank": i, "peak": i, "year": 2020,
             "version": "2.1", "seconds": 100, "creators": 2, "creatorNames": ["a", "b"]}
     base.update(kw)
     return base
@@ -38,6 +38,18 @@ class Derivation(unittest.TestCase):
             guess.verification_year([])
         with self.assertRaises(ValueError):
             guess.verification_year([{"achieved_at": None}])
+
+    def test_peak_is_the_best_position_in_the_movement_history(self):
+        events = [{"reason": "Added", "new_position": 40},
+                  {"reason": "Moved", "new_position": 3},
+                  {"reason": "Moved", "new_position": 88}]
+        self.assertEqual(guess.peak_from_movement(events), 3)
+
+    def test_an_empty_history_stops_the_run(self):
+        with self.assertRaises(ValueError):
+            guess.peak_from_movement([])
+        with self.assertRaises(ValueError):
+            guess.peak_from_movement([{"new_position": None}])
 
     def test_creators_are_deduplicated_ignoring_case_keeping_first_spelling(self):
         self.assertEqual(guess.dedupe_names(["Bianox", "BIANOX", "Enlex", " enlex "]),
@@ -81,6 +93,9 @@ class Validation(unittest.TestCase):
             "duplicate name": [lv(1, name="Same"), lv(2, name="same")],
             "duplicate rank": [lv(1, rank=5), lv(2, rank=5)],
             "bad version": [lv(1, version="3.0")],
+            "peak below the top": [lv(1, peak=0)],
+            "peak worse than the rank": [lv(5, peak=9)],
+            "peak missing": [{k: v for k, v in lv(1).items() if k != "peak"}],
             "bad year": [lv(1, year=2005)],
             "bad seconds": [lv(1, seconds=3)],
             "no creators": [lv(1, creators=0, creatorNames=[])],
@@ -149,7 +164,7 @@ class PageData(unittest.TestCase):
         out = json.loads(guess.data_json([lv(1)], {"launch": "2026-10-05", "seed": 1,
                                                     "days": [{"date": "2026-10-05", "levelId": 1}]},
                                          "2026-10-01", {1: "deimos"}).replace("<\\/", "</"))
-        self.assertEqual(sorted(out["levels"][0]), ["c", "cn", "id", "n", "r", "s", "v", "y"])
+        self.assertEqual(sorted(out["levels"][0]), ["c", "cn", "id", "n", "p", "r", "s", "v", "y"])
         self.assertEqual(out["hall"], {"1": "deimos"})
         self.assertEqual(out["fetched"], "2026-10-01")
 

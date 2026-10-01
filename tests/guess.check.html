@@ -15,7 +15,7 @@
     if (JSON.stringify(a) !== JSON.stringify(b))
       throw new Error((msg || "") + " expected " + JSON.stringify(b) + " got " + JSON.stringify(a));
   }
-  function L(o) { return Object.assign({id: 1, n: "A", r: 50, y: 2020, v: "2.1", s: 120, c: 5, cn: []}, o || {}); }
+  function L(o) { return Object.assign({id: 1, n: "A", r: 50, p: 40, y: 2020, v: "2.1", s: 120, c: 5, cn: []}, o || {}); }
 
   if (!G) { out.textContent = "GuessCore missing"; document.title = "guess check: FAIL"; return; }
 
@@ -29,6 +29,22 @@
     eq(G.judge(L({r: 70}), L({r: 50})).rank, {state: "miss", arrow: "up"}); });
   t("guessing #1 can never say the answer is higher", function () {
     eq(G.judge(L({r: 1}), L({r: 50})).rank.arrow, "down"); });
+
+  // ---- peak rank (close within 5, read like Rank) ----
+  t("peak exact", function () { eq(G.judge(L({p: 40}), L({p: 40})).peak, {state: "exact", arrow: "none"}); });
+  t("peak 5 away is close, 6 away a miss", function () {
+    eq(G.judge(L({p: 35}), L({p: 40})).peak, {state: "close", arrow: "down"});
+    eq(G.judge(L({p: 34}), L({p: 40})).peak, {state: "miss", arrow: "down"}); });
+  t("peak arrow points up the list when the answer peaked nearer #1", function () {
+    eq(G.judge(L({p: 50}), L({p: 40})).peak, {state: "miss", arrow: "up"});
+    eq(G.judge(L({p: 44}), L({p: 40})).peak, {state: "close", arrow: "up"}); });
+  t("guessing a peak of #1 can never say the answer peaked higher", function () {
+    eq(G.judge(L({p: 1}), L({p: 40})).peak.arrow, "down"); });
+  t("peak and rank are judged separately", function () {
+    var r = G.judge(L({r: 50, p: 10}), L({r: 50, p: 40}));
+    eq(r.rank.state, "exact"); eq(r.peak.state, "miss"); });
+  t("six stats, in board order", function () {
+    eq(G.STATS, ["rank", "peak", "year", "version", "seconds", "creators"]); });
 
   // ---- year (close within 1) ----
   t("year exact", function () { eq(G.judge(L({y: 2020}), L({y: 2020})).year.state, "exact"); });
@@ -148,18 +164,18 @@
 
   // ---- share text ----
   t("share text for a daily win", function () {
-    var a = L({id: 9, r: 50}), g1 = G.judge(L({id: 1, r: 1, y: 2010, v: "1.8", s: 10, c: 20}), a), g2 = G.judge(a, a);
+    var a = L({id: 9, r: 50}), g1 = G.judge(L({id: 1, r: 1, p: 1, y: 2010, v: "1.8", s: 10, c: 20}), a), g2 = G.judge(a, a);
     var txt = G.shareText({mode: "daily", n: 12, won: true, guesses: [g1, g2]});
     var lines = txt.split("\n");
     eq(lines[0], "Hall of Extremes — Guess the Demon #12 · 2/6");
-    eq(lines[1], "⬛⬛⬛⬛⬛");
-    eq(lines[2], "🟩🟩🟩🟩🟩"); });
+    eq(lines[1], "⬛⬛⬛⬛⬛⬛");
+    eq(lines[2], "🟩🟩🟩🟩🟩🟩"); });
   t("share text marks a loss X/6 and uses the close colour", function () {
-    var a = L({id: 9}), g = G.judge(L({id: 1, r: 45, y: 2019, v: "2.0", s: 110, c: 6}), a);
+    var a = L({id: 9}), g = G.judge(L({id: 1, r: 45, p: 36, y: 2019, v: "2.0", s: 110, c: 6}), a);
     var txt = G.shareText({mode: "infinite", won: false, guesses: [g, g, g, g, g, g]});
     var lines = txt.split("\n");
     eq(lines[0], "Hall of Extremes — Guess the Demon (infinite) · X/6");
-    eq(lines[1], "🟨🟨🟨🟨🟨"); });
+    eq(lines[1], "🟨🟨🟨🟨🟨🟨"); });
   t("share text never names a level", function () {
     var txt = G.shareText({mode: "daily", n: 1, won: true, guesses: [G.judge(L(), L())]});
     eq(/[A-Za-z]{4}/.test(txt.replace("Hall of Extremes", "").replace("Guess the Demon", "")), false); });

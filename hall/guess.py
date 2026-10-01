@@ -29,6 +29,16 @@ def verification_year(verifications) -> int:
     return int(dated[0][:4])
 
 
+def peak_from_movement(events) -> int:
+    """The best (smallest) position a level has ever held, from Pointercrate's
+    movement history (`/api/v2/demons/<id>/audit/movement/`)."""
+    positions = [e["new_position"] for e in events
+                 if isinstance(e.get("new_position"), int) and e["new_position"] >= 1]
+    if not positions:
+        raise ValueError("no position history")
+    return min(positions)
+
+
 def dedupe_names(names) -> list:
     seen, out = set(), []
     for n in names:
@@ -88,6 +98,8 @@ def validate(levels) -> list:
         if lv["rank"] in ranks:
             errors.append(f"duplicate rank {lv['rank']}: {who}")
         ranks.add(lv["rank"])
+        if not (isinstance(lv.get("peak"), int) and 1 <= lv["peak"] <= lv["rank"]):
+            errors.append(f"peak {lv.get('peak')!r} must be between 1 and the rank {lv['rank']}: {who}")
         if lv["version"] not in VERSIONS:
             errors.append(f"bad version {lv['version']!r}: {who}")
         if not YEAR_MIN <= lv["year"] <= YEAR_MAX:
@@ -150,7 +162,7 @@ def data_json(levels, schedule: dict, fetched: str, hall: dict) -> str:
         "sched": [d["levelId"] for d in schedule["days"]],
         "hall": {str(k): v for k, v in hall.items()},
         "levels": [
-            {"id": lv["id"], "n": lv["name"], "r": lv["rank"], "y": lv["year"],
+            {"id": lv["id"], "n": lv["name"], "r": lv["rank"], "p": lv["peak"], "y": lv["year"],
              "v": lv["version"], "s": lv["seconds"], "c": lv["creators"],
              "cn": lv["creatorNames"]}
             for lv in sorted(levels, key=lambda x: x["rank"])

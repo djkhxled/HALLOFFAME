@@ -95,8 +95,10 @@ def main() -> int:
                 pending.append({"levelId": lid, "name": name, "rank": p["position"]})
                 print(f"  {p['position']:>3} {name}: no published length, held out", file=sys.stderr)
                 continue
+            peak = min(p["position"],
+                       guess.peak_from_movement(get(f"{PC}/demons/{p['id']}/audit/movement/")))
             levels.append({
-                "id": lid, "pcId": p["id"], "name": name, "rank": p["position"],
+                "id": lid, "pcId": p["id"], "name": name, "rank": p["position"], "peak": peak,
                 "year": year, "version": version, "seconds": seconds,
                 "creators": len(creators), "creatorNames": creators, "lengthSource": source,
             })

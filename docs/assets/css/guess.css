@@ -83,7 +83,7 @@
 /* Column labels, once, above the rows. On phones each cell carries its own. */
 .gboard-head {
   display: grid;
-  grid-template-columns: minmax(8rem, 1.5fr) repeat(5, minmax(4.4rem, 1fr));
+  grid-template-columns: minmax(8rem, 1.5fr) repeat(6, minmax(4rem, 1fr));
   gap: 0.4rem;
   margin-bottom: 0.4rem;
   font: 600 var(--step--2) / 1 var(--font-mono);
@@ -96,7 +96,7 @@
 
 .grow {
   display: grid;
-  grid-template-columns: minmax(8rem, 1.5fr) repeat(5, minmax(4.4rem, 1fr));
+  grid-template-columns: minmax(8rem, 1.5fr) repeat(6, minmax(4rem, 1fr));
   gap: 0.4rem;
   align-items: stretch;
 }
@@ -202,7 +202,7 @@
 
 @media (max-width: 40rem) {
   .gboard-head { display: none; }
-  .grow { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .grow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .grow__name, .grow--empty .grow__name { grid-column: 1 / -1; }
   .grow--empty .grow__name { display: none; }
   .gcell { min-height: 3.5rem; padding: 0.3rem 0.1rem; }
