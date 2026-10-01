@@ -12,12 +12,12 @@
     ],
     "host": "LIEB",
     "verifier": "Zeronium",
-    "verifiedDate": null,
+    "verifiedDate": "2023-06-01",
     "ratedDate": null,
-    "attempts": null,
+    "attempts": "17,336",
     "levelId": "91180835",
-    "objects": null,
-    "length": null,
+    "objects": "110,902",
+    "length": "1m 17s",
     "gdVersion": "2.2",
     "song": {
       "name": "Robotic Nightmares",
@@ -28,13 +28,14 @@
         "artist": "dj-Nate"
       }
     },
-    "peakRank": null,
+    "peakRank": "#54 on the Demonlist (26 July 2023)",
     "sources": [
       "https://pointercrate.com/demonlist/permalink/509/",
       "https://gdbrowser.com/91180835",
-      "https://pointercrate.com/demonlist/"
+      "https://pointercrate.com/demonlist/",
+      "https://geometry-dash-fan.fandom.com/wiki/ATOMIC_CANNON_Mk_II"
     ],
-    "note": "The level's own description reads “Verified by Zeronium. Level 2/4 in the ATOMIC CANNON series”. Ranked #193 on the Demonlist as of 30 August 2026. GDBrowser reports an object count of 0, which is what it returns when the value is unavailable, so the count is left unknown."
+    "note": "The level's own description reads “Verified by Zeronium. Level 2/4 in the ATOMIC CANNON series”. Zeronium verified it on 1 June 2023 after 17,336 attempts, and it entered the Demonlist at #54 on 26 July 2023. Ranked #193 on the Demonlist as of 30 August 2026. The object count and length are the Geometry Dash fan wiki's; GDBrowser returns 0 for this level, which means unavailable."
   },
   "theme": {
     "tier": "themed",

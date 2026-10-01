@@ -11,11 +11,11 @@
     "host": "LordDivinity",
     "verifier": "spcreat",
     "verifiedDate": "2026-04-09",
-    "ratedDate": "2026-06-21",
-    "attempts": null,
+    "ratedDate": "2026-05-21",
+    "attempts": "33,835",
     "levelId": "48991380",
-    "objects": null,
-    "length": null,
+    "objects": "94,920",
+    "length": "1m 55s",
     "gdVersion": "2.0/2.1",
     "song": {
       "name": "Sweet Dreams",
@@ -27,9 +27,10 @@
       "https://geometrydash.wiki.gg/wiki/Maniacal_Chains",
       "https://geometry-dash-fan.fandom.com/wiki/Maniacal_Chains",
       "https://pointercrate.com/demonlist/permalink/697/",
-      "https://gdbrowser.com/48991380"
+      "https://gdbrowser.com/48991380",
+      "https://www.youtube.com/watch?v=TzeMJeIu6bY"
     ],
-    "note": "A solo level by LordDivinity, published on 16 September 2018 and verified by spcreat on 9 April 2026. Its original track — 806283, a sped-up Devin Martin edit — was deleted from Newgrounds and replaced with Rukkus' reupload."
+    "note": "A solo level by LordDivinity, published on 16 September 2018 and verified by spcreat on 9 April 2026. Rated on 21 May 2026 and placed at #30 on the Demonlist a month later, on 21 June. Its original track — 806283, a sped-up Devin Martin edit — was deleted from Newgrounds and replaced with Rukkus' reupload."
   },
   "theme": {
     "tier": "themed",

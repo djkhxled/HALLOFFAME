@@ -17,25 +17,28 @@
     ],
     "host": "TrusTa",
     "verifier": "Kandai",
-    "verifiedDate": null,
+    "verifiedDate": "2021-06-25",
     "ratedDate": null,
-    "attempts": null,
+    "attempts": "1,678 (35,000 on the old version)",
     "levelId": "49291867",
-    "objects": null,
-    "length": null,
+    "objects": "200,692",
+    "length": "2m 6s",
     "gdVersion": "2.1",
     "song": {
       "name": "Space Battle",
       "artist": "F-777",
       "newgroundsId": "661012"
     },
-    "peakRank": null,
+    "peakRank": "#14 on the Demonlist (16 June 2019)",
     "sources": [
       "https://pointercrate.com/demonlist/permalink/122/",
       "https://gdbrowser.com/49291867",
-      "https://pointercrate.com/demonlist/"
+      "https://pointercrate.com/demonlist/",
+      "https://geometry-dash-fan.fandom.com/wiki/WOW",
+      "https://aredl.net/list/49291867",
+      "https://www.youtube.com/watch?v=uLiCEb4QP4E"
     ],
-    "note": "Ranked #384 on the Demonlist as of 30 August 2026. GDBrowser reports 65,535 objects, which is the 16-bit ceiling its API returns for larger levels rather than a real count, so the object count is left unknown. An XL level in GDBrowser's length bucket, which is a bracket rather than a duration."
+    "note": "Originally verified by npesta on 23 April 2019, after TrusTa dropped the verification and handed it over; Kandai reverified the level after a balance update on 25 June 2021, which is the date shown. Ranked #384 on the Demonlist as of 30 August 2026. The object count and length are the Geometry Dash wiki's; GDBrowser's 65,535 is the 16-bit ceiling its API returns for larger levels, not a real count."
   },
   "theme": {
     "tier": "themed",

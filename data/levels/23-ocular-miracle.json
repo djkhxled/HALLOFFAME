@@ -11,10 +11,10 @@
       "ZeroSR"
     ],
     "host": "Davphla",
-    "verifier": null,
-    "verifiedDate": null,
+    "verifier": "Technical",
+    "verifiedDate": "2020-06-11",
     "ratedDate": "2020-06-30",
-    "attempts": null,
+    "attempts": "7,247",
     "levelId": "62152040",
     "objects": "548,393",
     "length": "5m 36s",
@@ -27,9 +27,10 @@
     "peakRank": null,
     "sources": [
       "https://geometry-dash-fan.fandom.com/wiki/Ocular_Miracle",
-      "https://geometrydash.wiki.gg/wiki/Ocular_Miracle"
+      "https://geometrydash.wiki.gg/wiki/Ocular_Miracle",
+      "https://www.youtube.com/watch?v=hOwAx1Mn6o8"
     ],
-    "note": "Hosted by GaidenHertuny, ZeroSR and Davphla. At 548,393 objects and five and a half minutes the finished level crashed the game on most devices, so the team split it into three rated extremes: Reverie (62419638, 1m 49s, 205,676 objects), Faith (62419475, 2m 8s, 276,201) and Diligence (62419473, 1m 52s, 350,182). All three were uploaded on 27 June 2020 and rated on 30 June 2020."
+    "note": "Hosted by GaidenHertuny, ZeroSR and Davphla. Technical verified the full level in a single stream on 11 June 2020. At 548,393 objects and five and a half minutes the finished level crashed the game on most devices: RobTop unrated it after about half an hour, so the team split it into three rated extremes: Reverie (62419638, 1m 49s, 205,676 objects), Faith (62419475, 2m 8s, 276,201) and Diligence (62419473, 1m 52s, 350,182). Technical re-verified all three on 26 June, they were uploaded on 27 June 2020 and rated on 30 June 2020."
   },
   "theme": {
     "tier": "themed",

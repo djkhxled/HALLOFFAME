@@ -24,7 +24,7 @@
     "host": "ryamu",
     "verifier": "Zoink",
     "verifiedDate": "2022-08-23",
-    "ratedDate": null,
+    "ratedDate": "2022-08-27",
     "attempts": "72,808",
     "levelId": "73667628",
     "objects": "47,965",
@@ -40,7 +40,8 @@
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Acheron",
       "https://pointercrate.com/demonlist/permalink/442/",
-      "https://gdbrowser.com/73667628"
+      "https://gdbrowser.com/73667628",
+      "https://geometry-dash-fan.fandom.com/wiki/Acheron"
     ]
   },
   "theme": {

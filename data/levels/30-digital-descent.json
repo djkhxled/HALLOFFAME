@@ -27,25 +27,26 @@
     ],
     "host": "ViPriN",
     "verifier": "Combined",
-    "verifiedDate": null,
+    "verifiedDate": "2017-09-26",
     "ratedDate": null,
     "attempts": null,
     "levelId": "37456092",
-    "objects": null,
-    "length": null,
+    "objects": "153,315",
+    "length": "2m 17s",
     "gdVersion": "2.2",
     "song": {
       "name": "Carnivores",
       "artist": "hyperdemented",
       "newgroundsId": "690265"
     },
-    "peakRank": null,
+    "peakRank": "#1 on the Demonlist (12 September 2017)",
     "sources": [
       "https://pointercrate.com/demonlist/permalink/125/",
       "https://gdbrowser.com/37456092",
-      "https://pointercrate.com/demonlist/"
+      "https://pointercrate.com/demonlist/",
+      "https://geometry-dash-fan.fandom.com/wiki/Digital_Descent"
     ],
-    "note": "Pointercrate names the verifier “combi”; the level's own description says “Verified by Combined”, and that is the name used here. Ranked #403 on the Demonlist as of 30 August 2026. GDBrowser reports 65,535 objects, the API's 16-bit ceiling rather than a real count."
+    "note": "Pointercrate names the verifier “combi”; the level's own description says “Verified by Combined”, and that is the name used here. The date is the buffed version's verification video, 26 September 2017; the original, unbuffed version was verified earlier, and the level had entered the Demonlist at #1 on 12 September. Ranked #403 on the Demonlist as of 30 August 2026. The object count and length are the Geometry Dash wiki's; GDBrowser's 65,535 is the API's 16-bit ceiling rather than a real count."
   },
   "theme": {
     "tier": "themed",

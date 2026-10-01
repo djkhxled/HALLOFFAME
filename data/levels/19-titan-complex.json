@@ -37,7 +37,7 @@
     ],
     "host": "TCTeam",
     "verifier": "MrDash",
-    "verifiedDate": null,
+    "verifiedDate": "2018-03-27",
     "ratedDate": null,
     "attempts": null,
     "levelId": "44022701",
@@ -49,12 +49,13 @@
       "artist": "dj-Nate",
       "newgroundsId": "723722"
     },
-    "peakRank": null,
+    "peakRank": "#9 on the Demonlist (28 February 2019)",
     "sources": [
       "https://geometrydash.wiki.gg/wiki/Titan_Complex",
       "https://geometry-dash-fan.fandom.com/wiki/Titan_Complex",
       "https://pointercrate.com/demonlist/permalink/85/",
-      "https://gdbrowser.com/44022701"
+      "https://gdbrowser.com/44022701",
+      "https://aredl.net/list/44022701"
     ],
     "note": "A twenty-eight creator mega-collaboration hosted by TCTeam, built to demand competence in every game mode rather than leaning on wave or ship alone."
   },
