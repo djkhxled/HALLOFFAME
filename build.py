@@ -29,6 +29,27 @@ DEFAULT_FIELD = "#06070b"
 NOTFOUND_FIELD = "#0c0406"
 
 
+# Share cards: src/art/og-<name>.png, 1200x630, drawn by tools/make_cards.py except
+# og-home.png, which is the owner's own title card. Every ranked level's page shares
+# the home card; every other page has its own.
+CARD_ALT = {
+    "home": "HALL OF EXTREMES in large white letters over rainbow beams of light",
+    "games": "GAMES in large white letters over soft beams of colour",
+    "demondle": "DEMONDLE beside a six by six board of green, yellow and grey squares",
+    "game": "NAME EVERY EXTREME DEMON beside a field of slots, some filled in blue",
+    "privacy": "PRIVACY in large white letters over faint beams of teal and blue light",
+    "terms": "TERMS in large white letters over faint beams of orange light",
+    "credits": "CREDITS in large white letters over faint beams of violet and pink light",
+}
+
+
+def card(site: dict, name: str) -> str:
+    """The share-image tags for a page; the home card if the page has none of its own."""
+    if name not in CARD_ALT:
+        name = "home"
+    return render.social_card_html(site, f"/assets/art/og-{name}.png", CARD_ALT[name])
+
+
 def relativize(text: str, depth: int) -> str:
     """Turn site-internal absolute URLs into relative ones.
 
@@ -243,6 +264,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
     )
     if css_path.exists():
         head_extra += f'<link rel="stylesheet" href="/assets/css/levels/{slug}.css">'
+    head_extra += card(site, "home")
 
     return render.fill(
         base_tpl,
@@ -315,6 +337,7 @@ def build_doc(doc: dict, site: dict, base_tpl: str, page_tpl: str,
                 f'<style>[data-level="doc-{doc["slug"]}"] .hero__title'
                 f'{{font-size:{render.hero_size(strip_tags(doc["heading"]))}}}'
                 "</style>"
+                + card(site, doc["slug"])
             ),
             "body_html": inner,
             "disclaimer": site["disclaimer"],
@@ -372,9 +395,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
                 + (f'[data-level="index"]{{--art-drift-dur:'
                    f"{site['artDrift']};}}" if site.get("artDrift") else "")
                 + "</style>"
-                + render.social_card_html(
-                    site, "/assets/art/og-home.png",
-                    "HALL OF EXTREMES in large white letters over rainbow beams of light")
+                + card(site, "home")
             ),
             "body_html": body,
             "disclaimer": site["disclaimer"],
@@ -535,6 +556,7 @@ def build_game(site: dict, base_tpl: str) -> str:
                 '<link rel="stylesheet" href="/assets/css/game.css">'
                 '<style>[data-level="game"] .hero__title'
                 "{font-size:clamp(2.75rem,8vw,7rem)}</style>"
+                + card(site, "game")
             ),
             "body_html": body,
             "disclaimer": site["disclaimer"],
@@ -608,6 +630,7 @@ def build_guess(site: dict, base_tpl: str, levels: list[dict]) -> str:
                 '<link rel="stylesheet" href="/assets/css/guess.css">'
                 '<style>[data-level="guess"] .hero__title'
                 "{font-size:clamp(2.75rem,8vw,7rem)}</style>"
+                + card(site, "demondle")
             ),
             "body_html": body,
             "disclaimer": site["disclaimer"],
@@ -691,6 +714,7 @@ def build_games(site: dict, base_tpl: str) -> str:
                 '<link rel="stylesheet" href="/assets/css/guess.css">'
                 '<style>[data-level="games"] .hero__title'
                 "{font-size:clamp(2.75rem,8vw,7rem)}</style>"
+                + card(site, "games")
             ),
             "body_html": body,
             "disclaimer": site["disclaimer"],
