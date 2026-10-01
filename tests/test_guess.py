@@ -210,6 +210,26 @@ class RealSnapshot(unittest.TestCase):
     def test_the_schedule_launch_matches_its_first_day(self):
         self.assertEqual(self.sched["days"][0]["date"], self.sched["launch"])
 
+    def test_every_override_is_applied_and_explained(self):
+        ov = json.loads((ROOT / "data" / "guess" / "overrides.json").read_text(encoding="utf-8"))
+        by_id = {str(l["id"]): l for l in self.levels}
+        for lid, entry in ov.items():
+            self.assertTrue(entry.get("why"), f"{lid} has an override with no reason")
+            if lid in by_id and "year" in entry:
+                self.assertEqual(by_id[lid]["year"], entry["year"], by_id[lid]["name"])
+            if lid in by_id and "seconds" in entry:
+                self.assertEqual(by_id[lid]["seconds"], entry["seconds"], by_id[lid]["name"])
+
+    def test_the_hall_levels_agree_with_the_halls_own_verification_years(self):
+        """The Hall's pages were checked by hand. Where a level is in both, the year the
+        game uses must be the Hall's."""
+        pool = {l["id"]: l for l in self.levels}
+        for f in (ROOT / "data" / "levels").glob("*.json"):
+            facts = json.loads(f.read_text(encoding="utf-8")).get("facts") or {}
+            lid, date = facts.get("levelId"), facts.get("verifiedDate")
+            if lid and date and int(lid) in pool:
+                self.assertEqual(pool[int(lid)]["year"], int(date[:4]), f.name)
+
     def test_hall_levels_are_in_the_pool_when_they_should_be(self):
         """Every ranked Hall level on the Demonlist top 150 keeps a creators count
         that is at least the number the Hall page credits' unique names."""

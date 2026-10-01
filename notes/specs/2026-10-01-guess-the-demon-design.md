@@ -89,7 +89,14 @@ Python standard library only (matching `tools/fetch_aredl.py`). Steps:
 - **peak**: the smallest `new_position` in Pointercrate's movement history for the level
   (`/api/v2/demons/<id>/audit/movement/`), never worse than the current rank. A level with
   no history stops the run.
-- **year**: year of the *first* verification record on AREDL for the level, matching
+- **year**: the year of the verification **the Demonlist credits**, not simply the first
+  or last record. For a two-player level that is the later solo (1P) verification
+  (Codependence 2023, not its 2020 two-player run); for a re-verified level it is the
+  verification of the version on the list. AREDL's date is the upload date of its video,
+  so a re-uploaded video can be years off (The Golden: 2020, not the 2023 re-upload).
+  The fetch tool's default is the first AREDL record, which is only right for ordinary
+  levels, so it is checked against the Hall's own pages, the wikis and the credited
+  video, and corrected in `overrides.json`. Original rule, kept for reference: year of the *first* verification record on AREDL for the level, matching
   the site's rule of using the legitimate verification. Where AREDL's list holds a
   hack-verification that is known to be void, the tool uses the first verification
   by the credited verifier on the Pointercrate record. Levels where those two
