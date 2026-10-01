@@ -135,5 +135,16 @@ class PageData(unittest.TestCase):
         self.assertEqual(out["fetched"], "2026-10-01")
 
 
+class Promises(unittest.TestCase):
+    def test_the_browser_version_scale_matches_the_build(self):
+        code = (ROOT / "src" / "js" / "guess-core.js").read_text(encoding="utf-8")
+        m = re.search(r"var VERSIONS = (\[[^\]]*\]);", code)
+        self.assertEqual(json.loads(m.group(1)), guess.VERSIONS)
+
+    def test_the_check_page_exists_and_loads_the_real_module(self):
+        page = (ROOT / "tests" / "guess.check.html").read_text(encoding="utf-8")
+        self.assertIn("../src/js/guess-core.js", page)
+
+
 if __name__ == "__main__":
     unittest.main()
