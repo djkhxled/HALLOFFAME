@@ -169,7 +169,7 @@ class BuiltPage(unittest.TestCase):
 
     def test_the_tab_is_on_the_landing_page_and_points_at_the_game(self):
         self.assertRegex(self.index,
-                         r'<nav class="topnav"[^>]*>.*?href="game/".*?</nav>')
+                         r'<nav class="topnav"[^>]*>.*?href="games/".*?</nav>')
 
     def test_the_game_links_back_to_the_hall(self):
         nav = re.search(r'<nav class="topnav".*?</nav>', self.html, re.S).group(0)
@@ -226,10 +226,11 @@ class Promises(unittest.TestCase):
         self.assertNotIn("document.cookie", self.code)
 
     def test_only_the_game_and_the_notice_touch_storage(self):
-        """Two scripts write to localStorage, each under its own key, and the
-        privacy page describes exactly those two."""
+        """Three scripts write to localStorage, each under its own key, and the
+        privacy page describes exactly those (the naming game, its notice, and
+        Guess the Demon, whose keys test_guess checks)."""
         for js in (ROOT / "src" / "js").glob("*.js"):
-            if js.name in ("game.js", "gate.js"):
+            if js.name in ("game.js", "gate.js", "guess.js"):
                 continue
             self.assertNotIn("localStorage",
                              js.read_text(encoding="utf-8"), js.name)
@@ -526,7 +527,8 @@ class GamePageCopy(unittest.TestCase):
     def test_every_other_page_keeps_its_title_and_social_title_the_same(self):
         import html
         for page in DOCS.rglob("*.html"):
-            if page == DOCS / "game" / "index.html":
+            if page in (DOCS / "game" / "index.html", DOCS / "guess" / "index.html",
+                        DOCS / "games" / "index.html"):
                 continue
             s = page.read_text(encoding="utf-8")
             t = html.unescape(re.search(r"<title>(.*?)</title>", s).group(1))

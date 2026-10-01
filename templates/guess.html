@@ -1,0 +1,86 @@
+<section class="hero hero--doc hero--game page" data-motion>
+  <p class="hero__eyebrow">{{ eyebrow }}</p>
+  <div class="hero__art" aria-hidden="true">{{ art_html }}</div>
+  {{ topnav_html }}
+  <h1 class="hero__title doc__title">{{ heading }}</h1>
+  <div class="hero__foot">
+    <p>{{ meta_left }}</p>
+    <p class="hero__lede">{{ lede }}</p>
+    <p class="hero__meta-r">{{ meta_right }}</p>
+    <div class="hero__rule"></div>
+  </div>
+</section>
+
+<div class="guess" data-guess>
+  <div class="page">
+    <fieldset class="gmodes" data-modes>
+      <legend class="gmodes__legend">Mode</legend>
+      <div class="gmodes__row">
+        <label class="gmode"><input type="radio" name="mode" value="daily" checked>
+          <span class="gmode__name">Daily</span><span class="gmode__best" data-daily-tag></span></label>
+        <label class="gmode"><input type="radio" name="mode" value="infinite">
+          <span class="gmode__name">Infinite</span></label>
+      </div>
+      <p class="gmodes__note">Six guesses. Daily is the same level for everyone and changes at your
+        midnight. Infinite deals you a random level, and as many rounds as you like.</p>
+    </fieldset>
+
+    <div class="gkey" aria-label="How to read a guess">
+      <p class="gkey__row"><span class="gkey__chip gcell--exact">&#10003;</span> exact</p>
+      <p class="gkey__row"><span class="gkey__chip gcell--close">~</span> close</p>
+      <p class="gkey__row"><span class="gkey__chip gcell--miss">&#10007;</span> not close</p>
+      <p class="gkey__row"><span class="gkey__chip gkey__chip--plain">&#9650;</span> the answer is higher than your guess</p>
+      <p class="gkey__row"><span class="gkey__chip gkey__chip--plain">&#9660;</span> lower</p>
+      <p class="gkey__note">Rank: lower is better, so &#9650; means further down the list. Length is to the second.</p>
+    </div>
+
+    <form class="gpick" data-form autocomplete="off">
+      <label class="gpick__label" for="guess-input">Type a level name</label>
+      <div class="gpick__box">
+        <input id="guess-input" class="ginput" type="text" data-input role="combobox"
+               aria-autocomplete="list" aria-expanded="false" aria-controls="guess-options"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+               enterkeyhint="go" placeholder="Start typing a level name&hellip;">
+        <ul id="guess-options" class="goptions" role="listbox" data-options hidden></ul>
+      </div>
+      <p class="gstatus" data-status></p>
+    </form>
+
+    <p class="visually-hidden" role="status" aria-live="polite" data-live></p>
+
+    <div class="gboard-wrap">
+      <ol class="gboard" data-board aria-label="Your guesses"></ol>
+    </div>
+
+    <section class="gresult" data-result hidden aria-labelledby="gres-h">
+      <h2 id="gres-h" class="gresult__title" data-result-title></h2>
+      <p class="gresult__line" data-result-line></p>
+      <p class="gresult__line" data-result-link hidden></p>
+      <div class="gresult__actions">
+        <button class="gbtn gbtn--primary" type="button" data-share>Share result</button>
+        <button class="gbtn" type="button" data-next hidden>Next level</button>
+        <span class="gresult__copied" data-copied role="status"></span>
+      </div>
+      <p class="gresult__line" data-countdown-row hidden>Next daily in <span data-countdown>--:--:--</span></p>
+    </section>
+
+    <section class="gstats" aria-labelledby="gstats-h">
+      <div class="gstats__head">
+        <h2 id="gstats-h" class="gstats__title">Your stats</h2>
+        <button class="gbtn" type="button" data-sound aria-pressed="true">
+          Sound <span class="gbtn__state" data-sound-state aria-hidden="true">on</span></button>
+      </div>
+      <div class="gstats__grid">
+        <div data-stats-daily></div>
+        <div data-stats-infinite></div>
+      </div>
+      <p class="gsource">Levels, ranks and creators are from
+        <a href="https://pointercrate.com/demonlist/" rel="nofollow noopener" target="_blank">Pointercrate</a>
+        as they stood on {{ fetched_label }}; verification years from
+        <a href="https://aredl.net" rel="nofollow noopener" target="_blank">AREDL</a>.
+        Ranks move every week. {{ pool_note }} Your progress and stats are saved in this browser only.</p>
+    </section>
+  </div>
+</div>
+
+<script type="application/json" id="guess-data">{{ data_json_html }}</script>

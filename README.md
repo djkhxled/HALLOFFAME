@@ -130,6 +130,28 @@ The service's behaviour is checked in a browser rather than by `unittest`, since
 there is no Node here: `python3 -m http.server 3010 --directory worker` and open
 `http://127.0.0.1:3010/check.html`.
 
+## Guess the Demon
+
+`/guess/` is a Wordle-style game over the Demonlist's top 150. Rules live in
+`src/js/guess-core.js` (checked in a browser: serve the repo root with
+`python3 -m http.server 3011` and open `tests/guess.check.html`; the title says
+PASS or FAIL). `src/js/guess.js` is only the interface.
+
+Refresh the data when the list has moved:
+
+    python3 tools/fetch_demonlist.py
+
+It rewrites `data/guess/demonlist.json` and extends `data/guess/schedule.json`
+without touching past days. Only levels with a **verified length** are in the
+pool: a time published on the Geometry Dash wiki or fan wiki (captured into
+`data/guess/wiki_lengths.json`, matched by level id) or one you add to
+`data/guess/overrides.json` (`seconds`, optionally `year`, and a `why`). Levels
+without one are listed in `data/guess/pending.json` with a computed estimate
+(`tools/gdlength.py`) to review; the estimate is advisory because decorative
+speed portals and time warps make it wrong for roughly one level in nine, so it
+is never shown to players. The build fails when the schedule has less than 180
+days left.
+
 ## Accessibility
 
 - `prefers-reduced-motion` disables every pinned, scrubbed, and parallaxed

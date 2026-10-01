@@ -120,7 +120,7 @@ than 2 seconds the tool prints a warning; the published time still wins.
 ### Schedule: `data/guess/schedule.json`
 
 ```json
-{ "launch": "2026-10-05", "seed": 20261001, "days": [ {"date": "2026-10-05", "levelId": 52374843}, ... ] }
+{ "launch": "2026-10-01", "seed": 20261001, "days": [ {"date": "2026-10-05", "levelId": 52374843}, ... ] }
 ```
 
 - Day 1 is the `launch` date; the game shows "#N" where N is days since launch + 1.

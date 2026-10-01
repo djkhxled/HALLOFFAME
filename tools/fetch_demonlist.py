@@ -28,7 +28,7 @@ AREDL = "https://api.aredl.net/v2/api/aredl/levels"
 UA = {"User-Agent": "hall-of-extremes data tool (https://www.b4ylor.com)"}
 DATA = ROOT / "data" / "guess"
 SEED = 20261001
-DEFAULT_LAUNCH = "2026-10-05"
+DEFAULT_LAUNCH = "2026-10-01"
 MIN_POOL = 60         # the build refuses a smaller pool
 
 
