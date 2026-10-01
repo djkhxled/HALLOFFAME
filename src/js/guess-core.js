@@ -1,4 +1,4 @@
-/* guess-core.js — the rules of Guess the Demon, with no DOM and no network.
+/* guess-core.js — the rules of Demondle, with no DOM and no network.
  *
  * Everything the game decides lives here so it can be checked on its own
  * (tests/guess.check.html). guess.js is only the interface on top.
@@ -120,7 +120,7 @@
 
   function shareText(o) {
     var score = (o.won ? o.guesses.length : "X") + "/" + MAX_GUESSES;
-    var head = "Hall of Extremes — Guess the Demon " +
+    var head = "Hall of Extremes — Demondle " +
       (o.mode === "daily" ? "#" + o.n : "(infinite)") + " · " + score;
     var rows = o.guesses.map(function (r) {
       return STATS.map(function (k) { return EMOJI[r[k].state]; }).join("");

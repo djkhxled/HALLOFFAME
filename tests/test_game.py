@@ -228,7 +228,7 @@ class Promises(unittest.TestCase):
     def test_only_the_game_and_the_notice_touch_storage(self):
         """Three scripts write to localStorage, each under its own key, and the
         privacy page describes exactly those (the naming game, its notice, and
-        Guess the Demon, whose keys test_guess checks)."""
+        Demondle, whose keys test_guess checks)."""
         for js in (ROOT / "src" / "js").glob("*.js"):
             if js.name in ("game.js", "gate.js", "guess.js"):
                 continue

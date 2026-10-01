@@ -167,18 +167,18 @@
     var a = L({id: 9, r: 50}), g1 = G.judge(L({id: 1, r: 1, p: 1, y: 2010, v: "1.8", s: 10, c: 20}), a), g2 = G.judge(a, a);
     var txt = G.shareText({mode: "daily", n: 12, won: true, guesses: [g1, g2]});
     var lines = txt.split("\n");
-    eq(lines[0], "Hall of Extremes — Guess the Demon #12 · 2/6");
+    eq(lines[0], "Hall of Extremes — Demondle #12 · 2/6");
     eq(lines[1], "⬛⬛⬛⬛⬛⬛");
     eq(lines[2], "🟩🟩🟩🟩🟩🟩"); });
   t("share text marks a loss X/6 and uses the close colour", function () {
     var a = L({id: 9}), g = G.judge(L({id: 1, r: 45, p: 36, y: 2019, v: "2.0", s: 110, c: 6}), a);
     var txt = G.shareText({mode: "infinite", won: false, guesses: [g, g, g, g, g, g]});
     var lines = txt.split("\n");
-    eq(lines[0], "Hall of Extremes — Guess the Demon (infinite) · X/6");
+    eq(lines[0], "Hall of Extremes — Demondle (infinite) · X/6");
     eq(lines[1], "🟨🟨🟨🟨🟨🟨"); });
   t("share text never names a level", function () {
     var txt = G.shareText({mode: "daily", n: 1, won: true, guesses: [G.judge(L(), L())]});
-    eq(/[A-Za-z]{4}/.test(txt.replace("Hall of Extremes", "").replace("Guess the Demon", "")), false); });
+    eq(/[A-Za-z]{4}/.test(txt.replace("Hall of Extremes", "").replace("Demondle", "")), false); });
 
   // ---- state ----
   t("normalizeState fills a missing or damaged state", function () {

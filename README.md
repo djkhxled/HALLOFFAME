@@ -130,7 +130,7 @@ The service's behaviour is checked in a browser rather than by `unittest`, since
 there is no Node here: `python3 -m http.server 3010 --directory worker` and open
 `http://127.0.0.1:3010/check.html`.
 
-## Guess the Demon
+## Demondle
 
 `/guess/` is a Wordle-style game over the Demonlist's top 150. Rules live in
 `src/js/guess-core.js` (checked in a browser: serve the repo root with

@@ -1,4 +1,4 @@
-/* guess.js — the interface for Guess the Demon.
+/* guess.js — the interface for Demondle.
  *
  * Rules live in guess-core.js and are checked in tests/guess.check.html.
  * This file does the DOM and nothing else decides anything. No network of any

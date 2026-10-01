@@ -1,4 +1,4 @@
-"""Guess the Demon: the data side.
+"""Demondle: the data side.
 
 Everything that decides a stat is decided here, at build time, so the browser
 only compares numbers. The page's script (src/js/guess-core.js) reads the JSON
