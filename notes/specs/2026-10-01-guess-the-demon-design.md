@@ -6,8 +6,8 @@
 ## Overview
 
 A second game for the site, in the style of Wordle. A hidden level is chosen from
-the Pointercrate Demonlist's Main and Extended lists (positions 1–150), restricted to
-the levels whose real length is verified (see Data). The player
+the Pointercrate Demonlist's Main and Extended lists (positions 1–150), with the length of
+each level taken from its Pointercrate page (see Data). The player
 guesses levels by name; each guess reveals how its **stats** compare to the answer
 instead of letters. Six guesses per round.
 
@@ -94,28 +94,25 @@ Python standard library only (matching `tools/fetch_aredl.py`). Steps:
   present, else the tool stops. Ordinal scale in that order.
 - **creators**: Pointercrate's credited creators, de-duplicated case-insensitively;
   the count is the stat. Names are kept for the hover list.
-- **seconds** (Length): a verified time only, first available of
+- **seconds** (Length): a published time only, first available of
   1. `data/guess/overrides.json` manual value (always wins),
-  2. a time published on the Geometry Dash wiki (wiki.gg) or fan wiki (Fandom),
-     captured through a browser into `data/guess/wiki_lengths.json`. A wiki page is
-     accepted only if its infobox level id equals the level's id (titles are
-     ambiguous: two levels are called "Deimos").
-  `length = 2m 54s (XL)` parses to 174.
-  A level with no verified time is **held out of the pool** and written to
-  `data/guess/pending.json` with a computed estimate for review. The estimate is
-  never shown to players.
+  2. the **Pointercrate level page** (`https://pointercrate.com/demonlist/<rank>/`,
+     "Level Length 1m:26s"), accepted only if the page's Level ID equals the level's
+     id (pages are addressed by rank and ranks move),
+  3. a time from the Geometry Dash wiki or fan wiki (`data/guess/wiki_lengths.json`,
+     captured through a browser and matched by infobox level id), used only for a
+     level whose Pointercrate page shows no length (ORBIT: its ball pit has none).
+  A level with none of these is held out and listed in `data/guess/pending.json`.
 
-### Computed length is advisory only
-
-`tools/gdlength.py` computes a level's length from its level data (downloaded from
-the official GD server). It was validated against the 83 published times: 74 of 83
-(89%) are within one second, but the rest are off by up to 40 s, because decorative
-or unreachable speed portals, time-warp triggers and end triggers cannot be told
-apart from real ones without simulating the game, and the failures cannot be
-detected from the data alone. That is below the 95% gate, so the estimate is used
-only to fill `pending.json`, where a person can confirm or correct a value by
-adding it to `overrides.json`. When the wiki time and the estimate differ by more
-than 2 seconds the tool prints a warning; the published time still wins.
+Pointercrate is the one source for nearly every level so that the stat is consistent
+and anyone can check it on the level's page. It does not agree with the wikis: of the
+82 levels both cover, 23 are within one second, the median difference is 0 and the
+mean absolute difference is 6.7 s (Every End: 440 s on the wiki, 544 s on
+Pointercrate). Neither is "wrong"; they measure differently. The wiki times are kept
+only as the ORBIT fallback and as a cross-check. A length computed from the level
+data (`tools/gdlength.py`, with `tools/validate_lengths.py`) matches the wiki on 89%
+of levels but is wrong by up to 40 s on the rest with no way to tell which, so it is
+a research tool and is never used for the game.
 
 ### Schedule: `data/guess/schedule.json`
 
@@ -143,8 +140,9 @@ The judging function is pure: `judge(guess, answer) -> {rank, year, version, sec
 each result `{state, arrow}` where `state` is `exact`, `close` or `miss`, and `arrow`
 is `up`, `down` or `none`. `exact` always has no arrow.
 
-Arrows point in the direction of the *value*: `up` means the answer's number is
-larger than the guess's.
+Arrows point toward the answer: `up` means the answer's number is larger than the
+guess's, except **Rank**, which is read like a leaderboard: `up` means higher on the list
+(a smaller rank number, nearer #1), so guessing #1 can never say the answer is higher.
 
 | Stat | exact | close | miss |
 |---|---|---|---|
@@ -252,9 +250,8 @@ naming game's rule.
 
 ## Risks and open points
 
-- **Pool size.** Only the 83 levels with a published time qualify at launch. More
-  qualify as the wikis gain pages or as times are added to `overrides.json`; a refresh
-  picks them up and the schedule extends without touching past days.
+- **Length source.** Pointercrate's lengths and the wikis' differ (see Data). The game
+  uses Pointercrate's so every level has one consistent, checkable number.
 - **Verification year ambiguity** for hack-verified or re-verified levels; handled
   by the rule above plus hand checks, with the cases listed in the data.
 - **List drift.** Ranks move weekly. The snapshot date is shown and refreshes never

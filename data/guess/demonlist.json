@@ -3,7 +3,7 @@
  "source": {
   "list": "https://pointercrate.com/demonlist/",
   "verifications": "https://aredl.net",
-  "lengths": "wiki.gg, fandom, or computed from level data"
+  "lengths": "Pointercrate level pages (wiki times only where a page shows none)"
  },
  "levels": [
   {
@@ -13,7 +13,7 @@
    "rank": 1,
    "year": 2026,
    "version": "2.2",
-   "seconds": 143,
+   "seconds": 132,
    "creators": 9,
    "creatorNames": [
     "Neomarbilan",
@@ -26,7 +26,7 @@
     "SunFl0werBoy",
     "UnderCookedWaffle"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 119544028,
@@ -35,7 +35,7 @@
    "rank": 2,
    "year": 2025,
    "version": "2.2",
-   "seconds": 70,
+   "seconds": 67,
    "creators": 22,
    "creatorNames": [
     "[MYS] Meatius",
@@ -61,7 +61,7 @@
     "crowiley",
     "Kevellium"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 119550490,
@@ -87,7 +87,7 @@
     "3DADronX",
     "SnomGMD"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 126242564,
@@ -96,7 +96,7 @@
    "rank": 4,
    "year": 2025,
    "version": "2.2",
-   "seconds": 406,
+   "seconds": 399,
    "creators": 118,
    "creatorNames": [
     "Luksa",
@@ -218,7 +218,7 @@
     "DLAppleGames",
     "Verunya"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 86407629,
@@ -227,12 +227,12 @@
    "rank": 5,
    "year": 2023,
    "version": "2.1",
-   "seconds": 181,
+   "seconds": 178,
    "creators": 1,
    "creatorNames": [
     "OniLink"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 142896409,
@@ -241,7 +241,7 @@
    "rank": 6,
    "year": 2026,
    "version": "2.2",
-   "seconds": 125,
+   "seconds": 126,
    "creators": 14,
    "creatorNames": [
     "Konsi",
@@ -259,7 +259,7 @@
     "harent",
     "Delisya"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 133175713,
@@ -310,7 +310,7 @@
    "rank": 8,
    "year": 2026,
    "version": "2.2",
-   "seconds": 60,
+   "seconds": 58,
    "creators": 4,
    "creatorNames": [
     "[MYS] SkyJax",
@@ -318,7 +318,7 @@
     "Arcturus",
     "declanlc"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 109780665,
@@ -327,12 +327,12 @@
    "rank": 9,
    "year": 2024,
    "version": "2.2",
-   "seconds": 86,
+   "seconds": 76,
    "creators": 1,
    "creatorNames": [
     "Kiba"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 117692518,
@@ -341,13 +341,13 @@
    "rank": 10,
    "year": 2025,
    "version": "2.2",
-   "seconds": 102,
+   "seconds": 73,
    "creators": 2,
    "creatorNames": [
     "Blankb",
     "Renn241"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 110816181,
@@ -356,14 +356,14 @@
    "rank": 11,
    "year": 2024,
    "version": "2.2",
-   "seconds": 146,
+   "seconds": 144,
    "creators": 3,
    "creatorNames": [
     "Akunakunn",
     "ygg24",
     "TheLetterV"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 135661111,
@@ -372,7 +372,7 @@
    "rank": 12,
    "year": 2026,
    "version": "2.2",
-   "seconds": 106,
+   "seconds": 112,
    "creators": 20,
    "creatorNames": [
     "[TARIQ] C0mical",
@@ -396,7 +396,7 @@
     "MrSpread",
     "TOP5"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 116174063,
@@ -405,7 +405,7 @@
    "rank": 13,
    "year": 2025,
    "version": "2.2",
-   "seconds": 440,
+   "seconds": 544,
    "creators": 13,
    "creatorNames": [
     "Koreaqwer",
@@ -422,7 +422,7 @@
     "[DL] Blitzer",
     "LeftUnknown"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 62912799,
@@ -431,12 +431,12 @@
    "rank": 14,
    "year": 2024,
    "version": "2.1",
-   "seconds": 126,
+   "seconds": 130,
    "creators": 1,
    "creatorNames": [
     "oddmod"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 4125776,
@@ -450,7 +450,22 @@
    "creatorNames": [
     "TheRealSailent"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 138704906,
+   "pcId": 704,
+   "name": "Ultra Paracosm",
+   "rank": 16,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 71,
+   "creators": 2,
+   "creatorNames": [
+    "declanlc",
+    "Renn241"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 134942736,
@@ -459,14 +474,14 @@
    "rank": 17,
    "year": 2026,
    "version": "2.2",
-   "seconds": 84,
+   "seconds": 91,
    "creators": 3,
    "creatorNames": [
     "Ego11",
     "Hexy",
     "nxhtrise"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 114283297,
@@ -475,12 +490,59 @@
    "rank": 18,
    "year": 2025,
    "version": "2.2",
-   "seconds": 76,
+   "seconds": 75,
    "creators": 1,
    "creatorNames": [
     "Insxne97"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 138781722,
+   "pcId": 696,
+   "name": "KILLSTEALER",
+   "rank": 19,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 245,
+   "creators": 34,
+   "creatorNames": [
+    "Ferox242",
+    "GDSkele",
+    "Salamander",
+    "Shaun07",
+    "Asterion",
+    "Skrypto",
+    "7rodo",
+    "Elvii",
+    "Avati",
+    "vit12",
+    "AlrexX",
+    "Underpipse",
+    "LekuJX",
+    "Gradientxxd",
+    "DigitalZero",
+    "Holy",
+    "Don",
+    "Crowley",
+    "rynoxious",
+    "Maplegaegosu",
+    "Linear",
+    "Dzeser",
+    "ConnectedGD",
+    "vendash",
+    "L4mbads",
+    "Keniz",
+    "Junbae123",
+    "Andhika",
+    "ryu.",
+    "Lightvoid",
+    "Lordequacc",
+    "iBlue",
+    "TheNamesSnek",
+    "Anubis"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 127997391,
@@ -489,13 +551,13 @@
    "rank": 20,
    "year": 2025,
    "version": "2.2",
-   "seconds": 60,
+   "seconds": 66,
    "creators": 2,
    "creatorNames": [
     "Volumni",
     "Renn241"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 112313819,
@@ -504,7 +566,7 @@
    "rank": 21,
    "year": 2024,
    "version": "2.2",
-   "seconds": 150,
+   "seconds": 147,
    "creators": 5,
    "creatorNames": [
     "nikroplays",
@@ -513,7 +575,7 @@
     "EternaswipVMAX",
     "GDIris"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 89496627,
@@ -522,7 +584,7 @@
    "rank": 22,
    "year": 2023,
    "version": "2.1",
-   "seconds": 78,
+   "seconds": 82,
    "creators": 14,
    "creatorNames": [
     "SyQual",
@@ -540,7 +602,7 @@
     "GD Iris",
     "Loolycat"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 73667628,
@@ -567,7 +629,7 @@
     "ryamu",
     "silver"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 110815379,
@@ -576,7 +638,7 @@
    "rank": 24,
    "year": 2024,
    "version": "2.2",
-   "seconds": 170,
+   "seconds": 173,
    "creators": 40,
    "creatorNames": [
     "Atomic",
@@ -620,7 +682,7 @@
     "Dawnf4ll",
     "Accelec"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 107805281,
@@ -634,7 +696,7 @@
    "creatorNames": [
     "Arraegen"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 49896559,
@@ -643,7 +705,7 @@
    "rank": 26,
    "year": 2022,
    "version": "2.1",
-   "seconds": 125,
+   "seconds": 123,
    "creators": 16,
    "creatorNames": [
     "ZmL",
@@ -663,7 +725,7 @@
     "MasterMan",
     "Xolarzz"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 120012581,
@@ -672,7 +734,7 @@
    "rank": 27,
    "year": 2025,
    "version": "2.2",
-   "seconds": 60,
+   "seconds": 61,
    "creators": 8,
    "creatorNames": [
     "[TA] Slijee",
@@ -684,7 +746,21 @@
     "notcyanide",
     "lupodzn"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 145709435,
+   "pcId": 715,
+   "name": "FOREST OF SPIKES",
+   "rank": 28,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 109,
+   "creators": 1,
+   "creatorNames": [
+    "bims"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 91351939,
@@ -699,7 +775,7 @@
     "Exen",
     "[meow] ivyteal"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 86018142,
@@ -708,12 +784,48 @@
    "rank": 30,
    "year": 2022,
    "version": "2.1",
-   "seconds": 98,
+   "seconds": 95,
    "creators": 1,
    "creatorNames": [
     "｛出見塩｝"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 141052363,
+   "pcId": 706,
+   "name": "Sacrifice",
+   "rank": 31,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 149,
+   "creators": 23,
+   "creatorNames": [
+    "Nisha",
+    "Rainstorm",
+    "robotchief",
+    "VoTcHi",
+    "Zeronium",
+    "By Player",
+    "Xylitol",
+    "Bigthunder556",
+    "Laniakea",
+    "[COMET] Kaza",
+    "DreamTide",
+    "HargChucu",
+    "[COMET] Nexel",
+    "Penesial",
+    "Yonaka",
+    "태리",
+    "Tassium",
+    "TheLris",
+    "M4riNe",
+    "RedCraft",
+    "Catio",
+    "Spacter",
+    "Neofar"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 110534288,
@@ -722,7 +834,7 @@
    "rank": 32,
    "year": 2024,
    "version": "2.2",
-   "seconds": 88,
+   "seconds": 107,
    "creators": 8,
    "creatorNames": [
     "DashyGTC",
@@ -734,7 +846,40 @@
     "HarshHere",
     "Eyeless Jack"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 130891319,
+   "pcId": 709,
+   "name": "cognitohazard",
+   "rank": 33,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 180,
+   "creators": 20,
+   "creatorNames": [
+    "Lumpy",
+    "Disp",
+    "Sink",
+    "mbed",
+    "Zipixbox",
+    "Grax",
+    "7rodo",
+    "spcreat",
+    "[IQB7] Whizkid05",
+    "Xolarzz",
+    "[meow] ivyteal",
+    "[DOOBY] Galaxxyss",
+    "Akunakunn",
+    "MercuryDT",
+    "stanstanmansan",
+    "HDanke",
+    "Jambees",
+    "eggyburstmagic",
+    "TheRealXFuture",
+    "Subwoofer"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 93917076,
@@ -743,12 +888,12 @@
    "rank": 34,
    "year": 2023,
    "version": "2.1",
-   "seconds": 97,
+   "seconds": 104,
    "creators": 1,
    "creatorNames": [
     "Lavatrex"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 48991380,
@@ -762,7 +907,7 @@
    "creatorNames": [
     "LordDivinity"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 27690100,
@@ -771,7 +916,7 @@
    "rank": 36,
    "year": 2021,
    "version": "2.1",
-   "seconds": 70,
+   "seconds": 63,
    "creators": 7,
    "creatorNames": [
     "icedcave",
@@ -782,7 +927,7 @@
     "DrCuber",
     "GD Iris"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 113599729,
@@ -791,12 +936,12 @@
    "rank": 37,
    "year": 2024,
    "version": "2.2",
-   "seconds": 70,
+   "seconds": 73,
    "creators": 1,
    "creatorNames": [
     "SyQual"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 87665224,
@@ -805,7 +950,7 @@
    "rank": 38,
    "year": 2023,
    "version": "2.1",
-   "seconds": 88,
+   "seconds": 83,
    "creators": 11,
    "creatorNames": [
     "Vinty",
@@ -820,7 +965,22 @@
     "Xatz",
     "kivvvi"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 130327668,
+   "pcId": 679,
+   "name": "BEING HOME",
+   "rank": 39,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 100,
+   "creators": 2,
+   "creatorNames": [
+    "[OG] goobs",
+    "Turtl123"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 93091893,
@@ -862,7 +1022,7 @@
     "GD Iris",
     "Yonaka"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 114281093,
@@ -871,12 +1031,51 @@
    "rank": 41,
    "year": 2025,
    "version": "2.2",
-   "seconds": 62,
+   "seconds": 65,
    "creators": 1,
    "creatorNames": [
     "McCoco"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 134541844,
+   "pcId": 677,
+   "name": "zorin",
+   "rank": 42,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 175,
+   "creators": 1,
+   "creatorNames": [
+    "태리"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 135148907,
+   "pcId": 708,
+   "name": "Prismline",
+   "rank": 43,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 92,
+   "creators": 12,
+   "creatorNames": [
+    "Texic",
+    "TheGalaxyCat",
+    "Wain",
+    "HushLC",
+    "YeldA",
+    "puhyuu",
+    "ItsHarryy",
+    "Xenga",
+    "zXera",
+    "RozzQ",
+    "Isospin",
+    "Boratown"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 76962930,
@@ -885,7 +1084,7 @@
    "rank": 44,
    "year": 2021,
    "version": "2.1",
-   "seconds": 51,
+   "seconds": 52,
    "creators": 9,
    "creatorNames": [
     "Muffy450",
@@ -898,7 +1097,131 @@
     "NineDice",
     "Nick24"
    ],
-   "lengthSource": "fandom"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 113045735,
+   "pcId": 655,
+   "name": "The Salt Factory",
+   "rank": 45,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 95,
+   "creators": 13,
+   "creatorNames": [
+    "Eiriley",
+    "Inex",
+    "[UFA] Nickname09",
+    "lintery",
+    "Yakov47",
+    "Pes11",
+    "E9_KH",
+    "Relix",
+    "Acvan",
+    "EziK",
+    "Soywues",
+    "Wonsay",
+    "Sleepin"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 136396693,
+   "pcId": 695,
+   "name": "Master of Puppets",
+   "rank": 46,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 506,
+   "creators": 85,
+   "creatorNames": [
+    "zeroya",
+    "GaidenHertuny",
+    "[JOB] vinny",
+    "Sink",
+    "Stilluetto",
+    "Yendis",
+    "[MOOSH] Moosh",
+    "Happy365",
+    "BlazeRol",
+    "robotchief",
+    "Nimbus",
+    "ZinkZeta",
+    "[PRIME] Divina",
+    "Gizbro",
+    "Zeronium",
+    "[HOLA] Diris",
+    "FrostBurn",
+    "Yoonsr",
+    "Lobster",
+    "Skrypto",
+    "silver",
+    "augi",
+    "[COMET] Oscar ☄️",
+    "[SHMOE] Kutsu",
+    "TheZinkYT",
+    "noxiom",
+    "Aqualime",
+    "awesomeme360",
+    "Renn241",
+    "Bedrock",
+    "GhostVandalf",
+    "Swib",
+    "Average",
+    "shman",
+    "HideousToaster",
+    "Trunith",
+    "valentine",
+    "copc",
+    "Zeniux",
+    "Graded",
+    "Zeptrus",
+    "At424",
+    "McCoco",
+    "[FaZe] Drakosa",
+    "MercuryDT",
+    "rRaddie",
+    "MaxxoRMeN",
+    "skzyl",
+    "goobfrudla",
+    "[FaZe] tenzk",
+    "Robtobfreak",
+    "greencuber",
+    "JoshTheB",
+    "Devilmine",
+    "DuskerHu",
+    "Narwall",
+    "Zephlin",
+    "DreamLightGD",
+    "EstebannGD",
+    "haizenberg",
+    "IceRodGD",
+    "haidm",
+    "Acute144",
+    "Hamato",
+    "zBray",
+    "realwhata",
+    "GDikonic",
+    "Helbrein",
+    "BiddyDib111",
+    "NateFH",
+    "SouneX",
+    "DarkCacti",
+    "pokeGMD",
+    "Yoppe",
+    "DataGhost",
+    "Aimbotter2123",
+    "RuneZvelt",
+    "sprei",
+    "Pizazzy",
+    "Bittersweet",
+    "JoeDaBruh",
+    "nexeggy1",
+    "Puueds",
+    "Jorse",
+    "Arckalia"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 113959291,
@@ -907,7 +1230,7 @@
    "rank": 47,
    "year": 2025,
    "version": "2.2",
-   "seconds": 105,
+   "seconds": 120,
    "creators": 15,
    "creatorNames": [
     "Smokes",
@@ -926,7 +1249,7 @@
     "CamsOverHere",
     "iRosie"
    ],
-   "lengthSource": "fandom"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 95851008,
@@ -935,7 +1258,7 @@
    "rank": 48,
    "year": 2023,
    "version": "2.1",
-   "seconds": 92,
+   "seconds": 88,
    "creators": 6,
    "creatorNames": [
     "hawkyre",
@@ -945,7 +1268,7 @@
     "darksteelflame",
     "Arithean"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 109439644,
@@ -954,7 +1277,7 @@
    "rank": 49,
    "year": 2024,
    "version": "2.2",
-   "seconds": 72,
+   "seconds": 83,
    "creators": 10,
    "creatorNames": [
     "Bli",
@@ -968,7 +1291,21 @@
     "Halo",
     "SB72"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 113322063,
+   "pcId": 640,
+   "name": "CONVULSION",
+   "rank": 50,
+   "year": 2024,
+   "version": "1.9PS",
+   "seconds": 65,
+   "creators": 1,
+   "creatorNames": [
+    "stellar"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 49072489,
@@ -977,7 +1314,7 @@
    "rank": 51,
    "year": 2023,
    "version": "2.1",
-   "seconds": 98,
+   "seconds": 92,
    "creators": 8,
    "creatorNames": [
     "Exen",
@@ -989,7 +1326,7 @@
     "tan1c",
     "kentaki-chan"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 75206202,
@@ -998,7 +1335,7 @@
    "rank": 52,
    "year": 2021,
    "version": "2.1",
-   "seconds": 127,
+   "seconds": 135,
    "creators": 12,
    "creatorNames": [
     "Buragoz",
@@ -1014,7 +1351,7 @@
     "lillium",
     "Lekvid"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 131599104,
@@ -1023,7 +1360,7 @@
    "rank": 53,
    "year": 2026,
    "version": "2.2",
-   "seconds": 68,
+   "seconds": 69,
    "creators": 17,
    "creatorNames": [
     "[HOLA] zof",
@@ -1044,7 +1381,22 @@
     "Lapatatatom",
     "Choms"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 115077305,
+   "pcId": 673,
+   "name": "NOMAD",
+   "rank": 54,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 57,
+   "creators": 2,
+   "creatorNames": [
+    "ReeseVT",
+    "danielsbadkarma"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 120289520,
@@ -1053,12 +1405,33 @@
    "rank": 55,
    "year": 2025,
    "version": "2.2",
-   "seconds": 144,
+   "seconds": 139,
    "creators": 1,
    "creatorNames": [
     "[JUICE] Amplitron"
    ],
-   "lengthSource": "fandom"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 143718114,
+   "pcId": 705,
+   "name": "NervHell",
+   "rank": 56,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 196,
+   "creators": 8,
+   "creatorNames": [
+    "SparkyConjure",
+    "Verunya",
+    "ComSuonCoXuong",
+    "Niom",
+    "ItzTsumiki",
+    "Akoru",
+    "NhanGD",
+    "willygd"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 85133223,
@@ -1067,7 +1440,7 @@
    "rank": 57,
    "year": 2022,
    "version": "2.1",
-   "seconds": 82,
+   "seconds": 99,
    "creators": 7,
    "creatorNames": [
     "Liisp",
@@ -1078,7 +1451,21 @@
     "Earthum",
     "Aranda"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 136981369,
+   "pcId": 683,
+   "name": "Calibrate",
+   "rank": 58,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 73,
+   "creators": 1,
+   "creatorNames": [
+    "[SARK] Bamvie"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 89414220,
@@ -1087,14 +1474,14 @@
    "rank": 59,
    "year": 2023,
    "version": "2.1",
-   "seconds": 82,
+   "seconds": 85,
    "creators": 3,
    "creatorNames": [
     "Varium",
     "Sevant",
     "CDMusic"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 90477539,
@@ -1115,7 +1502,7 @@
     "NukeIIX",
     "MercuryDT"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 113443235,
@@ -1124,7 +1511,7 @@
    "rank": 61,
    "year": 2024,
    "version": "2.2",
-   "seconds": 269,
+   "seconds": 276,
    "creators": 26,
    "creatorNames": [
     "Antares",
@@ -1154,7 +1541,7 @@
     "Alex PG",
     "C14"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 81139702,
@@ -1163,13 +1550,40 @@
    "rank": 62,
    "year": 2022,
    "version": "2.1",
-   "seconds": 124,
+   "seconds": 119,
    "creators": 2,
    "creatorNames": [
     "VoTcHi",
     "SyQual"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 144012996,
+   "pcId": 707,
+   "name": "Pinnacle of Life",
+   "rank": 63,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 113,
+   "creators": 14,
+   "creatorNames": [
+    "s3batr0nic",
+    "goob",
+    "Tuxcat",
+    "[JOB] stillsouless",
+    "Genoxide",
+    "[COMET] Nexel",
+    "[DL] vonic",
+    "bims",
+    "twister",
+    "Akunakunn",
+    "skzyl",
+    "Devilmine",
+    "[MOON] Blaster1337",
+    "QuazeryIceCube"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 94359172,
@@ -1178,13 +1592,42 @@
    "rank": 64,
    "year": 2023,
    "version": "2.1",
-   "seconds": 59,
+   "seconds": 60,
    "creators": 2,
    "creatorNames": [
     "[SKWAD] Cersia",
     "[SKWAD] Slithium"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 143523624,
+   "pcId": 713,
+   "name": "Haunted Ship",
+   "rank": 65,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 111,
+   "creators": 2,
+   "creatorNames": [
+    "awesomeme360",
+    "[SWOON] Gnamolor"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 126571887,
+   "pcId": 642,
+   "name": "Loops of Fury",
+   "rank": 66,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 138,
+   "creators": 1,
+   "creatorNames": [
+    "[TCC] Enfur"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 96314787,
@@ -1193,7 +1636,7 @@
    "rank": 67,
    "year": 2023,
    "version": "1.9PS",
-   "seconds": 103,
+   "seconds": 112,
    "creators": 11,
    "creatorNames": [
     "NePtunE",
@@ -1208,7 +1651,35 @@
     "caro",
     "SnapNK"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 125317359,
+   "pcId": 684,
+   "name": "BRITNEY NO SCLEARS",
+   "rank": 68,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 94,
+   "creators": 1,
+   "creatorNames": [
+    "wabas"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 114990369,
+   "pcId": 615,
+   "name": "Gaggatrondra",
+   "rank": 69,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 60,
+   "creators": 1,
+   "creatorNames": [
+    "JCMoon"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 120255728,
@@ -1217,7 +1688,7 @@
    "rank": 70,
    "year": 2025,
    "version": "2.2",
-   "seconds": 63,
+   "seconds": 71,
    "creators": 10,
    "creatorNames": [
     "[OG B] maybee",
@@ -1231,7 +1702,21 @@
     "Vizitek",
     "Quminy"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 83244159,
+   "pcId": 674,
+   "name": "Stellar Night",
+   "rank": 71,
+   "year": 2022,
+   "version": "2.1",
+   "seconds": 61,
+   "creators": 1,
+   "creatorNames": [
+    "icedcave"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 89187968,
@@ -1240,7 +1725,7 @@
    "rank": 72,
    "year": 2023,
    "version": "2.1",
-   "seconds": 126,
+   "seconds": 121,
    "creators": 20,
    "creatorNames": [
     "knobbelboy",
@@ -1264,7 +1749,21 @@
     "Linear",
     "MercuryDT"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 139508889,
+   "pcId": 699,
+   "name": "Losing Your Mind",
+   "rank": 73,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 96,
+   "creators": 1,
+   "creatorNames": [
+    "GDgalaxygaming"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 90390075,
@@ -1273,13 +1772,28 @@
    "rank": 74,
    "year": 2023,
    "version": "2.1",
-   "seconds": 65,
+   "seconds": 64,
    "creators": 2,
    "creatorNames": [
     "rynoxious",
     "Linear"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 104232191,
+   "pcId": 670,
+   "name": "The Catacombs",
+   "rank": 75,
+   "year": 2024,
+   "version": "1.9PS",
+   "seconds": 71,
+   "creators": 2,
+   "creatorNames": [
+    "[SKWAD] Cersia",
+    "SnapShocked"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 86084399,
@@ -1328,7 +1842,21 @@
     "xStep47",
     "Nyab"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 115860808,
+   "pcId": 712,
+   "name": "Make Paul Dance",
+   "rank": 77,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 76,
+   "creators": 1,
+   "creatorNames": [
+    "Bemq"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 94969889,
@@ -1337,13 +1865,13 @@
    "rank": 78,
    "year": 2023,
    "version": "2.1",
-   "seconds": 106,
+   "seconds": 118,
    "creators": 2,
    "creatorNames": [
     "Itami",
     "Vernam"
    ],
-   "lengthSource": "fandom"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 62556400,
@@ -1384,7 +1912,21 @@
     "Woomy",
     "Pingui"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 113256247,
+   "pcId": 606,
+   "name": "Collapse",
+   "rank": 80,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 123,
+   "creators": 1,
+   "creatorNames": [
+    "[COMET] Nexel"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 82544060,
@@ -1393,7 +1935,7 @@
    "rank": 81,
    "year": 2022,
    "version": "2.1",
-   "seconds": 89,
+   "seconds": 88,
    "creators": 9,
    "creatorNames": [
     "Konsi",
@@ -1406,7 +1948,7 @@
     "Thrasher",
     "Vitchrose"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 131497860,
@@ -1415,7 +1957,7 @@
    "rank": 82,
    "year": 2026,
    "version": "2.2",
-   "seconds": 69,
+   "seconds": 62,
    "creators": 4,
    "creatorNames": [
     "Optation",
@@ -1423,7 +1965,57 @@
     "xVoid",
     "Yerylik"
    ],
-   "lengthSource": "fandom"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 113220284,
+   "pcId": 610,
+   "name": "The Plunge",
+   "rank": 83,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 63,
+   "creators": 8,
+   "creatorNames": [
+    "G4lvatron",
+    "TriplasH",
+    "Roselyne",
+    "pbreaker",
+    "Adrone",
+    "Dolabill",
+    "Shodai",
+    "Arachnid"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 99703915,
+   "pcId": 681,
+   "name": "Fracture",
+   "rank": 84,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 86,
+   "creators": 2,
+   "creatorNames": [
+    "Dezstro",
+    "Arrow"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 128093374,
+   "pcId": 650,
+   "name": "Wavterminal",
+   "rank": 85,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 108,
+   "creators": 1,
+   "creatorNames": [
+    "Skyavoxii"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 81011195,
@@ -1432,13 +2024,183 @@
    "rank": 86,
    "year": 2022,
    "version": "2.1",
-   "seconds": 124,
+   "seconds": 126,
    "creators": 2,
    "creatorNames": [
     "Renn241",
     "GhostVandalf"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 119689515,
+   "pcId": 653,
+   "name": "Infinite Chaos",
+   "rank": 87,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 181,
+   "creators": 23,
+   "creatorNames": [
+    "HelpegasuS",
+    "CairoX",
+    "TriplasH",
+    "[DLNW] GW",
+    "creoa",
+    "dutchiee",
+    "Renn241",
+    "Genoxide",
+    "DreamZoneGD",
+    "gruzy",
+    "valentine",
+    "arclight",
+    "MercuryDT",
+    "PlaEnterprise",
+    "xenith",
+    "[LTF] ImCylia",
+    "Insxne97",
+    "Epdjip",
+    "HumbJumb",
+    "Zephlin",
+    "AvaxLumino",
+    "Zronk",
+    "Rolopok"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 114999625,
+   "pcId": 627,
+   "name": "Operation Evolution",
+   "rank": 88,
+   "year": 2025,
+   "version": "1.9PS",
+   "seconds": 333,
+   "creators": 25,
+   "creatorNames": [
+    "Tygrysek",
+    "Zipixbox",
+    "Realvet",
+    "Wesp",
+    "silver",
+    "limit",
+    "fitatfi",
+    "Parallax",
+    "Connected",
+    "PhantomX",
+    "solarion",
+    "AlrexX",
+    "[ASTIL] manu",
+    "GD Iris",
+    "Graded",
+    "Halzion",
+    "nab",
+    "zmx",
+    "Nezopi",
+    "Aubreygoose",
+    "samu",
+    "Cylyrii",
+    "Saziur",
+    "Knali",
+    "AnonIIExt"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 93339534,
+   "pcId": 521,
+   "name": "Damascus",
+   "rank": 89,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 331,
+   "creators": 69,
+   "creatorNames": [
+    "Jo2000",
+    "nainteils",
+    "Smokes",
+    "SuperSNSD",
+    "Surv",
+    "WhitePythor",
+    "Yozyo",
+    "Findexi",
+    "Loogiah",
+    "weoweoteo",
+    "Mazl",
+    "Disp",
+    "Platnuu",
+    "Ilrell",
+    "Jeyzor",
+    "Megaman9",
+    "iBlade",
+    "Tygrysek",
+    "Dorami",
+    "Rob Buck",
+    "Toxic",
+    "Allan",
+    "Gusearth",
+    "koolboom",
+    "Nahuel2998",
+    "Adiale",
+    "Thomartin",
+    "Dehznik",
+    "Blitzmister",
+    "Kazia",
+    "FozaeKitty",
+    "Brittank88",
+    "Logik",
+    "Cirtrax",
+    "Zimnior12",
+    "TheTrueEclipse",
+    "GDSkele",
+    "FlaksY",
+    "Wod",
+    "Lieb",
+    "IIIRyanIII",
+    "PhantomX",
+    "Alter",
+    "AlrexX",
+    "Metsho",
+    "Dasher3000",
+    "Dzeser",
+    "Kruso",
+    "Fury0313",
+    "Nicki1202",
+    "TheJosiahTurner",
+    "Cookieszs",
+    "Megantwoo",
+    "IronDofus435",
+    "JaredKawaii",
+    "Norcda Childa",
+    "PG1004",
+    "Obsidium",
+    "Ozix",
+    "KFAOpitar",
+    "Wolfstar",
+    "VERSU5",
+    "ErisethSP!",
+    "AirForce",
+    "TDChris02",
+    "Lassiboii",
+    "Chromatik",
+    "Oskux",
+    "vArctic"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 95719795,
+   "pcId": 659,
+   "name": "Decks Dark",
+   "rank": 90,
+   "year": 2023,
+   "version": "2.2",
+   "seconds": 163,
+   "creators": 1,
+   "creatorNames": [
+    "[SKG] Madison Yuko"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 95998005,
@@ -1447,7 +2209,7 @@
    "rank": 91,
    "year": 2023,
    "version": "2.1",
-   "seconds": 97,
+   "seconds": 119,
    "creators": 9,
    "creatorNames": [
     "Axxorz",
@@ -1460,7 +2222,7 @@
     "[AUF] Pla",
     "Indra"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 110500920,
@@ -1469,7 +2231,7 @@
    "rank": 92,
    "year": 2024,
    "version": "2.2",
-   "seconds": 149,
+   "seconds": 147,
    "creators": 24,
    "creatorNames": [
     "Dorami",
@@ -1497,7 +2259,60 @@
     "Astraa",
     "iIBonIi"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 95049815,
+   "pcId": 540,
+   "name": "Climax",
+   "rank": 93,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 67,
+   "creators": 2,
+   "creatorNames": [
+    "Wain",
+    "HushLC"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 105593215,
+   "pcId": 579,
+   "name": "ORDINARY",
+   "rank": 94,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 77,
+   "creators": 4,
+   "creatorNames": [
+    "HugoLa",
+    "vit12",
+    "GustavoV3",
+    "RafaBirds"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 125788781,
+   "pcId": 676,
+   "name": "TrakineS",
+   "rank": 95,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 68,
+   "creators": 8,
+   "creatorNames": [
+    "Raluca",
+    "[SEREK] brunexys",
+    "fwe",
+    "Laranjoo",
+    "Kaapz",
+    "Bienamino",
+    "MacacoPerfect",
+    "Reyotta"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 82249742,
@@ -1506,7 +2321,7 @@
    "rank": 96,
    "year": 2022,
    "version": "2.1",
-   "seconds": 525,
+   "seconds": 536,
    "creators": 103,
    "creatorNames": [
     "DiamondSplash",
@@ -1613,7 +2428,64 @@
     "[DTC] Teno",
     "skzyl"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 122941596,
+   "pcId": 633,
+   "name": "THE JET ENGINE",
+   "rank": 97,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 97,
+   "creators": 1,
+   "creatorNames": [
+    "[TARIQ] Billzer"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 136135870,
+   "pcId": 687,
+   "name": "Trickshot",
+   "rank": 98,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 64,
+   "creators": 1,
+   "creatorNames": [
+    "[DL] vonic"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 96083028,
+   "pcId": 549,
+   "name": "Midnight",
+   "rank": 99,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 75,
+   "creators": 1,
+   "creatorNames": [
+    "[SKG] Madison Yuko"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 133489881,
+   "pcId": 701,
+   "name": "Doppler",
+   "rank": 100,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 76,
+   "creators": 2,
+   "creatorNames": [
+    "L4tezk",
+    "At424"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 93340783,
@@ -1622,13 +2494,27 @@
    "rank": 101,
    "year": 2023,
    "version": "2.1",
-   "seconds": 77,
+   "seconds": 80,
    "creators": 2,
    "creatorNames": [
     "[HOLA] SrGuillester",
     "AZuLer4"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 103925676,
+   "pcId": 570,
+   "name": "PSYCHOPATH",
+   "rank": 102,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 126,
+   "creators": 1,
+   "creatorNames": [
+    "DeniPol"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 72315402,
@@ -1637,12 +2523,62 @@
    "rank": 103,
    "year": 2021,
    "version": "2.1",
-   "seconds": 60,
+   "seconds": 56,
    "creators": 1,
    "creatorNames": [
     "Maxfs"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 73214186,
+   "pcId": 675,
+   "name": "Diabolic ClubStep",
+   "rank": 104,
+   "year": 2021,
+   "version": "2.1",
+   "seconds": 97,
+   "creators": 2,
+   "creatorNames": [
+    "Sevant",
+    "IIIspitfireIII"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 93792764,
+   "pcId": 605,
+   "name": "BEELINE",
+   "rank": 105,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 70,
+   "creators": 6,
+   "creatorNames": [
+    "Waffl3x",
+    "[SKG] Madison Yuko",
+    "Pocke",
+    "Xolarzz",
+    "[DOOBY] Galaxxyss",
+    "7ak"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 129235528,
+   "pcId": 682,
+   "name": "DreamStep",
+   "rank": 106,
+   "year": 2026,
+   "version": "2.0",
+   "seconds": 78,
+   "creators": 3,
+   "creatorNames": [
+    "Hsam",
+    "[MOON] Blaster1337",
+    "Abdurahman"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 69685815,
@@ -1651,7 +2587,7 @@
    "rank": 107,
    "year": 2021,
    "version": "2.1",
-   "seconds": 148,
+   "seconds": 163,
    "creators": 24,
    "creatorNames": [
     "Davphla",
@@ -1679,7 +2615,7 @@
     "GD Endy",
     "Days of Thunder"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 59075347,
@@ -1688,7 +2624,7 @@
    "rank": 108,
    "year": 2026,
    "version": "2.1",
-   "seconds": 87,
+   "seconds": 95,
    "creators": 11,
    "creatorNames": [
     "Riot",
@@ -1703,7 +2639,25 @@
     "Salaxium",
     "AZuLer4"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 108708033,
+   "pcId": 588,
+   "name": "Coalescence",
+   "rank": 109,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 91,
+   "creators": 5,
+   "creatorNames": [
+    "[COMET] Kaza",
+    "[JUICE] Amplitron",
+    "slayerkirb",
+    "notes",
+    "Yaman"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 110991117,
@@ -1712,7 +2666,7 @@
    "rank": 110,
    "year": 2024,
    "version": "2.2",
-   "seconds": 97,
+   "seconds": 93,
    "creators": 28,
    "creatorNames": [
     "HelpegasuS",
@@ -1744,7 +2698,7 @@
     "TheDolb1natoR",
     "Mitany"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 95031870,
@@ -1753,7 +2707,7 @@
    "rank": 111,
    "year": 2023,
    "version": "2.1",
-   "seconds": 95,
+   "seconds": 96,
    "creators": 29,
    "creatorNames": [
     "HelpegasuS",
@@ -1786,7 +2740,106 @@
     "CDPre",
     "Galofuf"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 93917362,
+   "pcId": 525,
+   "name": "Delta",
+   "rank": 112,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 144,
+   "creators": 26,
+   "creatorNames": [
+    "DiamondSplash",
+    "npesta",
+    "Loogiah",
+    "Ryder",
+    "Zanna83",
+    "[TCD] Doggie",
+    "kay.",
+    "Gizbro",
+    "[PRIME] Enzollz",
+    "crumche",
+    "goob",
+    "ArtsiBurn",
+    "UltraCharge",
+    "Kelvin",
+    "kedi",
+    "[DL] Blitzer",
+    "CDMusic",
+    "DreamZoneGD",
+    "AppleCr",
+    "rynoxious",
+    "Konsuno",
+    "Novaach",
+    "[FaZe] Drakosa",
+    "Tamori",
+    "MercuryDT",
+    "[FaZe] tenzk"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 137757402,
+   "pcId": 690,
+   "name": "Between Duality",
+   "rank": 113,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 87,
+   "creators": 1,
+   "creatorNames": [
+    "[COMET] Nexel"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 109947627,
+   "pcId": 599,
+   "name": "BPATA MPAKA",
+   "rank": 114,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 106,
+   "creators": 17,
+   "creatorNames": [
+    "NitroN",
+    "Inex",
+    "MittiRan",
+    "WitaWaier",
+    "Axon",
+    "Zeox",
+    "Unity",
+    "Nezeritos",
+    "Yakov47",
+    "Hashinoby",
+    "Akeko",
+    "Dilisae",
+    "Ziza",
+    "Pes11",
+    "Markota",
+    "E9_KH",
+    "Sosiska"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 94858072,
+   "pcId": 662,
+   "name": "The Wonder of You",
+   "rank": 115,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 60,
+   "creators": 3,
+   "creatorNames": [
+    "Victurkey",
+    "[BHO] bazettuk",
+    "HangerLord"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 107741051,
@@ -1795,7 +2848,7 @@
    "rank": 116,
    "year": 2024,
    "version": "2.2",
-   "seconds": 81,
+   "seconds": 78,
    "creators": 16,
    "creatorNames": [
     "CairoX",
@@ -1815,7 +2868,37 @@
     "Peng",
     "Isem"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 130464801,
+   "pcId": 678,
+   "name": "Dualist",
+   "rank": 117,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 89,
+   "creators": 3,
+   "creatorNames": [
+    "SyncTM",
+    "Cluncherp",
+    "TwanDash"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 135547923,
+   "pcId": 710,
+   "name": "Sanctity",
+   "rank": 118,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 74,
+   "creators": 1,
+   "creatorNames": [
+    "[JUICE] Amplitron"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 60978746,
@@ -1836,7 +2919,7 @@
     "BySelling",
     "El3ctr0"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 71025973,
@@ -1845,7 +2928,7 @@
    "rank": 120,
    "year": 2021,
    "version": "2.1",
-   "seconds": 68,
+   "seconds": 72,
    "creators": 4,
    "creatorNames": [
     "benji8080",
@@ -1853,7 +2936,46 @@
     "goob",
     "silver"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 107238250,
+   "pcId": 578,
+   "name": "Viprin UFO",
+   "rank": 121,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 99,
+   "creators": 10,
+   "creatorNames": [
+    "hawkyre",
+    "Morin",
+    "PhantomX",
+    "solarion",
+    "valentine",
+    "Graded",
+    "noodleshelf",
+    "Arithean",
+    "Moonlightmari",
+    "Smear"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 95176417,
+   "pcId": 539,
+   "name": "NETWORK",
+   "rank": 122,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 122,
+   "creators": 3,
+   "creatorNames": [
+    "[COMET] Kaza",
+    "theworldofme",
+    "Agat3"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 104672501,
@@ -1862,7 +2984,7 @@
    "rank": 123,
    "year": 2025,
    "version": "2.2",
-   "seconds": 77,
+   "seconds": 75,
    "creators": 4,
    "creatorNames": [
     "Giron",
@@ -1870,7 +2992,21 @@
     "Lieb",
     "Zerosr"
    ],
-   "lengthSource": "fandom"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 90057148,
+   "pcId": 497,
+   "name": "Terminal Rampancy",
+   "rank": 124,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 97,
+   "creators": 1,
+   "creatorNames": [
+    "Xyriak"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 76543324,
@@ -1879,12 +3015,12 @@
    "rank": 125,
    "year": 2021,
    "version": "2.1",
-   "seconds": 129,
+   "seconds": 126,
    "creators": 1,
    "creatorNames": [
     "Nisha"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 97086864,
@@ -1893,12 +3029,33 @@
    "rank": 126,
    "year": 2023,
    "version": "2.1",
-   "seconds": 97,
+   "seconds": 96,
    "creators": 1,
    "creatorNames": [
     "Swib"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 123467310,
+   "pcId": 716,
+   "name": "Heavenly Sakupen",
+   "rank": 127,
+   "year": 2025,
+   "version": "1.9PS",
+   "seconds": 40,
+   "creators": 8,
+   "creatorNames": [
+    "limit",
+    "solarion",
+    "fwe",
+    "Arct",
+    "CelestialCat",
+    "artimeows",
+    "Youknowwho",
+    "Civi"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 88203501,
@@ -1907,7 +3064,7 @@
    "rank": 128,
    "year": 2023,
    "version": "2.1",
-   "seconds": 42,
+   "seconds": 39,
    "creators": 9,
    "creatorNames": [
     "Gusearth",
@@ -1920,7 +3077,21 @@
     "Relayne",
     "muriday"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 132751236,
+   "pcId": 714,
+   "name": "SPIRIT OVERCLOCK",
+   "rank": 129,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 95,
+   "creators": 1,
+   "creatorNames": [
+    "TheRealXFuture"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 75286957,
@@ -1929,7 +3100,7 @@
    "rank": 130,
    "year": 2022,
    "version": "2.1",
-   "seconds": 65,
+   "seconds": 70,
    "creators": 5,
    "creatorNames": [
     "Gablor",
@@ -1938,7 +3109,36 @@
     "Duke",
     "[PRIME] lexy"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 137334994,
+   "pcId": 703,
+   "name": "idontknowwhatthisis",
+   "rank": 131,
+   "year": 2026,
+   "version": "2.2",
+   "seconds": 58,
+   "creators": 2,
+   "creatorNames": [
+    "YeldA",
+    "puhyuu"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 105748155,
+   "pcId": 582,
+   "name": "Checked Steam",
+   "rank": 132,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 79,
+   "creators": 1,
+   "creatorNames": [
+    "gruzy"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 88442157,
@@ -1947,13 +3147,42 @@
    "rank": 133,
    "year": 2023,
    "version": "2.1",
-   "seconds": 62,
+   "seconds": 64,
    "creators": 2,
    "creatorNames": [
     "ZeusGD",
     "Zeniux"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 87130877,
+   "pcId": 637,
+   "name": "WOBBLING MACHINE",
+   "rank": 134,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 53,
+   "creators": 1,
+   "creatorNames": [
+    "Smarted"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 93732702,
+   "pcId": 617,
+   "name": "Crystal Crusher",
+   "rank": 135,
+   "year": 2023,
+   "version": "2.1",
+   "seconds": 63,
+   "creators": 2,
+   "creatorNames": [
+    "ZeusGD",
+    "Zeniux"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 110705712,
@@ -1962,12 +3191,12 @@
    "rank": 136,
    "year": 2024,
    "version": "2.2",
-   "seconds": 137,
+   "seconds": 78,
    "creators": 1,
    "creatorNames": [
     "Akunakunn"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 71885708,
@@ -1976,7 +3205,7 @@
    "rank": 137,
    "year": 2025,
    "version": "2.1",
-   "seconds": 145,
+   "seconds": 148,
    "creators": 15,
    "creatorNames": [
     "robotchief",
@@ -1995,7 +3224,69 @@
     "Ragle",
     "Fss"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 113364415,
+   "pcId": 664,
+   "name": "paranoia",
+   "rank": 138,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 79,
+   "creators": 1,
+   "creatorNames": [
+    "[JUICE] Amplitron"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 115380769,
+   "pcId": 618,
+   "name": "Starlit Stroll",
+   "rank": 139,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 132,
+   "creators": 2,
+   "creatorNames": [
+    "[TCC] Cork",
+    "[TCC] Enfur"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 87071894,
+   "pcId": 572,
+   "name": "The Paroxysm of Rage",
+   "rank": 140,
+   "year": 2022,
+   "version": "2.1",
+   "seconds": 90,
+   "creators": 2,
+   "creatorNames": [
+    "Zacanaii",
+    "Evil Buds"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 112242564,
+   "pcId": 636,
+   "name": "Blood Echo",
+   "rank": 141,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 88,
+   "creators": 5,
+   "creatorNames": [
+    "LimeTime313",
+    "Farva",
+    "goob",
+    "SnapNK",
+    "Clodsire"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 79771070,
@@ -2004,7 +3295,7 @@
    "rank": 142,
    "year": 2022,
    "version": "2.1",
-   "seconds": 65,
+   "seconds": 66,
    "creators": 4,
    "creatorNames": [
     "Antares",
@@ -2012,7 +3303,59 @@
     "Deadlox",
     "Culuc"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 127023313,
+   "pcId": 654,
+   "name": "DISCONNECT",
+   "rank": 143,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 186,
+   "creators": 1,
+   "creatorNames": [
+    "MCres"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 100990392,
+   "pcId": 631,
+   "name": "VOID",
+   "rank": 144,
+   "year": 2024,
+   "version": "2.2",
+   "seconds": 57,
+   "creators": 1,
+   "creatorNames": [
+    "nikoberry"
+   ],
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 80714349,
+   "pcId": 646,
+   "name": "Henken",
+   "rank": 145,
+   "year": 2022,
+   "version": "2.1",
+   "seconds": 87,
+   "creators": 11,
+   "creatorNames": [
+    "Yozyo",
+    "Janucha",
+    "Avati",
+    "shtaba",
+    "Lax04",
+    "Asuith",
+    "NekonGames",
+    "JuzGiew",
+    "PLoLek",
+    "Pyziu",
+    "Jneh"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 71434979,
@@ -2021,13 +3364,39 @@
    "rank": 146,
    "year": 2021,
    "version": "2.1",
-   "seconds": 74,
+   "seconds": 73,
    "creators": 2,
    "creatorNames": [
     "Rainstorm",
     "SyQual"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 120060187,
+   "pcId": 641,
+   "name": "azure blast",
+   "rank": 147,
+   "year": 2025,
+   "version": "2.2",
+   "seconds": 64,
+   "creators": 13,
+   "creatorNames": [
+    "Wain",
+    "[tq] AlbinoSnail",
+    "Cadooo",
+    "Flosia",
+    "Yonaka",
+    "[YAHO] C4rin",
+    "Neogul",
+    "ihotdog",
+    "K911unA",
+    "Malian",
+    "blanc",
+    "Inishia",
+    "BNDL"
+   ],
+   "lengthSource": "pointercrate"
   },
   {
    "id": 58673581,
@@ -2036,7 +3405,7 @@
    "rank": 148,
    "year": 2019,
    "version": "2.1",
-   "seconds": 118,
+   "seconds": 123,
    "creators": 15,
    "creatorNames": [
     "ChiefFlurry",
@@ -2055,7 +3424,7 @@
     "Zimnior12",
     "Salaxium"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
   },
   {
    "id": 65588448,
@@ -2064,7 +3433,7 @@
    "rank": 149,
    "year": 2022,
    "version": "2.1",
-   "seconds": 101,
+   "seconds": 99,
    "creators": 9,
    "creatorNames": [
     "iIiViRuZiIi",
@@ -2077,7 +3446,21 @@
     "[SKG] Madison Yuko",
     "XLSpiral"
    ],
-   "lengthSource": "wiki.gg"
+   "lengthSource": "pointercrate"
+  },
+  {
+   "id": 128385946,
+   "pcId": 656,
+   "name": "chrome hearts",
+   "rank": 150,
+   "year": 2025,
+   "version": "1.9PS",
+   "seconds": 158,
+   "creators": 1,
+   "creatorNames": [
+    "Roadbose"
+   ],
+   "lengthSource": "pointercrate"
   }
  ]
 }

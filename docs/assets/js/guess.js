@@ -105,11 +105,18 @@
 
   /* Board ------------------------------------------------------------------ */
 
-  var HEAD = { rank: "Rank", year: "Year", version: "Ver.", seconds: "Length", creators: "Crew" };
+  var HEAD = { rank: "Rank", year: "Verified", version: "Version", seconds: "Length", creators: "Creators" };
   var GLYPH = { exact: "✓", close: "~", miss: "✗" };
   var WORD = { exact: "exact", close: "close", miss: "not close" };
   var ARROW = { up: "▲", down: "▼", none: "" };
-  var ARROWWORD = { up: "the answer is higher", down: "the answer is lower", none: "" };
+  // What each arrow means, per stat. Rank is read like a leaderboard: up is toward #1.
+  var ARROWWORD = {
+    rank: { up: "the answer is higher on the list", down: "the answer is lower on the list" },
+    year: { up: "the answer was verified later", down: "the answer was verified earlier" },
+    version: { up: "the answer is from a newer version", down: "the answer is from an older version" },
+    seconds: { up: "the answer is longer", down: "the answer is shorter" },
+    creators: { up: "the answer has more creators", down: "the answer has fewer creators" },
+  };
   var tipSeq = 0;
 
   function cellValue(key, lv) {
@@ -144,7 +151,7 @@
     li.appendChild(el("span", "gcell__g", GLYPH[verdict.state] + " " + ARROW[verdict.arrow]));
     li.appendChild(el("span", "visually-hidden",
       HEAD[key] + " " + cellValue(key, lv) + ": " + WORD[verdict.state] +
-      (verdict.arrow !== "none" ? ", " + ARROWWORD[verdict.arrow] : "")));
+      (verdict.arrow !== "none" ? ", " + ARROWWORD[key][verdict.arrow] : "")));
     return li;
   }
 

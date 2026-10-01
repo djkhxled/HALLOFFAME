@@ -21,12 +21,14 @@
 
   // ---- judge: rank (close within 10) ----
   t("rank exact", function () { eq(G.judge(L({r: 50}), L({r: 50})).rank, {state: "exact", arrow: "none"}); });
-  t("rank 10 away is close, arrow up when answer is larger", function () {
-    eq(G.judge(L({r: 40}), L({r: 50})).rank, {state: "close", arrow: "up"}); });
+  t("rank 10 away is close; the arrow points down the list when the answer is further down", function () {
+    eq(G.judge(L({r: 40}), L({r: 50})).rank, {state: "close", arrow: "down"}); });
   t("rank 11 away is a miss", function () {
-    eq(G.judge(L({r: 39}), L({r: 50})).rank, {state: "miss", arrow: "up"}); });
-  t("rank arrow down when answer is smaller", function () {
-    eq(G.judge(L({r: 70}), L({r: 50})).rank, {state: "miss", arrow: "down"}); });
+    eq(G.judge(L({r: 39}), L({r: 50})).rank, {state: "miss", arrow: "down"}); });
+  t("rank arrow points up the list, toward #1, when the answer is nearer the top", function () {
+    eq(G.judge(L({r: 70}), L({r: 50})).rank, {state: "miss", arrow: "up"}); });
+  t("guessing #1 can never say the answer is higher", function () {
+    eq(G.judge(L({r: 1}), L({r: 50})).rank.arrow, "down"); });
 
   // ---- year (close within 1) ----
   t("year exact", function () { eq(G.judge(L({y: 2020}), L({y: 2020})).year.state, "exact"); });

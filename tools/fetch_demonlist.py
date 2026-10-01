@@ -2,11 +2,12 @@
 
     python3 tools/fetch_demonlist.py [--launch YYYY-MM-DD] [--today YYYY-MM-DD]
 
-Reads Pointercrate (the top 150, creators) and AREDL (verifications, version
-tags); lengths come from data/guess/overrides.json and wiki_lengths.json only.
-A level with no verified length is held out and listed in pending.json with an
-advisory estimate from the official GD server. Anything else it cannot fully
-derive stops the run with the level's name.
+Reads Pointercrate (the top 150, creators, and each level's page for its
+"Level Length") and AREDL (verifications, version tags). A length is, in order:
+data/guess/overrides.json, the Pointercrate level page, then a wiki time from
+data/guess/wiki_lengths.json for the rare level whose page shows none. A level
+with none of those is held out and listed in pending.json. Anything else it
+cannot fully derive stops the run with the level's name.
 """
 import argparse
 import datetime
@@ -20,7 +21,6 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools"))
 
-import gdlength  # noqa: E402
 from hall import guess  # noqa: E402
 
 PC = "https://pointercrate.com/api/v2"
@@ -43,6 +43,13 @@ def top150():
     if len(levels) != 150 or levels[-1]["position"] != 150:
         raise SystemExit(f"expected Pointercrate's top 150, got {len(levels)}")
     return levels
+
+
+def pointercrate_length(position, level_id):
+    url = f"https://pointercrate.com/demonlist/{position}/"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Macintosh) hall-of-extremes data tool"})
+    html = urllib.request.urlopen(req, timeout=60).read().decode("utf-8", "ignore")
+    return guess.parse_pointercrate_length(html, level_id)
 
 
 def load_json(path, default):
@@ -75,21 +82,18 @@ def main() -> int:
             year = ov.get("year") or guess.verification_year(detail.get("verifications", []))
             version = guess.version_from_tags(a["tags"])
 
-            # Only a verified time qualifies: an override, or a wiki-published time
-            # whose page was matched by level id. A computed length is advisory
-            # (see the spec) and only fills pending.json for a person to review.
+            # A published length only (see the spec): an override, Pointercrate's
+            # own page for the level, or a wiki time. Nothing is computed or guessed.
             if "seconds" in ov:
                 seconds, source = ov["seconds"], "override"
-            elif str(lid) in wiki:
-                seconds, source = wiki[str(lid)]["seconds"], wiki[str(lid)]["source"]
             else:
-                try:
-                    estimate = gdlength.whole_seconds(gdlength.download(lid))
-                except Exception:  # noqa: BLE001
-                    estimate = None
-                pending.append({"levelId": lid, "name": name, "rank": p["position"],
-                                "estimateSeconds": estimate})
-                print(f"  {p['position']:>3} {name}: no verified length, held out", file=sys.stderr)
+                seconds = pointercrate_length(p["position"], lid)
+                source = "pointercrate"
+                if seconds is None and str(lid) in wiki:
+                    seconds, source = wiki[str(lid)]["seconds"], wiki[str(lid)]["source"]
+            if seconds is None:
+                pending.append({"levelId": lid, "name": name, "rank": p["position"]})
+                print(f"  {p['position']:>3} {name}: no published length, held out", file=sys.stderr)
                 continue
             levels.append({
                 "id": lid, "pcId": p["id"], "name": name, "rank": p["position"],
@@ -114,14 +118,14 @@ def main() -> int:
     snapshot = {
         "fetched": today.isoformat(),
         "source": {"list": "https://pointercrate.com/demonlist/", "verifications": "https://aredl.net",
-                   "lengths": "wiki.gg, fandom, or computed from level data"},
+                   "lengths": "Pointercrate level pages (wiki times only where a page shows none)"},
         "levels": levels,
     }
     (DATA / "demonlist.json").write_text(json.dumps(snapshot, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     (DATA / "pending.json").write_text(json.dumps(
         {"fetched": today.isoformat(),
-         "note": "Levels in the top 150 held out for lack of a verified length. estimateSeconds is computed "
-                 "from level data and is advisory; confirm a value and add it to overrides.json to admit a level.",
+         "note": "Levels in the top 150 held out because no published length was found. Add a confirmed "
+                 "value to overrides.json to admit a level.",
          "levels": pending}, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
     sched_path = DATA / "schedule.json"
