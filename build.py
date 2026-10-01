@@ -581,9 +581,8 @@ def build_guess(site: dict, base_tpl: str, levels: list[dict]) -> str:
             "meta_right": f"As of {fetched_label}",
             "fetched_label": fetched_label,
             "pool_note": (
-                f"The pool is the {len(pool)} levels of the Demonlist\u2019s top 150 whose real "
-                "length is published, because length is one of the stats; more are added as "
-                "their times turn up." if len(pool) < 150 else ""),
+                f"{150 - len(pool)} levels of the top 150 are left out because no length is "
+                "published for them." if len(pool) < 150 else ""),
             "data_json_html": guess.data_json(pool, sched, snap["fetched"], hall),
         },
     )

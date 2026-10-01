@@ -18,7 +18,7 @@
 - Guess script must contain no network call (`fetch(`, `XMLHttpRequest`, `sendBeacon`, `WebSocket`, `EventSource`); a test enforces it.
 - All animation goes through one `motion()` helper that does nothing when `prefers-reduced-motion: reduce` is set.
 - Colour is never the only signal: every state has a glyph (`✓` `~` `✗`) and a visually-hidden label.
-- Judging rules (exact): Rank close if `abs(diff) <= 10`; Year close if `abs(diff) <= 1`; Version close if adjacent on `1.8 < 1.9PS < 2.0 < 2.1 < 2.2`; Length close if `abs(diff) <= 30` seconds; Creators close if `abs(diff) <= max(2, round(0.2 * answerCount))`. `exact` has no arrow. Arrows follow the value: `up` = the answer's number is larger.
+- Judging rules (exact): Rank close if `abs(diff) <= 10`; Year close if `abs(diff) <= 1`; Version close if adjacent on `1.8 < 1.9PS < 2.0 < 2.1 < 2.2`; Length close if `abs(diff) <= 30` seconds; Creators close if `abs(diff) <= max(2, round(0.2 * answerCount))`. `exact` has no arrow. Arrows point toward the answer: `up` = the answer's number is larger, except **Rank**, which reads like a leaderboard: `up` = higher on the list (a smaller rank number, nearer #1).
 - 6 guesses per round in both modes. Same level cannot be guessed twice.
 - Storage: one `localStorage` key `hall-of-extremes.guess.v1`, every access in try/catch.
 - Past daily answers never change when the snapshot is refreshed.
@@ -2570,3 +2570,5 @@ Then wait for Pages to deploy and confirm: `https://www.b4ylor.com/games/` and `
 - **Schedule launch is the build day** (2026-10-01), not a later date, so the game is playable immediately.
 - **Creators cell:** the tooltip button is `position: static` inside the cell (a `display: contents` button could not take focus).
 - **Copy:** "top 150" wording replaced by a pool note that explains why levels are missing.
+- **Length source changed again (same day).** The user pointed out that each Pointercrate level page lists its length ("Level Length 1m:26s"). Scraping all 150 pages gives a published length for 149 (ORBIT has none; it falls back to the wiki). It differs from the wiki times (23 of 82 within 1 s, mean absolute difference 6.7 s), so the game uses Pointercrate's for every level for consistency. `parse_pointercrate_length` in `hall/guess.py` reads it and refuses a page whose Level ID is not the level's. The pool is the full 150; the held-out mechanism stays for any future gap.
+- **Rank arrow flipped.** `up` for Rank means nearer #1 (a smaller number), as a leaderboard reads; the other four stats keep "up = bigger number". Guessing #1 can never say "higher". Cells and screen-reader labels spell the direction out per stat ("the answer is longer", "verified later", ...), and a labelled header row sits above the board (per-cell labels on phones). Columns are named Rank, Verified, Version, Length, Creators.

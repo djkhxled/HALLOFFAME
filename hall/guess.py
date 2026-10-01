@@ -49,6 +49,25 @@ def parse_length(text: str) -> int:
     raise ValueError(f"cannot read a length from {text!r}")
 
 
+_PC_LENGTH = re.compile(r"Level Length</b><br>\s*(\d+)m:(\d+)s")
+_PC_LEVEL_ID = re.compile(r"Level ID</b><br>\s*(\d+)")
+
+
+def parse_pointercrate_length(html: str, level_id: int):
+    """Seconds from a Pointercrate demon page ("Level Length 1m:26s"), or None
+    when the page shows no length (ORBIT's ball pit has none). Refuses a page
+    whose Level ID is not the one asked for, because the page is addressed by
+    list position and positions move; a page with no stats block at all gives
+    None."""
+    m = _PC_LEVEL_ID.search(html)
+    if not m:
+        return None        # no stats block at all (ORBIT): nothing is published
+    if int(m.group(1)) != level_id:
+        raise ValueError(f"page is for level {m.group(1)}, wanted {level_id}")
+    t = _PC_LENGTH.search(html)
+    return int(t.group(1)) * 60 + int(t.group(2)) if t else None
+
+
 def _norm(text: str) -> str:
     return re.sub(r"[^a-z0-9]", "", text.lower())
 

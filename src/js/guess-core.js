@@ -13,16 +13,19 @@
   var MAX_GUESSES = 6;
   var STATS = ["rank", "year", "version", "seconds", "creators"];
 
+  // Arrows point toward the answer. For year, version, length and creators "up"
+  // means a bigger number. Rank is read the other way, as a leaderboard is: "up"
+  // means higher on the list, nearer #1, which is a SMALLER number.
   function arrow(g, a) { return g < a ? "up" : g > a ? "down" : "none"; }
 
-  function grade(g, a, band) {
+  function grade(g, a, band, flip) {
     var d = Math.abs(a - g);
-    return { state: d === 0 ? "exact" : d <= band ? "close" : "miss", arrow: arrow(g, a) };
+    return { state: d === 0 ? "exact" : d <= band ? "close" : "miss", arrow: flip ? arrow(a, g) : arrow(g, a) };
   }
 
   function judge(guess, answer) {
     return {
-      rank: grade(guess.r, answer.r, 10),
+      rank: grade(guess.r, answer.r, 10, true),
       year: grade(guess.y, answer.y, 1),
       version: grade(VERSIONS.indexOf(guess.v), VERSIONS.indexOf(answer.v), 1),
       seconds: grade(guess.s, answer.s, 30),

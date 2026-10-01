@@ -142,15 +142,15 @@ Refresh the data when the list has moved:
     python3 tools/fetch_demonlist.py
 
 It rewrites `data/guess/demonlist.json` and extends `data/guess/schedule.json`
-without touching past days. Only levels with a **verified length** are in the
-pool: a time published on the Geometry Dash wiki or fan wiki (captured into
-`data/guess/wiki_lengths.json`, matched by level id) or one you add to
-`data/guess/overrides.json` (`seconds`, optionally `year`, and a `why`). Levels
-without one are listed in `data/guess/pending.json` with a computed estimate
-(`tools/gdlength.py`) to review; the estimate is advisory because decorative
-speed portals and time warps make it wrong for roughly one level in nine, so it
-is never shown to players. The build fails when the schedule has less than 180
-days left.
+without touching past days. Each level's length is its **Pointercrate page's
+"Level Length"** (an entry in `data/guess/overrides.json` wins: `seconds`,
+optionally `year`, and a `why`). Where that page shows none (ORBIT) it falls back
+to a wiki time in `data/guess/wiki_lengths.json`; a level with no published length
+at all is held out and listed in `data/guess/pending.json`. `tools/gdlength.py`
+and `tools/validate_lengths.py` compute lengths from level data as a research
+cross-check only; it is wrong by up to 40 s on about one level in nine, so it is
+never used for the game. The build fails when the schedule has less than 180 days
+left.
 
 ## Accessibility
 

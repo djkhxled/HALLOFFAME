@@ -51,6 +51,25 @@ class Derivation(unittest.TestCase):
             guess.parse_length("long")
 
 
+class PointercratePage(unittest.TestCase):
+    HTML = ('<b>Level ID</b><br>99703915</div><div><b>Level Length</b><br>1m:26s</div>'
+            '<div><b>Object Count</b><br>67789')
+
+    def test_the_length_is_read_in_seconds(self):
+        self.assertEqual(guess.parse_pointercrate_length(self.HTML, 99703915), 86)
+        self.assertEqual(guess.parse_pointercrate_length(
+            self.HTML.replace("1m:26s", "8m:45s"), 99703915), 525)
+
+    def test_a_page_with_no_length_gives_none(self):
+        html = '<b>Level ID</b><br>133175713</div><div><b>Object Count</b><br>5'
+        self.assertIsNone(guess.parse_pointercrate_length(html, 133175713))
+
+    def test_a_page_for_another_level_is_refused(self):
+        with self.assertRaises(ValueError):
+            guess.parse_pointercrate_length(self.HTML, 1)
+        self.assertIsNone(guess.parse_pointercrate_length("<html></html>", 99703915))
+
+
 class Validation(unittest.TestCase):
     def test_a_clean_pool_has_no_errors(self):
         self.assertEqual(guess.validate([lv(1), lv(2)]), [])
@@ -162,7 +181,7 @@ class RealSnapshot(unittest.TestCase):
 
     def test_every_length_has_a_known_source(self):
         for l in self.levels:
-            self.assertIn(l["lengthSource"], {"override", "wiki.gg", "fandom"}, l["name"])
+            self.assertIn(l["lengthSource"], {"override", "pointercrate", "wiki.gg", "fandom"}, l["name"])
 
     def test_the_schedule_only_names_levels_in_the_pool(self):
         pool = {l["id"] for l in self.levels}
