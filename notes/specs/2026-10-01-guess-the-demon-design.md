@@ -1,4 +1,4 @@
-# Guess the Demon — Design Spec
+# Demondle — Design Spec
 
 **Date:** 2026-10-01
 **Status:** Approved in conversation; written for implementation
@@ -40,7 +40,7 @@ There is no backend, no network request, and no account.
 | Stats | Rank, Peak rank, Verification year, Version, Length (real time), Number of creators |
 | Daily mechanism | Committed schedule file; answer chosen by local calendar date |
 | Navigation | Top-right tab becomes **Games**, opening a hub at `/games/` |
-| Name / path | **Guess the Demon**, `/guess/` (renameable by editing `data/site.json`) |
+| Name / path | **Demondle**, `/guess/` (renameable by editing `data/site.json`) |
 
 ## Data
 
@@ -164,7 +164,7 @@ is refused.
 
 ### Page `/guess/`
 
-- Hero in the same style as the naming game (eyebrow, art, title "Guess the Demon",
+- Hero in the same style as the naming game (eyebrow, art, title "Demondle",
   lede, top nav with "Games" current).
 - Mode switch: **Daily** / **Infinite** (a radio group).
 - Input: text field with an accessible combobox listbox of matches (substring,
@@ -184,7 +184,7 @@ is refused.
   it in 4 of 6"), and if the answer is one of the Hall's ranked levels, a link to its
   page. Buttons: **Share**, and **Next level** (Infinite) or a countdown to the next
   daily (Daily).
-- Share text: `Hall of Extremes — Guess the Demon #N · 4/6` followed by a
+- Share text: `Hall of Extremes — Demondle #N · 4/6` followed by a
   🟩🟨⬛ grid (one emoji per cell, one row per guess), no level names, no arrows.
 - Stats panel: played, win %, current streak, best streak, and a 1–6 distribution,
   separately for Daily and Infinite (streaks for Daily only).
@@ -194,7 +194,7 @@ is refused.
 
 - `render.TABS` changes the second tab to **Games** → `/games/`.
 - `/games/` is a small page: a card per game (Name Every Extreme Demon → `/game/`,
-  Guess the Demon → `/guess/`), in the site's document style.
+  Demondle → `/guess/`), in the site's document style.
 - The hero tab for `/game/` and `/guess/` is marked `aria-current` as "Games".
 - `/game/` is unchanged and keeps working.
 

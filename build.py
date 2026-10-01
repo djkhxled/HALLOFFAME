@@ -542,7 +542,7 @@ def build_game(site: dict, base_tpl: str) -> str:
 
 
 def build_guess(site: dict, base_tpl: str, levels: list[dict]) -> str:
-    """/guess/ -- Guess the Demon. Data is committed under data/guess and read
+    """/guess/ -- Demondle. Data is committed under data/guess and read
     here; nothing is requested by a visitor's browser."""
     snap = guess.load_snapshot(ROOT / "data" / "guess" / "demonlist.json")
     sched = guess.load_schedule(ROOT / "data" / "guess" / "schedule.json")
@@ -564,7 +564,7 @@ def build_guess(site: dict, base_tpl: str, levels: list[dict]) -> str:
         if lv.get("published") and lid and int(lid) in pool_ids:
             hall[int(lid)] = lv["slug"]
 
-    copy = {"title": "Guess the Demon", "lede": "", **(site.get("guess") or {})}
+    copy = {"title": "Demondle", "lede": "", **(site.get("guess") or {})}
     when = datetime.date.fromisoformat(snap["fetched"])
     fetched_label = f"{when.day} {when.strftime('%B %Y')}"
 

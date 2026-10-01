@@ -1,4 +1,4 @@
-"""Guess the Demon: data layer, schedule, built pages."""
+"""Demondle: data layer, schedule, built pages."""
 import datetime
 import json
 import pathlib
@@ -308,7 +308,7 @@ class Privacy(unittest.TestCase):
 
     def test_the_policy_says_what_guess_stores(self):
         privacy = (DOCS / "privacy" / "index.html").read_text(encoding="utf-8")
-        for word in ("Guess the Demon", "streak"):
+        for word in ("Demondle", "streak"):
             self.assertIn(word, privacy)
 
 
