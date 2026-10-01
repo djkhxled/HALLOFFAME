@@ -353,6 +353,42 @@ class ShareCard(unittest.TestCase):
     def test_it_has_alt_text(self):
         self.assertRegex(self.home, r'property="og:image:alt" content="[^"]{20,}"')
 
+    @staticmethod
+    def _card(page_html):
+        m = re.search(r'property="og:image" content="([^"]+)"', page_html)
+        return m.group(1) if m else None
+
+    def _pages(self):
+        """Every built page that is meant to be shared: all but the 404 and the
+        forwarding page for the old address."""
+        skip = {DOCS / "404.html", DOCS / "guess" / "index.html"}
+        return [p for p in DOCS.rglob("*.html") if p not in skip]
+
+    def test_every_shareable_page_has_a_card_that_exists_at_the_right_size(self):
+        import struct
+        for page in self._pages():
+            url = self._card(page.read_text(encoding="utf-8"))
+            self.assertIsNotNone(url, f"{page} has no share image")
+            data = (DOCS / url.split("/", 3)[3]).read_bytes()
+            self.assertEqual(data[:8], b"\x89PNG\r\n\x1a\n", url)
+            self.assertEqual(struct.unpack(">II", data[16:24]), (1200, 630), url)
+
+    def test_every_ranked_level_shares_the_home_card(self):
+        home = self._card(self.home)
+        levels = list((DOCS / "levels").glob("*/index.html"))
+        self.assertGreaterEqual(len(levels), 30)
+        for page in levels:
+            self.assertEqual(self._card(page.read_text(encoding="utf-8")), home, str(page))
+
+    def test_the_other_pages_each_have_their_own_card(self):
+        home = self._card(self.home)
+        own = {}
+        for name in ("game", "demondle", "games", "privacy", "terms", "credits"):
+            url = self._card((DOCS / name / "index.html").read_text(encoding="utf-8"))
+            self.assertNotEqual(url, home, name)
+            own[name] = url
+        self.assertEqual(len(set(own.values())), len(own), "two pages share a card")
+
 
 class Privacy(unittest.TestCase):
     def test_the_guess_scripts_make_no_network_call(self):

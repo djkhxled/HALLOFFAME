@@ -156,6 +156,16 @@ cross-check only; it is wrong by up to 40 s on about one level in nine, so it is
 never used for the game. The build fails when the schedule has less than 180 days
 left.
 
+## Share cards
+
+Every page names a 1200x630 image for link previews. `src/art/og-home.png` is the
+owner's own title card; it is the home page's card and the one every ranked level
+shares. The other pages have their own (`og-game`, `og-demondle`, `og-games`,
+`og-privacy`, `og-terms`, `og-credits`), drawn by `tools/make_cards.py`. That tool is
+a one-off design aid, not part of the build: it needs Pillow and macOS's Arial Black
+and Menlo fonts, and its output is committed. A new page without a card of its own
+falls back to the home card.
+
 ## Accessibility
 
 - `prefers-reduced-motion` disables every pinned, scrubbed, and parallaxed
