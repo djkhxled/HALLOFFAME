@@ -146,5 +146,137 @@ class Promises(unittest.TestCase):
         self.assertIn("../src/js/guess-core.js", page)
 
 
+class RealSnapshot(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.snap = guess.load_snapshot(ROOT / "data" / "guess" / "demonlist.json")
+        cls.sched = guess.load_schedule(ROOT / "data" / "guess" / "schedule.json")
+        cls.levels = cls.snap["levels"]
+
+    def test_the_pool_is_valid(self):
+        self.assertEqual(guess.validate(self.levels), [])
+
+    def test_it_is_the_main_and_extended_list(self):
+        self.assertGreaterEqual(len(self.levels), 60)
+        self.assertLessEqual(max(l["rank"] for l in self.levels), 150)
+
+    def test_every_length_has_a_known_source(self):
+        for l in self.levels:
+            self.assertIn(l["lengthSource"], {"override", "wiki.gg", "fandom"}, l["name"])
+
+    def test_the_schedule_only_names_levels_in_the_pool(self):
+        pool = {l["id"] for l in self.levels}
+        past_and_future = [d["levelId"] for d in self.sched["days"]]
+        self.assertTrue(set(past_and_future) <= pool)
+
+    def test_the_schedule_covers_the_next_six_months(self):
+        last = datetime.date.fromisoformat(self.sched["days"][-1]["date"])
+        self.assertGreaterEqual((last - datetime.date.today()).days, 180)
+
+    def test_the_schedule_launch_matches_its_first_day(self):
+        self.assertEqual(self.sched["days"][0]["date"], self.sched["launch"])
+
+    def test_hall_levels_are_in_the_pool_when_they_should_be(self):
+        """Every ranked Hall level on the Demonlist top 150 keeps a creators count
+        that is at least the number the Hall page credits' unique names."""
+        pool = {l["id"]: l for l in self.levels}
+        for f in (ROOT / "data" / "levels").glob("*.json"):
+            facts = json.loads(f.read_text(encoding="utf-8")).get("facts") or {}
+            lid = facts.get("levelId")
+            if lid and int(lid) in pool:
+                self.assertGreaterEqual(pool[int(lid)]["creators"], 1, f.name)
+
+
+class BuiltPage(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        import subprocess
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True, capture_output=True)
+        cls.html = (DOCS / "guess" / "index.html").read_text(encoding="utf-8")
+        cls.site = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+
+    def test_the_page_exists_with_its_title_from_site_json(self):
+        self.assertIn(f"<title>{self.site['guess']['title']}</title>", self.html)
+        self.assertIn(self.site["guess"]["lede"].split(".")[0], self.html)
+
+    def test_the_data_blob_is_valid_and_complete(self):
+        m = re.search(r'<script type="application/json" id="guess-data">(.*?)</script>', self.html, re.S)
+        data = json.loads(m.group(1).replace("<\\/", "</"))
+        snap = guess.load_snapshot(ROOT / "data" / "guess" / "demonlist.json")
+        self.assertEqual(len(data["levels"]), len(snap["levels"]))
+        self.assertEqual(data["fetched"], snap["fetched"])
+
+    def test_scripts_load_core_before_ui(self):
+        self.assertLess(self.html.index("guess-core.js"), self.html.index("guess.js"))
+
+    def test_the_hooks_the_script_needs_exist(self):
+        for hook in ("data-guess", "data-input", "data-options", "data-board", "data-status",
+                     "data-live", "data-result", "data-share", "data-next", "data-countdown",
+                     "data-sound", "data-stats-daily", "data-stats-infinite", "data-result-link"):
+            self.assertIn(hook, self.html, hook)
+        self.assertEqual(self.html.count('name="mode"'), 2)
+
+    def test_the_input_is_a_labelled_combobox(self):
+        self.assertIn('role="combobox"', self.html)
+        self.assertRegex(self.html, r'<label[^>]*for="guess-input"')
+        self.assertIn('aria-controls=', self.html)
+
+    def test_a_ranked_hall_level_in_the_pool_links_back(self):
+        m = re.search(r'<script type="application/json" id="guess-data">(.*?)</script>', self.html, re.S)
+        data = json.loads(m.group(1).replace("<\\/", "</"))
+        for lid, slug in data["hall"].items():
+            self.assertTrue((DOCS / "levels" / slug / "index.html").exists(), slug)
+
+
+class Hub(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        import subprocess
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True, capture_output=True)
+        cls.hub = (DOCS / "games" / "index.html").read_text(encoding="utf-8")
+        cls.pages = {p: (DOCS / p / "index.html").read_text(encoding="utf-8")
+                     for p in ("game", "guess", "games")}
+        cls.home = (DOCS / "index.html").read_text(encoding="utf-8")
+
+    def test_the_hub_lists_both_games(self):
+        self.assertIn('href="../game/"', self.hub)
+        self.assertIn('href="../guess/"', self.hub)
+
+    def test_the_tab_is_called_games_everywhere(self):
+        for name, html in list(self.pages.items()) + [("home", self.home)]:
+            m = re.search(r'<nav class="topnav".*?</nav>', html, re.S)
+            self.assertIn(">Games</a>", m.group(0), name)
+            self.assertNotIn(">Game</a>", m.group(0), name)
+
+    def test_the_games_tab_is_current_on_the_hub_and_both_games(self):
+        for name in ("game", "guess", "games"):
+            m = re.search(r'<nav class="topnav".*?</nav>', self.pages[name], re.S).group(0)
+            self.assertEqual(m.count('aria-current="page"'), 1, name)
+            self.assertRegex(m, r'<a class="topnav__link"[^>]*aria-current="page">Games</a>', name)
+
+    def test_the_old_game_page_still_builds(self):
+        self.assertIn("Name every extreme demon".lower(), self.pages["game"].lower())
+
+
+class Privacy(unittest.TestCase):
+    def test_the_guess_scripts_make_no_network_call(self):
+        for name in ("guess.js", "guess-core.js"):
+            code = re.sub(r"/\*.*?\*/", "", (ROOT / "src" / "js" / name).read_text(encoding="utf-8"), flags=re.S)
+            code = re.sub(r"//[^\n]*", "", code)
+            for bad in ("fetch(", "XMLHttpRequest", "sendBeacon", "WebSocket", "EventSource", "import("):
+                self.assertNotIn(bad, code, f"{name}: {bad}")
+
+    def test_the_storage_key_is_the_one_the_policy_names(self):
+        code = (ROOT / "src" / "js" / "guess.js").read_text(encoding="utf-8")
+        key = re.search(r'var KEY = "([^"]+)"', code).group(1)
+        privacy = (ROOT / "pages" / "privacy.html").read_text(encoding="utf-8")
+        self.assertIn(key, privacy)
+
+    def test_the_policy_says_what_guess_stores(self):
+        privacy = (DOCS / "privacy" / "index.html").read_text(encoding="utf-8")
+        for word in ("Guess the Demon", "streak"):
+            self.assertIn(word, privacy)
+
+
 if __name__ == "__main__":
     unittest.main()

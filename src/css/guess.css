@@ -1,0 +1,201 @@
+/* guess.css — Guess the Demon, and the Games hub cards.
+ *
+ * Plain on purpose, like game.css. The board is a grid of cells whose
+ * colour is never the only signal: each carries a glyph and a hidden label.
+ */
+
+.guess {
+  --exact: #1b6b41;
+  --exact-ink: #eafff2;
+  --close: #8a6200;
+  --close-ink: #fff6dc;
+  --miss: #262a35;
+  --miss-ink: #cfd3dd;
+  position: relative;
+  padding-bottom: var(--space-8, 4rem);
+}
+
+.hero--game { min-height: 38svh; }
+
+/* Mode + key ------------------------------------------------------------- */
+
+.gkey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.4rem;
+  margin: var(--space-4) 0 var(--space-5);
+  font: var(--step--2) / 1.4 var(--font-mono);
+  color: var(--muted);
+}
+.gkey__row { margin: 0; display: flex; align-items: center; gap: 0.5rem; }
+.gkey__note { margin: 0; flex-basis: 100%; }
+.gkey__chip {
+  display: inline-grid; place-items: center;
+  width: 1.7rem; height: 1.7rem; border-radius: 3px;
+  font-weight: 700; color: var(--ink);
+}
+.gkey__chip.gcell--exact { background: var(--exact); color: var(--exact-ink); }
+.gkey__chip.gcell--close { background: var(--close); color: var(--close-ink); }
+.gkey__chip.gcell--miss  { background: var(--miss);  color: var(--miss-ink); }
+.gkey__chip--plain { border: var(--rule) solid var(--rule-colour); }
+
+/* Input + options -------------------------------------------------------- */
+
+.gpick { margin-bottom: var(--space-5); }
+.gpick__label { display: block; margin-bottom: 0.4rem; font: var(--step--2) / 1.4 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.gpick__box { position: relative; }
+
+.ginput {
+  width: 100%; min-width: 0;
+  font: 600 var(--step-2) / 1.1 var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: var(--rule) solid var(--rule-colour);
+  border-radius: 3px;
+  padding: 0.7rem 1rem;
+}
+.ginput::placeholder { color: var(--muted); font-weight: 400; }
+.ginput:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ginput:disabled { opacity: 0.55; }
+
+.goptions {
+  position: absolute; z-index: 50; left: 0; right: 0; top: calc(100% + 4px);
+  margin: 0; padding: 0.25rem; list-style: none;
+  background: var(--field);
+  border: var(--rule) solid var(--rule-colour);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.45);
+  max-height: 19rem; overflow-y: auto;
+}
+.goption {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.55rem 0.75rem; cursor: pointer; border-radius: 2px;
+}
+.goption__rank { font-family: var(--font-mono); font-size: var(--step--2); color: var(--muted); }
+.goption[aria-selected="true"], .goption:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+
+.gstatus { min-height: 1.4em; margin: 0.5rem 0 0; font: var(--step--2) / 1.4 var(--font-mono); color: var(--muted); }
+
+/* Board ------------------------------------------------------------------ */
+
+.gboard { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+
+.grow {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1.5fr) repeat(5, minmax(4.4rem, 1fr));
+  gap: 0.4rem;
+  align-items: stretch;
+}
+.grow--empty .gcell { background: transparent; border: var(--rule) dashed var(--rule-colour); min-height: 3.6rem; }
+.grow__name {
+  display: flex; align-items: center; padding: 0.5rem 0.75rem;
+  font: 700 var(--step-0) / 1.15 var(--font-display);
+  border: var(--rule) solid var(--rule-colour); border-radius: 3px;
+  overflow-wrap: anywhere;
+}
+.grow__rank { margin-left: auto; padding-left: 0.5rem; font: 400 var(--step--2) var(--font-mono); color: var(--muted); }
+
+.gcell {
+  position: relative;
+  display: grid; align-content: center; justify-items: center; gap: 0.1rem;
+  min-height: 3.6rem; padding: 0.35rem 0.25rem;
+  border-radius: 3px; text-align: center;
+  background: var(--miss); color: var(--miss-ink);
+  font: 600 var(--step--1) / 1.15 var(--font-mono);
+  backface-visibility: hidden;
+}
+.gcell--exact { background: var(--exact); color: var(--exact-ink); }
+.gcell--close { background: var(--close); color: var(--close-ink); }
+.gcell--miss  { background: var(--miss);  color: var(--miss-ink); }
+.gcell__head { display: none; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+.gcell__v { font-size: var(--step-0); }
+.gcell__g { font-size: 0.78rem; opacity: 0.9; }
+
+/* position: static so the tooltip anchors to the whole cell, not the number */
+.gcell .credit { position: static; display: inline; cursor: help; color: inherit; }
+.gcell .credit__lead { border-bottom: 1px dotted currentColor; font-size: var(--step-0); }
+.gcell .credit__all { color: var(--ink); }
+.gcell:last-child .credit__all { left: auto; right: 0; }
+
+/* Result + stats --------------------------------------------------------- */
+
+.gresult {
+  margin: var(--space-6) 0;
+  padding: var(--space-5);
+  border: var(--rule) solid var(--rule-colour);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+.gresult__title { margin: 0 0 0.4rem; font: 800 var(--step-3) / 1.05 var(--font-display); }
+.gresult__line { margin: 0.35rem 0; color: var(--ink); }
+.gresult__actions { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin-top: var(--space-4); }
+.gresult__copied { font: var(--step--2) var(--font-mono); color: var(--muted); }
+
+.gbtn {
+  font: 600 var(--step--1) / 1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink); background: transparent;
+  border: var(--rule) solid var(--rule-colour); border-radius: 3px;
+  padding: 0.7rem 1rem; cursor: pointer;
+}
+.gbtn:hover { background: color-mix(in srgb, var(--ink) 10%, transparent); }
+.gbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gbtn--primary { background: var(--ink); color: var(--field); border-color: var(--ink); }
+.gbtn--primary:hover { background: color-mix(in srgb, var(--ink) 85%, var(--field)); }
+
+.gmodes { border: 0; padding: 0; margin: var(--space-5) 0 0; }
+.gmodes__legend { font: var(--step--2) / 1.4 var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); padding: 0; }
+.gmodes__row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.gmode {
+  display: inline-flex; gap: 0.5rem; align-items: baseline;
+  padding: 0.6rem 1rem; cursor: pointer;
+  border: var(--rule) solid var(--rule-colour); border-radius: 3px;
+  font: 600 var(--step-0) / 1 var(--font-display);
+}
+.gmode input { position: absolute; opacity: 0; pointer-events: none; }
+.gmode:has(input:checked) { background: var(--ink); color: var(--field); border-color: var(--ink); }
+.gmode:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gmodes__note { margin: 0.7rem 0 0; color: var(--muted); font-size: var(--step--1); max-width: 62ch; }
+
+.gstats { margin-top: var(--space-7); }
+.gstats__head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.gstats__title { margin: 0; font: 700 var(--step-1) / 1.1 var(--font-display); }
+.gstats__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--space-5); margin-top: var(--space-4); }
+.gstat h3 { margin: 0 0 0.5rem; font: 600 var(--step--2) var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.gstat dl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0 0 0.8rem; }
+.gstat dt { font: var(--step--2) var(--font-mono); color: var(--muted); }
+.gstat dd { margin: 0; font: 800 var(--step-2) / 1 var(--font-display); }
+.gdist { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; font: var(--step--2) var(--font-mono); }
+.gdist li { display: grid; grid-template-columns: 1rem 1fr; gap: 0.5rem; align-items: center; }
+.gdist__bar { display: block; height: 1rem; min-width: 1.4rem; background: var(--miss); color: var(--miss-ink); padding-right: 0.3rem; text-align: right; border-radius: 2px; }
+.gdist__bar--won { background: var(--exact); color: var(--exact-ink); }
+.gsource { margin-top: var(--space-5); color: var(--muted); font-size: var(--step--1); max-width: 70ch; }
+
+/* Hub cards -------------------------------------------------------------- */
+
+.gcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: var(--space-5); margin-top: var(--space-6); }
+.gcard {
+  display: grid; gap: 0.5rem; align-content: start;
+  padding: var(--space-5); text-decoration: none; color: var(--ink);
+  border: var(--rule) solid var(--rule-colour); border-radius: 4px;
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+.gcard:hover, .gcard:focus-visible { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 9%, transparent); }
+.gcard__title { margin: 0; font: 800 var(--step-2) / 1.05 var(--font-display); }
+.gcard__desc { margin: 0; color: var(--muted); }
+.gcard__go { font: 600 var(--step--2) var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; }
+
+/* Phones: name on its own line, the five cells in a row beneath ---------- */
+
+@media (max-width: 40rem) {
+  .grow { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .grow__name, .grow--empty .grow__name { grid-column: 1 / -1; }
+  .grow--empty .grow__name { display: none; }
+  .gcell { min-height: 3.5rem; padding: 0.3rem 0.1rem; }
+  .gcell__head { display: block; }
+  .gcell__v, .gcell .credit__lead { font-size: var(--step--1); }
+  .gstat dl { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .goption, .gcell { transition: none; }
+}

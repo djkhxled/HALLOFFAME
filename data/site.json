@@ -38,6 +38,18 @@
     "title": "Name Every Extreme Demon",
     "lede": "Type a level\u2019s name and it lands on the list. Play free or race the clock, and you can leave and come back. Simple as that."
   },
+  "guess": {
+    "title": "Guess the Demon",
+    "lede": "Six guesses to find the hidden level on the Demonlist. Every guess tells you how its rank, year, version, length and crew size compare. A new level every day, or play on forever."
+  },
+  "games": {
+    "title": "Games",
+    "lede": "Two ways to test how well you know the list.",
+    "cards": [
+      {"href": "/game/", "title": "Name Every Extreme Demon", "desc": "Type a level\u2019s name and it lands on the list. All 1,621 of them, free play or against the clock."},
+      {"href": "/guess/", "title": "Guess the Demon", "desc": "A hidden level from the Demonlist. Six guesses, five stats. A new one every day."}
+    ]
+  },
   "records": {"endpoint": "https://hall-records.baylorperkins.workers.dev"},
   "artDrift": "40s",
   "artAmbient": [["embers", 22]],

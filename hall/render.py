@@ -299,7 +299,7 @@ def chrome_html(field: str) -> str:
             f"<style>:root{{color-scheme:{scheme};}}</style>")
 
 
-TABS = [("/", "The Hall", "hall"), ("/game/", "Game", "game")]
+TABS = [("/", "The Hall", "hall"), ("/games/", "Games", "games")]
 
 
 def topnav_html(current: str) -> str:

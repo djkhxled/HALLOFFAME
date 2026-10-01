@@ -507,7 +507,7 @@ class Schedule(unittest.TestCase):
         self.assertTrue(all(a != b for a, b in zip(ids, ids[1:])))
 
     def test_extending_never_changes_the_past(self):
-        sched = {"launch": "2026-10-05", "seed": 7,
+        sched = {"launch": "2026-10-01", "seed": 7,
                  "days": guess.make_schedule(self.POOL, datetime.date(2026, 10, 5), 7, 30)}
         today = datetime.date(2026, 10, 15)
         past = [d for d in sched["days"] if d["date"] <= today.isoformat()]
@@ -519,7 +519,7 @@ class Schedule(unittest.TestCase):
         self.assertGreaterEqual(len(new["days"]), (today - datetime.date(2026, 10, 5)).days + 40)
 
     def test_dates_are_contiguous_from_launch(self):
-        sched = {"launch": "2026-10-05", "seed": 7, "days": []}
+        sched = {"launch": "2026-10-01", "seed": 7, "days": []}
         new = guess.extend_schedule(sched, self.POOL, datetime.date(2026, 10, 1), lookahead=30)
         dates = [datetime.date.fromisoformat(d["date"]) for d in new["days"]]
         self.assertEqual(dates[0], datetime.date(2026, 10, 5))
@@ -533,7 +533,7 @@ class Schedule(unittest.TestCase):
 class PageData(unittest.TestCase):
     def test_json_is_safe_inside_a_script_tag(self):
         levels = [lv(1, name="</script><b>x")]
-        out = guess.data_json(levels, {"launch": "2026-10-05", "seed": 1,
+        out = guess.data_json(levels, {"launch": "2026-10-01", "seed": 1,
                                        "days": [{"date": "2026-10-05", "levelId": 1}]},
                               "2026-10-01", {})
         self.assertNotIn("</script>", out)
@@ -543,7 +543,7 @@ class PageData(unittest.TestCase):
         self.assertEqual(data["sched"], [1])
 
     def test_levels_use_the_short_keys_the_script_reads(self):
-        out = json.loads(guess.data_json([lv(1)], {"launch": "2026-10-05", "seed": 1,
+        out = json.loads(guess.data_json([lv(1)], {"launch": "2026-10-01", "seed": 1,
                                                     "days": [{"date": "2026-10-05", "levelId": 1}]},
                                          "2026-10-01", {1: "deimos"}).replace("<\\/", "</"))
         self.assertEqual(sorted(out["levels"][0]), ["c", "cn", "id", "n", "r", "s", "v", "y"])
@@ -766,7 +766,7 @@ AREDL = "https://api.aredl.net/v2/api/aredl/levels"
 UA = {"User-Agent": "hall-of-extremes data tool (https://www.b4ylor.com)"}
 DATA = ROOT / "data" / "guess"
 SEED = 20261001
-DEFAULT_LAUNCH = "2026-10-05"
+DEFAULT_LAUNCH = "2026-10-01"
 MIN_POOL = 60         # the build refuses a smaller pool
 
 
@@ -1750,7 +1750,8 @@ In `main()`, immediately after the `/game/` write, add:
 .gcell__v { font-size: var(--step-0); }
 .gcell__g { font-size: 0.78rem; opacity: 0.9; }
 
-.gcell .credit { display: contents; cursor: help; color: inherit; }
+/* position: static so the tooltip anchors to the whole cell, not the number */
+.gcell .credit { position: static; display: inline; cursor: help; color: inherit; }
 .gcell .credit__lead { border-bottom: 1px dotted currentColor; font-size: var(--step-0); }
 .gcell .credit__all { color: var(--ink); }
 .gcell:last-child .credit__all { left: auto; right: 0; }
@@ -2101,6 +2102,11 @@ In `main()`, immediately after the `/game/` write, add:
       }).slice(0, 8);
   }
 
+  function alreadyGuessed(q) {
+    var n = norm(q);
+    return !!n && round().guesses.some(function (id) { return byId[id] && norm(byId[id].n).indexOf(n) >= 0; });
+  }
+
   function closeOptions() {
     optionsEl.hidden = true; optionsEl.textContent = "";
     input.setAttribute("aria-expanded", "false");
@@ -2175,7 +2181,8 @@ In `main()`, immediately after the `/game/` write, add:
     else if (e.key === "Enter") {
       e.preventDefault();
       var pick = shown[active >= 0 ? active : 0] || matches(input.value)[0];
-      if (pick) submit(pick); else statusEl.textContent = "Pick a level from the list.";
+      if (pick) submit(pick);
+      else statusEl.textContent = alreadyGuessed(input.value) ? "You already guessed that one." : "Pick a level from the list.";
     }
   });
   root.querySelector("[data-form]").addEventListener("submit", function (e) { e.preventDefault(); });
@@ -2297,10 +2304,9 @@ class Hub(unittest.TestCase):
 
     def test_the_games_tab_is_current_on_the_hub_and_both_games(self):
         for name in ("game", "guess", "games"):
-            m = re.search(r'<nav class="topnav".*?</nav>', self.pages[name], re.S)
-            self.assertRegex(m.group(0), r'aria-current="page"[^>]*>Games<|>Games</a>', name)
-            self.assertEqual(m.group(0).count('aria-current="page"'), 1, name)
-            self.assertRegex(m.group(0), r'<a class="topnav__link"[^>]*aria-current="page">Games</a>', name)
+            m = re.search(r'<nav class="topnav".*?</nav>', self.pages[name], re.S).group(0)
+            self.assertEqual(m.count('aria-current="page"'), 1, name)
+            self.assertRegex(m, r'<a class="topnav__link"[^>]*aria-current="page">Games</a>', name)
 
     def test_the_old_game_page_still_builds(self):
         self.assertIn("Name every extreme demon".lower(), self.pages["game"].lower())
@@ -2553,3 +2559,14 @@ Then wait for Pages to deploy and confirm: `https://www.b4ylor.com/games/` and `
 **Deviation from the spec, deliberate:** the spec says Python reads the wikis; wiki.gg and Fandom block plain Python requests, so wiki times are captured once through the browser into `wiki_lengths.json` (Task 2) and the tool reads that file. Computed length is calibrated by the validation gate before it is trusted.
 
 **Type consistency:** level keys `id/n/r/y/v/s/c/cn` are produced in `hall/guess.py data_json` (Task 3) and read in `guess-core.js` and `guess.js` (Tasks 5, 6). `judge` returns `{rank,year,version,seconds,creators}` and `STATS` lists the same names in the same order, used by `shareText` and `guess.js`. Round and state shapes match between `normalizeState`, `addGuess` and `guess.js`. Page data keys `fetched, launch, sched, hall, levels` match `data_json` and the script.
+
+---
+
+## Deviations found while executing (2026-10-01)
+
+- **Computed lengths are advisory only.** The validation gate failed (74 of 83 within 1 s). A decorative speed portal 35 blocks above the playfield (Quanteuse processing), time warps and end triggers make the estimate wrong by up to 40 s with no way to detect it from the data. Only wiki-published times (matched by infobox level id) and `overrides.json` admit a level; the rest are held out in `data/guess/pending.json`. The pool is therefore 83 levels at launch, not 150. The spec, the fetch tool and the README say so.
+- **Wiki pages are matched by level id, not name.** A name search resolved "Deimos" to EndLevel's Deimos (2m 16s); ItsHybrid's is 2m 57s.
+- **A win is the level itself (`guess.id === answer.id`)**, not "all five stats exact".
+- **Schedule launch is the build day** (2026-10-01), not a later date, so the game is playable immediately.
+- **Creators cell:** the tooltip button is `position: static` inside the cell (a `display: contents` button could not take focus).
+- **Copy:** "top 150" wording replaced by a pool note that explains why levels are missing.

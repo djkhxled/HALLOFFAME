@@ -14,7 +14,7 @@ import re
 import shutil
 import sys
 
-from hall import game, render
+from hall import game, guess, render
 from hall.ambient import ambient_svg
 from hall.data import load_levels, validate_levels, voice_progress
 
@@ -489,7 +489,7 @@ def build_game(site: dict, base_tpl: str) -> str:
             "eyebrow": f"AREDL \u00b7 {total:,} extreme demons",
             "art_html": read(ROOT / "src" / "art" / "doc.svg")
             if (ROOT / "src" / "art" / "doc.svg").exists() else "",
-            "topnav_html": render.topnav_html("game"),
+            "topnav_html": render.topnav_html("games"),
             "meta_left": "The Extreme Demon List",
             "lede": copy["lede"],
             "meta_right": f"As of {fetched_label}",
@@ -531,6 +531,130 @@ def build_game(site: dict, base_tpl: str) -> str:
             "head_extra_html": (
                 '<link rel="stylesheet" href="/assets/css/game.css">'
                 '<style>[data-level="game"] .hero__title'
+                "{font-size:clamp(2.75rem,8vw,7rem)}</style>"
+            ),
+            "body_html": body,
+            "disclaimer": site["disclaimer"],
+            "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
+        },
+    )
+
+
+def build_guess(site: dict, base_tpl: str, levels: list[dict]) -> str:
+    """/guess/ -- Guess the Demon. Data is committed under data/guess and read
+    here; nothing is requested by a visitor's browser."""
+    snap = guess.load_snapshot(ROOT / "data" / "guess" / "demonlist.json")
+    sched = guess.load_schedule(ROOT / "data" / "guess" / "schedule.json")
+    pool = snap["levels"]
+    errors = guess.validate(pool)
+    if errors:
+        raise SystemExit("guess data invalid:\n  " + "\n  ".join(errors[:10]))
+    ahead = (datetime.date.fromisoformat(sched["days"][-1]["date"]) - datetime.date.today()).days
+    if ahead < 180:
+        raise SystemExit(f"guess schedule runs out in {ahead} days; run tools/fetch_demonlist.py")
+    pool_ids = {lv["id"] for lv in pool}
+    if any(d["levelId"] not in pool_ids for d in sched["days"]):
+        raise SystemExit("guess schedule names a level that is not in demonlist.json")
+
+    # Ranked Hall levels that are also in the pool, so the result card can link back.
+    hall = {}
+    for lv in levels:
+        lid = (lv.get("facts") or {}).get("levelId")
+        if lv.get("published") and lid and int(lid) in pool_ids:
+            hall[int(lid)] = lv["slug"]
+
+    copy = {"title": "Guess the Demon", "lede": "", **(site.get("guess") or {})}
+    when = datetime.date.fromisoformat(snap["fetched"])
+    fetched_label = f"{when.day} {when.strftime('%B %Y')}"
+
+    body = render.fill(
+        read(TEMPLATES / "guess.html"),
+        {
+            "eyebrow": f"Demonlist · {len(pool)} levels",
+            "art_html": read(ROOT / "src" / "art" / "doc.svg")
+            if (ROOT / "src" / "art" / "doc.svg").exists() else "",
+            "topnav_html": render.topnav_html("games"),
+            "heading": copy["title"],
+            "meta_left": "Main and Extended list",
+            "lede": copy["lede"],
+            "meta_right": f"As of {fetched_label}",
+            "fetched_label": fetched_label,
+            "pool_note": (
+                f"The pool is the {len(pool)} levels of the Demonlist\u2019s top 150 whose real "
+                "length is published, because length is one of the stats; more are added as "
+                "their times turn up." if len(pool) < 150 else ""),
+            "data_json_html": guess.data_json(pool, sched, snap["fetched"], hall),
+        },
+    )
+    return render.fill(
+        base_tpl,
+        {
+            "slug": "guess",
+            "html_attrs_html": " data-attempt-manual",
+            "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
+            "attempt_label_html": '<span class="attempt__rank">Game</span>',
+            "foot_extra_html": ('<script src="/assets/js/guess-core.js" defer></script>'
+                                '<script src="/assets/js/guess.js" defer></script>'),
+            "signature": "static",
+            "texture_class": "texture texture--grain",
+            "title": copy["title"],
+            "og_title": f"{copy['title']} — {site['title']}",
+            "description": ("Guess the hidden Demonlist level in six tries, using its rank, "
+                            "year, version, length and crew size."),
+            "head_extra_html": (
+                '<link rel="stylesheet" href="/assets/css/guess.css">'
+                '<style>[data-level="guess"] .hero__title'
+                "{font-size:clamp(2.75rem,8vw,7rem)}</style>"
+            ),
+            "body_html": body,
+            "disclaimer": site["disclaimer"],
+            "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
+        },
+    )
+
+
+def build_games(site: dict, base_tpl: str) -> str:
+    """/games/ -- the hub the top-right tab opens."""
+    copy = {"title": "Games", "lede": "", "cards": [], **(site.get("games") or {})}
+    cards = "".join(
+        f'<a class="gcard" href="{render.esc(c["href"])}">'
+        f'<h2 class="gcard__title">{render.esc(c["title"])}</h2>'
+        f'<p class="gcard__desc">{render.esc(c["desc"])}</p>'
+        f'<span class="gcard__go">Play</span></a>'
+        for c in copy["cards"]
+    )
+    body = render.fill(
+        read(TEMPLATES / "games.html"),
+        {
+            "eyebrow": f"{len(copy['cards'])} games",
+            "art_html": read(ROOT / "src" / "art" / "doc.svg")
+            if (ROOT / "src" / "art" / "doc.svg").exists() else "",
+            "topnav_html": render.topnav_html("games"),
+            "heading": copy["title"],
+            "meta_left": "Baylor’s Hall of Extremes",
+            "lede": copy["lede"],
+            "meta_right": "Pick one",
+            "cards_html": cards,
+        },
+    )
+    return render.fill(
+        base_tpl,
+        {
+            "slug": "games",
+            "html_attrs_html": " data-attempt-manual",
+            "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
+            "attempt_label_html": '<span class="attempt__rank">Games</span>',
+            "foot_extra_html": "",
+            "signature": "static",
+            "texture_class": "texture texture--grain",
+            "title": copy["title"],
+            "og_title": f"{copy['title']} — {site['title']}",
+            "description": copy["lede"] or "Games about the Extreme Demon List.",
+            "head_extra_html": (
+                '<link rel="stylesheet" href="/assets/css/guess.css">'
+                '<style>[data-level="games"] .hero__title'
                 "{font-size:clamp(2.75rem,8vw,7rem)}</style>"
             ),
             "body_html": body,
@@ -640,6 +764,14 @@ def main() -> int:
 
     write(DOCS / "game" / "index.html",
           stamped(build_game(site, base_tpl), 1))
+    pages += 1
+
+    write(DOCS / "guess" / "index.html",
+          stamped(build_guess(site, base_tpl, levels), 1))
+    pages += 1
+
+    write(DOCS / "games" / "index.html",
+          stamped(build_games(site, base_tpl), 1))
     pages += 1
 
     # Absolute URLs on purpose — see build_404. stamped() would relativize
