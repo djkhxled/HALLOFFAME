@@ -1,0 +1,177 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>guess check: running</title>
+<body style="font:14px/1.5 ui-monospace,monospace;padding:1rem;background:#111;color:#ddd">
+<pre id="out"></pre>
+<script src="../src/js/guess-core.js"></script>
+<script>
+(function () {
+  var G = window.GuessCore, out = document.getElementById("out"), pass = 0, fail = 0;
+  function t(name, fn) {
+    try { fn(); pass++; out.textContent += "ok   " + name + "\n"; }
+    catch (e) { fail++; out.textContent += "FAIL " + name + ": " + e.message + "\n"; }
+  }
+  function eq(a, b, msg) {
+    if (JSON.stringify(a) !== JSON.stringify(b))
+      throw new Error((msg || "") + " expected " + JSON.stringify(b) + " got " + JSON.stringify(a));
+  }
+  function L(o) { return Object.assign({id: 1, n: "A", r: 50, y: 2020, v: "2.1", s: 120, c: 5, cn: []}, o || {}); }
+
+  if (!G) { out.textContent = "GuessCore missing"; document.title = "guess check: FAIL"; return; }
+
+  // ---- judge: rank (close within 10) ----
+  t("rank exact", function () { eq(G.judge(L({r: 50}), L({r: 50})).rank, {state: "exact", arrow: "none"}); });
+  t("rank 10 away is close, arrow up when answer is larger", function () {
+    eq(G.judge(L({r: 40}), L({r: 50})).rank, {state: "close", arrow: "up"}); });
+  t("rank 11 away is a miss", function () {
+    eq(G.judge(L({r: 39}), L({r: 50})).rank, {state: "miss", arrow: "up"}); });
+  t("rank arrow down when answer is smaller", function () {
+    eq(G.judge(L({r: 70}), L({r: 50})).rank, {state: "miss", arrow: "down"}); });
+
+  // ---- year (close within 1) ----
+  t("year exact", function () { eq(G.judge(L({y: 2020}), L({y: 2020})).year.state, "exact"); });
+  t("year 1 away close", function () { eq(G.judge(L({y: 2019}), L({y: 2020})).year, {state: "close", arrow: "up"}); });
+  t("year 2 away miss", function () { eq(G.judge(L({y: 2022}), L({y: 2020})).year, {state: "miss", arrow: "down"}); });
+
+  // ---- version (adjacent on the ordered scale) ----
+  t("version exact", function () { eq(G.judge(L({v: "2.1"}), L({v: "2.1"})).version.state, "exact"); });
+  t("version adjacent is close", function () {
+    eq(G.judge(L({v: "2.0"}), L({v: "2.1"})).version, {state: "close", arrow: "up"}); });
+  t("1.9PS sits between 1.8 and 2.0", function () {
+    eq(G.judge(L({v: "1.8"}), L({v: "1.9PS"})).version.state, "close");
+    eq(G.judge(L({v: "1.9PS"}), L({v: "2.0"})).version.state, "close");
+    eq(G.judge(L({v: "1.8"}), L({v: "2.0"})).version.state, "miss"); });
+  t("version far apart miss, arrow follows the scale", function () {
+    eq(G.judge(L({v: "2.2"}), L({v: "2.0"})).version, {state: "miss", arrow: "down"}); });
+
+  // ---- length (close within 30 s) ----
+  t("length exact", function () { eq(G.judge(L({s: 120}), L({s: 120})).seconds.state, "exact"); });
+  t("length 30 s away is close", function () {
+    eq(G.judge(L({s: 90}), L({s: 120})).seconds, {state: "close", arrow: "up"}); });
+  t("length 31 s away is a miss", function () {
+    eq(G.judge(L({s: 89}), L({s: 120})).seconds, {state: "miss", arrow: "up"}); });
+  t("length 1 s away is close, not exact", function () {
+    eq(G.judge(L({s: 119}), L({s: 120})).seconds, {state: "close", arrow: "up"}); });
+
+  // ---- creators: close within max(2, round(20% of answer)) ----
+  t("creators exact", function () { eq(G.judge(L({c: 4}), L({c: 4})).creators.state, "exact"); });
+  t("answer of 1: band is 2", function () {
+    eq(G.judge(L({c: 3}), L({c: 1})).creators, {state: "close", arrow: "down"});
+    eq(G.judge(L({c: 4}), L({c: 1})).creators, {state: "miss", arrow: "down"}); });
+  t("answer of 10: band is 2", function () {
+    eq(G.judge(L({c: 8}), L({c: 10})).creators.state, "close");
+    eq(G.judge(L({c: 7}), L({c: 10})).creators.state, "miss"); });
+  t("answer of 25: band is 5", function () {
+    eq(G.judge(L({c: 20}), L({c: 25})).creators.state, "close");
+    eq(G.judge(L({c: 19}), L({c: 25})).creators.state, "miss"); });
+
+  // ---- win ----
+  t("all exact is a win", function () { eq(G.isWin(G.judge(L(), L())), true); });
+  t("one miss is not a win", function () { eq(G.isWin(G.judge(L({r: 1}), L())), false); });
+
+  // ---- formatting ----
+  t("time formats", function () {
+    eq(G.fmtTime(174), "2m 54s"); eq(G.fmtTime(60), "1m 0s"); eq(G.fmtTime(65), "1m 5s"); eq(G.fmtTime(45), "45s"); });
+  t("local iso date", function () { eq(G.isoDate(new Date(2026, 9, 5, 23, 59)), "2026-10-05"); });
+
+  // ---- daily ----
+  t("day number counts from 1 and crosses month ends", function () {
+    eq(G.dayNumber("2026-10-05", "2026-10-05"), 1);
+    eq(G.dayNumber("2026-10-05", "2026-11-04"), 31);
+    eq(G.dayNumber("2026-12-30", "2027-01-02"), 4); });
+  t("daily answer comes from the schedule", function () {
+    var data = {launch: "2026-10-05", sched: [11, 22, 33], levels: [{id: 11}, {id: 22}, {id: 33}]};
+    eq(G.dailyAnswerId(data, "2026-10-06"), 22); });
+  t("daily answer falls back deterministically past the schedule", function () {
+    var data = {launch: "2026-10-05", sched: [11], levels: [{id: 11}, {id: 22}, {id: 33}]};
+    var a = G.dailyAnswerId(data, "2030-01-01"), b = G.dailyAnswerId(data, "2030-01-01");
+    eq(a, b); eq([11, 22, 33].indexOf(a) >= 0, true); });
+
+  // ---- infinite ----
+  t("infinite never repeats until all are seen", function () {
+    var seen = [], got = [], i, r;
+    for (i = 0; i < 5; i++) { r = G.pickInfinite([1, 2, 3, 4, 5], seen, Math.random); seen = r.seen; got.push(r.id); }
+    eq(got.slice().sort(), [1, 2, 3, 4, 5]); });
+  t("infinite resets after the pool is exhausted", function () {
+    var r = G.pickInfinite([1, 2], [1, 2], function () { return 0; });
+    eq(r.seen, [r.id]); });
+  t("infinite pick uses the injected random", function () {
+    eq(G.pickInfinite([1, 2, 3], [], function () { return 0; }).id, 1);
+    eq(G.pickInfinite([1, 2, 3], [], function () { return 0.99; }).id, 3); });
+
+  // ---- rounds ----
+  t("a round ends on a win", function () {
+    var a = L({id: 9}), r = G.newRound(9), res = G.addGuess(r, L({id: 9}), a);
+    eq(res.round.done, true); eq(res.round.won, true); eq(res.round.guesses, [9]); });
+  t("six wrong guesses end it as a loss", function () {
+    var a = L({id: 9}), r = G.newRound(9), i, res;
+    for (i = 1; i <= 6; i++) { res = G.addGuess(r, L({id: i}), a); r = res.round; }
+    eq(r.done, true); eq(r.won, false); eq(r.guesses.length, 6); });
+  t("five wrong guesses leave it open", function () {
+    var a = L({id: 9}), r = G.newRound(9), i;
+    for (i = 1; i <= 5; i++) r = G.addGuess(r, L({id: i}), a).round;
+    eq(r.done, false); });
+  t("the same level cannot be guessed twice", function () {
+    var a = L({id: 9}), r = G.addGuess(G.newRound(9), L({id: 1}), a).round;
+    var res = G.addGuess(r, L({id: 1}), a);
+    eq(res.error, "duplicate"); eq(res.round.guesses, [1]); });
+  t("a finished round takes no more guesses", function () {
+    var a = L({id: 9}), r = G.addGuess(G.newRound(9), L({id: 9}), a).round;
+    eq(G.addGuess(r, L({id: 2}), a).error, "finished"); });
+
+  // ---- stats ----
+  t("a daily win starts a streak and fills the distribution", function () {
+    var s = G.recordResult(G.emptyStats(), "daily", true, 4, 10);
+    eq(s.daily.played, 1); eq(s.daily.won, 1); eq(s.daily.streak, 1); eq(s.daily.best, 1);
+    eq(s.daily.dist, [0, 0, 0, 1, 0, 0]); eq(s.daily.lastDay, 10); });
+  t("consecutive daily wins extend the streak", function () {
+    var s = G.recordResult(G.emptyStats(), "daily", true, 3, 10);
+    s = G.recordResult(s, "daily", true, 2, 11);
+    eq(s.daily.streak, 2); eq(s.daily.best, 2); });
+  t("a missed day restarts the streak at 1, keeping the best", function () {
+    var s = G.recordResult(G.emptyStats(), "daily", true, 3, 10);
+    s = G.recordResult(s, "daily", true, 3, 11);
+    s = G.recordResult(s, "daily", true, 3, 14);
+    eq(s.daily.streak, 1); eq(s.daily.best, 2); });
+  t("a daily loss resets the streak and counts as played", function () {
+    var s = G.recordResult(G.emptyStats(), "daily", true, 3, 10);
+    s = G.recordResult(s, "daily", false, 6, 11);
+    eq(s.daily.streak, 0); eq(s.daily.played, 2); eq(s.daily.won, 1); });
+  t("current streak lapses when yesterday was skipped", function () {
+    var s = G.recordResult(G.emptyStats(), "daily", true, 3, 10);
+    eq(G.currentStreak(s, 11), 1); eq(G.currentStreak(s, 12), 0); });
+  t("infinite keeps its own tally and no streak", function () {
+    var s = G.recordResult(G.emptyStats(), "infinite", true, 5, 0);
+    eq(s.infinite.played, 1); eq(s.infinite.dist, [0, 0, 0, 0, 1, 0]); eq(s.daily.played, 0); });
+
+  // ---- share text ----
+  t("share text for a daily win", function () {
+    var a = L({id: 9, r: 50}), g1 = G.judge(L({id: 1, r: 1, y: 2010, v: "1.8", s: 10, c: 20}), a), g2 = G.judge(a, a);
+    var txt = G.shareText({mode: "daily", n: 12, won: true, guesses: [g1, g2]});
+    var lines = txt.split("\n");
+    eq(lines[0], "Hall of Extremes — Guess the Demon #12 · 2/6");
+    eq(lines[1], "⬛⬛⬛⬛⬛");
+    eq(lines[2], "🟩🟩🟩🟩🟩"); });
+  t("share text marks a loss X/6 and uses the close colour", function () {
+    var a = L({id: 9}), g = G.judge(L({id: 1, r: 45, y: 2019, v: "2.0", s: 110, c: 6}), a);
+    var txt = G.shareText({mode: "infinite", won: false, guesses: [g, g, g, g, g, g]});
+    var lines = txt.split("\n");
+    eq(lines[0], "Hall of Extremes — Guess the Demon (infinite) · X/6");
+    eq(lines[1], "🟨🟨🟨🟨🟨"); });
+  t("share text never names a level", function () {
+    var txt = G.shareText({mode: "daily", n: 1, won: true, guesses: [G.judge(L(), L())]});
+    eq(/[A-Za-z]{4}/.test(txt.replace("Hall of Extremes", "").replace("Guess the Demon", "")), false); });
+
+  // ---- state ----
+  t("normalizeState fills a missing or damaged state", function () {
+    eq(G.normalizeState(null).v, 1); eq(G.normalizeState("junk").mode, "daily");
+    eq(G.normalizeState({mode: "nonsense"}).mode, "daily");
+    eq(G.normalizeState({stats: {daily: {dist: [1]}}}).stats.daily.dist, [0, 0, 0, 0, 0, 0]); });
+  t("normalizeState keeps what is valid", function () {
+    var s = G.normalizeState({mode: "infinite", sound: false, infinite: {seen: [1, 2], round: {answer: 2, guesses: [1], done: false, won: false}}});
+    eq(s.mode, "infinite"); eq(s.sound, false); eq(s.infinite.seen, [1, 2]); eq(s.infinite.round.answer, 2); });
+
+  out.textContent += "\n" + pass + " passed, " + fail + " failed\n";
+  document.title = "guess check: " + (fail ? "FAIL " + fail : "PASS " + pass);
+})();
+</script>
