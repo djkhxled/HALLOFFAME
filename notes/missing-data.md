@@ -1,85 +1,26 @@
 # Missing level data
 
-Fill in anything you know after the `=`. Delete a line rather than
-guessing — an em dash on the page beats a wrong number.
+Researched 2026-10-01 against AREDL and Pointercrate (verifiers, verification
+dates, Demonlist peaks), the Geometry Dash wiki and fan wiki (length, objects,
+rated dates, attempts), and the verification videos' own descriptions
+(attempts). What is still blank is blank because no source states it exactly.
+Delete a line rather than guessing; an em dash on the page beats a wrong number.
 
-## #3 The Yandere   [the-yandere]
-the-yandere.attempts =            # e.g. 43,127
+## Rated date
+GD History only shows when a level was first *seen* rated, which is a window,
+not a date, so these stay blank: freedom08, idols, subsonic, codependence,
+zodiac, bloodlust, titan-complex, wow, digital-descent, atomic-cannon-mk-ii
+(the fan wiki says 18 August 2023, but the level had already been placed on the
+Demonlist on 26 July; GD History puts the rating between 8 and 26 June 2023).
 
-## #4 Cold Sweat   [cold-sweat]
-cold-sweat.attempts =            # e.g. 43,127
+## Attempts
+No source gives the verifier's count for: the-yandere, subsonic, titan-complex,
+digital-descent.
 
-## #5 Acheron   [acheron]
-acheron.ratedDate =            # YYYY-MM-DD
+## Peak rank
+ocular-miracle: never on the Pointercrate Demonlist (the trilogy parts were
+added to AREDL instead).
 
-## #6 Tidal Wave   [tidal-wave]
-tidal-wave.ratedDate =            # YYYY-MM-DD
-
-## #7 Solar Flare   [solar-flare]
-solar-flare.attempts =            # e.g. 43,127
-
-## #8 Slaughterhouse   [slaughterhouse]
-slaughterhouse.ratedDate =            # YYYY-MM-DD
-slaughterhouse.attempts =            # e.g. 43,127
-
-## #11 Freedom08   [freedom08]
-freedom08.ratedDate =            # YYYY-MM-DD
-freedom08.peakRank =            # e.g. #4 on the Demonlist
-
-## #12 Idols   [idols]
-idols.verifiedDate =            # YYYY-MM-DD
-idols.ratedDate =            # YYYY-MM-DD
-idols.attempts =            # e.g. 43,127
-idols.objects =            # e.g. 157,645
-idols.length =            # e.g. 2m 57s
-idols.peakRank =            # e.g. #4 on the Demonlist
-
-## #13 Subsonic   [subsonic]
-subsonic.verifiedDate =            # YYYY-MM-DD
-subsonic.ratedDate =            # YYYY-MM-DD
-subsonic.attempts =            # e.g. 43,127
-subsonic.objects =            # e.g. 157,645
-subsonic.length =            # e.g. 2m 57s
-subsonic.peakRank =            # e.g. #4 on the Demonlist
-
-## #14 Codependence   [codependence]
-codependence.ratedDate =            # YYYY-MM-DD
-codependence.peakRank =            # e.g. #4 on the Demonlist
-
-## #15 Zodiac   [zodiac]
-zodiac.ratedDate =            # YYYY-MM-DD
-zodiac.attempts =            # e.g. 43,127
-
-## #16 Bloodlust   [bloodlust]
-bloodlust.ratedDate =            # YYYY-MM-DD
-
-## #17 Black Blizzard   [black-blizzard]
-black-blizzard.attempts =            # e.g. 43,127
-
-## #18 Maniacal Chains   [maniacal-chains]
-maniacal-chains.attempts =            # e.g. 43,127
-maniacal-chains.objects =            # e.g. 157,645
-maniacal-chains.length =            # e.g. 2m 57s
-
-## #19 Titan Complex   [titan-complex]
-titan-complex.verifiedDate =            # YYYY-MM-DD
-titan-complex.ratedDate =            # YYYY-MM-DD
-titan-complex.attempts =            # e.g. 43,127
-titan-complex.peakRank =            # e.g. #4 on the Demonlist
-
-## #20 Firework   [firework]
-firework.ratedDate =            # YYYY-MM-DD
-
-## #22 The Golden   [the-golden]
-the-golden.attempts =            # e.g. 43,127
-
-## #23 Ocular Miracle   [ocular-miracle]
-ocular-miracle.verifiedDate =            # YYYY-MM-DD
-ocular-miracle.attempts =            # e.g. 43,127
-ocular-miracle.peakRank =            # e.g. #4 on the Demonlist
-
-## #24 Killbot   [killbot]
-killbot.attempts =            # e.g. 43,127
-killbot.objects =            # e.g. 157,645
-killbot.length =            # e.g. 2m 57s
-
+## To check
+idols.verifiedDate is 2018-08-18 (both wikis), but Dorami's verification video
+was uploaded on 2018-08-11 and AREDL dates it the same.
