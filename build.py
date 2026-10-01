@@ -100,8 +100,10 @@ def write(path: pathlib.Path, text: str) -> None:
 
 def meta_pair(level: dict) -> tuple[str, str]:
     facts = level.get("facts") or {}
-    creators = facts.get("creators") or []
-    left = ", ".join(str(c) for c in creators) if creators else "—"
+    # Markup, not text: a long crew collapses to "HOST & N more" with the
+    # whole list in a tooltip (see render.credit_html).
+    left = render.credit_html(facts.get("creators"), facts.get("host"),
+                              tip_id="hero-crew")
     verifier = facts.get("verifier")
     date = facts.get("verifiedDate") or ""
     year = date[:4] if date else ""
@@ -189,7 +191,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
             ),
             "tagline": level.get("tagline", ""),
             "art_html": art_html,
-            "meta_left": left,
+            "meta_left_html": left,
             "meta_right": right,
             "bespoke_html": bespoke_html,
             "spotlight_html": render.spotlight_html(theme),

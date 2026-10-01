@@ -57,7 +57,48 @@ def _fact(value) -> str:
     return esc(value)
 
 
-ROSTER_MIN = 7  # below this a roster reads fine inline in the stat block
+# Up to this many credited names are written out wherever a level is shown.
+# One more and the line collapses to "HOST & N more", with the full list on
+# hover/focus. The stat block's roster follows the same cut, so a level is
+# either spelled out everywhere or summarised everywhere.
+CREDIT_MAX = 5
+ROSTER_MIN = CREDIT_MAX + 1
+
+
+def credit_html(creators, host=None, *, tip_id: str | None = None) -> str:
+    """Who built a level, as markup, in the space one line can hold.
+
+    At most CREDIT_MAX names are listed. Past that it reads "HOST & N more"
+    and the whole crew sits in a tooltip, shown on hover and on keyboard focus.
+
+    tip_id decides how the tooltip is exposed. Given one, the summary is a
+    real <button> that the tooltip describes, so keyboard and touch users can
+    reach the names. Without one the summary sits inside a link (the home
+    list) where a nested control is invalid and a tooltip would otherwise
+    become part of the link's name, so the names are hidden from assistive
+    tech there; the level page they lead to has the full roster.
+    """
+    names = [str(c) for c in (creators or []) if str(c).strip()]
+    if not names:
+        return DASH
+    if len(names) <= CREDIT_MAX:
+        return esc(", ".join(names))
+    lead = str(host).strip() if host and str(host).strip() in names else names[0]
+    others = len(names) - 1
+    summary = f"{esc(lead)} &amp; {others} more"
+    crew = esc(", ".join(names))
+    head = f'<span class="credit__head">All {len(names)} credited</span>'
+    if tip_id:
+        return (
+            f'<button type="button" class="credit" aria-describedby="{esc(tip_id)}">'
+            f'<span class="credit__lead">{summary}</span>'
+            f'<span class="credit__all" id="{esc(tip_id)}" role="tooltip">'
+            f"{head}{crew}</span></button>"
+        )
+    return (
+        f'<span class="credit"><span class="credit__lead">{summary}</span>'
+        f'<span class="credit__all" aria-hidden="true">{head}{crew}</span></span>'
+    )
 
 
 def _creators_cell(creators):
@@ -537,13 +578,9 @@ def countdown_html(levels: list[dict]) -> str:
     for lv in sorted(levels, key=lambda r: -r["rank"]):
         slug = lv["slug"]
         published = lv.get("published")
-        creators = (lv.get("facts") or {}).get("creators") or lv.get("creators") or []
-        # Deimos alone has 29 credited builders; the whole list in a list row
-        # is what was dragging the countdown past the viewport on a phone.
-        if len(creators) > 3:
-            by = f"{creators[0]} and {len(creators) - 1} more"
-        else:
-            by = ", ".join(str(c) for c in creators)
+        facts = lv.get("facts") or {}
+        creators = facts.get("creators") or lv.get("creators") or []
+        by = credit_html(creators, facts.get("host")) if creators else ""
         classes = "countdown__entry"
         if published:
             classes += " countdown__entry--live"
@@ -554,7 +591,7 @@ def countdown_html(levels: list[dict]) -> str:
             f'<span class="countdown__mark" aria-hidden="true">'
             f'{countdown_mark(lv)}</span>'
             f'<span class="countdown__name">{esc(lv["name"])}</span>'
-            + (f'<span class="countdown__by">{esc(by)}</span>' if by else "")
+            + (f'<span class="countdown__by">{by}</span>' if by else "")
             + f'<span class="countdown__tag">{esc(lv.get("tagline",""))}</span>'
         )
         if published:
