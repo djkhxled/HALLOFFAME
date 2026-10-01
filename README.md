@@ -142,9 +142,10 @@ Refresh the data when the list has moved:
     python3 tools/fetch_demonlist.py
 
 It rewrites `data/guess/demonlist.json` and extends `data/guess/schedule.json`
-without touching past days. A level's **verification year** is that of the verification the list credits (the solo
-one for a two-player level), which the tool can't always tell from AREDL, so fixes are
-recorded as `year` overrides with a reason; a test keeps them in step with the data.
+without touching past days. A level's **verification year** is that of the verification the list credits: the solo
+one for a two-player level, and the reverification year if a level was updated and
+reverified (but not for a re-uploaded video). The tool can't always tell from AREDL, so
+fixes are recorded as `year` overrides with a reason; a test keeps them in step with the data.
 Each level's length is its **Pointercrate page's
 "Level Length"** (an entry in `data/guess/overrides.json` wins: `seconds`,
 optionally `year`, and a `why`). Where that page shows none (ORBIT) it falls back
