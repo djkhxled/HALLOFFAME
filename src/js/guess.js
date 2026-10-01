@@ -105,13 +105,14 @@
 
   /* Board ------------------------------------------------------------------ */
 
-  var HEAD = { rank: "Rank", year: "Verified", version: "Version", seconds: "Length", creators: "Creators" };
+  var HEAD = { rank: "Rank", peak: "Peak", year: "Verified", version: "Version", seconds: "Length", creators: "Creators" };
   var GLYPH = { exact: "✓", close: "~", miss: "✗" };
   var WORD = { exact: "exact", close: "close", miss: "not close" };
   var ARROW = { up: "▲", down: "▼", none: "" };
   // What each arrow means, per stat. Rank is read like a leaderboard: up is toward #1.
   var ARROWWORD = {
     rank: { up: "the answer is higher on the list", down: "the answer is lower on the list" },
+    peak: { up: "the answer peaked higher", down: "the answer peaked lower" },
     year: { up: "the answer was verified later", down: "the answer was verified earlier" },
     version: { up: "the answer is from a newer version", down: "the answer is from an older version" },
     seconds: { up: "the answer is longer", down: "the answer is shorter" },
@@ -121,6 +122,7 @@
 
   function cellValue(key, lv) {
     if (key === "rank") return "#" + lv.r;
+    if (key === "peak") return "#" + lv.p;
     if (key === "year") return String(lv.y);
     if (key === "version") return lv.v;
     if (key === "seconds") return G.fmtTime(lv.s);
@@ -168,7 +170,7 @@
   function emptyRow() {
     var row = el("li", "grow grow--empty");
     row.appendChild(el("div", "grow__name"));
-    for (var i = 0; i < 5; i++) row.appendChild(el("span", "gcell"));
+    for (var i = 0; i < G.STATS.length; i++) row.appendChild(el("span", "gcell"));
     return row;
   }
 
@@ -321,7 +323,7 @@
     announce("Guess " + r.guesses.length + " of " + G.MAX_GUESSES + ": " + lv.n + ". " +
       G.STATS.map(function (k) { return HEAD[k] + " " + WORD[out.result[k].state]; }).join(", ") + ".");
     // Show the verdict when the last cell has flipped, so it is not spoilt mid-reveal.
-    var delay = calm ? 0 : 5 * 120 + 380;
+    var delay = calm ? 0 : G.STATS.length * 120 + 380;
     setTimeout(function () { renderResult(); renderStats(); setInputState(); }, delay);
     if (!r.done) input.focus();
   }
