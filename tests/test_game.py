@@ -365,12 +365,14 @@ class RecordsSwitch(unittest.TestCase):
         self.assertIn(f"best {keep}", on)
 
     def test_it_is_off_until_a_service_is_connected(self):
-        self.assertIsNone(self.site["records"]["endpoint"])
-        page = (DOCS / "game" / "index.html").read_text(encoding="utf-8")
-        self.assertNotIn("data-records", page)
-        self.assertNotIn("records.js", page)
+        """Built with no endpoint, whatever data/site.json says today."""
+        import build
+        base = build.read(build.TEMPLATES / "base.html")
+        off = build.build_game({**self.site, "records": {"endpoint": None}}, base)
+        self.assertNotIn("data-records", off)
+        self.assertNotIn("records.js", off)
         self.assertNotIn("Cloudflare",
-                         (DOCS / "privacy" / "index.html").read_text(encoding="utf-8"))
+                         game.apply_records_blocks(self.privacy_raw, False))
 
     def test_the_endpoint_is_validated(self):
         ok = {"discord": "bperk"}
@@ -660,7 +662,7 @@ class NoticeInTheBuild(unittest.TestCase):
         base = build.read(build.TEMPLATES / "base.html")
         on = {**cls.site, "records": {"endpoint": "https://hall.example.workers.dev"}}
         cls.on = build.build_game(on, base)
-        cls.off = build.build_game(cls.site, base)
+        cls.off = build.build_game({**cls.site, "records": {"endpoint": None}}, base)
 
     def test_off_there_is_no_notice(self):
         self.assertNotIn("ggate", self.off)

@@ -38,7 +38,7 @@
     "title": "Name Every Extreme Demon",
     "lede": "Type a level\u2019s name and it lands on the list. Play free or race the clock, and you can leave and come back. Simple as that."
   },
-  "records": {"endpoint": null},
+  "records": {"endpoint": "https://hall-records.baylorperkins.workers.dev"},
   "artDrift": "40s",
   "artAmbient": [["embers", 22]],
   "palette": {"ink": "#f2f2f4", "accent": "#d8d8e0", "accent2": "#8a8a96"},
