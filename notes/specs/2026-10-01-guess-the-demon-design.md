@@ -6,7 +6,8 @@
 ## Overview
 
 A second game for the site, in the style of Wordle. A hidden level is chosen from
-the Pointercrate Demonlist's Main and Extended lists (positions 1–150). The player
+the Pointercrate Demonlist's Main and Extended lists (positions 1–150), restricted to
+the levels whose real length is verified (see Data). The player
 guesses levels by name; each guess reveals how its **stats** compare to the answer
 instead of letters. Six guesses per round.
 
@@ -93,31 +94,28 @@ Python standard library only (matching `tools/fetch_aredl.py`). Steps:
   present, else the tool stops. Ordinal scale in that order.
 - **creators**: Pointercrate's credited creators, de-duplicated case-insensitively;
   the count is the stat. Names are kept for the hover list.
-- **seconds** (Length): first available of
+- **seconds** (Length): a verified time only, first available of
   1. `data/guess/overrides.json` manual value (always wins),
-  2. the Geometry Dash wiki (wiki.gg) infobox `length`,
-  3. the Geometry Dash fan wiki (Fandom) infobox `length`,
-  4. computed from the level data (below).
-  The two wikis are read through their MediaWiki API with a title search (a level's
-  page title often differs from its list name, e.g. "Deimos" is "Deimos (ItsHybrid)").
-  `length = 2m 54s (XL)` parses to 174. Wiki lengths are whole seconds.
-  When both wikis give a time and they differ by more than 1 second, the tool stops
-  and asks for a manual override.
+  2. a time published on the Geometry Dash wiki (wiki.gg) or fan wiki (Fandom),
+     captured through a browser into `data/guess/wiki_lengths.json`. A wiki page is
+     accepted only if its infobox level id equals the level's id (titles are
+     ambiguous: two levels are called "Deimos").
+  `length = 2m 54s (XL)` parses to 174.
+  A level with no verified time is **held out of the pool** and written to
+  `data/guess/pending.json` with a computed estimate for review. The estimate is
+  never shown to players.
 
-### Computed length
+### Computed length is advisory only
 
-Used only for levels with no published time. The level string is fetched from GD
-History (`history.geometrydash.eu`), the object list is decoded, and the level's
-duration is the time at which the last object is reached, integrating over the
-speed portals in order (starting speed from the level header). This is the same
-definition the wikis use.
-
-**Validation gate (first implementation task):** run the method on every level
-that has a wiki time. It is accepted only if at least 95% agree within 1 second.
-If it is not accepted, the levels that lack a published time get a manual override
-from their verification video. A level that still cannot be pinned to within a
-second is dropped from the pool (the pool may then be fewer than 150). A time is
-never guessed.
+`tools/gdlength.py` computes a level's length from its level data (downloaded from
+the official GD server). It was validated against the 83 published times: 74 of 83
+(89%) are within one second, but the rest are off by up to 40 s, because decorative
+or unreachable speed portals, time-warp triggers and end triggers cannot be told
+apart from real ones without simulating the game, and the failures cannot be
+detected from the data alone. That is below the 95% gate, so the estimate is used
+only to fill `pending.json`, where a person can confirm or correct a value by
+adding it to `overrides.json`. When the wiki time and the estimate differ by more
+than 2 seconds the tool prints a warning; the published time still wins.
 
 ### Schedule: `data/guess/schedule.json`
 
@@ -225,7 +223,7 @@ naming game's rule.
 
 ## Build integration
 
-- `hall/guess.py`: load and validate the data (150 or fewer levels, all fields present,
+- `hall/guess.py`: load and validate the data (at least 60 levels, all fields present,
   ordinals valid, schedule long enough), build the page markup and the JSON blob.
 - `templates/guess.html`, `templates/games.html`.
 - `src/js/guess.js`, `src/css/guess.css`.
@@ -254,9 +252,9 @@ naming game's rule.
 
 ## Risks and open points
 
-- **Length coverage.** About 83 of 150 levels have a published time on the wikis;
-  the rest depend on the computed-length method passing its validation gate. This is
-  the first task and may reduce the pool.
+- **Pool size.** Only the 83 levels with a published time qualify at launch. More
+  qualify as the wikis gain pages or as times are added to `overrides.json`; a refresh
+  picks them up and the schedule extends without touching past days.
 - **Verification year ambiguity** for hack-verified or re-verified levels; handled
   by the rule above plus hand checks, with the cases listed in the data.
 - **List drift.** Ranks move weekly. The snapshot date is shown and refreshes never

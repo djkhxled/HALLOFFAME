@@ -385,7 +385,7 @@ print("GATE", "PASS" if within / len(rows) >= 0.95 else "FAIL")
 - [ ] **Step 6: Run the gate**
 
 Run: `python3 tools/validate_lengths.py`
-Expected: prints `GATE PASS`. If it prints `GATE FAIL`: set `START_OFFSET` in `tools/gdlength.py` to the printed best offset and re-run. If it still fails, stop and report the outliers; their lengths then come from `overrides.json` (verification video) per the spec, and the pool may shrink.
+Result when this plan was executed: `GATE FAIL` (74 of 83 within 1 s, 89%); the misses are off by up to 40 s and cannot be told apart from the matches. Per the spec's fallback, computed lengths are advisory only (see "Computed length is advisory only" in the spec): they fill `pending.json` and are never shown. Only wiki-published times and overrides admit a level.
 
 - [ ] **Step 7: Commit**
 
@@ -740,9 +740,11 @@ Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
 
     python3 tools/fetch_demonlist.py [--launch YYYY-MM-DD] [--today YYYY-MM-DD]
 
-Reads Pointercrate (the top 150, creators), AREDL (verifications, version tags)
-and the official GD server (computed lengths). Standard library only.
-Anything it cannot fully derive stops the run with the level's name.
+Reads Pointercrate (the top 150, creators) and AREDL (verifications, version
+tags); lengths come from data/guess/overrides.json and wiki_lengths.json only.
+A level with no verified length is held out and listed in pending.json with an
+advisory estimate from the official GD server. Anything else it cannot fully
+derive stops the run with the level's name.
 """
 import argparse
 import datetime
@@ -765,7 +767,7 @@ UA = {"User-Agent": "hall-of-extremes data tool (https://www.b4ylor.com)"}
 DATA = ROOT / "data" / "guess"
 SEED = 20261001
 DEFAULT_LAUNCH = "2026-10-05"
-LENGTH_DISAGREE = 2   # a wiki time and a computed one this far apart means a person must look
+MIN_POOL = 60         # the build refuses a smaller pool
 
 
 def get(url):
@@ -796,7 +798,7 @@ def main() -> int:
     wiki = load_json(DATA / "wiki_lengths.json", {"lengths": {}})["lengths"]
     aredl = {l["level_id"]: l for l in get(AREDL)}
 
-    levels, problems = [], []
+    levels, problems, pending = [], [], []
     for p in top150():
         name, lid = p["name"], p["level_id"]
         try:
@@ -811,18 +813,22 @@ def main() -> int:
             year = ov.get("year") or guess.verification_year(detail.get("verifications", []))
             version = guess.version_from_tags(a["tags"])
 
+            # Only a verified time qualifies: an override, or a wiki-published time
+            # whose page was matched by level id. A computed length is advisory
+            # (see the spec) and only fills pending.json for a person to review.
             if "seconds" in ov:
                 seconds, source = ov["seconds"], "override"
+            elif str(lid) in wiki:
+                seconds, source = wiki[str(lid)]["seconds"], wiki[str(lid)]["source"]
             else:
-                computed = gdlength.whole_seconds(gdlength.download(lid))
-                published = wiki.get(str(lid))
-                if published and abs(published["seconds"] - computed) > LENGTH_DISAGREE:
-                    raise ValueError(f"wiki says {published['seconds']}s ({published['source']}), "
-                                     f"computed {computed}s: settle it in overrides.json")
-                if published:
-                    seconds, source = published["seconds"], published["source"]
-                else:
-                    seconds, source = computed, "computed"
+                try:
+                    estimate = gdlength.whole_seconds(gdlength.download(lid))
+                except Exception:  # noqa: BLE001
+                    estimate = None
+                pending.append({"levelId": lid, "name": name, "rank": p["position"],
+                                "estimateSeconds": estimate})
+                print(f"  {p['position']:>3} {name}: no verified length, held out", file=sys.stderr)
+                continue
             levels.append({
                 "id": lid, "pcId": p["id"], "name": name, "rank": p["position"],
                 "year": year, "version": version, "seconds": seconds,
@@ -837,6 +843,8 @@ def main() -> int:
         print("\nCannot derive:\n  " + "\n  ".join(problems), file=sys.stderr)
         return 1
     errors = guess.validate(levels)
+    if len(levels) < MIN_POOL:
+        errors.append(f"only {len(levels)} levels have a verified length (need {MIN_POOL})")
     if errors:
         print("\nInvalid:\n  " + "\n  ".join(errors), file=sys.stderr)
         return 1
@@ -848,12 +856,17 @@ def main() -> int:
         "levels": levels,
     }
     (DATA / "demonlist.json").write_text(json.dumps(snapshot, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    (DATA / "pending.json").write_text(json.dumps(
+        {"fetched": today.isoformat(),
+         "note": "Levels in the top 150 held out for lack of a verified length. estimateSeconds is computed "
+                 "from level data and is advisory; confirm a value and add it to overrides.json to admit a level.",
+         "levels": pending}, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
     sched_path = DATA / "schedule.json"
     sched = load_json(sched_path, {"launch": args.launch, "seed": SEED, "days": []})
     sched = guess.extend_schedule(sched, [lv["id"] for lv in levels], today, lookahead=1100)
     sched_path.write_text(json.dumps(sched, separators=(",", ":")) + "\n", encoding="utf-8")
-    print(f"wrote {len(levels)} levels, {len(sched['days'])} schedule days", file=sys.stderr)
+    print(f"wrote {len(levels)} levels ({len(pending)} held out), {len(sched['days'])} schedule days", file=sys.stderr)
     return 0
 
 
@@ -894,12 +907,12 @@ class RealSnapshot(unittest.TestCase):
         self.assertEqual(guess.validate(self.levels), [])
 
     def test_it_is_the_main_and_extended_list(self):
-        self.assertGreaterEqual(len(self.levels), 140)
+        self.assertGreaterEqual(len(self.levels), 60)
         self.assertLessEqual(max(l["rank"] for l in self.levels), 150)
 
     def test_every_length_has_a_known_source(self):
         for l in self.levels:
-            self.assertIn(l["lengthSource"], {"override", "wiki.gg", "fandom", "computed"}, l["name"])
+            self.assertIn(l["lengthSource"], {"override", "wiki.gg", "fandom"}, l["name"])
 
     def test_the_schedule_only_names_levels_in_the_pool(self):
         pool = {l["id"] for l in self.levels}
