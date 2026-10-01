@@ -83,9 +83,11 @@ def credit_html(creators, host=None, *, tip_id: str | None = None) -> str:
         return DASH
     if len(names) <= CREDIT_MAX:
         return esc(", ".join(names))
-    lead = str(host).strip() if host and str(host).strip() in names else names[0]
-    others = len(names) - 1
-    summary = f"{esc(lead)} &amp; {others} more"
+    # host may be one name or a list of co-hosts; those credited lead.
+    hosts = [host] if isinstance(host, str) else list(host or [])
+    lead = [h for h in (str(x).strip() for x in hosts) if h in names] or names[:1]
+    others = len(names) - len(lead)
+    summary = f"{esc(', '.join(lead))} &amp; {others} more"
     crew = esc(", ".join(names))
     head = f'<span class="credit__head">All {len(names)} credited</span>'
     if tip_id:

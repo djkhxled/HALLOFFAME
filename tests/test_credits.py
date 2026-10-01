@@ -66,6 +66,26 @@ class CreditHtml(unittest.TestCase):
         self.assertIn("roster", render.roster_html({"creators": names(6)}))
 
 
+class CoHosts(unittest.TestCase):
+    def test_every_co_host_leads_and_the_count_drops_by_that_many(self):
+        crew = ["a", "b", "c", "d", "e", "f", "g", "h"]
+        out = render.credit_html(crew, ["b", "a"])
+        self.assertIn("b, a &amp; 6 more", out)
+
+    def test_a_co_host_who_is_not_credited_is_ignored(self):
+        crew = ["a", "b", "c", "d", "e", "f"]
+        out = render.credit_html(crew, ["a", "ghost"])
+        self.assertIn("a &amp; 5 more", out)
+
+
+def _others(facts):
+    crew = facts["creators"]
+    host = facts.get("host")
+    hosts = [host] if isinstance(host, str) else list(host or [])
+    lead = [h for h in hosts if h in crew] or crew[:1]
+    return len(crew) - len(lead)
+
+
 class InTheBuild(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -80,7 +100,7 @@ class InTheBuild(unittest.TestCase):
             crew = facts.get("creators") or []
             page = (DOCS / "levels" / slug / "index.html").read_text(encoding="utf-8")
             if len(crew) > render.CREDIT_MAX:
-                self.assertIn(f"&amp; {len(crew) - 1} more", page, slug)
+                self.assertIn(f"&amp; {_others(facts)} more", page, slug)
                 self.assertEqual(page.count('class="credit"'), 1, slug)
             elif crew:
                 self.assertNotIn('class="credit"', page, slug)
@@ -92,7 +112,7 @@ class InTheBuild(unittest.TestCase):
                       if len((lv.get("facts") or {}).get("creators") or []) > render.CREDIT_MAX]
         self.assertEqual(home.count('class="credit"'), len(long_crews))
         for lv in long_crews:
-            self.assertIn(f"&amp; {len(lv['facts']['creators']) - 1} more", home, lv["slug"])
+            self.assertIn(f"&amp; {_others(lv['facts'])} more", home, lv["slug"])
 
     def test_no_page_has_two_tooltips_with_the_same_id(self):
         for page in DOCS.rglob("index.html"):
