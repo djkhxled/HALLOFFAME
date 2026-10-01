@@ -47,7 +47,7 @@
     "lede": "How well do you know the demonlist?",
     "cards": [
       {"href": "/game/", "title": "Name Every Extreme Demon", "desc": "Type a level\u2019s name and it lands on the list. All 1,621 of them, free play or against the clock."},
-      {"href": "/guess/", "title": "Demondle", "desc": "A Wordle style game. A hidden level from the Demonlist. Six guesses, six stats. A new one every day."}
+      {"href": "/demondle/", "title": "Demondle", "desc": "A Wordle style game. A hidden level from the Demonlist. Six guesses, six stats. A new one every day."}
     ]
   },
   "records": {"endpoint": "https://hall-records.baylorperkins.workers.dev"},

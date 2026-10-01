@@ -132,7 +132,7 @@ there is no Node here: `python3 -m http.server 3010 --directory worker` and open
 
 ## Demondle
 
-`/guess/` is a Wordle-style game over the Demonlist's top 150. Rules live in
+`/demondle/` is a Wordle-style game (the old `/guess/` forwards to it) over the Demonlist's top 150. Rules live in
 `src/js/guess-core.js` (checked in a browser: serve the repo root with
 `python3 -m http.server 3011` and open `tests/guess.check.html`; the title says
 PASS or FAIL). `src/js/guess.js` is only the interface.

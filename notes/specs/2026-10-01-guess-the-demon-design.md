@@ -40,7 +40,7 @@ There is no backend, no network request, and no account.
 | Stats | Rank, Peak rank, Verification year, Version, Length (real time), Number of creators |
 | Daily mechanism | Committed schedule file; answer chosen by local calendar date |
 | Navigation | Top-right tab becomes **Games**, opening a hub at `/games/` |
-| Name / path | **Demondle**, `/guess/` (renameable by editing `data/site.json`) |
+| Name / path | **Demondle**, `/demondle/` (the old `/guess/` forwards to it; renameable by editing `data/site.json`) |
 
 ## Data
 
@@ -171,7 +171,7 @@ is refused.
 
 ## Interface
 
-### Page `/guess/`
+### Page `/demondle/`
 
 - Hero in the same style as the naming game (eyebrow, art, title "Demondle",
   lede, top nav with "Games" current).
@@ -203,7 +203,7 @@ is refused.
 
 - `render.TABS` changes the second tab to **Games** → `/games/`.
 - `/games/` is a small page: a card per game (Name Every Extreme Demon → `/game/`,
-  Demondle → `/guess/`), in the site's document style.
+  Demondle → `/demondle/`), in the site's document style.
 - The hero tab for `/game/` and `/guess/` is marked `aria-current` as "Games".
 - `/game/` is unchanged and keeps working.
 

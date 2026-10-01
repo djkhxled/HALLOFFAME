@@ -246,7 +246,7 @@ class BuiltPage(unittest.TestCase):
     def setUpClass(cls):
         import subprocess
         subprocess.run(["python3", "build.py"], cwd=ROOT, check=True, capture_output=True)
-        cls.html = (DOCS / "guess" / "index.html").read_text(encoding="utf-8")
+        cls.html = (DOCS / "demondle" / "index.html").read_text(encoding="utf-8")
         cls.site = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
 
     def test_the_page_exists_with_its_title_from_site_json(self):
@@ -289,12 +289,12 @@ class Hub(unittest.TestCase):
         subprocess.run(["python3", "build.py"], cwd=ROOT, check=True, capture_output=True)
         cls.hub = (DOCS / "games" / "index.html").read_text(encoding="utf-8")
         cls.pages = {p: (DOCS / p / "index.html").read_text(encoding="utf-8")
-                     for p in ("game", "guess", "games")}
+                     for p in ("game", "demondle", "games")}
         cls.home = (DOCS / "index.html").read_text(encoding="utf-8")
 
     def test_the_hub_lists_both_games(self):
         self.assertIn('href="../game/"', self.hub)
-        self.assertIn('href="../guess/"', self.hub)
+        self.assertIn('href="../demondle/"', self.hub)
 
     def test_the_tab_is_called_games_everywhere(self):
         for name, html in list(self.pages.items()) + [("home", self.home)]:
@@ -303,13 +303,55 @@ class Hub(unittest.TestCase):
             self.assertNotIn(">Game</a>", m.group(0), name)
 
     def test_the_games_tab_is_current_on_the_hub_and_both_games(self):
-        for name in ("game", "guess", "games"):
+        for name in ("game", "demondle", "games"):
             m = re.search(r'<nav class="topnav".*?</nav>', self.pages[name], re.S).group(0)
             self.assertEqual(m.count('aria-current="page"'), 1, name)
             self.assertRegex(m, r'<a class="topnav__link"[^>]*aria-current="page">Games</a>', name)
 
     def test_the_old_game_page_still_builds(self):
         self.assertIn("Name every extreme demon".lower(), self.pages["game"].lower())
+
+
+class Moved(unittest.TestCase):
+    def test_the_old_address_forwards_to_the_new_one(self):
+        site = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))
+        old = (DOCS / "guess" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('http-equiv="refresh" content="0; url=../demondle/"', old)
+        self.assertIn(f'rel="canonical" href="https://{site["domain"]}/demondle/"', old)
+        self.assertIn('href="../demondle/"', old)       # a visible link for anyone who stays
+
+    def test_the_game_is_at_the_new_address(self):
+        self.assertTrue((DOCS / "demondle" / "index.html").is_file())
+        page = (DOCS / "demondle" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("guess-core.js", page)
+
+
+class ShareCard(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        import subprocess
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True, capture_output=True)
+        cls.home = (DOCS / "index.html").read_text(encoding="utf-8")
+
+    def test_the_home_page_names_a_share_image_by_an_absolute_address(self):
+        url = re.search(r'property="og:image" content="([^"]+)"', self.home).group(1)
+        self.assertTrue(url.startswith("https://"), url)
+        self.assertIn('name="twitter:card" content="summary_large_image"', self.home)
+        self.assertIn(f'name="twitter:image" content="{url}"', self.home)
+
+    def test_the_image_exists_and_is_the_size_the_tags_claim(self):
+        import struct
+        url = re.search(r'property="og:image" content="([^"]+)"', self.home).group(1)
+        path = DOCS / url.split("/", 3)[3]
+        data = path.read_bytes()
+        self.assertEqual(data[:8], b"\x89PNG\r\n\x1a\n")
+        w, h = struct.unpack(">II", data[16:24])
+        self.assertEqual((w, h), (1200, 630))
+        self.assertIn('property="og:image:width" content="1200"', self.home)
+        self.assertIn('property="og:image:height" content="630"', self.home)
+
+    def test_it_has_alt_text(self):
+        self.assertRegex(self.home, r'property="og:image:alt" content="[^"]{20,}"')
 
 
 class Privacy(unittest.TestCase):

@@ -372,6 +372,9 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
                 + (f'[data-level="index"]{{--art-drift-dur:'
                    f"{site['artDrift']};}}" if site.get("artDrift") else "")
                 + "</style>"
+                + render.social_card_html(
+                    site, "/assets/art/og-home.png",
+                    "HALL OF EXTREMES in large white letters over rainbow beams of light")
             ),
             "body_html": body,
             "disclaimer": site["disclaimer"],
@@ -614,6 +617,39 @@ def build_guess(site: dict, base_tpl: str, levels: list[dict]) -> str:
     )
 
 
+def build_redirect(site: dict, base_tpl: str, to: str, name: str) -> str:
+    """A page for a path that has moved: refreshes straight to the new one and
+    says where it went. GitHub Pages cannot issue a real redirect, so this is
+    the static equivalent; the canonical link tells search engines which URL
+    is the real one."""
+    target = f"https://{site['domain']}/{to}/" if site.get("domain") else f"/{to}/"
+    body = (f'<section class="hero hero--doc hero--game page">'
+            f'<h1 class="hero__title doc__title">{render.esc(name)}</h1>'
+            f'<div class="hero__foot"><p>{render.esc(name)} has moved to '
+            f'<a href="../{to}/">{render.esc(name)}</a>.</p></div></section>')
+    return render.fill(
+        base_tpl,
+        {
+            "slug": "moved",
+            "html_attrs_html": " data-attempt-manual",
+            "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
+            "attempt_label_html": "",
+            "foot_extra_html": "",
+            "signature": "static",
+            "texture_class": "texture texture--grain",
+            "title": name,
+            "og_title": name,
+            "description": f"{name} has moved.",
+            "head_extra_html": (f'<meta http-equiv="refresh" content="0; url=../{to}/">'
+                                f'<link rel="canonical" href="{render.esc(target)}">'),
+            "body_html": body,
+            "disclaimer": site["disclaimer"],
+            "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
+        },
+    )
+
+
 def build_games(site: dict, base_tpl: str) -> str:
     """/games/ -- the hub the top-right tab opens."""
     copy = {"title": "Games", "lede": "", "cards": [], **(site.get("games") or {})}
@@ -765,8 +801,13 @@ def main() -> int:
           stamped(build_game(site, base_tpl), 1))
     pages += 1
 
-    write(DOCS / "guess" / "index.html",
+    write(DOCS / "demondle" / "index.html",
           stamped(build_guess(site, base_tpl, levels), 1))
+    pages += 1
+
+    # The game used to live at /guess/. Anyone with that link lands on /demondle/.
+    write(DOCS / "guess" / "index.html",
+          stamped(build_redirect(site, base_tpl, "demondle", "Demondle"), 1))
     pages += 1
 
     write(DOCS / "games" / "index.html",

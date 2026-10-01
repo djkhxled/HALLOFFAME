@@ -527,7 +527,7 @@ class GamePageCopy(unittest.TestCase):
     def test_every_other_page_keeps_its_title_and_social_title_the_same(self):
         import html
         for page in DOCS.rglob("*.html"):
-            if page in (DOCS / "game" / "index.html", DOCS / "guess" / "index.html",
+            if page in (DOCS / "game" / "index.html", DOCS / "demondle" / "index.html",
                         DOCS / "games" / "index.html"):
                 continue
             s = page.read_text(encoding="utf-8")
