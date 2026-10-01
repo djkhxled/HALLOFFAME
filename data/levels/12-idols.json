@@ -27,7 +27,7 @@
       "Namtar",
       "Quasar"
     ],
-    "host": "Herdys",
+    "host": ["Zafkiel", "Herdys"],
     "verifier": "Dorami",
     "verifiedDate": "2018-08-18",
     "ratedDate": null,
@@ -77,7 +77,7 @@
   },
   "voice": {
     "hook": "Pure, unadulterated joy in megacollab form.",
-    "why": "<p>Idols is pure, unadulterated joy in the form of a Geometry Dash megacollab. Hosted by Zafkiel, it uses Virtual Riot's &ldquo;Idols&rdquo; to create one of the most perfectly synced, vibrant and energetic levels in the game's history.</p><p>Unlike the standard hell-themed extremes, this level is a massive explosion of colour, utilising 1.9, 2.0 and 2.1 design styles that somehow blend together into a cohesive, beautifully paced journey. The way the decoration pulses and shifts exactly with the EDM drops makes it incredibly satisfying to watch, and even more satisfying to play.</p>",
+    "why": "<p>Idols is pure, unadulterated joy in the form of a Geometry Dash megacollab. Co-hosted by Zafkiel and Herdys, it uses Virtual Riot's &ldquo;Idols&rdquo; to create one of the most perfectly synced, vibrant and energetic levels in the game's history.</p><p>Unlike the standard hell-themed extremes, this level is a massive explosion of colour, utilising 1.9, 2.0 and 2.1 design styles that somehow blend together into a cohesive, beautifully paced journey. The way the decoration pulses and shifts exactly with the EDM drops makes it incredibly satisfying to watch, and even more satisfying to play.</p>",
     "draftedByClaude": false
   },
   "media": {

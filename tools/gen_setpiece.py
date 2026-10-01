@@ -79,6 +79,8 @@ def fact_sub(facts):
     facts = facts or {}
     creators = facts.get("creators") or []
     host = facts.get("host")
+    hosts = [host] if isinstance(host, str) else list(host or [])
+    host = " and ".join(hosts)
     verifier = facts.get("verifier")
     date = pretty_date(facts.get("verifiedDate"))
 
@@ -86,7 +88,7 @@ def fact_sub(facts):
     if len(creators) == 1:
         made = f"Built by {creators[0]}"
     elif host and len(creators) > 1:
-        made = f"Hosted by {host} with {len(creators) - 1} others"
+        made = f"Hosted by {host} with {len(creators) - len(hosts)} others"
     elif len(creators) > 1:
         made = f"Built by {len(creators)} creators"
     elif host:
