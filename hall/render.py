@@ -451,6 +451,24 @@ def dm_html(site: dict) -> str:
     return "contact the site owner"
 
 
+def social_card_html(site: dict, path: str, alt: str, width: int = 1200, height: int = 630) -> str:
+    """The tags that make a shared link show a picture: Open Graph (Discord,
+    Facebook, iMessage, most chat apps) and the large Twitter/X card. The
+    address has to be absolute, because the crawler reading the page is not
+    on this site, so it is built from site.domain rather than relativised."""
+    domain = site.get("domain")
+    url = f"https://{domain}{path}" if domain else path
+    return (
+        f'<meta property="og:image" content="{esc(url)}">'
+        f'<meta property="og:image:width" content="{width}">'
+        f'<meta property="og:image:height" content="{height}">'
+        f'<meta property="og:image:alt" content="{esc(alt)}">'
+        '<meta name="twitter:card" content="summary_large_image">'
+        f'<meta name="twitter:image" content="{esc(url)}">'
+        f'<meta name="twitter:image:alt" content="{esc(alt)}">'
+    )
+
+
 def doc_footer_html(site: dict) -> str:
     """The contact line. Says plainly when there is no way to reach anyone,
     rather than inventing one or quietly omitting it."""
