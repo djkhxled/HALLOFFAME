@@ -91,8 +91,10 @@ Python standard library only (matching `tools/fetch_aredl.py`). Steps:
   no history stops the run.
 - **year**: the year of the verification **the Demonlist credits**, not simply the first
   or last record. For a two-player level that is the later solo (1P) verification
-  (Codependence 2023, not its 2020 two-player run); for a re-verified level it is the
-  verification of the version on the list. AREDL's date is the upload date of its video,
+  (Codependence 2023, not its 2020 two-player run). **Rule from the owner: if a level was
+  updated and reverified, use the reverification year** (Fragile 2022, Graceful 2025,
+  Natural Disaster 2024); a replaced or re-uploaded video is not a reverification (The
+  Golden stays 2020, ATOMIC CANNON Mk III 2024). AREDL's date is the upload date of its video,
   so a re-uploaded video can be years off (The Golden: 2020, not the 2023 re-upload).
   The fetch tool's default is the first AREDL record, which is only right for ordinary
   levels, so it is checked against the Hall's own pages, the wikis and the credited
