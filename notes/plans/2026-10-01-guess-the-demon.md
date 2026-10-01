@@ -1233,7 +1233,7 @@ Expected: title `guess check: FAIL` and text `GuessCore missing` (the script 404
     if (round.done) return { round: round, result: null, error: "finished" };
     if (round.guesses.indexOf(guess.id) >= 0) return { round: round, result: null, error: "duplicate" };
     var result = judge(guess, answer);
-    var won = isWin(result);
+    var won = guess.id === answer.id;   // the level itself, not just matching stats
     var guesses = round.guesses.concat([guess.id]);
     return {
       round: { answer: round.answer, guesses: guesses, won: won, done: won || guesses.length >= MAX_GUESSES },
