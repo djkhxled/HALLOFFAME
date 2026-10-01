@@ -391,16 +391,21 @@ def contact_html(site: dict) -> str | None:
 def dm_html(site: dict) -> str:
     """The sentence fragment for getting an entry removed.
 
-    "Privately message @bperk on Discord" when there is a handle, because that
-    is the route the site names and the one the notice asks people to accept.
-    Falls back to the general contact if there is only an email. Every place
-    that says how to have an entry removed uses this, so it is worded once.
+    "Privately message @bperk on Discord", plus "or email <address>" when an
+    address is set. These are the routes the site names and the ones the
+    notice asks people to accept. Every place that says how to have an entry
+    removed uses this, so it is worded once.
     """
+    routes = []
     if site.get("discord"):
         handle = str(site["discord"]).lstrip("@")
-        return f"privately message <strong>@{esc(handle)}</strong> on Discord"
-    who = contact_html(site)
-    return f"contact {who}" if who else "contact the site owner"
+        routes.append(f"privately message <strong>@{esc(handle)}</strong> on Discord")
+    if site.get("contact"):
+        addr = esc(site["contact"])
+        routes.append(f'email <a href="mailto:{addr}">{addr}</a>')
+    if routes:
+        return " or ".join(routes)
+    return "contact the site owner"
 
 
 def doc_footer_html(site: dict) -> str:
