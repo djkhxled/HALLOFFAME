@@ -273,6 +273,93 @@ a.countdown__hit:focus-visible {
   padding-top: var(--space-2);
 }
 
+/* A crew too long for one line: "HOST & 21 more", the names on hover/focus.
+   Shared by the home list and the level header (render.credit_html). */
+.credit {
+  position: relative;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: inherit;
+  cursor: help;
+}
+
+button.credit:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 0.3em;
+}
+
+.credit__lead {
+  border-bottom: 1px dotted color-mix(in srgb, currentColor 55%, transparent);
+}
+
+.credit__all {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 0;
+  z-index: 40;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(34rem, calc(100vw - 2 * var(--gutter, 1rem)));
+  padding: 0.85rem 1rem 0.95rem;
+  background: var(--field);
+  color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--ink) 32%, transparent);
+  box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.45);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.25rem);
+  transition: opacity 0.14s ease, transform 0.14s ease, visibility 0s 0.14s;
+}
+
+.credit__head {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Hover keeps it open while the pointer is on the summary; the list itself
+   is not hoverable (pointer-events: none), so it can't trap the pointer. */
+.credit:hover .credit__all,
+.credit:focus-within .credit__all,
+.countdown__hit:focus-visible .credit__all {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* The header line sits at the bottom of the hero, so it opens upward. */
+.hero__foot .credit__all {
+  top: auto;
+  bottom: calc(100% + 0.6rem);
+  transform: translateY(-0.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credit__all { transition: none; transform: none; }
+}
+
 .countdown__tag {
   grid-area: tag;
   color: var(--muted);
