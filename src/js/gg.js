@@ -497,13 +497,14 @@
       el.hint.classList.add("is-warn");
       return;
     }
+    var scoreBefore = run.score;
     run = G.nameLevel(run, shot, chosen.id);
     closeList();
     el.ask.hidden = true;
-    if (run.history[run.history.length - 1].right) right(); else wrong();
+    if (run.history[run.history.length - 1].right) right(scoreBefore); else wrong();
   }
 
-  function right() {
+  function right(scoreBefore) {
     phase = "spot";
     play(SFX.right);
     el.frame.classList.add("is-right");
@@ -513,7 +514,9 @@
     hud();
     var lv = byId[shot.l];
     el.spotLevel.textContent = lv.n;
-    el.spotQ.textContent = "— yes! Now, where in the level is this?";
+    el.spotQ.textContent = "— +" + G.NAME + "! Now, where in the level is this?";
+    countUp(el.score, scoreBefore, run.score, 600, false);
+    restart(el.score, "gg-bump");
     el.spot.hidden = false;
     el.spot.classList.remove("is-done");
     el.lock.hidden = false;
@@ -570,7 +573,8 @@
     el.reveal.classList.remove("is-wrong");
     el.revealK.textContent = off === 0 ? "Dead on" : off + (off === 1 ? " point off" : " points off");
     el.revealName.textContent = lv.n;
-    el.revealBy.textContent = "by " + lv.c + " · at " + shot.p + "%, you said " + value + "%";
+    el.revealBy.textContent = "by " + lv.c + " · at " + shot.p + "%, you said " + value + "% · " +
+      G.NAME + " for the name + " + last.spotPoints + " for the spot";
     el.revealSaid.textContent = "";
     el.revealPts.textContent = "0";
     el.next.textContent = run.over ? "See results" : "Next round";
@@ -644,7 +648,7 @@
     for (var k = 0; k < G.ROUNDS; k++) {
       var h = run.history[k];
       squares.push(!h ? "\u2b1c" : !h.right ? "\u274c" :
-        h.points >= 800 ? "\ud83d\udfe9" : h.points >= 400 ? "\ud83d\udfe8" : h.points > 0 ? "\ud83d\udfe7" : "\u2b1b");
+        h.spotPoints >= 400 ? "\ud83d\udfe9" : h.spotPoints >= 200 ? "\ud83d\udfe8" : h.spotPoints > 0 ? "\ud83d\udfe7" : "\u2b1b");
     }
     return "GeometryGuessr " + fmt(run.score) + " / " + fmt(G.ROUNDS * G.FULL) + "\n" + squares.join("") + "\n" +
       run.named + "/" + G.ROUNDS + " demons named" + (SHARE_URL ? "\n" + SHARE_URL : "");

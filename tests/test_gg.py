@@ -248,7 +248,9 @@ class Board(unittest.TestCase):
     def test_the_service_and_the_game_agree_on_five_rounds_of_1000(self):
         core = (ROOT / "src" / "js" / "gg-core.js").read_text(encoding="utf-8")
         self.assertIn("var ROUNDS = 5;", core)
-        self.assertIn("var FULL = 1000;", core)
+        self.assertIn("var NAME = 500;", core)
+        self.assertIn("var SPOT = 500;", core)
+        self.assertIn("var FULL = NAME + SPOT;", core)
         self.assertIn("const GG = { rounds: 5, perRound: 1000 };", self.worker)
 
     def test_the_board_is_off_until_a_service_is_connected(self):

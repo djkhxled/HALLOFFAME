@@ -4,23 +4,25 @@
  * checks in tests/gg.check.html can replay it. gg.js draws; this decides.
  *
  * A game: five rounds, five different demons, like GeoGuessr. Each round deals a
- * screenshot; name the level (a wrong name scores nothing that round) and, if right,
- * place the spot (0-100%) for up to 1,000 points. A perfect game is 5,000.
+ * screenshot; name the level for 500 points (a wrong name scores nothing that round)
+ * and, if right, place the spot (0-100%) for up to 500 more. A perfect game is 5,000.
  */
 (function (root) {
   "use strict";
 
   var ROUNDS = 5;
-  var FULL = 1000;      // points for a spot within GRACE of the truth
+  var NAME = 500;       // points for naming the level
+  var SPOT = 500;       // points for a spot within GRACE of the truth
+  var FULL = NAME + SPOT;   // a perfect round
   var GRACE = 2;        // percentage points
   var ZERO_AT = 30;     // this far off (or further) scores nothing
 
-  /* Points for a spot guess: full within 2 points, falling in a straight line to
+  /* Points for a spot guess: all 500 within 2 points, falling in a straight line to
      nothing at 30 points away. */
   function score(guess, truth) {
     var off = Math.abs(guess - truth);
     var k = 1 - Math.max(0, off - GRACE) / (ZERO_AT - GRACE);
-    return Math.round(FULL * Math.max(0, k));
+    return Math.round(SPOT * Math.max(0, k));
   }
 
   /* A word for how close a spot was, for the reveal. */
@@ -106,8 +108,8 @@
     var right = pickedId === shot.l;
     var next = copy(run);
     next.round += 1;
-    next.history.push({ shot: shot, picked: pickedId, right: right, spot: null, points: 0 });
-    if (right) next.named += 1;
+    next.history.push({ shot: shot, picked: pickedId, right: right, spot: null, spotPoints: 0, points: right ? NAME : 0 });
+    if (right) { next.named += 1; next.score += NAME; }
     else if (next.round >= ROUNDS) next.over = true;   // a right name ends after its spot
     return next;
   }
@@ -117,8 +119,9 @@
     var last = next.history[next.history.length - 1];
     if (!last || !last.right || last.spot !== null) return run;
     last.spot = spot;
-    last.points = score(spot, last.shot.p);
-    next.score += last.points;
+    last.spotPoints = score(spot, last.shot.p);
+    last.points = NAME + last.spotPoints;
+    next.score += last.spotPoints;
     if (next.round >= ROUNDS) next.over = true;
     return next;
   }
@@ -127,7 +130,7 @@
     return {
       named: run.named, score: run.score, round: run.round, over: run.over,
       history: run.history.map(function (h) {
-        return { shot: h.shot, picked: h.picked, right: h.right, spot: h.spot, points: h.points };
+        return { shot: h.shot, picked: h.picked, right: h.right, spot: h.spot, spotPoints: h.spotPoints, points: h.points };
       })
     };
   }
@@ -139,7 +142,7 @@
   }
 
   root.GGCore = {
-    ROUNDS: ROUNDS, FULL: FULL, GRACE: GRACE, ZERO_AT: ZERO_AT,
+    ROUNDS: ROUNDS, NAME: NAME, SPOT: SPOT, FULL: FULL, GRACE: GRACE, ZERO_AT: ZERO_AT,
     score: score, verdict: verdict, seeded: seeded, pick: pick, norm: norm, search: search,
     newRun: newRun, nameLevel: nameLevel, placeSpot: placeSpot, complete: complete, better: better
   };

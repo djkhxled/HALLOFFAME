@@ -160,8 +160,8 @@ left.
 
 `/geometryguessr/` is GeoGuessr for Geometry Dash: five rounds, five different demons from
 the 100 most downloaded. Name each screenshot's level (a wrong name scores nothing that
-round), then drag the cube to where in the level it was taken (1,000 points within 2%,
-nothing at 30% off; a perfect game is 5,000). With the records service on, a finished game
+round, a right one 500), then drag the cube to where in the level it was taken (up to
+500 more: all of it within 2%, nothing at 30% off; a perfect game is 5,000). With the records service on, a finished game
 can go on GeometryGuessr's board (`src/js/gg-records.js`, the only GeometryGuessr script
 that sends anything; the service's `gg` board is in `worker/records.js`). Rules live in
 `src/js/gg-core.js`, checked in a browser like Demondle's (`tests/gg.check.html`);
