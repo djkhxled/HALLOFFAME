@@ -36,7 +36,8 @@ answer pool, so the list of names does not give the pool away.
 
 > **Changed 2026-10-03 (owner):** five rounds a game, five different demons, **no lives**
 > (a wrong name scores 0 that round and the game goes on, as in GeoGuessr); score out of
-> 5,000; ranked by score, then demons named. Shots can be cropped to a 16:9 box to make
+> 5,000 (since 2026-10-04: 500 for the name plus up to 500 for the spot, so a right name
+> always counts); ranked by score, then demons named. Shots can be cropped to a 16:9 box to make
 > them harder (`tools/crop_shots.py`, applied by `tools/prepare_shots.py`). A
 > public score board joined the game, on the same records service as the naming game. The
 > text below describes the original endless, three-life version.

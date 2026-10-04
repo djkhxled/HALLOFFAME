@@ -18,13 +18,14 @@
   if (!G) { out.textContent = "GGCore missing"; document.title = "gg check: FAIL"; return; }
 
   // ---- scoring ----
-  t("dead on is 1,000", function () { eq(G.score(40, 40), 1000); });
-  t("within 2 points is still 1,000, either side", function () { eq(G.score(42, 40), 1000); eq(G.score(38, 40), 1000); });
+  t("a round is 500 for the name and up to 500 for the spot", function () { eq([G.NAME, G.SPOT, G.FULL], [500, 500, 1000]); });
+  t("a spot dead on is 500", function () { eq(G.score(40, 40), 500); });
+  t("within 2 points is still 500, either side", function () { eq(G.score(42, 40), 500); eq(G.score(38, 40), 500); });
   t("30 points off is nothing", function () { eq(G.score(70, 40), 0); eq(G.score(10, 40), 0); });
   t("100 points off is nothing, never negative", function () { eq(G.score(100, 0), 0); });
-  t("halfway between 2 and 30 off is 500", function () { eq(G.score(56, 40), 500); });
+  t("halfway between 2 and 30 off is 250", function () { eq(G.score(56, 40), 250); });
   t("points fall as the guess gets further", function () {
-    var last = 1001;
+    var last = 501;
     for (var off = 0; off <= 30; off++) { var s = G.score(40 + off, 40); if (s > last) throw new Error("rose at " + off); last = s; }
   });
   t("verdict words", function () {
@@ -84,8 +85,9 @@
     var r = G.newRun(); eq([r.named, r.score, r.round, r.over, G.ROUNDS], [0, 0, 0, false, 5]);
     eq("lives" in r, false);
   });
-  t("the right level adds one to levels named", function () {
-    var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 4); eq([r.named, r.round, r.over], [1, 1, false]);
+  t("the right level adds one to levels named and 500 points at once", function () {
+    var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 4); eq([r.named, r.round, r.over, r.score], [1, 1, false, 500]);
+    eq(r.history[0].points, 500);
   });
   t("a wrong level scores nothing and the game goes on", function () {
     var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 2); eq([r.named, r.score, r.round, r.over], [0, 0, 1, false]);
@@ -110,9 +112,13 @@
     }
     eq([r.over, r.named, r.score], [true, 5, 5000]); eq(G.complete(r), true);
   });
+  t("a right name with a hopeless spot still keeps its 500", function () {
+    var r = G.nameLevel(G.newRun(), {l: 4, p: 10}, 4); r = G.placeSpot(r, 95);
+    eq([r.score, r.history[0].points, r.history[0].spotPoints], [500, 500, 0]);
+  });
   t("a spot scores on the round just named", function () {
     var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 4); r = G.placeSpot(r, 56);
-    eq(r.score, G.score(56, 50)); eq(r.history[0].points, G.score(56, 50)); eq(r.history[0].spot, 56);
+    eq(r.score, 500 + G.score(56, 50)); eq(r.history[0].points, 500 + G.score(56, 50)); eq(r.history[0].spot, 56);
   });
   t("no spot after a wrong level", function () {
     var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 2); var r2 = G.placeSpot(r, 50); eq(r2.score, 0); eq(r2.history[0].spot, null);
