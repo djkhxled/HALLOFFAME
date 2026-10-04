@@ -287,14 +287,14 @@ class Hub(unittest.TestCase):
     def setUpClass(cls):
         import subprocess
         subprocess.run(["python3", "build.py"], cwd=ROOT, check=True, capture_output=True)
-        cls.hub = (DOCS / "games" / "index.html").read_text(encoding="utf-8")
         cls.pages = {p: (DOCS / p / "index.html").read_text(encoding="utf-8")
-                     for p in ("game", "demondle", "games")}
+                     for p in ("game", "demondle", "geometryguessr")}
         cls.home = (DOCS / "index.html").read_text(encoding="utf-8")
 
-    def test_the_hub_lists_both_games(self):
-        self.assertIn('href="../game/"', self.hub)
-        self.assertIn('href="../demondle/"', self.hub)
+    def test_the_landing_page_lists_every_game(self):
+        """The landing page is the games hub now; /games/ forwards to it."""
+        for href in ('href="game/"', 'href="demondle/"', 'href="geometryguessr/"'):
+            self.assertIn(href, self.home)
 
     def test_the_tab_is_called_games_everywhere(self):
         for name, html in list(self.pages.items()) + [("home", self.home)]:
@@ -302,11 +302,16 @@ class Hub(unittest.TestCase):
             self.assertIn(">Games</a>", m.group(0), name)
             self.assertNotIn(">Game</a>", m.group(0), name)
 
-    def test_the_games_tab_is_current_on_the_hub_and_both_games(self):
-        for name in ("game", "demondle", "games"):
-            m = re.search(r'<nav class="topnav".*?</nav>', self.pages[name], re.S).group(0)
+    def test_the_games_tab_is_current_on_the_landing_page_and_every_game(self):
+        for name, html in list(self.pages.items()) + [("home", self.home)]:
+            m = re.search(r'<nav class="topnav".*?</nav>', html, re.S).group(0)
             self.assertEqual(m.count('aria-current="page"'), 1, name)
             self.assertRegex(m, r'<a class="topnav__link"[^>]*aria-current="page">Games</a>', name)
+
+    def test_the_list_tab_is_current_on_the_list(self):
+        page = (DOCS / "list" / "index.html").read_text(encoding="utf-8")
+        m = re.search(r'<nav class="topnav".*?</nav>', page, re.S).group(0)
+        self.assertRegex(m, r'<a class="topnav__link"[^>]*aria-current="page">The List</a>')
 
     def test_the_old_game_page_still_builds(self):
         self.assertIn("Name every extreme demon".lower(), self.pages["game"].lower())
@@ -361,7 +366,7 @@ class ShareCard(unittest.TestCase):
     def _pages(self):
         """Every built page that is meant to be shared: all but the 404 and the
         forwarding page for the old address."""
-        skip = {DOCS / "404.html", DOCS / "guess" / "index.html"}
+        skip = {DOCS / "404.html", DOCS / "guess" / "index.html", DOCS / "games" / "index.html"}
         return [p for p in DOCS.rglob("*.html") if p not in skip]
 
     def test_every_shareable_page_has_a_card_that_exists_at_the_right_size(self):
@@ -383,7 +388,7 @@ class ShareCard(unittest.TestCase):
     def test_the_other_pages_each_have_their_own_card(self):
         home = self._card(self.home)
         own = {}
-        for name in ("game", "demondle", "games", "privacy", "terms", "credits"):
+        for name in ("game", "demondle", "geometryguessr", "privacy", "terms", "credits"):
             url = self._card((DOCS / name / "index.html").read_text(encoding="utf-8"))
             self.assertNotEqual(url, home, name)
             own[name] = url

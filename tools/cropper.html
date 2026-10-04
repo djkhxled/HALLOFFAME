@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GG Cropper</title>
+<style>
+  :root { --bg: #0b0716; --panel: #160e2a; --line: rgb(255 255 255 / .14); --ink: #f5f2ff; --muted: #a59fc0;
+          --cyan: #21e6ff; --pink: #ff2bd6; --lime: #a8ff2e; --gold: #ffd23f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, sans-serif; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.4rem; padding: .8rem 1.2rem; border-bottom: 1px solid var(--line); }
+  h1 { margin: 0; font-size: 1.05rem; letter-spacing: .04em; }
+  h1 span { color: var(--cyan); }
+  .progress { flex: 1 1 14rem; display: grid; gap: .3rem; }
+  .bar { height: .45rem; border-radius: 99px; background: #241a40; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--lime), var(--cyan)); transition: width .3s; }
+  .count { font-size: .85rem; color: var(--muted); }
+  select { background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: .5rem; padding: .4rem .5rem; font: inherit; max-width: 16rem; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: 1.2rem; padding: 1rem 1.2rem 1.4rem; align-items: start; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .stage-wrap { display: grid; justify-items: center; gap: .6rem; }
+  .now { margin: 0; font-size: 1.15rem; font-weight: 700; }
+  .now small { color: var(--muted); font-weight: 500; margin-left: .5rem; }
+  .stage { position: relative; width: min(100%, calc((100vh - 9.5rem) * 1.778)); aspect-ratio: 1138 / 640; background: #000;
+           border-radius: .6rem; overflow: hidden; touch-action: none; user-select: none; cursor: crosshair; }
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+  .box { position: absolute; border: 2px solid #fff; outline: 2px dashed rgb(0 0 0 / .6); outline-offset: -4px;
+         box-shadow: 0 0 0 9999px rgb(5 2 12 / .68); cursor: grab; }
+  .box:active { cursor: grabbing; }
+  .box::before, .box::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+         background: linear-gradient(90deg, transparent calc(33.33% - .5px), rgb(255 255 255 / .25) 0 calc(33.33% + .5px), transparent 0 calc(66.66% - .5px), rgb(255 255 255 / .25) 0 calc(66.66% + .5px), transparent 0); }
+  .box::after { background: linear-gradient(180deg, transparent calc(33.33% - .5px), rgb(255 255 255 / .25) 0 calc(33.33% + .5px), transparent 0 calc(66.66% - .5px), rgb(255 255 255 / .25) 0 calc(66.66% + .5px), transparent 0); }
+  .tag { position: absolute; left: .5rem; top: .5rem; padding: .2rem .45rem; border-radius: .35rem; background: rgb(0 0 0 / .7);
+         font: 700 .8rem/1.2 ui-monospace, monospace; pointer-events: none; }
+  aside { display: grid; gap: .9rem; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: .8rem; padding: .9rem; display: grid; gap: .6rem; }
+  .card h2 { margin: 0; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  canvas { width: 100%; aspect-ratio: 16 / 9; border-radius: .45rem; background: #000; display: block; }
+  .row { display: flex; flex-wrap: wrap; gap: .45rem; }
+  button { font: 600 .9rem/1 system-ui, sans-serif; color: var(--ink); background: #2a1f47; border: 1px solid var(--line);
+           border-radius: .55rem; padding: .6rem .8rem; cursor: pointer; }
+  button:hover { filter: brightness(1.2); }
+  button.go { background: linear-gradient(180deg, #c6ff5a, #5fc400); color: #102000; border-color: #000; font-size: 1rem; padding: .8rem 1rem; flex: 1; }
+  button.small { padding: .45rem .6rem; font-size: .8rem; }
+  input[type=range] { width: 100%; accent-color: var(--cyan); }
+  .size { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); }
+  .size b { color: var(--ink); }
+  kbd { font: 600 .75rem ui-monospace, monospace; padding: .1rem .35rem; border-radius: .3rem; background: #2a1f47; border: 1px solid var(--line); }
+  .keys { margin: 0; padding: 0; list-style: none; display: grid; gap: .3rem; font-size: .82rem; color: var(--muted); }
+  .status { min-height: 1.3em; font-size: .85rem; color: var(--lime); }
+  .done { padding: 2rem; text-align: center; font-size: 1.2rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>GG <span>Cropper</span></h1>
+  <div class="progress"><div class="bar"><i id="bar"></i></div><div class="count" id="count">Loading&hellip;</div></div>
+  <select id="jump" aria-label="Jump to a shot"></select>
+</header>
+<main>
+  <div class="stage-wrap">
+    <p class="now" id="now"></p>
+    <div class="stage" id="stage">
+      <img id="img" alt="">
+      <div class="box" id="box"></div>
+      <span class="tag" id="tag"></span>
+    </div>
+  </div>
+  <aside>
+    <div class="card">
+      <h2>What players see</h2>
+      <canvas id="preview" width="640" height="360"></canvas>
+    </div>
+    <div class="card">
+      <h2>Box size</h2>
+      <input type="range" id="size" min="30" max="100" step="1" value="75" aria-label="Box size">
+      <div class="size"><span>tighter, harder</span><b id="sizeLabel">75%</b><span>whole shot</span></div>
+      <div class="row">
+        <button class="small" data-size="50">50%</button><button class="small" data-size="60">60%</button>
+        <button class="small" data-size="70">70%</button><button class="small" data-size="80">80%</button>
+        <button class="small" data-size="100">Whole</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row"><button class="go" id="save">Save &amp; next &#9166;</button></div>
+      <div class="row"><button id="back">&#8592; Back</button><button id="skip">Skip</button><button id="next-un">Next uncropped</button><button id="clear">Uncrop</button></div>
+      <div class="status" id="status" role="status"></div>
+    </div>
+    <div class="card">
+      <h2>Keys</h2>
+      <ul class="keys">
+        <li><kbd>drag</kbd> move the box &middot; <kbd>click</kbd> centre it there</li>
+        <li><kbd>scroll</kbd> or <kbd>-</kbd> <kbd>=</kbd> resize</li>
+        <li><kbd>&larr;&uarr;&rarr;&darr;</kbd> nudge (<kbd>shift</kbd> for more)</li>
+        <li><kbd>Enter</kbd> save &amp; next &middot; <kbd>Backspace</kbd> back</li>
+        <li><kbd>W</kbd> whole shot &middot; <kbd>U</kbd> next uncropped</li>
+      </ul>
+    </div>
+  </aside>
+</main>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var stage = $("stage"), img = $("img"), boxEl = $("box"), preview = $("preview"), pctx = preview.getContext("2d");
+  var sizeInput = $("size"), sizeLabel = $("sizeLabel"), status = $("status"), jump = $("jump");
+  var shots = [], crops = {}, i = 0, box = { x: 0.125, y: 0.125, s: 0.75 }, sticky = 0.75, busy = false;
+
+  function clamp() {
+    box.s = Math.max(0.3, Math.min(1, box.s));
+    box.x = Math.max(0, Math.min(1 - box.s, box.x));
+    box.y = Math.max(0, Math.min(1 - box.s, box.y));
+  }
+  function centred(s) { return { x: (1 - s) / 2, y: (1 - s) / 2, s: s }; }
+
+  function render() {
+    clamp();
+    boxEl.style.left = box.x * 100 + "%"; boxEl.style.top = box.y * 100 + "%";
+    boxEl.style.width = box.s * 100 + "%"; boxEl.style.height = box.s * 100 + "%";
+    var pct = Math.round(box.s * 100);
+    sizeInput.value = pct; sizeLabel.textContent = pct + "%";
+    if (img.complete && img.naturalWidth) {
+      var W = img.naturalWidth, H = img.naturalHeight;
+      pctx.drawImage(img, box.x * W, box.y * H, box.s * W, box.s * H, 0, 0, preview.width, preview.height);
+    }
+  }
+
+  function paintProgress() {
+    var done = shots.filter(function (s) { return crops[s.key]; }).length;
+    $("bar").style.width = (shots.length ? done / shots.length * 100 : 0) + "%";
+    $("count").textContent = done + " of " + shots.length + " shots cropped";
+    Array.prototype.forEach.call(jump.options, function (o, k) {
+      o.textContent = (crops[shots[k].key] ? "✓ " : "   ") + shots[k].name + " " + shots[k].pct + "%";
+    });
+    jump.value = String(i);
+  }
+
+  function show(k) {
+    if (k >= shots.length) {
+      document.querySelector("main").innerHTML = '<p class="done">All ' + shots.length +
+        ' shots have a crop. Tell Claude, or run <kbd>python3 tools/prepare_shots.py</kbd> then <kbd>python3 build.py</kbd>.</p>';
+      paintProgress();
+      return;
+    }
+    i = Math.max(0, k);
+    var s = shots[i], c = crops[s.key];
+    box = c ? { x: c[0], y: c[1], s: c[2] } : centred(sticky);
+    $("now").innerHTML = "";
+    $("now").appendChild(document.createTextNode(s.name));
+    var small = document.createElement("small"); small.textContent = s.pct + "%  ·  shot " + (i + 1) + " of " + shots.length;
+    $("now").appendChild(small);
+    $("tag").textContent = c ? "saved" : "new";
+    img.onload = render;
+    img.src = "/raw/" + s.raw;
+    render();
+    paintProgress();
+  }
+
+  function post(crop) {
+    return fetch("/api/crop", { method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ key: shots[i].key, crop: crop }) }).then(function (r) { return r.json(); });
+  }
+
+  function save() {
+    if (busy) return;
+    busy = true; clamp();
+    var crop = [box.x, box.y, box.s];
+    post(crop).then(function (r) {
+      if (!r.ok) throw new Error(r.error || "not saved");
+      crops[shots[i].key] = crop; sticky = box.s;
+      status.textContent = "Saved " + shots[i].name + " " + shots[i].pct + "%";
+      show(i + 1);
+    }).catch(function (e) { status.textContent = "Not saved: " + e.message; })
+      .then(function () { busy = false; });
+  }
+
+  function clearCrop() {
+    post(null).then(function () { delete crops[shots[i].key]; status.textContent = "Uncropped"; show(i); });
+  }
+
+  function nextUncropped() {
+    for (var k = 1; k <= shots.length; k++) {
+      var j = (i + k) % shots.length;
+      if (!crops[shots[j].key]) return show(j);
+    }
+    status.textContent = "Every shot has a crop.";
+  }
+
+  /* Pointer: drag the box, click elsewhere to centre it there */
+  var drag = null;
+  function frac(e) { var r = stage.getBoundingClientRect(); return { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height }; }
+  stage.addEventListener("pointerdown", function (e) {
+    var p = frac(e);
+    if (e.target !== boxEl) { box.x = p.x - box.s / 2; box.y = p.y - box.s / 2; render(); }
+    drag = { p: p, x: box.x, y: box.y };
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    var p = frac(e);
+    box.x = drag.x + (p.x - drag.p.x); box.y = drag.y + (p.y - drag.p.y); render();
+  });
+  stage.addEventListener("pointerup", function () { drag = null; });
+  stage.addEventListener("wheel", function (e) {
+    e.preventDefault();
+    resize(box.s * (e.deltaY > 0 ? 1.04 : 1 / 1.04));
+  }, { passive: false });
+
+  function resize(s) {
+    var cx = box.x + box.s / 2, cy = box.y + box.s / 2;
+    box.s = Math.max(0.3, Math.min(1, s));
+    box.x = cx - box.s / 2; box.y = cy - box.s / 2;
+    render();
+  }
+
+  sizeInput.addEventListener("input", function () { resize(sizeInput.value / 100); });
+  document.querySelectorAll("[data-size]").forEach(function (b) {
+    b.addEventListener("click", function () { resize(b.getAttribute("data-size") / 100); });
+  });
+  $("save").addEventListener("click", save);
+  $("back").addEventListener("click", function () { show(i - 1); });
+  $("skip").addEventListener("click", function () { show(i + 1); });
+  $("next-un").addEventListener("click", nextUncropped);
+  $("clear").addEventListener("click", clearCrop);
+  jump.addEventListener("change", function () { show(Number(jump.value)); jump.blur(); });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.target === jump) return;
+    var step = e.shiftKey ? 0.05 : 0.01, k = e.key;
+    if (k === "Enter") save();
+    else if (k === "Backspace") show(i - 1);
+    else if (k === "ArrowLeft") { box.x -= step; render(); }
+    else if (k === "ArrowRight") { box.x += step; render(); }
+    else if (k === "ArrowUp") { box.y -= step; render(); }
+    else if (k === "ArrowDown") { box.y += step; render(); }
+    else if (k === "-" || k === "_") resize(box.s + 0.02);
+    else if (k === "=" || k === "+") resize(box.s - 0.02);
+    else if (k === "w" || k === "W") resize(1);
+    else if (k === "u" || k === "U") nextUncropped();
+    else return;
+    e.preventDefault();
+  });
+
+  fetch("/api/state").then(function (r) { return r.json(); }).then(function (data) {
+    shots = data.shots; crops = data.crops || {};
+    shots.forEach(function (s, k) { var o = document.createElement("option"); o.value = String(k); jump.appendChild(o); });
+    var first = shots.findIndex(function (s) { return !crops[s.key]; });
+    show(first < 0 ? 0 : first);
+  });
+})();
+</script>
+</body>
+</html>

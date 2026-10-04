@@ -1,0 +1,136 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>gg check: running</title>
+<body style="font:14px/1.5 ui-monospace,monospace;padding:1rem;background:#111;color:#ddd">
+<pre id="out"></pre>
+<script src="../src/js/gg-core.js"></script>
+<script>
+(function () {
+  var G = window.GGCore, out = document.getElementById("out"), pass = 0, fail = 0;
+  function t(name, fn) {
+    try { fn(); pass++; out.textContent += "ok   " + name + "\n"; }
+    catch (e) { fail++; out.textContent += "FAIL " + name + ": " + e.message + "\n"; }
+  }
+  function eq(a, b, msg) {
+    if (JSON.stringify(a) !== JSON.stringify(b))
+      throw new Error((msg || "") + " expected " + JSON.stringify(b) + " got " + JSON.stringify(a));
+  }
+  if (!G) { out.textContent = "GGCore missing"; document.title = "gg check: FAIL"; return; }
+
+  // ---- scoring ----
+  t("dead on is 1,000", function () { eq(G.score(40, 40), 1000); });
+  t("within 2 points is still 1,000, either side", function () { eq(G.score(42, 40), 1000); eq(G.score(38, 40), 1000); });
+  t("30 points off is nothing", function () { eq(G.score(70, 40), 0); eq(G.score(10, 40), 0); });
+  t("100 points off is nothing, never negative", function () { eq(G.score(100, 0), 0); });
+  t("halfway between 2 and 30 off is 500", function () { eq(G.score(56, 40), 500); });
+  t("points fall as the guess gets further", function () {
+    var last = 1001;
+    for (var off = 0; off <= 30; off++) { var s = G.score(40 + off, 40); if (s > last) throw new Error("rose at " + off); last = s; }
+  });
+  t("verdict words", function () {
+    eq([G.verdict(0), G.verdict(2), G.verdict(5), G.verdict(10), G.verdict(18), G.verdict(25)],
+       ["perfect", "perfect", "great", "good", "close", "far"]);
+  });
+
+  // ---- dealing: one game is five different demons ----
+  var shots = [];
+  for (var lv = 1; lv <= 12; lv++) for (var p = 0; p < 6; p++) shots.push({l: lv, p: 10 + p * 15});
+  t("a game deals five shots of five different levels, over many seeds", function () {
+    for (var s = 1; s < 500; s++) {
+      var g = G.pick(shots, G.seeded(s), G.ROUNDS, []);
+      eq(g.length, 5);
+      var lv = g.map(function (i) { return shots[i].l; });
+      if (new Set(lv).size !== 5) throw new Error("seed " + s + ": " + lv);
+    }
+  });
+  t("the next game avoids the last game's levels when it can", function () {
+    for (var s = 1; s < 300; s++) {
+      var first = G.pick(shots, G.seeded(s), 5, []).map(function (i) { return shots[i].l; });
+      var second = G.pick(shots, G.seeded(s + 9999), 5, first).map(function (i) { return shots[i].l; });
+      second.forEach(function (l) { if (first.indexOf(l) >= 0) throw new Error("seed " + s + " reused " + l); });
+    }
+  });
+  t("with too few fresh levels it still deals five", function () {
+    var few = shots.filter(function (x) { return x.l <= 6; });
+    var g = G.pick(few, G.seeded(3), 5, [1, 2, 3, 4]);
+    eq(g.length, 5); eq(new Set(g.map(function (i) { return few[i].l; })).size, 5);
+  });
+  t("every shot of a level can be dealt", function () {
+    var seen = {};
+    for (var s = 1; s < 2000; s++) G.pick(shots, G.seeded(s), 5, []).forEach(function (i) { seen[i] = true; });
+    eq(Object.keys(seen).length, shots.length);
+  });
+  t("the same seed deals the same game", function () { eq(G.pick(shots, G.seeded(5), 5, []), G.pick(shots, G.seeded(5), 5, [])); });
+
+  // ---- search ----
+  var levels = [{id: 1, n: "Bloodbath", d: 190}, {id: 2, n: "Bloodlust", d: 60}, {id: 3, n: "Bloodbath Z", d: 22},
+                {id: 4, n: "Sonic Wave", d: 49}, {id: 5, n: "X", d: 72}, {id: 6, n: "Theory of every v2", d: 29}];
+  t("search ignores case, spaces and punctuation", function () {
+    eq(G.search(levels, "sonicwave").map(function (l) { return l.id; }), [4]);
+    eq(G.search(levels, "SONIC  wave!").map(function (l) { return l.id; }), [4]);
+  });
+  t("names that start with the query come first, then the most downloaded", function () {
+    eq(G.search(levels, "blood").map(function (l) { return l.id; }), [1, 2, 3]);
+  });
+  t("an exact name comes first even when short", function () {
+    eq(G.search(levels, "x")[0].id, 5);
+  });
+  t("matches inside a name are found too", function () { eq(G.search(levels, "every")[0].id, 6); });
+  t("an empty query finds nothing", function () { eq(G.search(levels, "  "), []); });
+  t("the limit is respected", function () { eq(G.search(levels, "o", 2).length, 2); });
+
+  // ---- the run ----
+  t("a game starts with five rounds to play and nothing scored, and has no lives", function () {
+    var r = G.newRun(); eq([r.named, r.score, r.round, r.over, G.ROUNDS], [0, 0, 0, false, 5]);
+    eq("lives" in r, false);
+  });
+  t("the right level adds one to levels named", function () {
+    var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 4); eq([r.named, r.round, r.over], [1, 1, false]);
+  });
+  t("a wrong level scores nothing and the game goes on", function () {
+    var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 2); eq([r.named, r.score, r.round, r.over], [0, 0, 1, false]);
+  });
+  t("five wrong names: the game ends after the fifth, with nothing scored", function () {
+    var r = G.newRun();
+    for (var k = 0; k < 5; k++) { eq(r.over, false, "before " + (k + 1)); r = G.nameLevel(r, {l: 4, p: 50}, 2); }
+    eq([r.over, r.named, r.score, r.round], [true, 0, 0, 5]); eq(G.complete(r), false);
+  });
+  t("a wrong name on the last round ends the game at once", function () {
+    var r = G.newRun();
+    for (var k = 0; k < 4; k++) { r = G.nameLevel(r, {l: k, p: 50}, k); r = G.placeSpot(r, 50); }
+    r = G.nameLevel(r, {l: 9, p: 50}, 1);
+    eq([r.over, r.named, r.score], [true, 4, 4000]); eq(G.complete(r), false);
+  });
+  t("the game ends after the fifth spot, not the fifth name", function () {
+    var r = G.newRun();
+    for (var k = 0; k < 5; k++) {
+      r = G.nameLevel(r, {l: k, p: 50}, k);
+      eq(r.over, false, "after name " + (k + 1));
+      r = G.placeSpot(r, 50);
+    }
+    eq([r.over, r.named, r.score], [true, 5, 5000]); eq(G.complete(r), true);
+  });
+  t("a spot scores on the round just named", function () {
+    var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 4); r = G.placeSpot(r, 56);
+    eq(r.score, G.score(56, 50)); eq(r.history[0].points, G.score(56, 50)); eq(r.history[0].spot, 56);
+  });
+  t("no spot after a wrong level", function () {
+    var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 2); var r2 = G.placeSpot(r, 50); eq(r2.score, 0); eq(r2.history[0].spot, null);
+  });
+  t("a spot counts once", function () {
+    var r = G.nameLevel(G.newRun(), {l: 4, p: 50}, 4); r = G.placeSpot(r, 50); r = G.placeSpot(r, 50); eq(r.score, 1000);
+  });
+  t("steps do not change the state they are given", function () {
+    var r = G.newRun(); G.nameLevel(r, {l: 4, p: 50}, 2); eq(r.round, 0); eq(r.history.length, 0);
+  });
+  t("better: more points wins, then more levels named", function () {
+    eq(G.better({named: 3, score: 2900}, {named: 5, score: 2500}), true);
+    eq(G.better({named: 5, score: 2500}, {named: 4, score: 2500}), true);
+    eq(G.better({named: 4, score: 100}, {named: 4, score: 200}), false);
+    eq(G.better({named: 1, score: 0}, null), true);
+  });
+
+  out.textContent += "\n" + pass + " passed, " + fail + " failed\n";
+  document.title = "gg check: " + (fail ? "FAIL " + fail : "PASS " + pass);
+})();
+</script>

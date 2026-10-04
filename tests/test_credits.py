@@ -107,7 +107,7 @@ class InTheBuild(unittest.TestCase):
                 self.assertIn(", ".join(crew), page, slug)
 
     def test_the_home_list_follows_the_rule(self):
-        home = (DOCS / "index.html").read_text(encoding="utf-8")
+        home = (DOCS / "list" / "index.html").read_text(encoding="utf-8")
         long_crews = [lv for lv in self.levels.values()
                       if len((lv.get("facts") or {}).get("creators") or []) > render.CREDIT_MAX]
         self.assertEqual(home.count('class="credit"'), len(long_crews))

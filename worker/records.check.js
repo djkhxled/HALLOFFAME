@@ -48,7 +48,7 @@ export async function run(worker) {
   const env = makeEnv();
   let r = await call(env, "POST", "/submit", { mode: "10", name: "bperk", score: 143, t: 590000 });
   ok("accepts a good score", r.status === 200 && r.body.ok && r.body.rank === 1 && r.body.improved, r.body);
-  ok("returns all four boards", Object.keys(r.body.boards || {}).join() === "5,10,30,60", r.body);
+  ok("returns every board", Object.keys(r.body.boards || {}).join() === "5,10,30,60,gg", r.body);
   ok("sets CORS for the site", r.cors === ORIGIN, r.cors);
 
   await call(env, "POST", "/submit", { mode: "10", name: "alex", score: 200, t: 600000 });
@@ -109,6 +109,33 @@ export async function run(worker) {
   ok("...and is not stored", !big.store.get("board:60").includes("lowest"), 1);
   r = await call(big, "GET", "/boards");
   ok("GET sends only the top 25", r.body["60"].length === 25, r.body["60"].length);
+
+  // GeometryGuessr
+  const g = makeEnv();
+  r = await call(g, "POST", "/submit", { mode: "gg", name: "bperk", score: 3950, named: 5 });
+  ok("gg: accepts a good game", r.status === 200 && r.body.ok && r.body.rank === 1 && r.body.boards.gg.length === 1, r.body);
+  ok("gg: stores points, demons named and date only", JSON.stringify(Object.keys(JSON.parse(g.store.get("board:gg"))[0])) === '["n","s","r","d"]', g.store.get("board:gg"));
+  await call(g, "POST", "/submit", { mode: "gg", name: "alex", score: 3950, named: 4 });
+  await call(g, "POST", "/submit", { mode: "gg", name: "sam", score: 4100, named: 5 });
+  r = await call(g, "GET", "/boards");
+  ok("gg: more points first, ties by more named", r.body.gg.map((e) => e.n).join() === "sam,bperk,alex", r.body.gg);
+  ok("gg: the timed boards are untouched", r.body["5"].length === 0 && r.body["10"].length === 0, r.body);
+  const gw = g.writes;
+  r = await call(g, "POST", "/submit", { mode: "gg", name: "BPERK", score: 1000, named: 1 });
+  ok("gg: a worse game does not replace a better one, and costs no write", r.body.improved === false && g.writes === gw, r.body);
+  r = await call(g, "POST", "/submit", { mode: "gg", name: "bperk", score: 0, named: 1 });
+  ok("gg: zero points on a named demon is a real game", r.status === 200, r.body);
+  const ggBad = async (label, body) => {
+    const x = await call(g, "POST", "/submit", body);
+    ok(label, x.status === 400 && !x.body.ok, [x.status, x.body]);
+  };
+  await ggBad("gg: rejects more than 1,000 a round", { mode: "gg", name: "abc", score: 2001, named: 2 });
+  await ggBad("gg: rejects more than 5,000", { mode: "gg", name: "abc", score: 5001, named: 5 });
+  await ggBad("gg: rejects a sixth demon", { mode: "gg", name: "abc", score: 100, named: 6 });
+  await ggBad("gg: rejects nothing named", { mode: "gg", name: "abc", score: 0, named: 0 });
+  await ggBad("gg: rejects a fractional score", { mode: "gg", name: "abc", score: 10.5, named: 1 });
+  await ggBad("gg: rejects a string count", { mode: "gg", name: "abc", score: 10, named: "1" });
+  await ggBad("gg: rejects a bad name", { mode: "gg", name: "<b>", score: 10, named: 1 });
 
   r = await call(env, "OPTIONS", "/submit", undefined, ORIGIN);
   ok("answers the CORS preflight", r.status === 204 && r.res.headers.get("Access-Control-Allow-Methods").includes("POST") && r.res.headers.get("Access-Control-Allow-Headers") === "content-type", r.status);

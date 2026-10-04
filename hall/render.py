@@ -299,19 +299,21 @@ def chrome_html(field: str) -> str:
             f"<style>:root{{color-scheme:{scheme};}}</style>")
 
 
-TABS = [("/", "The Hall", "hall"), ("/games/", "Games", "games")]
+TABS = [("/list/", "The List", "list"), ("/", "Games", "games")]
 
 
 def topnav_html(current: str) -> str:
     """The tabs in the top right of the hero, on the landing page and the game.
 
-    Two entries and no more: level pages have their own rank navigation at the
+    The landing page is the games (most visitors come for them); the ranked list
+    has its own page at /list/. Two entries and no more: level pages have their own rank navigation at the
     bottom and need nothing up here. The tab for the page you are on is marked
     with aria-current rather than dropped, so the pair reads the same from
-    either side.
+    either side. data-tab lets the Games tab be styled louder than the rest:
+    most visitors come for the games.
     """
     links = "".join(
-        f'<a class="topnav__link" href="{href}"'
+        f'<a class="topnav__link" data-tab="{key}" href="{href}"'
         f'{" aria-current=\"page\"" if key == current else ""}>{label}</a>'
         for href, label, key in TABS
     )
@@ -404,7 +406,7 @@ def footer_links_html(docs: list[dict]) -> str:
 
 def docnav_html(docs: list[dict], current: str) -> str:
     """Cross-links between the policy pages, and back to the list."""
-    items = ['<a class="docnav__home" href="/">Back to the list</a>']
+    items = ['<a class="docnav__home" href="/list/">Back to the list</a>']
     for d in docs:
         if d["slug"] == current:
             continue
@@ -580,7 +582,7 @@ def ranknav_html(prev: dict | None, nxt: dict | None, total: int = 25) -> str:
 
     parts.append(link(prev, "Previous", "ranknav__link--prev") if prev
                  else "<span></span>")
-    parts.append(f'<a class="ranknav__home" href="/">All {total}</a>')
+    parts.append(f'<a class="ranknav__home" href="/list/">All {total}</a>')
     parts.append(link(nxt, "Next", "ranknav__link--next") if nxt
                  else "<span></span>")
     parts.append("</nav>")
@@ -626,3 +628,106 @@ def countdown_html(levels: list[dict]) -> str:
             f'data-slug="{esc(slug)}" style="{palette_style(lv)}">{body}</li>'
         )
     return f'<ol class="countdown" reversed>{"".join(entries)}</ol>'
+
+
+# --- Games: tiles, the strip under the landing hero, the hero's call to play ---
+
+def _gg_art() -> str:
+    """A scrolling run of spikes and blocks, a cube mid-jump, a question mark."""
+    period = 200
+    shapes = []
+    for k in range(3):
+        o = k * period
+        shapes += [
+            f'<path d="M{o+18} 170l12-22 12 22z"/>', f'<path d="M{o+42} 170l12-22 12 22z"/>',
+            f'<rect x="{o+86}" y="144" width="26" height="26"/>',
+            f'<rect x="{o+112}" y="118" width="26" height="52"/>',
+            f'<path d="M{o+160} 170l12-22 12 22z"/>',
+        ]
+    return (
+        '<svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">'
+        '<defs><linearGradient id="gga-sky" x1="0" y1="0" x2="0" y2="1">'
+        '<stop offset="0" stop-color="#14052b"/><stop offset=".62" stop-color="#420a5c"/>'
+        '<stop offset="1" stop-color="#ff2bd6"/></linearGradient></defs>'
+        '<rect width="400" height="220" fill="url(#gga-sky)"/>'
+        '<circle cx="292" cy="150" r="78" fill="#ff2bd6" opacity=".16"/>'
+        '<circle cx="292" cy="150" r="48" fill="#ffd23f" opacity=".14"/>'
+        f'<g class="gart-scroll" fill="#07030f" stroke="#21e6ff" stroke-width="1.5">{"".join(shapes)}</g>'
+        '<rect y="170" width="400" height="50" fill="#07030f"/>'
+        '<rect y="169" width="400" height="2.5" fill="#21e6ff"/>'
+        '<g class="gart-bob"><rect x="62" y="118" width="26" height="26" rx="2" fill="#a8ff2e" '
+        'stroke="#000" stroke-width="2.5"/><rect x="69" y="125" width="12" height="12" fill="#21e6ff" '
+        'stroke="#000" stroke-width="1.5"/></g>'
+        '<text x="300" y="128" text-anchor="middle" font-family="Bungee, sans-serif" font-size="96" '
+        'fill="#fff" opacity=".92">?</text></svg>'
+    )
+
+
+def _demondle_art() -> str:
+    colours = {"g": "#2f9e5b", "y": "#c79a16", "x": "#2a2f3d"}
+    rows = ["xxyxxx", "xyxgyx", "gyxggy", "gggggg"]
+    cells = []
+    for r, row in enumerate(rows):
+        for c, ch in enumerate(row):
+            cells.append(f'<rect class="gart-flip" style="--i:{r * 6 + c}" x="{88 + c * 38}" '
+                         f'y="{30 + r * 42}" width="32" height="36" rx="4" fill="{colours[ch]}"/>')
+    return ('<svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">'
+            '<rect width="400" height="220" fill="#0b1410"/>' + "".join(cells) + '</svg>')
+
+
+def _names_art() -> str:
+    cells = []
+    for r in range(7):
+        for c in range(10):
+            i = r * 10 + c
+            cells.append(f'<rect class="gart-fill" style="--i:{(i * 37) % 70}" x="{22 + c * 36}" '
+                         f'y="{18 + r * 27}" width="30" height="19" rx="4" fill="#1c2236"/>')
+    return ('<svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">'
+            '<rect width="400" height="220" fill="#0a0d18"/>' + "".join(cells) + '</svg>')
+
+
+GAME_ART = {"gg": _gg_art, "demondle": _demondle_art, "names": _names_art}
+
+
+def games_tiles_html(cards: list) -> str:
+    """One tile per game, in the order data/site.json lists them; the first leads."""
+    out = []
+    for c in cards:
+        art = c.get("art") or ""
+        draw = GAME_ART.get(art)
+        badge = f'<span class="gtile__badge">{esc(c["badge"])}</span>' if c.get("badge") else ""
+        out.append(
+            f'<a class="gtile gtile--{esc(art)}" href="{esc(c["href"])}">'
+            f'<span class="gtile__art" aria-hidden="true">{draw() if draw else ""}</span>{badge}'
+            f'<span class="gtile__body"><span class="gtile__title">{esc(c["title"])}</span>'
+            f'<span class="gtile__desc">{esc(c["desc"])}</span>'
+            f'<span class="gtile__go" aria-hidden="true">Play</span></span></a>')
+    return "".join(out)
+
+
+def games_band_html(games: dict) -> str:
+    """The games, on the landing page, straight after the hero."""
+    cards = games.get("cards") or []
+    if not cards:
+        return ""
+    return (
+        '<section class="gband page" id="play" aria-labelledby="gband-h">'
+        '<div class="gband__head"><h2 id="gband-h" class="gband__title">Play</h2>'
+        f'<p class="gband__lede">{esc(games.get("lede") or "")}</p>'
+        '</div>'
+        f'<div class="gtiles">{games_tiles_html(cards)}</div></section>'
+    )
+
+
+def hero_cta_html(games: dict, href: str = "#play") -> str:
+    """A call to play, above the fold on the landing page: down to the games."""
+    cards = games.get("cards") or []
+    if not cards:
+        return ""
+    new = next((c for c in cards if c.get("badge")), None)
+    small = f"{len(cards)} games" + (f" · new: {esc(new['title'])}" if new else "")
+    return (
+        f'<a class="herocta" href="{esc(href)}"><span class="herocta__play" aria-hidden="true"></span>'
+        '<span class="herocta__text"><span class="herocta__big">Play the games</span>'
+        f'<span class="herocta__small">{small}</span></span></a>'
+    )

@@ -164,6 +164,60 @@ def game():
     finish(img, "game")
 
 
+def geometryguessr():
+    """One of the game's own screenshots, a question over it, the level bar under it."""
+    img = canvas(7)
+    glowc = Image.new("RGB", img.size, (0, 0, 0))
+    sx, sy, sw, sh = 64, 176, 668, 376
+    ImageDraw.Draw(glowc).rounded_rectangle(((sx - 8) * S, (sy - 8) * S, (sx + sw + 8) * S, (sy + sh + 8) * S),
+                                            radius=26 * S, fill=(170, 40, 150))
+    glowc = glowc.filter(ImageFilter.GaussianBlur(26 * S))
+    px_a, px_b = img.load(), glowc.load()
+    for y in range(img.size[1]):
+        for x in range(img.size[0]):
+            a, b = px_a[x, y], px_b[x, y]
+            px_a[x, y] = tuple(min(255, a[i] + int(b[i] * 0.7)) for i in range(3))
+    d = ImageDraw.Draw(img)
+    shot = Image.open(ROOT / "src" / "shots" / "cataclysm" / "040.webp").convert("RGB").resize((sw * S, sh * S), Image.LANCZOS)
+    mask = Image.new("L", shot.size, 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, shot.size[0], shot.size[1]), radius=16 * S, fill=255)
+    img.paste(shot, (sx * S, sy * S), mask)
+    d.rounded_rectangle((sx * S, sy * S, (sx + sw) * S, (sy + sh) * S), radius=16 * S, outline=(255, 255, 255), width=2 * S)
+    tag = font(HEAVY, 22)
+    d.rounded_rectangle(((sx + 16) * S, (sy + 16) * S, (sx + 290) * S, (sy + 58) * S), radius=10 * S, fill=FIELD)
+    text(img, (sx + 28, sy + 47), "WHICH LEVEL IS THIS?", tag, (255, 210, 63), anchor="ls")
+    by = sy + sh + 24
+    d.rounded_rectangle((sx * S, by * S, (sx + sw) * S, (by + 12) * S), radius=6 * S, fill=(38, 42, 53))
+    mx = sx + int(sw * 0.43)
+    d.rounded_rectangle((sx * S, by * S, mx * S, (by + 12) * S), radius=6 * S, fill=(168, 255, 46))
+    d.rectangle(((mx - 14) * S, (by - 9) * S, (mx + 14) * S, (by + 19) * S), fill=(168, 255, 46), outline=(0, 0, 0), width=3 * S)
+    d.rectangle(((mx - 6) * S, (by - 1) * S, (mx + 6) * S, (by + 11) * S), fill=(33, 230, 255), outline=(0, 0, 0), width=2 * S)
+
+    text(img, (64, 74), "NEW GAME  \u00b7  THE 100 MOST DOWNLOADED DEMONS", font(MONO, 22), MUTED, anchor="ls")
+    title = font(HEAVY, 84)
+    x = 60
+    for i, ch in enumerate("GEOMETRY"):
+        text(img, (x, 152), ch, title, INK, anchor="ls")
+        x += ImageDraw.Draw(img).textlength(ch, font=title) / S
+    colours = [(33, 230, 255), (255, 43, 214), (255, 210, 63), (168, 255, 46), (255, 138, 43), (180, 123, 255)]
+    for i, ch in enumerate("GUESSR"):
+        text(img, (x, 152), ch, title, colours[i], anchor="ls")
+        x += ImageDraw.Draw(img).textlength(ch, font=title) / S
+
+    cx = 780
+    steps = [("1", "NAME THE DEMON", "One screenshot."), ("2", "FIND THE SPOT", "Drag the cube."),
+             ("3", "THREE LIVES", "How far can you get?")]
+    y = 218
+    for num, head, line in steps:
+        d.ellipse((cx * S, y * S, (cx + 50) * S, (y + 50) * S), outline=(255, 210, 63), width=3 * S)
+        text(img, (cx + 25, y + 36), num, font(HEAVY, 26), (255, 210, 63), anchor="ms")
+        text(img, (cx + 68, y + 24), head, font(HEAVY, 25), INK, anchor="ls")
+        text(img, (cx + 68, y + 52), line, font(MONO, 20), MUTED, anchor="ls")
+        y += 112
+    footer(img, left="")   # the level bar sits where the address would
+    finish(img, "geometryguessr")
+
+
 def document(name, title, eyebrow, colours, seed):
     img = beams(canvas(seed), colours, seed + 50, base=0.7, spread=0.6, count=28)
     img = fade_bottom(img, 0.3)
@@ -176,6 +230,7 @@ if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     games()
     demondle()
+    geometryguessr()
     game()
     document("privacy", "PRIVACY", "WHAT THIS SITE DOES WITH YOUR DATA", [(60, 200, 190), (60, 130, 220), (110, 160, 255)], 4)
     document("terms", "TERMS", "THE GROUND RULES", [(255, 170, 60), (255, 110, 70), (230, 200, 90)], 5)

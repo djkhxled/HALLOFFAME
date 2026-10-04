@@ -33,7 +33,7 @@ class TestBuild(unittest.TestCase):
         self.assertEqual(built, published)
 
     def test_index_lists_every_rank(self):
-        html = (DOCS / "index.html").read_text(encoding="utf-8")
+        html = (DOCS / "list" / "index.html").read_text(encoding="utf-8")
         expected = len(list((ROOT / "data" / "levels").glob("*.json")))
         self.assertEqual(html.count('class="countdown__entry'), expected)
 
@@ -212,7 +212,7 @@ class TestBuild(unittest.TestCase):
     def test_relative_depth_matches_where_the_page_sits(self):
         deep = (DOCS / "levels" / "deimos" / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="../../assets/css/base.css', deep)
-        self.assertIn('href="../../"', deep)
+        self.assertIn('href="../../list/"', deep)
         mid = (DOCS / "privacy" / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="../assets/css/base.css', mid)
         top = (DOCS / "index.html").read_text(encoding="utf-8")
@@ -353,7 +353,7 @@ class CountdownMarks(unittest.TestCase):
     def setUpClass(cls):
         subprocess.run(["python3", "build.py"], cwd=ROOT, check=True,
                        capture_output=True)
-        cls.index = (DOCS / "index.html").read_text(encoding="utf-8")
+        cls.index = (DOCS / "list" / "index.html").read_text(encoding="utf-8")
 
     def test_every_row_has_one(self):
         rows = self.index.count('class="countdown__entry')

@@ -14,7 +14,7 @@ import re
 import shutil
 import sys
 
-from hall import game, guess, render
+from hall import game, gg, guess, render
 from hall.ambient import ambient_svg
 from hall.data import load_levels, validate_levels, voice_progress
 
@@ -27,6 +27,7 @@ TEMPLATES = ROOT / "templates"
 # chrome has to be told the same colour. A test holds the two together.
 DEFAULT_FIELD = "#06070b"
 NOTFOUND_FIELD = "#0c0406"
+GG_FIELD = "#07040f"
 
 
 # Share cards: src/art/og-<name>.png, 1200x630, drawn by tools/make_cards.py except
@@ -40,6 +41,8 @@ CARD_ALT = {
     "privacy": "PRIVACY in large white letters over faint beams of teal and blue light",
     "terms": "TERMS in large white letters over faint beams of orange light",
     "credits": "CREDITS in large white letters over faint beams of violet and pink light",
+    "geometryguessr": "GEOMETRYGUESSR in neon letters beside a Geometry Dash screenshot marked "
+                      "with a question mark, over a level progress bar",
 }
 
 
@@ -352,6 +355,9 @@ def strip_tags(text: str) -> str:
 
 
 def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -> str:
+    """/list/ -- the ranked list: the hero, the countdown, the numbers. It was the
+    landing page until the games took that over; it keeps the page key "index",
+    which its styles are written against."""
     body = render.fill(
         index_tpl,
         {
@@ -367,7 +373,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
                  "palette": site.get("palette") or {}},
                 0,
             ) if (ROOT / "src" / "art" / "index.svg").exists() else "",
-            "topnav_html": render.topnav_html("hall"),
+            "topnav_html": render.topnav_html("list"),
             "countdown_html": render.countdown_html(levels),
             "numbers_html": render.numbers_html(levels),
             "about_html": site["aboutHtml"],
@@ -383,8 +389,8 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
             "signature": "static",
             "foot_extra_html": "",
             "texture_class": "texture texture--starfield",
-            "title": site["title"],
-            "og_title": site["title"],
+            "title": f"The List \u2014 {site['title']}",
+            "og_title": f"The List \u2014 {site['title']}",
             "description": site["description"],
             "head_extra_html": (
                 "<style>[data-level=\"index\"] .hero__title{font-size:"
@@ -393,6 +399,62 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
                 # runs on .hero__art > svg, which does not inherit from
                 # .hero__title.
                 + (f'[data-level="index"]{{--art-drift-dur:'
+                   f"{site['artDrift']};}}" if site.get("artDrift") else "")
+                + "</style>"
+                + card(site, "home")
+            ),
+            "body_html": body,
+            "disclaimer": site["disclaimer"],
+            "colophon": site["colophon"],
+            "footer_links_html": render.footer_links_html(site["docs"]),
+        },
+    )
+
+
+def build_home(levels: list[dict], site: dict, base_tpl: str) -> str:
+    """The landing page: the games first, since that is what most visitors come
+    for, with the ranked list a small link away at /list/."""
+    copy = {"lede": site["lede"], "description": site["description"], "listLabel": "The list",
+            "listHeading": "The list", "listText": "", **(site.get("home") or {})}
+    games = site.get("games") or {}
+    body = render.fill(
+        read(TEMPLATES / "home.html"),
+        {
+            "eyebrow": site["eyebrow"],
+            "title_line_html": site["titleHtml"],
+            "meta_left": site["metaLeft"],
+            "lede": copy["lede"],
+            "art_html": splice_ambient(
+                read(ROOT / "src" / "art" / "index.svg"),
+                {"artAmbient": site.get("artAmbient"),
+                 "palette": site.get("palette") or {}},
+                0,
+            ) if (ROOT / "src" / "art" / "index.svg").exists() else "",
+            "topnav_html": render.topnav_html("games"),
+            "hero_cta_html": render.hero_cta_html(games),
+            "list_label": copy["listLabel"],
+            "games_band_html": render.games_band_html(games),
+            "list_heading": copy["listHeading"],
+            "list_text": copy["listText"],
+        },
+    )
+    return render.fill(
+        base_tpl,
+        {
+            "slug": "home",
+            "html_attrs_html": " data-art-drift" if site.get("artDrift") else "",
+            "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
+            "attempt_label_html": "",
+            "signature": "static",
+            "foot_extra_html": "",
+            "texture_class": "texture texture--starfield",
+            "title": site["title"],
+            "og_title": site["title"],
+            "description": copy["description"],
+            "head_extra_html": (
+                "<style>[data-level=\"home\"] .hero__title{font-size:"
+                f"{render.hero_size(site['heroLongestLine'])}}}"
+                + (f'[data-level="home"]{{--art-drift-dur:'
                    f"{site['artDrift']};}}" if site.get("artDrift") else "")
                 + "</style>"
                 + card(site, "home")
@@ -645,11 +707,13 @@ def build_redirect(site: dict, base_tpl: str, to: str, name: str) -> str:
     says where it went. GitHub Pages cannot issue a real redirect, so this is
     the static equivalent; the canonical link tells search engines which URL
     is the real one."""
-    target = f"https://{site['domain']}/{to}/" if site.get("domain") else f"/{to}/"
+    path = f"{to}/" if to else ""
+    target = f"https://{site['domain']}/{path}" if site.get("domain") else f"/{path}"
+    where = render.esc(name) if to else "the home page"
     body = (f'<section class="hero hero--doc hero--game page">'
             f'<h1 class="hero__title doc__title">{render.esc(name)}</h1>'
             f'<div class="hero__foot"><p>{render.esc(name)} has moved to '
-            f'<a href="../{to}/">{render.esc(name)}</a>.</p></div></section>')
+            f'<a href="../{path}">{where}</a>.</p></div></section>')
     return render.fill(
         base_tpl,
         {
@@ -663,7 +727,7 @@ def build_redirect(site: dict, base_tpl: str, to: str, name: str) -> str:
             "title": name,
             "og_title": name,
             "description": f"{name} has moved.",
-            "head_extra_html": (f'<meta http-equiv="refresh" content="0; url=../{to}/">'
+            "head_extra_html": (f'<meta http-equiv="refresh" content="0; url=../{path}">'
                                 f'<link rel="canonical" href="{render.esc(target)}">'),
             "body_html": body,
             "disclaimer": site["disclaimer"],
@@ -673,48 +737,72 @@ def build_redirect(site: dict, base_tpl: str, to: str, name: str) -> str:
     )
 
 
-def build_games(site: dict, base_tpl: str) -> str:
-    """/games/ -- the hub the top-right tab opens."""
-    copy = {"title": "Games", "lede": "", "cards": [], **(site.get("games") or {})}
-    cards = "".join(
-        f'<a class="gcard" href="{render.esc(c["href"])}">'
-        f'<h2 class="gcard__title">{render.esc(c["title"])}</h2>'
-        f'<p class="gcard__desc">{render.esc(c["desc"])}</p>'
-        f'<span class="gcard__go">Play</span></a>'
-        for c in copy["cards"]
-    )
+def build_gg(site: dict, base_tpl: str) -> str:
+    """/geometryguessr/ -- name the demon from a screenshot, then find the spot.
+
+    The images are src/shots/ and the data data/gg/, both written by
+    tools/prepare_shots.py from the GG Capture mod's output. Nothing is fetched
+    by a visitor's browser beyond this site's own images.
+    """
+    snap, shots = gg.load(ROOT / "data" / "gg" / "levels.json", ROOT / "data" / "gg" / "shots.json")
+    levels = snap["levels"]
+    errors = gg.validate(levels, shots, ROOT / "src" / "shots")
+    if errors:
+        raise SystemExit("geometryguessr data invalid:\n  " + "\n  ".join(errors[:10]))
+
+    copy = {"title": "GeometryGuessr", "stage": "Beta", "version": "0.1.0", "kicker": "",
+            "tagline": "", **(site.get("gg") or {})}
+    try:
+        endpoint = game.records_endpoint(site)
+    except ValueError as exc:
+        raise SystemExit(f"records: {exc}")
+    when = datetime.date.fromisoformat(snap["fetched"])
+    fetched_label = f"{when.day} {when.strftime('%B %Y')}"
+    domain = site.get("domain")
+
     body = render.fill(
-        read(TEMPLATES / "games.html"),
+        read(TEMPLATES / "gg.html"),
         {
-            "eyebrow": f"{len(copy['cards'])} games",
-            "art_html": read(ROOT / "src" / "art" / "doc.svg")
-            if (ROOT / "src" / "art" / "doc.svg").exists() else "",
             "topnav_html": render.topnav_html("games"),
-            "heading": copy["title"],
-            "meta_left": "Baylor’s Hall of Extremes",
-            "lede": copy["lede"],
-            "meta_right": "Pick one",
-            "cards_html": cards,
+            "gg_attrs_html": (f' data-records-endpoint="{render.esc(endpoint)}"' if endpoint else ""),
+            "title_board_html": gg.board_title_html() if endpoint else "",
+            "records_html": gg.records_html(render.dm_html(site)) if endpoint else "",
+            "title": copy["title"],
+            "stage": copy["stage"],
+            "version": copy["version"],
+            "kicker": copy["kicker"],
+            "tagline": copy["tagline"],
+            # The page sits one folder down; the script builds image URLs from this.
+            "shots_base": "../assets/shots/",
+            "share_url": f"{domain}/geometryguessr" if domain else "",
+            "level_count": len(levels),
+            "shot_count": len(shots),
+            "answer_count": len({s["level"] for s in shots}),
+            "fetched_label": fetched_label,
+            "data_json_html": gg.data_json(levels, shots, snap["fetched"]),
         },
     )
     return render.fill(
         base_tpl,
         {
-            "slug": "games",
+            "slug": "gg",
             "html_attrs_html": " data-attempt-manual",
-            "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
-            "attempt_label_html": '<span class="attempt__rank">Games</span>',
-            "foot_extra_html": "",
+            "chrome_meta_html": render.chrome_html(GG_FIELD),
+            "attempt_label_html": "",
+            "foot_extra_html": ('<script src="/assets/js/gg-core.js" defer></script>'
+                                '<script src="/assets/js/gg.js" defer></script>'
+                                + ('<script src="/assets/js/gg-records.js" defer></script>'
+                                   if endpoint else "")),
             "signature": "static",
-            "texture_class": "texture texture--grain",
+            "texture_class": "texture texture--none",
             "title": copy["title"],
-            "og_title": f"{copy['title']} — {site['title']}",
-            "description": copy["lede"] or "Games about the Extreme Demon List.",
+            "og_title": f"{copy['title']} \u2014 {site['title']}",
+            "description": ("GeoGuessr for Geometry Dash: name the demon from one screenshot, "
+                            "then find where in the level it was taken. Three lives."),
             "head_extra_html": (
-                '<link rel="stylesheet" href="/assets/css/guess.css">'
-                '<style>[data-level="games"] .hero__title'
-                "{font-size:clamp(2.75rem,8vw,7rem)}</style>"
-                + card(site, "games")
+                '<link rel="stylesheet" href="/assets/css/gg.css">'
+                f"<style>:root{{--field:{GG_FIELD};}}</style>"
+                + card(site, "geometryguessr")
             ),
             "body_html": body,
             "disclaimer": site["disclaimer"],
@@ -767,7 +855,7 @@ def main() -> int:
     if domain:
         write(DOCS / "CNAME", domain + "\n")
 
-    for sub in ("css", "js", "art", "fonts"):
+    for sub in ("css", "js", "art", "fonts", "shots"):
         src = ROOT / "src" / sub
         if src.exists():
             shutil.copytree(src, DOCS / "assets" / sub)
@@ -788,9 +876,10 @@ def main() -> int:
                       lambda m: f"{m.group(1)}?v={stamp}", html)
         return relativize(html, depth)
 
-    write(DOCS / "index.html",
-          stamped(build_index(levels, site, base_tpl, index_tpl)))
-    pages = 1
+    write(DOCS / "index.html", stamped(build_home(levels, site, base_tpl)))
+    write(DOCS / "list" / "index.html",
+          stamped(build_index(levels, site, base_tpl, index_tpl), 1))
+    pages = 2
 
     page_tpl = read(TEMPLATES / "page.html")
     for doc in site.get("docs", []):
@@ -834,8 +923,13 @@ def main() -> int:
           stamped(build_redirect(site, base_tpl, "demondle", "Demondle"), 1))
     pages += 1
 
+    # The games hub was /games/; the landing page is the games now.
     write(DOCS / "games" / "index.html",
-          stamped(build_games(site, base_tpl), 1))
+          stamped(build_redirect(site, base_tpl, "", "Games"), 1))
+    pages += 1
+
+    write(DOCS / "geometryguessr" / "index.html",
+          stamped(build_gg(site, base_tpl), 1))
     pages += 1
 
     # Absolute URLs on purpose — see build_404. stamped() would relativize

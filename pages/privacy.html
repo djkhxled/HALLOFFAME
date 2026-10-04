@@ -19,14 +19,14 @@ advertising.</p>
   <li><strong>No analytics or trackers.</strong> No Google Analytics, no
     Plausible, no Meta pixel, no heatmaps, no session recording.</li>
   <li><strong>No accounts, forms or comments.</strong> The places you can
-    type are the <a href="/games/">games</a>, and what you type there never
+    type are the <a href="/">games</a>, and what you type there never
     leaves your browser: it is checked against a list that was already on the
     page, and nothing is sent to me or to anyone else.</li>
   <li><strong>Browser storage on the game pages, and nowhere else.</strong> The
     Game saves your progress &mdash; which levels you have named, your time, and
     whether sound is on &mdash; in <code>localStorage</code> on your own
     device, so it is still there when you come back. It is not a cookie, it is
-    never transmitted, and no page other than the two games writes anything to
+    never transmitted, and no page other than the games writes anything to
     <code>localStorage</code>, <code>sessionStorage</code> or IndexedDB.
     Pressing Reset, or clearing this site's data in your browser, erases
     it.
@@ -39,6 +39,13 @@ advertising.</p>
     <code>localStorage</code> under the key <code>hall-of-extremes.guess.v1</code> on your own
     device. It is never transmitted, and clearing this site&rsquo;s data in your browser
     erases it.</li>
+  <li><strong>Browser storage on the GeometryGuessr page.</strong> Your best game (your
+    score and how many of the five demons you named), how many games you have played, whether
+    sound is on<!-- records:on -->, and the username you last put on the board, if you have<!-- /records:on -->,
+    in <code>localStorage</code> under the key <code>hall-of-extremes.gg.v1</code> on your
+    own device. A game in progress is not saved. It is never transmitted, and clearing this
+    site&rsquo;s data in your browser erases it. The screenshots are images on this site, so
+    loading them talks to this host and nobody else.</li>
   <!-- records:off -->
   <li><strong>No advertising, and nothing sold or shared.</strong> I hold no
     personal data about visitors, so there is none to sell, share or
@@ -78,9 +85,10 @@ browser details to a company you did not choose to contact.</p>
 
 <!-- records:on -->
 <ul>
-  <li><strong>The Game&rsquo;s record boards.</strong> Nothing is requested from
-    the records service until you press <em>Show records</em> or
-    <em>Submit to records</em>. Both are described below.</li>
+  <li><strong>The record boards.</strong> Nothing is requested from the records
+    service until you press <em>Show records</em> or <em>Submit to records</em> on
+    the Game, or <em>Show the board</em> or <em>Submit score</em> on GeometryGuessr.
+    All four are described below.</li>
 </ul>
 <!-- /records:on -->
 
@@ -125,6 +133,22 @@ records</em> sends:</p>
 with the date it was submitted. Each board keeps its best 100; an entry that is
 pushed off the bottom is deleted. The entry is not linked to anything else. My
 code does not store or log your IP address, cookies or device details.</p>
+
+<h3>GeometryGuessr&rsquo;s board</h3>
+
+<p>GeometryGuessr has one board: the best scores out of 5,000. Putting a score on it is
+optional and there is no notice to accept first; instead the box you type your username
+into says that it will be public and that <strong>the only way to have it removed is to
+[[dm]]</strong>. Playing sends nothing. <em>Show the board</em> fetches the boards, and
+<em>Submit score</em> sends:</p>
+
+<ul>
+  <li>the username you typed;</li>
+  <li>your score, and how many of the five demons you named.</li>
+</ul>
+
+<p>It is stored the same way as the Game&rsquo;s entries: one line per username with the
+date, the best 100 kept, nothing else, and nothing about you logged.</p>
 
 <h3>Where it is kept</h3>
 

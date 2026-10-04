@@ -156,12 +156,45 @@ cross-check only; it is wrong by up to 40 s on about one level in nine, so it is
 never used for the game. The build fails when the schedule has less than 180 days
 left.
 
+## GeometryGuessr
+
+`/geometryguessr/` is GeoGuessr for Geometry Dash: five rounds, five different demons from
+the 100 most downloaded. Name each screenshot's level (a wrong name scores nothing that
+round), then drag the cube to where in the level it was taken (1,000 points within 2%,
+nothing at 30% off; a perfect game is 5,000). With the records service on, a finished game
+can go on GeometryGuessr's board (`src/js/gg-records.js`, the only GeometryGuessr script
+that sends anything; the service's `gg` board is in `worker/records.js`). Rules live in
+`src/js/gg-core.js`, checked in a browser like Demondle's (`tests/gg.check.html`);
+`src/js/gg.js` is the interface, including the level that plays itself behind the title
+screen. The search box offers all 100 demons whether or not they have pictures yet, so the
+list never gives the answer pool away.
+
+The screenshots come from the GG Capture Geode mod (`~/Documents/Claude/geometryguessr-capture`,
+not in this repo): Baylor plays a queued level and the mod saves HUD-free shots at set
+percentages. After a capture session:
+
+    python3 tools/prepare_shots.py
+
+To make shots harder, crop them first: `python3 tools/crop_shots.py` opens a cropper in the
+browser (drag a 16:9 box, Enter saves and moves on; crops go to `data/gg/crops.json` as you
+go). `prepare_shots.py` converts the PNGs (cut to their crops) to WebP under `src/shots/` and rewrites `data/gg/levels.json`
+and `data/gg/shots.json`. Like `make_cards.py` it needs Pillow; the build does not. The
+build fails if a shot's file is missing, a percent is outside 3-97, or fewer than five
+levels have pictures.
+
+## Pages
+
+The landing page (`/`) is the games, because that is what most visitors come for: the hero,
+a call to play, and the three games as tiles. The ranked list is at `/list/` (built from
+`templates/index.html`, still keyed `index` for its styles), reached by the "The List" tab
+and a small link in the hero. The old games hub `/games/` forwards to the landing page.
+
 ## Share cards
 
 Every page names a 1200x630 image for link previews. `src/art/og-home.png` is the
 owner's own title card; it is the home page's card and the one every ranked level
 shares. The other pages have their own (`og-game`, `og-demondle`, `og-games`,
-`og-privacy`, `og-terms`, `og-credits`), drawn by `tools/make_cards.py`. That tool is
+`og-privacy`, `og-terms`, `og-credits`, `og-geometryguessr`), drawn by `tools/make_cards.py`. That tool is
 a one-off design aid, not part of the build: it needs Pillow and macOS's Arial Black
 and Menlo fonts, and its output is committed. A new page without a card of its own
 falls back to the home card.
