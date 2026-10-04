@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" data-level="gg" data-signature="static" data-attempt-manual>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07040f"><style>:root{color-scheme:dark;}</style>
+<title>GeometryGuessr</title>
+<meta name="description" content="GeoGuessr for Geometry Dash: name the demon from one screenshot, then find where in the level it was taken. Three lives.">
+<meta property="og:title" content="GeometryGuessr — Baylor&#x27;s Hall of Extremes">
+<meta property="og:description" content="GeoGuessr for Geometry Dash: name the demon from one screenshot, then find where in the level it was taken. Three lives.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=80dd1c811f">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=80dd1c811f">
+<link rel="stylesheet" href="../assets/css/base.css?v=80dd1c811f">
+<link rel="stylesheet" href="../assets/css/components.css?v=80dd1c811f">
+<link rel="stylesheet" href="../assets/css/stage.css?v=80dd1c811f">
+<link rel="stylesheet" href="../assets/css/art.css?v=80dd1c811f">
+<link rel="stylesheet" href="../assets/css/gg.css?v=80dd1c811f"><style>:root{--field:#07040f;}</style><meta property="og:image" content="https://www.b4ylor.com/assets/art/og-geometryguessr.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="GEOMETRYGUESSR in neon letters beside a Geometry Dash screenshot marked with a question mark, over a level progress bar"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://www.b4ylor.com/assets/art/og-geometryguessr.png"><meta name="twitter:image:alt" content="GEOMETRYGUESSR in neon letters beside a Geometry Dash screenshot marked with a question mark, over a level progress bar">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="attempt" aria-hidden="true">
+  <span class="attempt__fill" data-attempt-fill></span>
+</div>
+<p class="attempt__read" aria-hidden="true"><span data-attempt-pct>0%</span></p>
+<div class="texture texture--none" aria-hidden="true"></div>
+<main id="main" class="site-main">
+<div class="gg" data-gg data-view="title" data-shots="../assets/shots/" data-share-url="www.b4ylor.com/geometryguessr" data-records-endpoint="https://hall-records.baylorperkins.workers.dev">
+  <canvas class="gg-bg" data-bg aria-hidden="true"></canvas>
+  <div class="gg-glow" aria-hidden="true"></div>
+
+  <header class="gg-bar">
+    <a class="gg-bar__back" href="../">Games</a>
+    <nav class="topnav" aria-label="Sections"><a class="topnav__link" data-tab="list" href="../list/">The List</a><a class="topnav__link" data-tab="games" href="../" aria-current="page">Games</a></nav>
+  </header>
+
+  <!-- Title ------------------------------------------------------------- -->
+  <section class="gg-title" data-screen="title" aria-labelledby="gg-logo">
+    <p class="gg-kicker"><span class="gg-kicker__dot" aria-hidden="true"></span>The 100 most downloaded demons</p>
+    <div class="gg-logo-wrap">
+      <h1 id="gg-logo" class="gg-logo" aria-label="GeometryGuessr">
+        <span class="gg-logo__line gg-logo__line--a" data-split aria-hidden="true">GEOMETRY</span>
+        <span class="gg-logo__line gg-logo__line--b" data-split aria-hidden="true">GUESSR</span>
+      </h1>
+      <span class="gg-sticker" aria-hidden="true">Beta</span>
+    </div>
+    <p class="gg-ver"><span class="visually-hidden">Beta, </span>v0.1.0 &middot; 50 of 100 demons so far</p>
+    <p class="gg-tag">One screenshot. Which demon is it, and where in the level are you?</p>
+
+    <button class="gg-start" type="button" data-start>
+      <span class="gg-start__ring" aria-hidden="true"></span>
+      <span class="gg-start__disc" aria-hidden="true"><span class="gg-start__tri"></span></span>
+      <span class="gg-start__word">Play</span>
+    </button>
+
+    <p class="gg-best" data-best hidden>Best game <b data-best-score>0</b> pts &middot; <b data-best-named>0</b>/5 named</p>
+
+    <ol class="gg-steps">
+      <li class="gg-step"><span class="gg-step__n" aria-hidden="true">1</span>
+        <span class="gg-step__h">Name the demon</span>
+        <span class="gg-step__t">One screenshot from one of the 100 most downloaded demons. Type its name.</span></li>
+      <li class="gg-step"><span class="gg-step__n" aria-hidden="true">2</span>
+        <span class="gg-step__h">Find the spot</span>
+        <span class="gg-step__t">Drag the cube to where in the level the shot was taken. Up to 1,000 points a round.</span></li>
+      <li class="gg-step"><span class="gg-step__n" aria-hidden="true">3</span>
+        <span class="gg-step__h">Five rounds</span>
+        <span class="gg-step__t">Five demons a game. A wrong name scores nothing that round. A perfect game is 5,000.</span></li>
+    </ol>
+    <div class="gg-lead"><button class="gg-btn gg-lead__btn" type="button" data-rec-show>Show the board</button><div class="gg-lead__box" data-rec-board aria-live="polite"></div></div>
+  </section>
+
+  <!-- A round ----------------------------------------------------------- -->
+  <section class="gg-round" data-screen="play" hidden aria-label="Round">
+    <div class="gg-hud">
+      <p class="gg-hud__brand" aria-hidden="true">GeometryGuessr</p>
+      <p class="gg-hud__cell"><span class="gg-hud__k">Round</span><b class="gg-hud__v" data-round>1/5</b></p>
+      <p class="gg-hud__cell"><span class="gg-hud__k">Named</span><b class="gg-hud__v" data-named>0</b></p>
+      <p class="gg-hud__cell gg-hud__cell--score"><span class="gg-hud__k">Score</span><b class="gg-hud__v" data-score>0</b></p>
+    </div>
+
+    <figure class="gg-frame" data-frame>
+      <div class="gg-frame__pic">
+        <img class="gg-shot" data-shot width="1138" height="640" decoding="async"
+             alt="A moment from one of the levels, with the player hidden. Which demon is it?">
+        <div class="gg-flash" data-flash aria-hidden="true"></div>
+        <p class="gg-stamp" data-stamp aria-hidden="true"></p>
+      </div>
+      <canvas class="gg-burst" data-burst aria-hidden="true"></canvas>
+    </figure>
+
+    <div class="gg-dock">
+      <form class="gg-ask" data-ask autocomplete="off">
+        <label class="gg-ask__q" for="gg-input">Which demon is this?</label>
+        <div class="gg-ask__row">
+          <div class="gg-combo">
+            <input id="gg-input" class="gg-input" data-input type="text" role="combobox"
+                   aria-autocomplete="list" aria-expanded="false" aria-controls="gg-options"
+                   autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+                   enterkeyhint="go" placeholder="Type a level name&hellip;">
+            <ul id="gg-options" class="gg-options" role="listbox" data-options hidden></ul>
+          </div>
+          <button class="gg-btn gg-btn--go" type="submit" data-guess disabled>Guess</button>
+        </div>
+        <p class="gg-hint" data-hint>Pick a name from the list. Any of the 100 could be the answer.</p>
+      </form>
+
+      <div class="gg-spot" data-spot hidden>
+        <p class="gg-spot__q"><b data-spot-level></b> <span data-spot-q>&mdash; where in the level is this?</span></p>
+        <div class="gg-track" data-track>
+          <div class="gg-track__rail"><div class="gg-track__fill" data-fill></div><div class="gg-track__gap" data-gap hidden></div></div>
+          <div class="gg-track__ticks" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+          <div class="gg-truth" data-truth hidden aria-hidden="true"><span class="gg-truth__label" data-truth-label></span></div>
+          <div class="gg-cube" data-cube role="slider" tabindex="0" aria-label="Where in the level the shot was taken"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 percent">
+            <span class="gg-cube__label" data-cube-label aria-hidden="true">50%</span>
+            <svg class="gg-cube__icon" viewBox="0 0 30 30" aria-hidden="true"><rect x="1.5" y="1.5" width="27" height="27" rx="2" fill="#a8ff2e" stroke="#000" stroke-width="3"/><rect x="8" y="8" width="14" height="14" fill="#21e6ff" stroke="#000" stroke-width="2"/></svg>
+          </div>
+        </div>
+        <div class="gg-spot__actions">
+          <button class="gg-btn gg-btn--go" type="button" data-lock>Lock it in</button>
+        </div>
+      </div>
+
+      <div class="gg-reveal" data-reveal hidden>
+        <div class="gg-reveal__who">
+          <span class="gg-reveal__k" data-reveal-k>It was</span>
+          <b class="gg-reveal__name" data-reveal-name></b>
+          <span class="gg-reveal__by" data-reveal-by></span>
+          <span class="gg-reveal__said" data-reveal-said></span>
+        </div>
+        <div class="gg-reveal__pts"><b data-reveal-pts>0</b><span>pts</span></div>
+        <button class="gg-btn gg-btn--go gg-reveal__next" type="button" data-next>Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- End of a run ------------------------------------------------------ -->
+  <section class="gg-over" data-screen="over" hidden aria-labelledby="gg-over-h">
+    <h2 id="gg-over-h" class="gg-over__title" data-over-title>Game over</h2>
+    <div class="gg-over__nums">
+      <p><b data-over-score>0</b><span>points of 5,000</span></p>
+      <p><b data-over-named>0</b><span>of 5 named</span></p>
+    </div>
+    <p class="gg-over__best" data-over-best></p>
+    <div class="gg-over__actions">
+      <button class="gg-btn gg-btn--go" type="button" data-again>Play again</button>
+      <button class="gg-btn" type="button" data-share>Share</button>
+      <span class="gg-copied" data-copied role="status"></span>
+    </div>
+    <section class="gg-rec" data-rec hidden aria-labelledby="gg-rec-h"><h3 id="gg-rec-h" class="gg-rec__title">Put your score on the board</h3><form class="gg-rec__form" data-rec-form autocomplete="off"><label class="visually-hidden" for="gg-rec-name">Username</label><input id="gg-rec-name" class="gg-input gg-rec__name" data-rec-name type="text" maxlength="20" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Your username"><button class="gg-btn gg-btn--go" type="button" data-rec-submit>Submit score</button><button class="gg-btn" type="button" data-rec-show>Show the board</button></form><p class="gg-rec__note">Your username and score will be public. Use a username, not your real name. To have it removed, privately message <strong>@bperk</strong> on Discord or email <a href="mailto:hallofextremessupport@gmail.com">hallofextremessupport@gmail.com</a>. <a href="../privacy/">What gets sent</a>.</p><p class="gg-rec__status" data-rec-status role="status"></p><div class="gg-rec__board" data-rec-board aria-live="polite"></div></section>
+    <ol class="gg-strip" data-strip aria-label="Your rounds"></ol>
+  </section>
+
+  <button class="gg-sound" type="button" data-sound aria-pressed="true">
+    <span class="visually-hidden">Sound</span><span class="gg-sound__icon" aria-hidden="true"></span></button>
+  <p class="visually-hidden" role="status" aria-live="polite" data-live></p>
+</div>
+
+<section class="gg-about page" aria-label="About GeometryGuessr">
+  <p>Five rounds a game, five different demons. 290 screenshots of 50 demons so far, more on the way. The search box offers all
+    100 of the most downloaded demons on the Geometry Dash servers as of 2 October 2026, so the list
+    of names never tells you which ones have pictures yet. Screenshots taken in game by Baylor with the player and
+    the HUD hidden; every level belongs to its creators, named on every reveal. Your best run and the sound setting
+    are saved in this browser only.</p>
+</section>
+
+<script type="application/json" id="gg-data">{"fetched":"2026-10-02","levels":[{"id":10565740,"n":"Bloodbath","c":"Riot","d":189807123},{"id":13519,"n":"The Nightmare","c":"Jax","d":175364065},{"id":4284013,"n":"Nine Circles","c":"Zobros","d":127466533},{"id":89886591,"n":"iSpyWithMyLittleEye","c":"Voxicat","d":125193183},{"id":55520,"n":"THE LIGHTNING ROAD","c":"timeless real","d":104839665},{"id":5904109,"n":"Platinum Adventure","c":"Jerry4","d":88039907},{"id":3979721,"n":"Cataclysm","c":"Ggb0y","d":82660927},{"id":3543219,"n":"Speed Racer","c":"ZenthicAlpha","d":76250604},{"id":17235008,"n":"X","c":"TriAxis","d":72018899},{"id":8660411,"n":"Death Moon","c":"Caustic","d":68011578},{"id":341613,"n":"Xstep v2","c":"IIINePtunEIII","d":66677950},{"id":38427291,"n":"Extinction","c":"haoN","d":65894669},{"id":118509879,"n":"Skeletal Shenanigans","c":"YoReid","d":63930750},{"id":42584142,"n":"Bloodlust","c":"Knobbelboy","d":61693370},{"id":44062068,"n":"Future Funk","c":"JonathanGD","d":61395332},{"id":4706930,"n":"Supersonic","c":"ZenthicAlpha","d":55115304},{"id":27690100,"n":"Slaughterhouse","c":"IcEDCave","d":52152768},{"id":1777565,"n":"Laser Room","c":"TrueNature","d":52056139},{"id":26681070,"n":"Sonic Wave","c":"lSunix","d":49338641},{"id":18735780,"n":"Dear Nostalgists","c":"TriAxis","d":46326129},{"id":70059,"n":"yStep","c":"TheRealDarnoc","d":40805939},{"id":34085027,"n":"B","c":"motleyorc","d":40799168},{"id":186646,"n":"Crescendo","c":"MasK463","d":39648446},{"id":2997354,"n":"DeCode","c":"Rek3dge","d":39171924},{"id":28220417,"n":"Yatagarasu","c":"TrusTa","d":39077502},{"id":18025697,"n":"Sidestep","c":"ChaSe","d":35386428},{"id":7116121,"n":"Problematic","c":"Dhafin","d":34532974},{"id":86407629,"n":"Tidal Wave","c":"OniLinkGD","d":32715492},{"id":23262780,"n":"Sakupen Hell","c":"TrusTa","d":31500252},{"id":566659,"n":"demon mixed","c":"RealOggY","d":30458813},{"id":73725400,"n":"CraZy III","c":"DavJT","d":30049820},{"id":10109,"n":"demon park","c":"M2coL","d":30012446},{"id":90475473,"n":"Change of Scene","c":"bli","d":29116781},{"id":369294,"n":"Theory of every v2","c":"IIINePtunEIII","d":29020943},{"id":19759411,"n":"Phobos","c":"KrmaL","d":28331016},{"id":1650666,"n":"Buck Force","c":"Rob Buck","d":27784748},{"id":58270823,"n":"Nantendo","c":"im fernando","d":27542964},{"id":40945673,"n":"CraZy","c":"DavJT","d":27339047},{"id":56210242,"n":"Shiver","c":"SpKale","d":26922865},{"id":6939821,"n":"Jawbreaker","c":"ZenthicAlpha","d":26835606},{"id":5098465,"n":"Speed of Light","c":"TheRealSalad","d":25480796},{"id":11588490,"n":"Ultra Paracosm","c":"iIiRulasiIi","d":25259230},{"id":3264805,"n":"Theory of SkriLLex","c":"noobas","d":25210762},{"id":82824219,"n":"MikuMikuMikuMiku","c":"OddMod","d":25046232},{"id":9145341,"n":"8o","c":"Zobros","d":23989814},{"id":30219145,"n":"HyperSonic","c":"ViPriN","d":23757168},{"id":14000484,"n":"Retro Circles","c":"Nacho21","d":23508288},{"id":199761,"n":"demon jumper","c":"playererer","d":23235677},{"id":57730,"n":"Super Cycles","c":"Jax","d":22969036},{"id":21761387,"n":"Bloodbath Z","c":"Zyzyx","d":22300562},{"id":393159,"n":"Impulse","c":"MrCheeseTigrr","d":22149621},{"id":1474319,"n":"moon adventure","c":"Experience D","d":21978935},{"id":1347537,"n":"invisible clubstep","c":"J4cKy","d":21525219},{"id":13785846,"n":"-sirius-","c":"FunnyGame","d":21313918},{"id":60887211,"n":"Ultra violence","c":"Xender Game","d":21263405},{"id":23298409,"n":"Duelo Maestro","c":"Nacho21","d":20884045},{"id":86084399,"n":"LIMBO","c":"MindCap","d":20782163},{"id":7174110,"n":"The Ultimate Phase","c":"Andromeda GMD","d":20333033},{"id":4957691,"n":"Windy Landscape","c":"WOOGI1411","d":20264857},{"id":848722,"n":"Lights And Thunder","c":"Lyod","d":19224647},{"id":25706351,"n":"HeLL","c":"Serponge","d":18644120},{"id":18834999,"n":"VeritY","c":"Serponge","d":18307145},{"id":45932196,"n":"ABCDEFGHIJKLMNOPQRS","c":"NeoSweet","d":18257160},{"id":61079355,"n":"Acu","c":"neigefeu","d":18244814},{"id":29247995,"n":"FREEDOM","c":"MrPPs","d":17883512},{"id":839175,"n":"Electrodynamix v2","c":"IIINePtunEIII","d":16833362},{"id":27786218,"n":"Mechanical Showdown","c":"Tongii","d":16120033},{"id":5155022,"n":"Acropolis","c":"Zobros","d":16047727},{"id":358750,"n":"Clutterfunk v2","c":"IIINePtunEIII","d":15982577},{"id":11402965,"n":"Forest Temple","c":"Michigun","d":15930222},{"id":59075347,"n":"Tartarus","c":"ItzDolphy","d":15911731},{"id":11317271,"n":"Blue Hell","c":"LaZye","d":15464128},{"id":59626284,"n":"Future Funk II","c":"JonathanGD","d":15451544},{"id":7054561,"n":"Poltergeist","c":"Andromeda GMD","d":15346955},{"id":20077821,"n":"Red World Rebirth","c":"Riot","d":15196977},{"id":56587109,"n":"phjork","c":"cerufiffy","d":14928814},{"id":214523,"n":"Sky Realm","c":"TheRealDarnoc","d":14673252},{"id":102765,"n":"Hextec Flow","c":"TheRealDarnoc","d":14407424},{"id":47620786,"n":"CraZy II","c":"DavJT","d":14188401},{"id":135561,"n":"Extreme Fantasy","c":"Rabbitical","d":14159067},{"id":25147297,"n":"hi","c":"KrmaL","d":14042498},{"id":17924880,"n":"Lonely travel","c":"FunnyGame","d":13885983},{"id":101478916,"n":"Eon","c":"Renn241","d":13761625},{"id":96732638,"n":"Im Dead","c":"Danke","d":13524467},{"id":76962930,"n":"Sakupen Circles","c":"Diamond","d":13340731},{"id":13037894,"n":"infinite circles","c":"startor","d":13304545},{"id":33364327,"n":"PanaSonic","c":"TheShadowRealm","d":13300112},{"id":5310094,"n":"Fairydust","c":"mkComic","d":13284001},{"id":83323273,"n":"Ruta del Sol","c":"TroxxP1","d":13190385},{"id":61348317,"n":"What is it","c":"Booglee","d":13066626},{"id":65765662,"n":"iS","c":"Grenate","d":13065317},{"id":16011100,"n":"Deadlocked v3","c":"Noriega","d":12774953},{"id":73667628,"n":"Acheron","c":"ryamu","d":12715542},{"id":764038,"n":"DeathFunk","c":"IIINePtunEIII","d":12645840},{"id":116174063,"n":"Every End","c":"MindCap","d":12477176},{"id":3332936,"n":"Insomnia","c":"Glittershroom","d":12385944},{"id":27122654,"n":"Artificial Ascent","c":"ViPriN","d":12339800},{"id":34057654,"n":"Black Blizzard","c":"KrmaL","d":12154666},{"id":29443338,"n":"TOE III","c":"Manix648","d":12152006},{"id":130414,"n":"Beautiful Chaos","c":"darnoc2","d":12147734}],"shots":[{"l":13519,"p":16,"f":"the-nightmare/016.webp"},{"l":13519,"p":25,"f":"the-nightmare/025.webp"},{"l":13519,"p":39,"f":"the-nightmare/039.webp"},{"l":13519,"p":50,"f":"the-nightmare/050.webp"},{"l":13519,"p":73,"f":"the-nightmare/073.webp"},{"l":13519,"p":93,"f":"the-nightmare/093.webp"},{"l":4284013,"p":6,"f":"nine-circles/006.webp"},{"l":4284013,"p":25,"f":"nine-circles/025.webp"},{"l":4284013,"p":47,"f":"nine-circles/047.webp"},{"l":4284013,"p":57,"f":"nine-circles/057.webp"},{"l":4284013,"p":65,"f":"nine-circles/065.webp"},{"l":4284013,"p":81,"f":"nine-circles/081.webp"},{"l":89886591,"p":18,"f":"ispywithmylittleeye/018.webp"},{"l":89886591,"p":39,"f":"ispywithmylittleeye/039.webp"},{"l":89886591,"p":52,"f":"ispywithmylittleeye/052.webp"},{"l":89886591,"p":60,"f":"ispywithmylittleeye/060.webp"},{"l":89886591,"p":79,"f":"ispywithmylittleeye/079.webp"},{"l":89886591,"p":96,"f":"ispywithmylittleeye/096.webp"},{"l":55520,"p":15,"f":"the-lightning-road/015.webp"},{"l":55520,"p":42,"f":"the-lightning-road/042.webp"},{"l":55520,"p":59,"f":"the-lightning-road/059.webp"},{"l":55520,"p":68,"f":"the-lightning-road/068.webp"},{"l":55520,"p":82,"f":"the-lightning-road/082.webp"},{"l":55520,"p":92,"f":"the-lightning-road/092.webp"},{"l":5904109,"p":5,"f":"platinum-adventure/005.webp"},{"l":5904109,"p":18,"f":"platinum-adventure/018.webp"},{"l":5904109,"p":49,"f":"platinum-adventure/049.webp"},{"l":5904109,"p":69,"f":"platinum-adventure/069.webp"},{"l":5904109,"p":77,"f":"platinum-adventure/077.webp"},{"l":5904109,"p":96,"f":"platinum-adventure/096.webp"},{"l":3979721,"p":5,"f":"cataclysm/005.webp"},{"l":3979721,"p":14,"f":"cataclysm/014.webp"},{"l":3979721,"p":27,"f":"cataclysm/027.webp"},{"l":3979721,"p":40,"f":"cataclysm/040.webp"},{"l":3979721,"p":69,"f":"cataclysm/069.webp"},{"l":3979721,"p":80,"f":"cataclysm/080.webp"},{"l":3543219,"p":28,"f":"speed-racer/028.webp"},{"l":3543219,"p":37,"f":"speed-racer/037.webp"},{"l":3543219,"p":47,"f":"speed-racer/047.webp"},{"l":3543219,"p":69,"f":"speed-racer/069.webp"},{"l":3543219,"p":80,"f":"speed-racer/080.webp"},{"l":3543219,"p":95,"f":"speed-racer/095.webp"},{"l":17235008,"p":6,"f":"x/006.webp"},{"l":17235008,"p":21,"f":"x/021.webp"},{"l":17235008,"p":29,"f":"x/029.webp"},{"l":17235008,"p":64,"f":"x/064.webp"},{"l":17235008,"p":86,"f":"x/086.webp"},{"l":17235008,"p":95,"f":"x/095.webp"},{"l":8660411,"p":8,"f":"death-moon/008.webp"},{"l":8660411,"p":19,"f":"death-moon/019.webp"},{"l":8660411,"p":52,"f":"death-moon/052.webp"},{"l":8660411,"p":61,"f":"death-moon/061.webp"},{"l":8660411,"p":75,"f":"death-moon/075.webp"},{"l":8660411,"p":94,"f":"death-moon/094.webp"},{"l":341613,"p":16,"f":"xstep-v2/016.webp"},{"l":341613,"p":29,"f":"xstep-v2/029.webp"},{"l":341613,"p":51,"f":"xstep-v2/051.webp"},{"l":341613,"p":59,"f":"xstep-v2/059.webp"},{"l":341613,"p":67,"f":"xstep-v2/067.webp"},{"l":341613,"p":77,"f":"xstep-v2/077.webp"},{"l":38427291,"p":4,"f":"extinction/004.webp"},{"l":38427291,"p":24,"f":"extinction/024.webp"},{"l":38427291,"p":37,"f":"extinction/037.webp"},{"l":38427291,"p":59,"f":"extinction/059.webp"},{"l":38427291,"p":82,"f":"extinction/082.webp"},{"l":118509879,"p":16,"f":"skeletal-shenanigans/016.webp"},{"l":118509879,"p":27,"f":"skeletal-shenanigans/027.webp"},{"l":118509879,"p":40,"f":"skeletal-shenanigans/040.webp"},{"l":42584142,"p":8,"f":"bloodlust/008.webp"},{"l":42584142,"p":39,"f":"bloodlust/039.webp"},{"l":42584142,"p":58,"f":"bloodlust/058.webp"},{"l":42584142,"p":71,"f":"bloodlust/071.webp"},{"l":42584142,"p":88,"f":"bloodlust/088.webp"},{"l":44062068,"p":13,"f":"future-funk/013.webp"},{"l":44062068,"p":23,"f":"future-funk/023.webp"},{"l":44062068,"p":31,"f":"future-funk/031.webp"},{"l":44062068,"p":58,"f":"future-funk/058.webp"},{"l":44062068,"p":67,"f":"future-funk/067.webp"},{"l":44062068,"p":95,"f":"future-funk/095.webp"},{"l":4706930,"p":8,"f":"supersonic/008.webp"},{"l":4706930,"p":19,"f":"supersonic/019.webp"},{"l":4706930,"p":35,"f":"supersonic/035.webp"},{"l":4706930,"p":56,"f":"supersonic/056.webp"},{"l":4706930,"p":67,"f":"supersonic/067.webp"},{"l":4706930,"p":80,"f":"supersonic/080.webp"},{"l":27690100,"p":21,"f":"slaughterhouse/021.webp"},{"l":27690100,"p":63,"f":"slaughterhouse/063.webp"},{"l":27690100,"p":79,"f":"slaughterhouse/079.webp"},{"l":27690100,"p":90,"f":"slaughterhouse/090.webp"},{"l":1777565,"p":17,"f":"laser-room/017.webp"},{"l":1777565,"p":34,"f":"laser-room/034.webp"},{"l":1777565,"p":53,"f":"laser-room/053.webp"},{"l":1777565,"p":66,"f":"laser-room/066.webp"},{"l":1777565,"p":77,"f":"laser-room/077.webp"},{"l":1777565,"p":92,"f":"laser-room/092.webp"},{"l":26681070,"p":8,"f":"sonic-wave/008.webp"},{"l":26681070,"p":22,"f":"sonic-wave/022.webp"},{"l":26681070,"p":36,"f":"sonic-wave/036.webp"},{"l":26681070,"p":50,"f":"sonic-wave/050.webp"},{"l":26681070,"p":58,"f":"sonic-wave/058.webp"},{"l":26681070,"p":94,"f":"sonic-wave/094.webp"},{"l":18735780,"p":10,"f":"dear-nostalgists/010.webp"},{"l":18735780,"p":20,"f":"dear-nostalgists/020.webp"},{"l":18735780,"p":42,"f":"dear-nostalgists/042.webp"},{"l":18735780,"p":55,"f":"dear-nostalgists/055.webp"},{"l":18735780,"p":64,"f":"dear-nostalgists/064.webp"},{"l":18735780,"p":83,"f":"dear-nostalgists/083.webp"},{"l":70059,"p":7,"f":"ystep/007.webp"},{"l":70059,"p":17,"f":"ystep/017.webp"},{"l":70059,"p":54,"f":"ystep/054.webp"},{"l":70059,"p":65,"f":"ystep/065.webp"},{"l":70059,"p":75,"f":"ystep/075.webp"},{"l":70059,"p":88,"f":"ystep/088.webp"},{"l":34085027,"p":46,"f":"b/046.webp"},{"l":34085027,"p":54,"f":"b/054.webp"},{"l":34085027,"p":62,"f":"b/062.webp"},{"l":34085027,"p":77,"f":"b/077.webp"},{"l":34085027,"p":93,"f":"b/093.webp"},{"l":2997354,"p":12,"f":"decode/012.webp"},{"l":2997354,"p":27,"f":"decode/027.webp"},{"l":2997354,"p":48,"f":"decode/048.webp"},{"l":2997354,"p":59,"f":"decode/059.webp"},{"l":2997354,"p":76,"f":"decode/076.webp"},{"l":2997354,"p":92,"f":"decode/092.webp"},{"l":28220417,"p":25,"f":"yatagarasu/025.webp"},{"l":28220417,"p":42,"f":"yatagarasu/042.webp"},{"l":28220417,"p":64,"f":"yatagarasu/064.webp"},{"l":28220417,"p":76,"f":"yatagarasu/076.webp"},{"l":28220417,"p":85,"f":"yatagarasu/085.webp"},{"l":28220417,"p":94,"f":"yatagarasu/094.webp"},{"l":18025697,"p":6,"f":"sidestep/006.webp"},{"l":18025697,"p":36,"f":"sidestep/036.webp"},{"l":18025697,"p":52,"f":"sidestep/052.webp"},{"l":18025697,"p":65,"f":"sidestep/065.webp"},{"l":18025697,"p":74,"f":"sidestep/074.webp"},{"l":18025697,"p":83,"f":"sidestep/083.webp"},{"l":7116121,"p":11,"f":"problematic/011.webp"},{"l":7116121,"p":39,"f":"problematic/039.webp"},{"l":7116121,"p":48,"f":"problematic/048.webp"},{"l":7116121,"p":64,"f":"problematic/064.webp"},{"l":7116121,"p":82,"f":"problematic/082.webp"},{"l":7116121,"p":90,"f":"problematic/090.webp"},{"l":86407629,"p":8,"f":"tidal-wave/008.webp"},{"l":86407629,"p":32,"f":"tidal-wave/032.webp"},{"l":86407629,"p":59,"f":"tidal-wave/059.webp"},{"l":86407629,"p":73,"f":"tidal-wave/073.webp"},{"l":86407629,"p":94,"f":"tidal-wave/094.webp"},{"l":23262780,"p":7,"f":"sakupen-hell/007.webp"},{"l":23262780,"p":15,"f":"sakupen-hell/015.webp"},{"l":23262780,"p":58,"f":"sakupen-hell/058.webp"},{"l":23262780,"p":72,"f":"sakupen-hell/072.webp"},{"l":23262780,"p":84,"f":"sakupen-hell/084.webp"},{"l":23262780,"p":94,"f":"sakupen-hell/094.webp"},{"l":566659,"p":12,"f":"demon-mixed/012.webp"},{"l":566659,"p":20,"f":"demon-mixed/020.webp"},{"l":566659,"p":53,"f":"demon-mixed/053.webp"},{"l":566659,"p":68,"f":"demon-mixed/068.webp"},{"l":566659,"p":80,"f":"demon-mixed/080.webp"},{"l":566659,"p":95,"f":"demon-mixed/095.webp"},{"l":73725400,"p":4,"f":"crazy-iii/004.webp"},{"l":73725400,"p":12,"f":"crazy-iii/012.webp"},{"l":73725400,"p":34,"f":"crazy-iii/034.webp"},{"l":73725400,"p":57,"f":"crazy-iii/057.webp"},{"l":73725400,"p":65,"f":"crazy-iii/065.webp"},{"l":73725400,"p":91,"f":"crazy-iii/091.webp"},{"l":90475473,"p":14,"f":"change-of-scene/014.webp"},{"l":90475473,"p":33,"f":"change-of-scene/033.webp"},{"l":90475473,"p":42,"f":"change-of-scene/042.webp"},{"l":90475473,"p":53,"f":"change-of-scene/053.webp"},{"l":90475473,"p":66,"f":"change-of-scene/066.webp"},{"l":90475473,"p":83,"f":"change-of-scene/083.webp"},{"l":19759411,"p":5,"f":"phobos/005.webp"},{"l":19759411,"p":28,"f":"phobos/028.webp"},{"l":19759411,"p":43,"f":"phobos/043.webp"},{"l":19759411,"p":52,"f":"phobos/052.webp"},{"l":19759411,"p":64,"f":"phobos/064.webp"},{"l":19759411,"p":72,"f":"phobos/072.webp"},{"l":58270823,"p":10,"f":"nantendo/010.webp"},{"l":58270823,"p":22,"f":"nantendo/022.webp"},{"l":58270823,"p":31,"f":"nantendo/031.webp"},{"l":58270823,"p":49,"f":"nantendo/049.webp"},{"l":58270823,"p":65,"f":"nantendo/065.webp"},{"l":58270823,"p":92,"f":"nantendo/092.webp"},{"l":40945673,"p":18,"f":"crazy/018.webp"},{"l":40945673,"p":35,"f":"crazy/035.webp"},{"l":40945673,"p":45,"f":"crazy/045.webp"},{"l":40945673,"p":57,"f":"crazy/057.webp"},{"l":40945673,"p":75,"f":"crazy/075.webp"},{"l":40945673,"p":96,"f":"crazy/096.webp"},{"l":6939821,"p":7,"f":"jawbreaker/007.webp"},{"l":6939821,"p":24,"f":"jawbreaker/024.webp"},{"l":6939821,"p":43,"f":"jawbreaker/043.webp"},{"l":6939821,"p":56,"f":"jawbreaker/056.webp"},{"l":6939821,"p":71,"f":"jawbreaker/071.webp"},{"l":6939821,"p":85,"f":"jawbreaker/085.webp"},{"l":5098465,"p":12,"f":"speed-of-light/012.webp"},{"l":5098465,"p":24,"f":"speed-of-light/024.webp"},{"l":5098465,"p":35,"f":"speed-of-light/035.webp"},{"l":5098465,"p":75,"f":"speed-of-light/075.webp"},{"l":5098465,"p":84,"f":"speed-of-light/084.webp"},{"l":5098465,"p":96,"f":"speed-of-light/096.webp"},{"l":11588490,"p":20,"f":"ultra-paracosm/020.webp"},{"l":11588490,"p":34,"f":"ultra-paracosm/034.webp"},{"l":11588490,"p":43,"f":"ultra-paracosm/043.webp"},{"l":11588490,"p":76,"f":"ultra-paracosm/076.webp"},{"l":11588490,"p":85,"f":"ultra-paracosm/085.webp"},{"l":11588490,"p":95,"f":"ultra-paracosm/095.webp"},{"l":82824219,"p":12,"f":"mikumikumikumiku/012.webp"},{"l":82824219,"p":37,"f":"mikumikumikumiku/037.webp"},{"l":82824219,"p":45,"f":"mikumikumikumiku/045.webp"},{"l":82824219,"p":53,"f":"mikumikumikumiku/053.webp"},{"l":82824219,"p":63,"f":"mikumikumikumiku/063.webp"},{"l":82824219,"p":75,"f":"mikumikumikumiku/075.webp"},{"l":9145341,"p":5,"f":"8o/005.webp"},{"l":9145341,"p":46,"f":"8o/046.webp"},{"l":9145341,"p":55,"f":"8o/055.webp"},{"l":9145341,"p":74,"f":"8o/074.webp"},{"l":9145341,"p":82,"f":"8o/082.webp"},{"l":9145341,"p":92,"f":"8o/092.webp"},{"l":30219145,"p":6,"f":"hypersonic/006.webp"},{"l":30219145,"p":31,"f":"hypersonic/031.webp"},{"l":30219145,"p":42,"f":"hypersonic/042.webp"},{"l":30219145,"p":59,"f":"hypersonic/059.webp"},{"l":30219145,"p":67,"f":"hypersonic/067.webp"},{"l":30219145,"p":78,"f":"hypersonic/078.webp"},{"l":14000484,"p":8,"f":"retro-circles/008.webp"},{"l":14000484,"p":21,"f":"retro-circles/021.webp"},{"l":14000484,"p":31,"f":"retro-circles/031.webp"},{"l":14000484,"p":48,"f":"retro-circles/048.webp"},{"l":14000484,"p":60,"f":"retro-circles/060.webp"},{"l":14000484,"p":88,"f":"retro-circles/088.webp"},{"l":21761387,"p":4,"f":"bloodbath-z/004.webp"},{"l":21761387,"p":22,"f":"bloodbath-z/022.webp"},{"l":21761387,"p":46,"f":"bloodbath-z/046.webp"},{"l":21761387,"p":60,"f":"bloodbath-z/060.webp"},{"l":21761387,"p":70,"f":"bloodbath-z/070.webp"},{"l":21761387,"p":96,"f":"bloodbath-z/096.webp"},{"l":1347537,"p":13,"f":"invisible-clubstep/013.webp"},{"l":1347537,"p":21,"f":"invisible-clubstep/021.webp"},{"l":1347537,"p":34,"f":"invisible-clubstep/034.webp"},{"l":1347537,"p":43,"f":"invisible-clubstep/043.webp"},{"l":1347537,"p":59,"f":"invisible-clubstep/059.webp"},{"l":1347537,"p":92,"f":"invisible-clubstep/092.webp"},{"l":13785846,"p":15,"f":"sirius/015.webp"},{"l":13785846,"p":24,"f":"sirius/024.webp"},{"l":13785846,"p":46,"f":"sirius/046.webp"},{"l":13785846,"p":69,"f":"sirius/069.webp"},{"l":13785846,"p":77,"f":"sirius/077.webp"},{"l":13785846,"p":95,"f":"sirius/095.webp"},{"l":60887211,"p":8,"f":"ultra-violence/008.webp"},{"l":60887211,"p":35,"f":"ultra-violence/035.webp"},{"l":60887211,"p":53,"f":"ultra-violence/053.webp"},{"l":60887211,"p":61,"f":"ultra-violence/061.webp"},{"l":60887211,"p":83,"f":"ultra-violence/083.webp"},{"l":60887211,"p":94,"f":"ultra-violence/094.webp"},{"l":23298409,"p":4,"f":"duelo-maestro/004.webp"},{"l":23298409,"p":15,"f":"duelo-maestro/015.webp"},{"l":23298409,"p":23,"f":"duelo-maestro/023.webp"},{"l":23298409,"p":46,"f":"duelo-maestro/046.webp"},{"l":23298409,"p":60,"f":"duelo-maestro/060.webp"},{"l":86084399,"p":4,"f":"limbo/004.webp"},{"l":86084399,"p":33,"f":"limbo/033.webp"},{"l":86084399,"p":41,"f":"limbo/041.webp"},{"l":86084399,"p":49,"f":"limbo/049.webp"},{"l":86084399,"p":66,"f":"limbo/066.webp"},{"l":86084399,"p":77,"f":"limbo/077.webp"},{"l":7174110,"p":16,"f":"the-ultimate-phase/016.webp"},{"l":7174110,"p":26,"f":"the-ultimate-phase/026.webp"},{"l":7174110,"p":41,"f":"the-ultimate-phase/041.webp"},{"l":7174110,"p":55,"f":"the-ultimate-phase/055.webp"},{"l":7174110,"p":80,"f":"the-ultimate-phase/080.webp"},{"l":7174110,"p":89,"f":"the-ultimate-phase/089.webp"},{"l":4957691,"p":5,"f":"windy-landscape/005.webp"},{"l":4957691,"p":23,"f":"windy-landscape/023.webp"},{"l":4957691,"p":42,"f":"windy-landscape/042.webp"},{"l":4957691,"p":70,"f":"windy-landscape/070.webp"},{"l":4957691,"p":83,"f":"windy-landscape/083.webp"},{"l":4957691,"p":93,"f":"windy-landscape/093.webp"},{"l":25706351,"p":8,"f":"hell/008.webp"},{"l":25706351,"p":43,"f":"hell/043.webp"},{"l":25706351,"p":55,"f":"hell/055.webp"},{"l":25706351,"p":66,"f":"hell/066.webp"},{"l":25706351,"p":79,"f":"hell/079.webp"},{"l":25706351,"p":89,"f":"hell/089.webp"},{"l":61079355,"p":26,"f":"acu/026.webp"},{"l":61079355,"p":35,"f":"acu/035.webp"},{"l":61079355,"p":44,"f":"acu/044.webp"},{"l":61079355,"p":54,"f":"acu/054.webp"},{"l":61079355,"p":65,"f":"acu/065.webp"},{"l":61079355,"p":82,"f":"acu/082.webp"}]}</script>
+
+</main>
+<footer class="site-foot">
+  <div class="page">
+    <p>A fan project by Baylor. Unaffiliated with RobTop Games. Levels and songs belong to their creators.</p>
+    <p>No cookies, no analytics, no third-party requests on load. Videos, and the Game’s record boards, only load when you press their buttons.</p>
+    <nav class="site-foot__nav" aria-label="Site information"><ul><li><a href="../terms/">Terms of Use</a></li><li><a href="../privacy/">Privacy</a></li><li><a href="../credits/">Credits &amp; Copyright</a></li></ul></nav>
+  </div>
+</footer>
+<script src="../assets/js/vendor/gsap.min.js?v=80dd1c811f" defer></script>
+<script src="../assets/js/vendor/ScrollTrigger.min.js?v=80dd1c811f" defer></script>
+<script src="../assets/js/scroll.js?v=80dd1c811f" defer></script>
+<script src="../assets/js/media.js?v=80dd1c811f" defer></script>
+<script src="../assets/js/attempt.js?v=80dd1c811f" defer></script>
+<script src="../assets/js/gg-core.js?v=80dd1c811f" defer></script><script src="../assets/js/gg.js?v=80dd1c811f" defer></script><script src="../assets/js/gg-records.js?v=80dd1c811f" defer></script>
+</body>
+</html>

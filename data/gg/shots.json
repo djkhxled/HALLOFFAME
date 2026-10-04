@@ -1,0 +1,1454 @@
+{
+ "shots": [
+  {
+   "level": 13519,
+   "pct": 16,
+   "file": "the-nightmare/016.webp"
+  },
+  {
+   "level": 13519,
+   "pct": 25,
+   "file": "the-nightmare/025.webp"
+  },
+  {
+   "level": 13519,
+   "pct": 39,
+   "file": "the-nightmare/039.webp"
+  },
+  {
+   "level": 13519,
+   "pct": 50,
+   "file": "the-nightmare/050.webp"
+  },
+  {
+   "level": 13519,
+   "pct": 73,
+   "file": "the-nightmare/073.webp"
+  },
+  {
+   "level": 13519,
+   "pct": 93,
+   "file": "the-nightmare/093.webp"
+  },
+  {
+   "level": 4284013,
+   "pct": 6,
+   "file": "nine-circles/006.webp"
+  },
+  {
+   "level": 4284013,
+   "pct": 25,
+   "file": "nine-circles/025.webp"
+  },
+  {
+   "level": 4284013,
+   "pct": 47,
+   "file": "nine-circles/047.webp"
+  },
+  {
+   "level": 4284013,
+   "pct": 57,
+   "file": "nine-circles/057.webp"
+  },
+  {
+   "level": 4284013,
+   "pct": 65,
+   "file": "nine-circles/065.webp"
+  },
+  {
+   "level": 4284013,
+   "pct": 81,
+   "file": "nine-circles/081.webp"
+  },
+  {
+   "level": 89886591,
+   "pct": 18,
+   "file": "ispywithmylittleeye/018.webp"
+  },
+  {
+   "level": 89886591,
+   "pct": 39,
+   "file": "ispywithmylittleeye/039.webp"
+  },
+  {
+   "level": 89886591,
+   "pct": 52,
+   "file": "ispywithmylittleeye/052.webp"
+  },
+  {
+   "level": 89886591,
+   "pct": 60,
+   "file": "ispywithmylittleeye/060.webp"
+  },
+  {
+   "level": 89886591,
+   "pct": 79,
+   "file": "ispywithmylittleeye/079.webp"
+  },
+  {
+   "level": 89886591,
+   "pct": 96,
+   "file": "ispywithmylittleeye/096.webp"
+  },
+  {
+   "level": 55520,
+   "pct": 15,
+   "file": "the-lightning-road/015.webp"
+  },
+  {
+   "level": 55520,
+   "pct": 42,
+   "file": "the-lightning-road/042.webp"
+  },
+  {
+   "level": 55520,
+   "pct": 59,
+   "file": "the-lightning-road/059.webp"
+  },
+  {
+   "level": 55520,
+   "pct": 68,
+   "file": "the-lightning-road/068.webp"
+  },
+  {
+   "level": 55520,
+   "pct": 82,
+   "file": "the-lightning-road/082.webp"
+  },
+  {
+   "level": 55520,
+   "pct": 92,
+   "file": "the-lightning-road/092.webp"
+  },
+  {
+   "level": 5904109,
+   "pct": 5,
+   "file": "platinum-adventure/005.webp"
+  },
+  {
+   "level": 5904109,
+   "pct": 18,
+   "file": "platinum-adventure/018.webp"
+  },
+  {
+   "level": 5904109,
+   "pct": 49,
+   "file": "platinum-adventure/049.webp"
+  },
+  {
+   "level": 5904109,
+   "pct": 69,
+   "file": "platinum-adventure/069.webp"
+  },
+  {
+   "level": 5904109,
+   "pct": 77,
+   "file": "platinum-adventure/077.webp"
+  },
+  {
+   "level": 5904109,
+   "pct": 96,
+   "file": "platinum-adventure/096.webp"
+  },
+  {
+   "level": 3979721,
+   "pct": 5,
+   "file": "cataclysm/005.webp"
+  },
+  {
+   "level": 3979721,
+   "pct": 14,
+   "file": "cataclysm/014.webp"
+  },
+  {
+   "level": 3979721,
+   "pct": 27,
+   "file": "cataclysm/027.webp"
+  },
+  {
+   "level": 3979721,
+   "pct": 40,
+   "file": "cataclysm/040.webp"
+  },
+  {
+   "level": 3979721,
+   "pct": 69,
+   "file": "cataclysm/069.webp"
+  },
+  {
+   "level": 3979721,
+   "pct": 80,
+   "file": "cataclysm/080.webp"
+  },
+  {
+   "level": 3543219,
+   "pct": 28,
+   "file": "speed-racer/028.webp"
+  },
+  {
+   "level": 3543219,
+   "pct": 37,
+   "file": "speed-racer/037.webp"
+  },
+  {
+   "level": 3543219,
+   "pct": 47,
+   "file": "speed-racer/047.webp"
+  },
+  {
+   "level": 3543219,
+   "pct": 69,
+   "file": "speed-racer/069.webp"
+  },
+  {
+   "level": 3543219,
+   "pct": 80,
+   "file": "speed-racer/080.webp"
+  },
+  {
+   "level": 3543219,
+   "pct": 95,
+   "file": "speed-racer/095.webp"
+  },
+  {
+   "level": 17235008,
+   "pct": 6,
+   "file": "x/006.webp"
+  },
+  {
+   "level": 17235008,
+   "pct": 21,
+   "file": "x/021.webp"
+  },
+  {
+   "level": 17235008,
+   "pct": 29,
+   "file": "x/029.webp"
+  },
+  {
+   "level": 17235008,
+   "pct": 64,
+   "file": "x/064.webp"
+  },
+  {
+   "level": 17235008,
+   "pct": 86,
+   "file": "x/086.webp"
+  },
+  {
+   "level": 17235008,
+   "pct": 95,
+   "file": "x/095.webp"
+  },
+  {
+   "level": 8660411,
+   "pct": 8,
+   "file": "death-moon/008.webp"
+  },
+  {
+   "level": 8660411,
+   "pct": 19,
+   "file": "death-moon/019.webp"
+  },
+  {
+   "level": 8660411,
+   "pct": 52,
+   "file": "death-moon/052.webp"
+  },
+  {
+   "level": 8660411,
+   "pct": 61,
+   "file": "death-moon/061.webp"
+  },
+  {
+   "level": 8660411,
+   "pct": 75,
+   "file": "death-moon/075.webp"
+  },
+  {
+   "level": 8660411,
+   "pct": 94,
+   "file": "death-moon/094.webp"
+  },
+  {
+   "level": 341613,
+   "pct": 16,
+   "file": "xstep-v2/016.webp"
+  },
+  {
+   "level": 341613,
+   "pct": 29,
+   "file": "xstep-v2/029.webp"
+  },
+  {
+   "level": 341613,
+   "pct": 51,
+   "file": "xstep-v2/051.webp"
+  },
+  {
+   "level": 341613,
+   "pct": 59,
+   "file": "xstep-v2/059.webp"
+  },
+  {
+   "level": 341613,
+   "pct": 67,
+   "file": "xstep-v2/067.webp"
+  },
+  {
+   "level": 341613,
+   "pct": 77,
+   "file": "xstep-v2/077.webp"
+  },
+  {
+   "level": 38427291,
+   "pct": 4,
+   "file": "extinction/004.webp"
+  },
+  {
+   "level": 38427291,
+   "pct": 24,
+   "file": "extinction/024.webp"
+  },
+  {
+   "level": 38427291,
+   "pct": 37,
+   "file": "extinction/037.webp"
+  },
+  {
+   "level": 38427291,
+   "pct": 59,
+   "file": "extinction/059.webp"
+  },
+  {
+   "level": 38427291,
+   "pct": 82,
+   "file": "extinction/082.webp"
+  },
+  {
+   "level": 118509879,
+   "pct": 16,
+   "file": "skeletal-shenanigans/016.webp"
+  },
+  {
+   "level": 118509879,
+   "pct": 27,
+   "file": "skeletal-shenanigans/027.webp"
+  },
+  {
+   "level": 118509879,
+   "pct": 40,
+   "file": "skeletal-shenanigans/040.webp"
+  },
+  {
+   "level": 42584142,
+   "pct": 8,
+   "file": "bloodlust/008.webp"
+  },
+  {
+   "level": 42584142,
+   "pct": 39,
+   "file": "bloodlust/039.webp"
+  },
+  {
+   "level": 42584142,
+   "pct": 58,
+   "file": "bloodlust/058.webp"
+  },
+  {
+   "level": 42584142,
+   "pct": 71,
+   "file": "bloodlust/071.webp"
+  },
+  {
+   "level": 42584142,
+   "pct": 88,
+   "file": "bloodlust/088.webp"
+  },
+  {
+   "level": 44062068,
+   "pct": 13,
+   "file": "future-funk/013.webp"
+  },
+  {
+   "level": 44062068,
+   "pct": 23,
+   "file": "future-funk/023.webp"
+  },
+  {
+   "level": 44062068,
+   "pct": 31,
+   "file": "future-funk/031.webp"
+  },
+  {
+   "level": 44062068,
+   "pct": 58,
+   "file": "future-funk/058.webp"
+  },
+  {
+   "level": 44062068,
+   "pct": 67,
+   "file": "future-funk/067.webp"
+  },
+  {
+   "level": 44062068,
+   "pct": 95,
+   "file": "future-funk/095.webp"
+  },
+  {
+   "level": 4706930,
+   "pct": 8,
+   "file": "supersonic/008.webp"
+  },
+  {
+   "level": 4706930,
+   "pct": 19,
+   "file": "supersonic/019.webp"
+  },
+  {
+   "level": 4706930,
+   "pct": 35,
+   "file": "supersonic/035.webp"
+  },
+  {
+   "level": 4706930,
+   "pct": 56,
+   "file": "supersonic/056.webp"
+  },
+  {
+   "level": 4706930,
+   "pct": 67,
+   "file": "supersonic/067.webp"
+  },
+  {
+   "level": 4706930,
+   "pct": 80,
+   "file": "supersonic/080.webp"
+  },
+  {
+   "level": 27690100,
+   "pct": 21,
+   "file": "slaughterhouse/021.webp"
+  },
+  {
+   "level": 27690100,
+   "pct": 63,
+   "file": "slaughterhouse/063.webp"
+  },
+  {
+   "level": 27690100,
+   "pct": 79,
+   "file": "slaughterhouse/079.webp"
+  },
+  {
+   "level": 27690100,
+   "pct": 90,
+   "file": "slaughterhouse/090.webp"
+  },
+  {
+   "level": 1777565,
+   "pct": 17,
+   "file": "laser-room/017.webp"
+  },
+  {
+   "level": 1777565,
+   "pct": 34,
+   "file": "laser-room/034.webp"
+  },
+  {
+   "level": 1777565,
+   "pct": 53,
+   "file": "laser-room/053.webp"
+  },
+  {
+   "level": 1777565,
+   "pct": 66,
+   "file": "laser-room/066.webp"
+  },
+  {
+   "level": 1777565,
+   "pct": 77,
+   "file": "laser-room/077.webp"
+  },
+  {
+   "level": 1777565,
+   "pct": 92,
+   "file": "laser-room/092.webp"
+  },
+  {
+   "level": 26681070,
+   "pct": 8,
+   "file": "sonic-wave/008.webp"
+  },
+  {
+   "level": 26681070,
+   "pct": 22,
+   "file": "sonic-wave/022.webp"
+  },
+  {
+   "level": 26681070,
+   "pct": 36,
+   "file": "sonic-wave/036.webp"
+  },
+  {
+   "level": 26681070,
+   "pct": 50,
+   "file": "sonic-wave/050.webp"
+  },
+  {
+   "level": 26681070,
+   "pct": 58,
+   "file": "sonic-wave/058.webp"
+  },
+  {
+   "level": 26681070,
+   "pct": 94,
+   "file": "sonic-wave/094.webp"
+  },
+  {
+   "level": 18735780,
+   "pct": 10,
+   "file": "dear-nostalgists/010.webp"
+  },
+  {
+   "level": 18735780,
+   "pct": 20,
+   "file": "dear-nostalgists/020.webp"
+  },
+  {
+   "level": 18735780,
+   "pct": 42,
+   "file": "dear-nostalgists/042.webp"
+  },
+  {
+   "level": 18735780,
+   "pct": 55,
+   "file": "dear-nostalgists/055.webp"
+  },
+  {
+   "level": 18735780,
+   "pct": 64,
+   "file": "dear-nostalgists/064.webp"
+  },
+  {
+   "level": 18735780,
+   "pct": 83,
+   "file": "dear-nostalgists/083.webp"
+  },
+  {
+   "level": 70059,
+   "pct": 7,
+   "file": "ystep/007.webp"
+  },
+  {
+   "level": 70059,
+   "pct": 17,
+   "file": "ystep/017.webp"
+  },
+  {
+   "level": 70059,
+   "pct": 54,
+   "file": "ystep/054.webp"
+  },
+  {
+   "level": 70059,
+   "pct": 65,
+   "file": "ystep/065.webp"
+  },
+  {
+   "level": 70059,
+   "pct": 75,
+   "file": "ystep/075.webp"
+  },
+  {
+   "level": 70059,
+   "pct": 88,
+   "file": "ystep/088.webp"
+  },
+  {
+   "level": 34085027,
+   "pct": 46,
+   "file": "b/046.webp"
+  },
+  {
+   "level": 34085027,
+   "pct": 54,
+   "file": "b/054.webp"
+  },
+  {
+   "level": 34085027,
+   "pct": 62,
+   "file": "b/062.webp"
+  },
+  {
+   "level": 34085027,
+   "pct": 77,
+   "file": "b/077.webp"
+  },
+  {
+   "level": 34085027,
+   "pct": 93,
+   "file": "b/093.webp"
+  },
+  {
+   "level": 2997354,
+   "pct": 12,
+   "file": "decode/012.webp"
+  },
+  {
+   "level": 2997354,
+   "pct": 27,
+   "file": "decode/027.webp"
+  },
+  {
+   "level": 2997354,
+   "pct": 48,
+   "file": "decode/048.webp"
+  },
+  {
+   "level": 2997354,
+   "pct": 59,
+   "file": "decode/059.webp"
+  },
+  {
+   "level": 2997354,
+   "pct": 76,
+   "file": "decode/076.webp"
+  },
+  {
+   "level": 2997354,
+   "pct": 92,
+   "file": "decode/092.webp"
+  },
+  {
+   "level": 28220417,
+   "pct": 25,
+   "file": "yatagarasu/025.webp"
+  },
+  {
+   "level": 28220417,
+   "pct": 42,
+   "file": "yatagarasu/042.webp"
+  },
+  {
+   "level": 28220417,
+   "pct": 64,
+   "file": "yatagarasu/064.webp"
+  },
+  {
+   "level": 28220417,
+   "pct": 76,
+   "file": "yatagarasu/076.webp"
+  },
+  {
+   "level": 28220417,
+   "pct": 85,
+   "file": "yatagarasu/085.webp"
+  },
+  {
+   "level": 28220417,
+   "pct": 94,
+   "file": "yatagarasu/094.webp"
+  },
+  {
+   "level": 18025697,
+   "pct": 6,
+   "file": "sidestep/006.webp"
+  },
+  {
+   "level": 18025697,
+   "pct": 36,
+   "file": "sidestep/036.webp"
+  },
+  {
+   "level": 18025697,
+   "pct": 52,
+   "file": "sidestep/052.webp"
+  },
+  {
+   "level": 18025697,
+   "pct": 65,
+   "file": "sidestep/065.webp"
+  },
+  {
+   "level": 18025697,
+   "pct": 74,
+   "file": "sidestep/074.webp"
+  },
+  {
+   "level": 18025697,
+   "pct": 83,
+   "file": "sidestep/083.webp"
+  },
+  {
+   "level": 7116121,
+   "pct": 11,
+   "file": "problematic/011.webp"
+  },
+  {
+   "level": 7116121,
+   "pct": 39,
+   "file": "problematic/039.webp"
+  },
+  {
+   "level": 7116121,
+   "pct": 48,
+   "file": "problematic/048.webp"
+  },
+  {
+   "level": 7116121,
+   "pct": 64,
+   "file": "problematic/064.webp"
+  },
+  {
+   "level": 7116121,
+   "pct": 82,
+   "file": "problematic/082.webp"
+  },
+  {
+   "level": 7116121,
+   "pct": 90,
+   "file": "problematic/090.webp"
+  },
+  {
+   "level": 86407629,
+   "pct": 8,
+   "file": "tidal-wave/008.webp"
+  },
+  {
+   "level": 86407629,
+   "pct": 32,
+   "file": "tidal-wave/032.webp"
+  },
+  {
+   "level": 86407629,
+   "pct": 59,
+   "file": "tidal-wave/059.webp"
+  },
+  {
+   "level": 86407629,
+   "pct": 73,
+   "file": "tidal-wave/073.webp"
+  },
+  {
+   "level": 86407629,
+   "pct": 94,
+   "file": "tidal-wave/094.webp"
+  },
+  {
+   "level": 23262780,
+   "pct": 7,
+   "file": "sakupen-hell/007.webp"
+  },
+  {
+   "level": 23262780,
+   "pct": 15,
+   "file": "sakupen-hell/015.webp"
+  },
+  {
+   "level": 23262780,
+   "pct": 58,
+   "file": "sakupen-hell/058.webp"
+  },
+  {
+   "level": 23262780,
+   "pct": 72,
+   "file": "sakupen-hell/072.webp"
+  },
+  {
+   "level": 23262780,
+   "pct": 84,
+   "file": "sakupen-hell/084.webp"
+  },
+  {
+   "level": 23262780,
+   "pct": 94,
+   "file": "sakupen-hell/094.webp"
+  },
+  {
+   "level": 566659,
+   "pct": 12,
+   "file": "demon-mixed/012.webp"
+  },
+  {
+   "level": 566659,
+   "pct": 20,
+   "file": "demon-mixed/020.webp"
+  },
+  {
+   "level": 566659,
+   "pct": 53,
+   "file": "demon-mixed/053.webp"
+  },
+  {
+   "level": 566659,
+   "pct": 68,
+   "file": "demon-mixed/068.webp"
+  },
+  {
+   "level": 566659,
+   "pct": 80,
+   "file": "demon-mixed/080.webp"
+  },
+  {
+   "level": 566659,
+   "pct": 95,
+   "file": "demon-mixed/095.webp"
+  },
+  {
+   "level": 73725400,
+   "pct": 4,
+   "file": "crazy-iii/004.webp"
+  },
+  {
+   "level": 73725400,
+   "pct": 12,
+   "file": "crazy-iii/012.webp"
+  },
+  {
+   "level": 73725400,
+   "pct": 34,
+   "file": "crazy-iii/034.webp"
+  },
+  {
+   "level": 73725400,
+   "pct": 57,
+   "file": "crazy-iii/057.webp"
+  },
+  {
+   "level": 73725400,
+   "pct": 65,
+   "file": "crazy-iii/065.webp"
+  },
+  {
+   "level": 73725400,
+   "pct": 91,
+   "file": "crazy-iii/091.webp"
+  },
+  {
+   "level": 90475473,
+   "pct": 14,
+   "file": "change-of-scene/014.webp"
+  },
+  {
+   "level": 90475473,
+   "pct": 33,
+   "file": "change-of-scene/033.webp"
+  },
+  {
+   "level": 90475473,
+   "pct": 42,
+   "file": "change-of-scene/042.webp"
+  },
+  {
+   "level": 90475473,
+   "pct": 53,
+   "file": "change-of-scene/053.webp"
+  },
+  {
+   "level": 90475473,
+   "pct": 66,
+   "file": "change-of-scene/066.webp"
+  },
+  {
+   "level": 90475473,
+   "pct": 83,
+   "file": "change-of-scene/083.webp"
+  },
+  {
+   "level": 19759411,
+   "pct": 5,
+   "file": "phobos/005.webp"
+  },
+  {
+   "level": 19759411,
+   "pct": 28,
+   "file": "phobos/028.webp"
+  },
+  {
+   "level": 19759411,
+   "pct": 43,
+   "file": "phobos/043.webp"
+  },
+  {
+   "level": 19759411,
+   "pct": 52,
+   "file": "phobos/052.webp"
+  },
+  {
+   "level": 19759411,
+   "pct": 64,
+   "file": "phobos/064.webp"
+  },
+  {
+   "level": 19759411,
+   "pct": 72,
+   "file": "phobos/072.webp"
+  },
+  {
+   "level": 58270823,
+   "pct": 10,
+   "file": "nantendo/010.webp"
+  },
+  {
+   "level": 58270823,
+   "pct": 22,
+   "file": "nantendo/022.webp"
+  },
+  {
+   "level": 58270823,
+   "pct": 31,
+   "file": "nantendo/031.webp"
+  },
+  {
+   "level": 58270823,
+   "pct": 49,
+   "file": "nantendo/049.webp"
+  },
+  {
+   "level": 58270823,
+   "pct": 65,
+   "file": "nantendo/065.webp"
+  },
+  {
+   "level": 58270823,
+   "pct": 92,
+   "file": "nantendo/092.webp"
+  },
+  {
+   "level": 40945673,
+   "pct": 18,
+   "file": "crazy/018.webp"
+  },
+  {
+   "level": 40945673,
+   "pct": 35,
+   "file": "crazy/035.webp"
+  },
+  {
+   "level": 40945673,
+   "pct": 45,
+   "file": "crazy/045.webp"
+  },
+  {
+   "level": 40945673,
+   "pct": 57,
+   "file": "crazy/057.webp"
+  },
+  {
+   "level": 40945673,
+   "pct": 75,
+   "file": "crazy/075.webp"
+  },
+  {
+   "level": 40945673,
+   "pct": 96,
+   "file": "crazy/096.webp"
+  },
+  {
+   "level": 6939821,
+   "pct": 7,
+   "file": "jawbreaker/007.webp"
+  },
+  {
+   "level": 6939821,
+   "pct": 24,
+   "file": "jawbreaker/024.webp"
+  },
+  {
+   "level": 6939821,
+   "pct": 43,
+   "file": "jawbreaker/043.webp"
+  },
+  {
+   "level": 6939821,
+   "pct": 56,
+   "file": "jawbreaker/056.webp"
+  },
+  {
+   "level": 6939821,
+   "pct": 71,
+   "file": "jawbreaker/071.webp"
+  },
+  {
+   "level": 6939821,
+   "pct": 85,
+   "file": "jawbreaker/085.webp"
+  },
+  {
+   "level": 5098465,
+   "pct": 12,
+   "file": "speed-of-light/012.webp"
+  },
+  {
+   "level": 5098465,
+   "pct": 24,
+   "file": "speed-of-light/024.webp"
+  },
+  {
+   "level": 5098465,
+   "pct": 35,
+   "file": "speed-of-light/035.webp"
+  },
+  {
+   "level": 5098465,
+   "pct": 75,
+   "file": "speed-of-light/075.webp"
+  },
+  {
+   "level": 5098465,
+   "pct": 84,
+   "file": "speed-of-light/084.webp"
+  },
+  {
+   "level": 5098465,
+   "pct": 96,
+   "file": "speed-of-light/096.webp"
+  },
+  {
+   "level": 11588490,
+   "pct": 20,
+   "file": "ultra-paracosm/020.webp"
+  },
+  {
+   "level": 11588490,
+   "pct": 34,
+   "file": "ultra-paracosm/034.webp"
+  },
+  {
+   "level": 11588490,
+   "pct": 43,
+   "file": "ultra-paracosm/043.webp"
+  },
+  {
+   "level": 11588490,
+   "pct": 76,
+   "file": "ultra-paracosm/076.webp"
+  },
+  {
+   "level": 11588490,
+   "pct": 85,
+   "file": "ultra-paracosm/085.webp"
+  },
+  {
+   "level": 11588490,
+   "pct": 95,
+   "file": "ultra-paracosm/095.webp"
+  },
+  {
+   "level": 82824219,
+   "pct": 12,
+   "file": "mikumikumikumiku/012.webp"
+  },
+  {
+   "level": 82824219,
+   "pct": 37,
+   "file": "mikumikumikumiku/037.webp"
+  },
+  {
+   "level": 82824219,
+   "pct": 45,
+   "file": "mikumikumikumiku/045.webp"
+  },
+  {
+   "level": 82824219,
+   "pct": 53,
+   "file": "mikumikumikumiku/053.webp"
+  },
+  {
+   "level": 82824219,
+   "pct": 63,
+   "file": "mikumikumikumiku/063.webp"
+  },
+  {
+   "level": 82824219,
+   "pct": 75,
+   "file": "mikumikumikumiku/075.webp"
+  },
+  {
+   "level": 9145341,
+   "pct": 5,
+   "file": "8o/005.webp"
+  },
+  {
+   "level": 9145341,
+   "pct": 46,
+   "file": "8o/046.webp"
+  },
+  {
+   "level": 9145341,
+   "pct": 55,
+   "file": "8o/055.webp"
+  },
+  {
+   "level": 9145341,
+   "pct": 74,
+   "file": "8o/074.webp"
+  },
+  {
+   "level": 9145341,
+   "pct": 82,
+   "file": "8o/082.webp"
+  },
+  {
+   "level": 9145341,
+   "pct": 92,
+   "file": "8o/092.webp"
+  },
+  {
+   "level": 30219145,
+   "pct": 6,
+   "file": "hypersonic/006.webp"
+  },
+  {
+   "level": 30219145,
+   "pct": 31,
+   "file": "hypersonic/031.webp"
+  },
+  {
+   "level": 30219145,
+   "pct": 42,
+   "file": "hypersonic/042.webp"
+  },
+  {
+   "level": 30219145,
+   "pct": 59,
+   "file": "hypersonic/059.webp"
+  },
+  {
+   "level": 30219145,
+   "pct": 67,
+   "file": "hypersonic/067.webp"
+  },
+  {
+   "level": 30219145,
+   "pct": 78,
+   "file": "hypersonic/078.webp"
+  },
+  {
+   "level": 14000484,
+   "pct": 8,
+   "file": "retro-circles/008.webp"
+  },
+  {
+   "level": 14000484,
+   "pct": 21,
+   "file": "retro-circles/021.webp"
+  },
+  {
+   "level": 14000484,
+   "pct": 31,
+   "file": "retro-circles/031.webp"
+  },
+  {
+   "level": 14000484,
+   "pct": 48,
+   "file": "retro-circles/048.webp"
+  },
+  {
+   "level": 14000484,
+   "pct": 60,
+   "file": "retro-circles/060.webp"
+  },
+  {
+   "level": 14000484,
+   "pct": 88,
+   "file": "retro-circles/088.webp"
+  },
+  {
+   "level": 21761387,
+   "pct": 4,
+   "file": "bloodbath-z/004.webp"
+  },
+  {
+   "level": 21761387,
+   "pct": 22,
+   "file": "bloodbath-z/022.webp"
+  },
+  {
+   "level": 21761387,
+   "pct": 46,
+   "file": "bloodbath-z/046.webp"
+  },
+  {
+   "level": 21761387,
+   "pct": 60,
+   "file": "bloodbath-z/060.webp"
+  },
+  {
+   "level": 21761387,
+   "pct": 70,
+   "file": "bloodbath-z/070.webp"
+  },
+  {
+   "level": 21761387,
+   "pct": 96,
+   "file": "bloodbath-z/096.webp"
+  },
+  {
+   "level": 1347537,
+   "pct": 13,
+   "file": "invisible-clubstep/013.webp"
+  },
+  {
+   "level": 1347537,
+   "pct": 21,
+   "file": "invisible-clubstep/021.webp"
+  },
+  {
+   "level": 1347537,
+   "pct": 34,
+   "file": "invisible-clubstep/034.webp"
+  },
+  {
+   "level": 1347537,
+   "pct": 43,
+   "file": "invisible-clubstep/043.webp"
+  },
+  {
+   "level": 1347537,
+   "pct": 59,
+   "file": "invisible-clubstep/059.webp"
+  },
+  {
+   "level": 1347537,
+   "pct": 92,
+   "file": "invisible-clubstep/092.webp"
+  },
+  {
+   "level": 13785846,
+   "pct": 15,
+   "file": "sirius/015.webp"
+  },
+  {
+   "level": 13785846,
+   "pct": 24,
+   "file": "sirius/024.webp"
+  },
+  {
+   "level": 13785846,
+   "pct": 46,
+   "file": "sirius/046.webp"
+  },
+  {
+   "level": 13785846,
+   "pct": 69,
+   "file": "sirius/069.webp"
+  },
+  {
+   "level": 13785846,
+   "pct": 77,
+   "file": "sirius/077.webp"
+  },
+  {
+   "level": 13785846,
+   "pct": 95,
+   "file": "sirius/095.webp"
+  },
+  {
+   "level": 60887211,
+   "pct": 8,
+   "file": "ultra-violence/008.webp"
+  },
+  {
+   "level": 60887211,
+   "pct": 35,
+   "file": "ultra-violence/035.webp"
+  },
+  {
+   "level": 60887211,
+   "pct": 53,
+   "file": "ultra-violence/053.webp"
+  },
+  {
+   "level": 60887211,
+   "pct": 61,
+   "file": "ultra-violence/061.webp"
+  },
+  {
+   "level": 60887211,
+   "pct": 83,
+   "file": "ultra-violence/083.webp"
+  },
+  {
+   "level": 60887211,
+   "pct": 94,
+   "file": "ultra-violence/094.webp"
+  },
+  {
+   "level": 23298409,
+   "pct": 4,
+   "file": "duelo-maestro/004.webp"
+  },
+  {
+   "level": 23298409,
+   "pct": 15,
+   "file": "duelo-maestro/015.webp"
+  },
+  {
+   "level": 23298409,
+   "pct": 23,
+   "file": "duelo-maestro/023.webp"
+  },
+  {
+   "level": 23298409,
+   "pct": 46,
+   "file": "duelo-maestro/046.webp"
+  },
+  {
+   "level": 23298409,
+   "pct": 60,
+   "file": "duelo-maestro/060.webp"
+  },
+  {
+   "level": 86084399,
+   "pct": 4,
+   "file": "limbo/004.webp"
+  },
+  {
+   "level": 86084399,
+   "pct": 33,
+   "file": "limbo/033.webp"
+  },
+  {
+   "level": 86084399,
+   "pct": 41,
+   "file": "limbo/041.webp"
+  },
+  {
+   "level": 86084399,
+   "pct": 49,
+   "file": "limbo/049.webp"
+  },
+  {
+   "level": 86084399,
+   "pct": 66,
+   "file": "limbo/066.webp"
+  },
+  {
+   "level": 86084399,
+   "pct": 77,
+   "file": "limbo/077.webp"
+  },
+  {
+   "level": 7174110,
+   "pct": 16,
+   "file": "the-ultimate-phase/016.webp"
+  },
+  {
+   "level": 7174110,
+   "pct": 26,
+   "file": "the-ultimate-phase/026.webp"
+  },
+  {
+   "level": 7174110,
+   "pct": 41,
+   "file": "the-ultimate-phase/041.webp"
+  },
+  {
+   "level": 7174110,
+   "pct": 55,
+   "file": "the-ultimate-phase/055.webp"
+  },
+  {
+   "level": 7174110,
+   "pct": 80,
+   "file": "the-ultimate-phase/080.webp"
+  },
+  {
+   "level": 7174110,
+   "pct": 89,
+   "file": "the-ultimate-phase/089.webp"
+  },
+  {
+   "level": 4957691,
+   "pct": 5,
+   "file": "windy-landscape/005.webp"
+  },
+  {
+   "level": 4957691,
+   "pct": 23,
+   "file": "windy-landscape/023.webp"
+  },
+  {
+   "level": 4957691,
+   "pct": 42,
+   "file": "windy-landscape/042.webp"
+  },
+  {
+   "level": 4957691,
+   "pct": 70,
+   "file": "windy-landscape/070.webp"
+  },
+  {
+   "level": 4957691,
+   "pct": 83,
+   "file": "windy-landscape/083.webp"
+  },
+  {
+   "level": 4957691,
+   "pct": 93,
+   "file": "windy-landscape/093.webp"
+  },
+  {
+   "level": 25706351,
+   "pct": 8,
+   "file": "hell/008.webp"
+  },
+  {
+   "level": 25706351,
+   "pct": 43,
+   "file": "hell/043.webp"
+  },
+  {
+   "level": 25706351,
+   "pct": 55,
+   "file": "hell/055.webp"
+  },
+  {
+   "level": 25706351,
+   "pct": 66,
+   "file": "hell/066.webp"
+  },
+  {
+   "level": 25706351,
+   "pct": 79,
+   "file": "hell/079.webp"
+  },
+  {
+   "level": 25706351,
+   "pct": 89,
+   "file": "hell/089.webp"
+  },
+  {
+   "level": 61079355,
+   "pct": 26,
+   "file": "acu/026.webp"
+  },
+  {
+   "level": 61079355,
+   "pct": 35,
+   "file": "acu/035.webp"
+  },
+  {
+   "level": 61079355,
+   "pct": 44,
+   "file": "acu/044.webp"
+  },
+  {
+   "level": 61079355,
+   "pct": 54,
+   "file": "acu/054.webp"
+  },
+  {
+   "level": 61079355,
+   "pct": 65,
+   "file": "acu/065.webp"
+  },
+  {
+   "level": 61079355,
+   "pct": 82,
+   "file": "acu/082.webp"
+  }
+ ]
+}

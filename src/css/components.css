@@ -1673,5 +1673,223 @@ a.countdown__hit:focus-visible .countdown__mark {
 /* The scroll readout lives top right on every page, which is where the tabs
    are. On the landing page it moves to the left; on the game, scroll position
    means nothing and the bar across the top shows the game instead. */
-[data-level="index"] .attempt__read { right: auto; left: var(--gutter); }
+[data-level="index"] .attempt__read,
+[data-level="home"] .attempt__read { right: auto; left: var(--gutter); }
+[data-level="home"] .attempt__read { display: none; }
 [data-level="game"] .attempt__read { display: none; }
+
+/* ---------------------------------------------------------------------------
+   Games, made loud. Most visitors come for the games, so the tab glows, the
+   landing page offers them above the fold, and the games sit right under the
+   hero before the countdown starts.
+   --------------------------------------------------------------------------- */
+
+@property --games-spin {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.topnav__link[data-tab="games"] {
+  position: relative;
+  padding-left: 1.95rem;
+  font-weight: 700;
+  color: #fff;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(color-mix(in srgb, var(--field) 88%, #1a0b2e), color-mix(in srgb, var(--field) 88%, #1a0b2e)) padding-box,
+    conic-gradient(from var(--games-spin), #21e6ff, #ff2bd6, #ffd23f, #a8ff2e, #21e6ff) border-box;
+  box-shadow: 0 0 1.4rem -0.3rem rgb(255 43 214 / 0.55), 0 0 2.2rem -0.8rem rgb(33 230 255 / 0.6);
+  animation: games-spin 5s linear infinite;
+}
+
+.topnav__link[data-tab="games"]::before {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  border-left: 0.5rem solid #a8ff2e;
+  border-block: 0.32rem solid transparent;
+  transform: translateY(-50%);
+  filter: drop-shadow(0 0 0.3rem #a8ff2e);
+}
+
+.topnav__link[data-tab="games"]:hover,
+.topnav__link[data-tab="games"]:focus-visible {
+  background:
+    linear-gradient(#2a0f45, #2a0f45) padding-box,
+    conic-gradient(from var(--games-spin), #21e6ff, #ff2bd6, #ffd23f, #a8ff2e, #21e6ff) border-box;
+  transform: translateY(-1px);
+}
+
+@keyframes games-spin { to { --games-spin: 360deg; } }
+
+/* The call to play, in the middle of the landing page's hero foot. */
+.hero__mid { display: grid; justify-items: center; gap: var(--space-4); }
+
+.herocta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.65rem 1.4rem 0.65rem 0.7rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff;
+  text-transform: none;
+  letter-spacing: 0;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#12081f, #12081f) padding-box,
+    conic-gradient(from var(--games-spin), #21e6ff, #ff2bd6, #ffd23f, #a8ff2e, #21e6ff) border-box;
+  box-shadow: 0 0 2.4rem -0.4rem rgb(255 43 214 / 0.5), 0 0 3.5rem -1rem rgb(33 230 255 / 0.55);
+  animation: games-spin 5s linear infinite;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.herocta:hover, .herocta:focus-visible { transform: translateY(-2px) scale(1.02); }
+
+.herocta__play {
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #c8ff6a, #57c800 70%);
+  box-shadow: inset 0 -3px 0 rgb(0 0 0 / 0.25), 0 0 1rem rgb(168 255 46 / 0.6);
+  position: relative;
+}
+
+.herocta__play::after {
+  content: "";
+  position: absolute;
+  left: 54%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-left: 0.85rem solid #ffe14a;
+  border-block: 0.55rem solid transparent;
+  filter: drop-shadow(0 1px 0 rgb(0 0 0 / 0.35));
+}
+
+.herocta__text { display: grid; text-align: left; line-height: 1.15; }
+.herocta__big { font: 800 var(--step-1) / 1.1 var(--font-display); }
+.herocta__small { font: 500 var(--step--2) / 1.3 var(--font-mono); letter-spacing: 0.08em; color: #d7cfff; }
+
+/* The games, right under the hero. */
+.gband { padding-block: var(--space-7) var(--space-8); }
+
+.gband__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3) var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.gband__title {
+  margin: 0;
+  font: 400 var(--step-6) / 0.9 "Bungee", var(--font-display);
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #21e6ff, #ff2bd6 45%, #ffd23f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gband__lede { margin: 0; color: var(--muted); flex: 1 1 18rem; }
+.gband__all { font: 600 var(--step--2) var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+
+.gtiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: var(--space-5);
+}
+
+.gtile {
+  position: relative;
+  display: grid;
+  grid-template-rows: 11rem auto;
+  overflow: hidden;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: #0d0918;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.gtile:hover, .gtile:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgb(255 255 255 / 0.35);
+  box-shadow: 0 1.2rem 3rem -1.2rem var(--tile-glow, rgb(255 43 214 / 0.6));
+}
+
+/* The first tile is the newest game and leads. */
+.gtiles > .gtile:first-child { grid-column: 1 / -1; grid-template-rows: 15rem auto; }
+@media (min-width: 60rem) {
+  .gtiles { grid-template-columns: 1.6fr 1fr 1fr; }
+  .gtiles > .gtile:first-child { grid-column: auto; grid-row: span 1; grid-template-rows: 15rem auto; }
+  .gtiles > .gtile:not(:first-child) { grid-template-rows: 15rem auto; }
+}
+
+.gtile__art { position: relative; overflow: hidden; display: block; }
+.gtile__art svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+.gtile__badge {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  z-index: 2;
+  font: 400 0.8rem / 1 "Bungee", var(--font-display);
+  letter-spacing: 0.06em;
+  padding: 0.45rem 0.65rem 0.35rem;
+  border-radius: 0.4rem;
+  color: #12081f;
+  background: #ffd23f;
+  box-shadow: 0 0 1.2rem rgb(255 210 63 / 0.6);
+}
+
+.gtile__body { display: grid; gap: 0.35rem; padding: var(--space-5); align-content: start; }
+.gtile__title { font: 400 var(--step-2) / 1.05 "Bungee", var(--font-display); letter-spacing: 0.01em; }
+.gtile__desc { color: var(--muted); font-size: var(--step--1); }
+.gtile__go {
+  margin-top: 0.4rem;
+  font: 600 var(--step--2) var(--font-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tile-go, #a8ff2e);
+}
+.gtile__go::after { content: " \25B8"; }
+
+.gtile--gg { --tile-glow: rgb(255 43 214 / 0.65); --tile-go: #21e6ff; }
+.gtile--demondle { --tile-glow: rgb(83 201 120 / 0.6); --tile-go: #7ee29b; }
+.gtile--names { --tile-glow: rgb(70 140 255 / 0.6); --tile-go: #8db8ff; }
+
+/* tile art motion */
+.gart-scroll { animation: gart-scroll 6s linear infinite; }
+@keyframes gart-scroll { to { transform: translateX(-200px); } }
+.gart-bob { animation: gart-bob 1.2s var(--ease) infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes gart-bob { from { transform: translateY(0) rotate(0deg); } to { transform: translateY(-14px) rotate(90deg); } }
+.gart-flip { animation: gart-flip 4.8s var(--ease) infinite; transform-box: fill-box; transform-origin: center; animation-delay: calc(var(--i) * 0.12s); }
+@keyframes gart-flip { 0%, 12% { transform: scaleY(1); } 18% { transform: scaleY(0); } 24%, 100% { transform: scaleY(1); } }
+.gart-fill { animation: gart-fill 7s steps(1) infinite; animation-delay: calc(var(--i) * 0.11s); }
+@keyframes gart-fill { 0% { fill: #1c2236; } 30%, 100% { fill: #2f6fd8; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .topnav__link[data-tab="games"], .herocta, .gart-scroll, .gart-bob, .gart-flip, .gart-fill { animation: none; }
+}
+
+/* The landing page's way to the ranked list: small, on purpose. */
+.listlink { white-space: nowrap; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule-colour); padding-bottom: 0.1rem; }
+.listlink:hover, .listlink:focus-visible { border-color: var(--ink); }
+
+.listnote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.5rem;
+  padding-block: var(--space-6) var(--space-8);
+  border-top: var(--rule) solid var(--rule-colour);
+}
+.listnote__title { margin: 0; font: 600 var(--step--2) / 1 var(--font-mono); letter-spacing: 0.28em; text-transform: uppercase; }
+.listnote__text { margin: 0; color: var(--muted); flex: 1 1 22rem; }
+.listnote__go { font: 600 var(--step--2) var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+.listnote__go::after { content: " \2192"; }

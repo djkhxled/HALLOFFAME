@@ -1,0 +1,23 @@
+<section class="hero hero--nav hero--home page" data-motion>
+  <p class="hero__eyebrow">{{ eyebrow }}</p>
+  <div class="hero__art" aria-hidden="true">{{ art_html }}</div>
+  {{ topnav_html }}
+  <h1 class="hero__title">{{ title_line_html }}</h1>
+  <div class="hero__foot">
+    <p>{{ meta_left }}</p>
+    <div class="hero__mid">
+      <p class="hero__lede">{{ lede }}</p>
+      {{ hero_cta_html }}
+    </div>
+    <p class="hero__meta-r"><a class="listlink" href="/list/">{{ list_label }}</a></p>
+    <div class="hero__rule"></div>
+  </div>
+</section>
+
+{{ games_band_html }}
+
+<section class="listnote page" aria-labelledby="listnote-h">
+  <h2 id="listnote-h" class="listnote__title">{{ list_heading }}</h2>
+  <p class="listnote__text">{{ list_text }}</p>
+  <a class="listnote__go" href="/list/">See the list</a>
+</section>

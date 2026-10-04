@@ -1,0 +1,806 @@
+{
+ "fetched": "2026-10-02",
+ "source": "Geometry Dash servers, most downloaded demons",
+ "levels": [
+  {
+   "id": 10565740,
+   "name": "Bloodbath",
+   "creator": "Riot",
+   "downloads": 189807123,
+   "difficulty": "Extreme Demon",
+   "slug": "bloodbath"
+  },
+  {
+   "id": 13519,
+   "name": "The Nightmare",
+   "creator": "Jax",
+   "downloads": 175364065,
+   "difficulty": "Easy Demon",
+   "slug": "the-nightmare"
+  },
+  {
+   "id": 4284013,
+   "name": "Nine Circles",
+   "creator": "Zobros",
+   "downloads": 127466533,
+   "difficulty": "Hard Demon",
+   "slug": "nine-circles"
+  },
+  {
+   "id": 89886591,
+   "name": "iSpyWithMyLittleEye",
+   "creator": "Voxicat",
+   "downloads": 125193183,
+   "difficulty": "Easy Demon",
+   "slug": "ispywithmylittleeye"
+  },
+  {
+   "id": 55520,
+   "name": "THE LIGHTNING ROAD",
+   "creator": "timeless real",
+   "downloads": 104839665,
+   "difficulty": "Easy Demon",
+   "slug": "the-lightning-road"
+  },
+  {
+   "id": 5904109,
+   "name": "Platinum Adventure",
+   "creator": "Jerry4",
+   "downloads": 88039907,
+   "difficulty": "Easy Demon",
+   "slug": "platinum-adventure"
+  },
+  {
+   "id": 3979721,
+   "name": "Cataclysm",
+   "creator": "Ggb0y",
+   "downloads": 82660927,
+   "difficulty": "Extreme Demon",
+   "slug": "cataclysm"
+  },
+  {
+   "id": 3543219,
+   "name": "Speed Racer",
+   "creator": "ZenthicAlpha",
+   "downloads": 76250604,
+   "difficulty": "Easy Demon",
+   "slug": "speed-racer"
+  },
+  {
+   "id": 17235008,
+   "name": "X",
+   "creator": "TriAxis",
+   "downloads": 72018899,
+   "difficulty": "Easy Demon",
+   "slug": "x"
+  },
+  {
+   "id": 8660411,
+   "name": "Death Moon",
+   "creator": "Caustic",
+   "downloads": 68011578,
+   "difficulty": "Easy Demon",
+   "slug": "death-moon"
+  },
+  {
+   "id": 341613,
+   "name": "Xstep v2",
+   "creator": "IIINePtunEIII",
+   "downloads": 66677950,
+   "difficulty": "Easy Demon",
+   "slug": "xstep-v2"
+  },
+  {
+   "id": 38427291,
+   "name": "Extinction",
+   "creator": "haoN",
+   "downloads": 65894669,
+   "difficulty": "Easy Demon",
+   "slug": "extinction"
+  },
+  {
+   "id": 118509879,
+   "name": "Skeletal Shenanigans",
+   "creator": "YoReid",
+   "downloads": 63930750,
+   "difficulty": "Medium Demon",
+   "slug": "skeletal-shenanigans"
+  },
+  {
+   "id": 42584142,
+   "name": "Bloodlust",
+   "creator": "Knobbelboy",
+   "downloads": 61693370,
+   "difficulty": "Extreme Demon",
+   "slug": "bloodlust"
+  },
+  {
+   "id": 44062068,
+   "name": "Future Funk",
+   "creator": "JonathanGD",
+   "downloads": 61395332,
+   "difficulty": "Hard Demon",
+   "slug": "future-funk"
+  },
+  {
+   "id": 4706930,
+   "name": "Supersonic",
+   "creator": "ZenthicAlpha",
+   "downloads": 55115304,
+   "difficulty": "Insane Demon",
+   "slug": "supersonic"
+  },
+  {
+   "id": 27690100,
+   "name": "Slaughterhouse",
+   "creator": "IcEDCave",
+   "downloads": 52152768,
+   "difficulty": "Extreme Demon",
+   "slug": "slaughterhouse"
+  },
+  {
+   "id": 1777565,
+   "name": "Laser Room",
+   "creator": "TrueNature",
+   "downloads": 52056139,
+   "difficulty": "Easy Demon",
+   "slug": "laser-room"
+  },
+  {
+   "id": 26681070,
+   "name": "Sonic Wave",
+   "creator": "lSunix",
+   "downloads": 49338641,
+   "difficulty": "Extreme Demon",
+   "slug": "sonic-wave"
+  },
+  {
+   "id": 18735780,
+   "name": "Dear Nostalgists",
+   "creator": "TriAxis",
+   "downloads": 46326129,
+   "difficulty": "Easy Demon",
+   "slug": "dear-nostalgists"
+  },
+  {
+   "id": 70059,
+   "name": "yStep",
+   "creator": "TheRealDarnoc",
+   "downloads": 40805939,
+   "difficulty": "Easy Demon",
+   "slug": "ystep"
+  },
+  {
+   "id": 34085027,
+   "name": "B",
+   "creator": "motleyorc",
+   "downloads": 40799168,
+   "difficulty": "Medium Demon",
+   "slug": "b"
+  },
+  {
+   "id": 186646,
+   "name": "Crescendo",
+   "creator": "MasK463",
+   "downloads": 39648446,
+   "difficulty": "Easy Demon",
+   "slug": "crescendo"
+  },
+  {
+   "id": 2997354,
+   "name": "DeCode",
+   "creator": "Rek3dge",
+   "downloads": 39171924,
+   "difficulty": "Easy Demon",
+   "slug": "decode"
+  },
+  {
+   "id": 28220417,
+   "name": "Yatagarasu",
+   "creator": "TrusTa",
+   "downloads": 39077502,
+   "difficulty": "Extreme Demon",
+   "slug": "yatagarasu"
+  },
+  {
+   "id": 18025697,
+   "name": "Sidestep",
+   "creator": "ChaSe",
+   "downloads": 35386428,
+   "difficulty": "Easy Demon",
+   "slug": "sidestep"
+  },
+  {
+   "id": 7116121,
+   "name": "Problematic",
+   "creator": "Dhafin",
+   "downloads": 34532974,
+   "difficulty": "Easy Demon",
+   "slug": "problematic"
+  },
+  {
+   "id": 86407629,
+   "name": "Tidal Wave",
+   "creator": "OniLinkGD",
+   "downloads": 32715492,
+   "difficulty": "Extreme Demon",
+   "slug": "tidal-wave"
+  },
+  {
+   "id": 23262780,
+   "name": "Sakupen Hell",
+   "creator": "TrusTa",
+   "downloads": 31500252,
+   "difficulty": "Extreme Demon",
+   "slug": "sakupen-hell"
+  },
+  {
+   "id": 566659,
+   "name": "demon mixed",
+   "creator": "RealOggY",
+   "downloads": 30458813,
+   "difficulty": "Easy Demon",
+   "slug": "demon-mixed"
+  },
+  {
+   "id": 73725400,
+   "name": "CraZy III",
+   "creator": "DavJT",
+   "downloads": 30049820,
+   "difficulty": "Insane Demon",
+   "slug": "crazy-iii"
+  },
+  {
+   "id": 10109,
+   "name": "demon park",
+   "creator": "M2coL",
+   "downloads": 30012446,
+   "difficulty": "Easy Demon",
+   "slug": "demon-park"
+  },
+  {
+   "id": 90475473,
+   "name": "Change of Scene",
+   "creator": "bli",
+   "downloads": 29116781,
+   "difficulty": "Easy Demon",
+   "slug": "change-of-scene"
+  },
+  {
+   "id": 369294,
+   "name": "Theory of every v2",
+   "creator": "IIINePtunEIII",
+   "downloads": 29020943,
+   "difficulty": "Easy Demon",
+   "slug": "theory-of-every-v2"
+  },
+  {
+   "id": 19759411,
+   "name": "Phobos",
+   "creator": "KrmaL",
+   "downloads": 28331016,
+   "difficulty": "Extreme Demon",
+   "slug": "phobos"
+  },
+  {
+   "id": 1650666,
+   "name": "Buck Force",
+   "creator": "Rob Buck",
+   "downloads": 27784748,
+   "difficulty": "Easy Demon",
+   "slug": "buck-force"
+  },
+  {
+   "id": 58270823,
+   "name": "Nantendo",
+   "creator": "im fernando",
+   "downloads": 27542964,
+   "difficulty": "Medium Demon",
+   "slug": "nantendo"
+  },
+  {
+   "id": 40945673,
+   "name": "CraZy",
+   "creator": "DavJT",
+   "downloads": 27339047,
+   "difficulty": "Hard Demon",
+   "slug": "crazy"
+  },
+  {
+   "id": 56210242,
+   "name": "Shiver",
+   "creator": "SpKale",
+   "downloads": 26922865,
+   "difficulty": "Easy Demon",
+   "slug": "shiver"
+  },
+  {
+   "id": 6939821,
+   "name": "Jawbreaker",
+   "creator": "ZenthicAlpha",
+   "downloads": 26835606,
+   "difficulty": "Hard Demon",
+   "slug": "jawbreaker"
+  },
+  {
+   "id": 5098465,
+   "name": "Speed of Light",
+   "creator": "TheRealSalad",
+   "downloads": 25480796,
+   "difficulty": "Easy Demon",
+   "slug": "speed-of-light"
+  },
+  {
+   "id": 11588490,
+   "name": "Ultra Paracosm",
+   "creator": "iIiRulasiIi",
+   "downloads": 25259230,
+   "difficulty": "Easy Demon",
+   "slug": "ultra-paracosm"
+  },
+  {
+   "id": 3264805,
+   "name": "Theory of SkriLLex",
+   "creator": "noobas",
+   "downloads": 25210762,
+   "difficulty": "Medium Demon",
+   "slug": "theory-of-skrillex"
+  },
+  {
+   "id": 82824219,
+   "name": "MikuMikuMikuMiku",
+   "creator": "OddMod",
+   "downloads": 25046232,
+   "difficulty": "Insane Demon",
+   "slug": "mikumikumikumiku"
+  },
+  {
+   "id": 9145341,
+   "name": "8o",
+   "creator": "Zobros",
+   "downloads": 23989814,
+   "difficulty": "Insane Demon",
+   "slug": "8o"
+  },
+  {
+   "id": 30219145,
+   "name": "HyperSonic",
+   "creator": "ViPriN",
+   "downloads": 23757168,
+   "difficulty": "Extreme Demon",
+   "slug": "hypersonic"
+  },
+  {
+   "id": 14000484,
+   "name": "Retro Circles",
+   "creator": "Nacho21",
+   "downloads": 23508288,
+   "difficulty": "Easy Demon",
+   "slug": "retro-circles"
+  },
+  {
+   "id": 199761,
+   "name": "demon jumper",
+   "creator": "playererer",
+   "downloads": 23235677,
+   "difficulty": "Easy Demon",
+   "slug": "demon-jumper"
+  },
+  {
+   "id": 57730,
+   "name": "Super Cycles",
+   "creator": "Jax",
+   "downloads": 22969036,
+   "difficulty": "Easy Demon",
+   "slug": "super-cycles"
+  },
+  {
+   "id": 21761387,
+   "name": "Bloodbath Z",
+   "creator": "Zyzyx",
+   "downloads": 22300562,
+   "difficulty": "Medium Demon",
+   "slug": "bloodbath-z"
+  },
+  {
+   "id": 393159,
+   "name": "Impulse",
+   "creator": "MrCheeseTigrr",
+   "downloads": 22149621,
+   "difficulty": "Easy Demon",
+   "slug": "impulse"
+  },
+  {
+   "id": 1474319,
+   "name": "moon adventure",
+   "creator": "Experience D",
+   "downloads": 21978935,
+   "difficulty": "Easy Demon",
+   "slug": "moon-adventure"
+  },
+  {
+   "id": 1347537,
+   "name": "invisible clubstep",
+   "creator": "J4cKy",
+   "downloads": 21525219,
+   "difficulty": "Easy Demon",
+   "slug": "invisible-clubstep"
+  },
+  {
+   "id": 13785846,
+   "name": "-sirius-",
+   "creator": "FunnyGame",
+   "downloads": 21313918,
+   "difficulty": "Medium Demon",
+   "slug": "sirius"
+  },
+  {
+   "id": 60887211,
+   "name": "Ultra violence",
+   "creator": "Xender Game",
+   "downloads": 21263405,
+   "difficulty": "Medium Demon",
+   "slug": "ultra-violence"
+  },
+  {
+   "id": 23298409,
+   "name": "Duelo Maestro",
+   "creator": "Nacho21",
+   "downloads": 20884045,
+   "difficulty": "Insane Demon",
+   "slug": "duelo-maestro"
+  },
+  {
+   "id": 86084399,
+   "name": "LIMBO",
+   "creator": "MindCap",
+   "downloads": 20782163,
+   "difficulty": "Extreme Demon",
+   "slug": "limbo"
+  },
+  {
+   "id": 7174110,
+   "name": "The Ultimate Phase",
+   "creator": "Andromeda GMD",
+   "downloads": 20333033,
+   "difficulty": "Extreme Demon",
+   "slug": "the-ultimate-phase"
+  },
+  {
+   "id": 4957691,
+   "name": "Windy Landscape",
+   "creator": "WOOGI1411",
+   "downloads": 20264857,
+   "difficulty": "Insane Demon",
+   "slug": "windy-landscape"
+  },
+  {
+   "id": 848722,
+   "name": "Lights And Thunder",
+   "creator": "Lyod",
+   "downloads": 19224647,
+   "difficulty": "Easy Demon",
+   "slug": "lights-and-thunder"
+  },
+  {
+   "id": 25706351,
+   "name": "HeLL",
+   "creator": "Serponge",
+   "downloads": 18644120,
+   "difficulty": "Medium Demon",
+   "slug": "hell"
+  },
+  {
+   "id": 18834999,
+   "name": "VeritY",
+   "creator": "Serponge",
+   "downloads": 18307145,
+   "difficulty": "Medium Demon",
+   "slug": "verity"
+  },
+  {
+   "id": 45932196,
+   "name": "ABCDEFGHIJKLMNOPQRS",
+   "creator": "NeoSweet",
+   "downloads": 18257160,
+   "difficulty": "Easy Demon",
+   "slug": "abcdefghijklmnopqrs"
+  },
+  {
+   "id": 61079355,
+   "name": "Acu",
+   "creator": "neigefeu",
+   "downloads": 18244814,
+   "difficulty": "Extreme Demon",
+   "slug": "acu"
+  },
+  {
+   "id": 29247995,
+   "name": "FREEDOM",
+   "creator": "MrPPs",
+   "downloads": 17883512,
+   "difficulty": "Easy Demon",
+   "slug": "freedom"
+  },
+  {
+   "id": 839175,
+   "name": "Electrodynamix v2",
+   "creator": "IIINePtunEIII",
+   "downloads": 16833362,
+   "difficulty": "Medium Demon",
+   "slug": "electrodynamix-v2"
+  },
+  {
+   "id": 27786218,
+   "name": "Mechanical Showdown",
+   "creator": "Tongii",
+   "downloads": 16120033,
+   "difficulty": "Medium Demon",
+   "slug": "mechanical-showdown"
+  },
+  {
+   "id": 5155022,
+   "name": "Acropolis",
+   "creator": "Zobros",
+   "downloads": 16047727,
+   "difficulty": "Insane Demon",
+   "slug": "acropolis"
+  },
+  {
+   "id": 358750,
+   "name": "Clutterfunk v2",
+   "creator": "IIINePtunEIII",
+   "downloads": 15982577,
+   "difficulty": "Easy Demon",
+   "slug": "clutterfunk-v2"
+  },
+  {
+   "id": 11402965,
+   "name": "Forest Temple",
+   "creator": "Michigun",
+   "downloads": 15930222,
+   "difficulty": "Hard Demon",
+   "slug": "forest-temple"
+  },
+  {
+   "id": 59075347,
+   "name": "Tartarus",
+   "creator": "ItzDolphy",
+   "downloads": 15911731,
+   "difficulty": "Extreme Demon",
+   "slug": "tartarus"
+  },
+  {
+   "id": 11317271,
+   "name": "Blue Hell",
+   "creator": "LaZye",
+   "downloads": 15464128,
+   "difficulty": "Easy Demon",
+   "slug": "blue-hell"
+  },
+  {
+   "id": 59626284,
+   "name": "Future Funk II",
+   "creator": "JonathanGD",
+   "downloads": 15451544,
+   "difficulty": "Insane Demon",
+   "slug": "future-funk-ii"
+  },
+  {
+   "id": 7054561,
+   "name": "Poltergeist",
+   "creator": "Andromeda GMD",
+   "downloads": 15346955,
+   "difficulty": "Insane Demon",
+   "slug": "poltergeist"
+  },
+  {
+   "id": 20077821,
+   "name": "Red World Rebirth",
+   "creator": "Riot",
+   "downloads": 15196977,
+   "difficulty": "Extreme Demon",
+   "slug": "red-world-rebirth"
+  },
+  {
+   "id": 56587109,
+   "name": "phjork",
+   "creator": "cerufiffy",
+   "downloads": 14928814,
+   "difficulty": "Easy Demon",
+   "slug": "phjork"
+  },
+  {
+   "id": 214523,
+   "name": "Sky Realm",
+   "creator": "TheRealDarnoc",
+   "downloads": 14673252,
+   "difficulty": "Easy Demon",
+   "slug": "sky-realm"
+  },
+  {
+   "id": 102765,
+   "name": "Hextec Flow",
+   "creator": "TheRealDarnoc",
+   "downloads": 14407424,
+   "difficulty": "Easy Demon",
+   "slug": "hextec-flow"
+  },
+  {
+   "id": 47620786,
+   "name": "CraZy II",
+   "creator": "DavJT",
+   "downloads": 14188401,
+   "difficulty": "Insane Demon",
+   "slug": "crazy-ii"
+  },
+  {
+   "id": 135561,
+   "name": "Extreme Fantasy",
+   "creator": "Rabbitical",
+   "downloads": 14159067,
+   "difficulty": "Easy Demon",
+   "slug": "extreme-fantasy"
+  },
+  {
+   "id": 25147297,
+   "name": "hi",
+   "creator": "KrmaL",
+   "downloads": 14042498,
+   "difficulty": "Insane Demon",
+   "slug": "hi"
+  },
+  {
+   "id": 17924880,
+   "name": "Lonely travel",
+   "creator": "FunnyGame",
+   "downloads": 13885983,
+   "difficulty": "Medium Demon",
+   "slug": "lonely-travel"
+  },
+  {
+   "id": 101478916,
+   "name": "Eon",
+   "creator": "Renn241",
+   "downloads": 13761625,
+   "difficulty": "Extreme Demon",
+   "slug": "eon"
+  },
+  {
+   "id": 96732638,
+   "name": "Im Dead",
+   "creator": "Danke",
+   "downloads": 13524467,
+   "difficulty": "Easy Demon",
+   "slug": "im-dead"
+  },
+  {
+   "id": 76962930,
+   "name": "Sakupen Circles",
+   "creator": "Diamond",
+   "downloads": 13340731,
+   "difficulty": "Extreme Demon",
+   "slug": "sakupen-circles"
+  },
+  {
+   "id": 13037894,
+   "name": "infinite circles",
+   "creator": "startor",
+   "downloads": 13304545,
+   "difficulty": "Easy Demon",
+   "slug": "infinite-circles"
+  },
+  {
+   "id": 33364327,
+   "name": "PanaSonic",
+   "creator": "TheShadowRealm",
+   "downloads": 13300112,
+   "difficulty": "Extreme Demon",
+   "slug": "panasonic"
+  },
+  {
+   "id": 5310094,
+   "name": "Fairydust",
+   "creator": "mkComic",
+   "downloads": 13284001,
+   "difficulty": "Hard Demon",
+   "slug": "fairydust"
+  },
+  {
+   "id": 83323273,
+   "name": "Ruta del Sol",
+   "creator": "TroxxP1",
+   "downloads": 13190385,
+   "difficulty": "Easy Demon",
+   "slug": "ruta-del-sol"
+  },
+  {
+   "id": 61348317,
+   "name": "What is it",
+   "creator": "Booglee",
+   "downloads": 13066626,
+   "difficulty": "Easy Demon",
+   "slug": "what-is-it"
+  },
+  {
+   "id": 65765662,
+   "name": "iS",
+   "creator": "Grenate",
+   "downloads": 13065317,
+   "difficulty": "Easy Demon",
+   "slug": "is"
+  },
+  {
+   "id": 16011100,
+   "name": "Deadlocked v3",
+   "creator": "Noriega",
+   "downloads": 12774953,
+   "difficulty": "Insane Demon",
+   "slug": "deadlocked-v3"
+  },
+  {
+   "id": 73667628,
+   "name": "Acheron",
+   "creator": "ryamu",
+   "downloads": 12715542,
+   "difficulty": "Extreme Demon",
+   "slug": "acheron"
+  },
+  {
+   "id": 764038,
+   "name": "DeathFunk",
+   "creator": "IIINePtunEIII",
+   "downloads": 12645840,
+   "difficulty": "Medium Demon",
+   "slug": "deathfunk"
+  },
+  {
+   "id": 116174063,
+   "name": "Every End",
+   "creator": "MindCap",
+   "downloads": 12477176,
+   "difficulty": "Extreme Demon",
+   "slug": "every-end"
+  },
+  {
+   "id": 3332936,
+   "name": "Insomnia",
+   "creator": "Glittershroom",
+   "downloads": 12385944,
+   "difficulty": "Easy Demon",
+   "slug": "insomnia"
+  },
+  {
+   "id": 27122654,
+   "name": "Artificial Ascent",
+   "creator": "ViPriN",
+   "downloads": 12339800,
+   "difficulty": "Extreme Demon",
+   "slug": "artificial-ascent"
+  },
+  {
+   "id": 34057654,
+   "name": "Black Blizzard",
+   "creator": "KrmaL",
+   "downloads": 12154666,
+   "difficulty": "Extreme Demon",
+   "slug": "black-blizzard"
+  },
+  {
+   "id": 29443338,
+   "name": "TOE III",
+   "creator": "Manix648",
+   "downloads": 12152006,
+   "difficulty": "Hard Demon",
+   "slug": "toe-iii"
+  },
+  {
+   "id": 130414,
+   "name": "Beautiful Chaos",
+   "creator": "darnoc2",
+   "downloads": 12147734,
+   "difficulty": "Medium Demon",
+   "slug": "beautiful-chaos"
+  }
+ ]
+}

@@ -4,11 +4,13 @@
  * sitting, because it is the only part of the site that stores anything about
  * a visitor and the privacy page has to be true of it.
  *
- *   GET  /boards   the four boards, best first
- *   POST /submit   { mode, name, score, t }  -> { ok, rank, improved, boards }
+ *   GET  /boards   every board, best first
+ *   POST /submit   { mode, name, score, t }        -> { ok, rank, improved, boards }
+ *   POST /submit   { mode: "gg", name, score, named }   (GeometryGuessr)
  *
- * What it keeps: per mode, one line per username -- the name, how many were
- * named, how far into the run the last one was named, and the date. Each
+ * What it keeps: per board, one line per username -- the name, the score
+ * (levels named, or GeometryGuessr points), how far into the run the last one
+ * was named or how many of the five demons were named, and the date. Each
  * board keeps its best 100. Nothing else. In particular it does not read,
  * store or log the visitor's IP address, headers, or anything but the four
  * fields above, and it sets no cookies.
@@ -24,6 +26,7 @@
  */
 
 const MODES = { "5": 300, "10": 600, "30": 1800, "60": 3600 };   // seconds
+const GG = { rounds: 5, perRound: 1000 };   // GeometryGuessr: five rounds, up to 1,000 each
 const MAX_LEVELS = 2000;        // the list is ~1,621 and grows; this is a ceiling
 const MAX_PER_SECOND = 2;       // a person types nothing like faster than this
 const KEEP = 100;               // entries kept per board
@@ -45,6 +48,11 @@ const idOf = (name) => name.toLowerCase();
 const better = (a, b) => a.s > b.s || (a.s === b.s && a.t < b.t);
 const order = (a, b) =>
   b.s - a.s || a.t - b.t || (a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
+
+/* GeometryGuessr: more points wins; on a tie, more demons named, then whoever was first. */
+const ggBetter = (a, b) => a.s > b.s || (a.s === b.s && a.r > b.r);
+const ggOrder = (a, b) =>
+  b.s - a.s || b.r - a.r || (a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
 
 function json(body, status, headers) {
   return new Response(JSON.stringify(body), {
@@ -82,6 +90,8 @@ async function allBoards(env, replace) {
     const board = replace && replace.mode === mode ? replace.board : await readBoard(env, mode);
     out[mode] = board.slice(0, SHOW);
   }
+  const gg = replace && replace.mode === "gg" ? replace.board : await readBoard(env, "gg");
+  out.gg = gg.slice(0, SHOW);
   return out;
 }
 
@@ -97,12 +107,13 @@ async function submit(request, env, cors) {
   if (!body || typeof body !== "object") return json({ error: "Unreadable request." }, 400, cors.headers);
 
   const mode = String(body.mode);
-  if (!Object.hasOwn(MODES, mode)) return json({ error: "Unknown mode." }, 400, cors.headers);
+  if (mode !== "gg" && !Object.hasOwn(MODES, mode)) return json({ error: "Unknown mode." }, 400, cors.headers);
 
   const name = clean(body.name ?? "");
   if (!NAME_OK.test(name)) {
     return json({ error: "Usernames are 2–20 letters, numbers, spaces, dots, dashes or underscores." }, 400, cors.headers);
   }
+  if (mode === "gg") return submitGG(env, cors, name, body);
 
   const { score, t } = body;
   if (!Number.isInteger(score) || score < 1 || score > MAX_LEVELS) {
@@ -139,6 +150,42 @@ async function submit(request, env, cors) {
     improved,
     rank: kept.findIndex((e) => idOf(e.n) === id) + 1,   // 0 if it fell off the bottom
     boards: await allBoards(env, { mode, board: kept }),
+  }, 200, cors.headers);
+}
+
+/* GeometryGuessr's board. The same rules as the others: one line per username,
+   the best 100 kept, nothing written unless something improved. */
+async function submitGG(env, cors, name, body) {
+  const { score, named } = body;
+  if (!Number.isInteger(named) || named < 1 || named > GG.rounds) {
+    return json({ error: "That isn’t possible." }, 400, cors.headers);
+  }
+  if (!Number.isInteger(score) || score < 0 || score > named * GG.perRound) {
+    return json({ error: "That score isn’t possible." }, 400, cors.headers);
+  }
+
+  const board = await readBoard(env, "gg");
+  const id = idOf(name);
+  const entry = { n: name, s: score, r: named, d: new Date().toISOString().slice(0, 10) };
+  const at = board.findIndex((e) => idOf(e.n) === id);
+
+  let improved = true;
+  if (at >= 0) {
+    if (ggBetter(entry, board[at])) board[at] = entry;
+    else improved = false;
+  } else {
+    board.push(entry);
+  }
+  board.sort(ggOrder);
+  const kept = board.slice(0, KEEP);
+
+  if (improved) await env.RECORDS.put("board:gg", JSON.stringify(kept));
+
+  return json({
+    ok: true,
+    improved,
+    rank: kept.findIndex((e) => idOf(e.n) === id) + 1,
+    boards: await allBoards(env, { mode: "gg", board: kept }),
   }, 200, cors.headers);
 }
 

@@ -1,0 +1,140 @@
+<div class="gg" data-gg data-view="title" data-shots="{{ shots_base }}" data-share-url="{{ share_url }}"{{ gg_attrs_html }}>
+  <canvas class="gg-bg" data-bg aria-hidden="true"></canvas>
+  <div class="gg-glow" aria-hidden="true"></div>
+
+  <header class="gg-bar">
+    <a class="gg-bar__back" href="/">Games</a>
+    {{ topnav_html }}
+  </header>
+
+  <!-- Title ------------------------------------------------------------- -->
+  <section class="gg-title" data-screen="title" aria-labelledby="gg-logo">
+    <p class="gg-kicker"><span class="gg-kicker__dot" aria-hidden="true"></span>{{ kicker }}</p>
+    <div class="gg-logo-wrap">
+      <h1 id="gg-logo" class="gg-logo" aria-label="{{ title }}">
+        <span class="gg-logo__line gg-logo__line--a" data-split aria-hidden="true">GEOMETRY</span>
+        <span class="gg-logo__line gg-logo__line--b" data-split aria-hidden="true">GUESSR</span>
+      </h1>
+      <span class="gg-sticker" aria-hidden="true">{{ stage }}</span>
+    </div>
+    <p class="gg-ver"><span class="visually-hidden">{{ stage }}, </span>v{{ version }} &middot; {{ answer_count }} of {{ level_count }} demons so far</p>
+    <p class="gg-tag">{{ tagline }}</p>
+
+    <button class="gg-start" type="button" data-start>
+      <span class="gg-start__ring" aria-hidden="true"></span>
+      <span class="gg-start__disc" aria-hidden="true"><span class="gg-start__tri"></span></span>
+      <span class="gg-start__word">Play</span>
+    </button>
+
+    <p class="gg-best" data-best hidden>Best game <b data-best-score>0</b> pts &middot; <b data-best-named>0</b>/5 named</p>
+
+    <ol class="gg-steps">
+      <li class="gg-step"><span class="gg-step__n" aria-hidden="true">1</span>
+        <span class="gg-step__h">Name the demon</span>
+        <span class="gg-step__t">One screenshot from one of the {{ level_count }} most downloaded demons. Type its name.</span></li>
+      <li class="gg-step"><span class="gg-step__n" aria-hidden="true">2</span>
+        <span class="gg-step__h">Find the spot</span>
+        <span class="gg-step__t">Drag the cube to where in the level the shot was taken. Up to 1,000 points a round.</span></li>
+      <li class="gg-step"><span class="gg-step__n" aria-hidden="true">3</span>
+        <span class="gg-step__h">Five rounds</span>
+        <span class="gg-step__t">Five demons a game. A wrong name scores nothing that round. A perfect game is 5,000.</span></li>
+    </ol>
+    {{ title_board_html }}
+  </section>
+
+  <!-- A round ----------------------------------------------------------- -->
+  <section class="gg-round" data-screen="play" hidden aria-label="Round">
+    <div class="gg-hud">
+      <p class="gg-hud__brand" aria-hidden="true">GeometryGuessr</p>
+      <p class="gg-hud__cell"><span class="gg-hud__k">Round</span><b class="gg-hud__v" data-round>1/5</b></p>
+      <p class="gg-hud__cell"><span class="gg-hud__k">Named</span><b class="gg-hud__v" data-named>0</b></p>
+      <p class="gg-hud__cell gg-hud__cell--score"><span class="gg-hud__k">Score</span><b class="gg-hud__v" data-score>0</b></p>
+    </div>
+
+    <figure class="gg-frame" data-frame>
+      <div class="gg-frame__pic">
+        <img class="gg-shot" data-shot width="1138" height="640" decoding="async"
+             alt="A moment from one of the levels, with the player hidden. Which demon is it?">
+        <div class="gg-flash" data-flash aria-hidden="true"></div>
+        <p class="gg-stamp" data-stamp aria-hidden="true"></p>
+      </div>
+      <canvas class="gg-burst" data-burst aria-hidden="true"></canvas>
+    </figure>
+
+    <div class="gg-dock">
+      <form class="gg-ask" data-ask autocomplete="off">
+        <label class="gg-ask__q" for="gg-input">Which demon is this?</label>
+        <div class="gg-ask__row">
+          <div class="gg-combo">
+            <input id="gg-input" class="gg-input" data-input type="text" role="combobox"
+                   aria-autocomplete="list" aria-expanded="false" aria-controls="gg-options"
+                   autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+                   enterkeyhint="go" placeholder="Type a level name&hellip;">
+            <ul id="gg-options" class="gg-options" role="listbox" data-options hidden></ul>
+          </div>
+          <button class="gg-btn gg-btn--go" type="submit" data-guess disabled>Guess</button>
+        </div>
+        <p class="gg-hint" data-hint>Pick a name from the list. Any of the {{ level_count }} could be the answer.</p>
+      </form>
+
+      <div class="gg-spot" data-spot hidden>
+        <p class="gg-spot__q"><b data-spot-level></b> <span data-spot-q>&mdash; where in the level is this?</span></p>
+        <div class="gg-track" data-track>
+          <div class="gg-track__rail"><div class="gg-track__fill" data-fill></div><div class="gg-track__gap" data-gap hidden></div></div>
+          <div class="gg-track__ticks" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+          <div class="gg-truth" data-truth hidden aria-hidden="true"><span class="gg-truth__label" data-truth-label></span></div>
+          <div class="gg-cube" data-cube role="slider" tabindex="0" aria-label="Where in the level the shot was taken"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 percent">
+            <span class="gg-cube__label" data-cube-label aria-hidden="true">50%</span>
+            <svg class="gg-cube__icon" viewBox="0 0 30 30" aria-hidden="true"><rect x="1.5" y="1.5" width="27" height="27" rx="2" fill="#a8ff2e" stroke="#000" stroke-width="3"/><rect x="8" y="8" width="14" height="14" fill="#21e6ff" stroke="#000" stroke-width="2"/></svg>
+          </div>
+        </div>
+        <div class="gg-spot__actions">
+          <button class="gg-btn gg-btn--go" type="button" data-lock>Lock it in</button>
+        </div>
+      </div>
+
+      <div class="gg-reveal" data-reveal hidden>
+        <div class="gg-reveal__who">
+          <span class="gg-reveal__k" data-reveal-k>It was</span>
+          <b class="gg-reveal__name" data-reveal-name></b>
+          <span class="gg-reveal__by" data-reveal-by></span>
+          <span class="gg-reveal__said" data-reveal-said></span>
+        </div>
+        <div class="gg-reveal__pts"><b data-reveal-pts>0</b><span>pts</span></div>
+        <button class="gg-btn gg-btn--go gg-reveal__next" type="button" data-next>Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- End of a run ------------------------------------------------------ -->
+  <section class="gg-over" data-screen="over" hidden aria-labelledby="gg-over-h">
+    <h2 id="gg-over-h" class="gg-over__title" data-over-title>Game over</h2>
+    <div class="gg-over__nums">
+      <p><b data-over-score>0</b><span>points of 5,000</span></p>
+      <p><b data-over-named>0</b><span>of 5 named</span></p>
+    </div>
+    <p class="gg-over__best" data-over-best></p>
+    <div class="gg-over__actions">
+      <button class="gg-btn gg-btn--go" type="button" data-again>Play again</button>
+      <button class="gg-btn" type="button" data-share>Share</button>
+      <span class="gg-copied" data-copied role="status"></span>
+    </div>
+    {{ records_html }}
+    <ol class="gg-strip" data-strip aria-label="Your rounds"></ol>
+  </section>
+
+  <button class="gg-sound" type="button" data-sound aria-pressed="true">
+    <span class="visually-hidden">Sound</span><span class="gg-sound__icon" aria-hidden="true"></span></button>
+  <p class="visually-hidden" role="status" aria-live="polite" data-live></p>
+</div>
+
+<section class="gg-about page" aria-label="About GeometryGuessr">
+  <p>Five rounds a game, five different demons. {{ shot_count }} screenshots of {{ answer_count }} demons so far, more on the way. The search box offers all
+    {{ level_count }} of the most downloaded demons on the Geometry Dash servers as of {{ fetched_label }}, so the list
+    of names never tells you which ones have pictures yet. Screenshots taken in game by Baylor with the player and
+    the HUD hidden; every level belongs to its creators, named on every reveal. Your best run and the sound setting
+    are saved in this browser only.</p>
+</section>
+
+<script type="application/json" id="gg-data">{{ data_json_html }}</script>

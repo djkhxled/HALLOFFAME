@@ -42,13 +42,28 @@
     "title": "Demondle",
     "lede": "Six guesses to find the hidden level on the Demonlist. Every guess tells you how its rank, peak rank, year, version, length and crew size compare. A new level every day, or play on forever."
   },
+  "home": {
+    "lede": "Three Geometry Dash games to play, and my thirty favourite extreme demons.",
+    "description": "Geometry Dash games: GeometryGuessr, Demondle and Name Every Extreme Demon. Plus Baylor's thirty favourite extreme demons, counted down.",
+    "listLabel": "The list \u2192",
+    "listHeading": "The list",
+    "listText": "My thirty favourite extreme demons, counted down from 30 to 1, each with a page of its own."
+  },
   "games": {
     "title": "Games",
     "lede": "How well do you know the demonlist?",
     "cards": [
-      {"href": "/game/", "title": "Name Every Extreme Demon", "desc": "Type a level\u2019s name and it lands on the list. All 1,621 of them, free play or against the clock."},
-      {"href": "/demondle/", "title": "Demondle", "desc": "A Wordle style game. A hidden level from the Demonlist. Six guesses, six stats. A new one every day."}
+      {"href": "/geometryguessr/", "title": "GeometryGuessr", "art": "gg", "badge": "New", "desc": "GeoGuessr for Geometry Dash. Five screenshots from the 100 most downloaded demons: name each one, then find the spot. Up to 5,000 points."},
+      {"href": "/demondle/", "title": "Demondle", "art": "demondle", "desc": "A Wordle style game. A hidden level from the Demonlist. Six guesses, six stats. A new one every day."},
+      {"href": "/game/", "title": "Name Every Extreme Demon", "art": "names", "desc": "Type a level\u2019s name and it lands on the list. All 1,621 of them, free play or against the clock."}
     ]
+  },
+  "gg": {
+    "title": "GeometryGuessr",
+    "stage": "Beta",
+    "version": "0.1.0",
+    "kicker": "The 100 most downloaded demons",
+    "tagline": "One screenshot. Which demon is it, and where in the level are you?"
   },
   "records": {"endpoint": "https://hall-records.baylorperkins.workers.dev"},
   "artDrift": "40s",
