@@ -74,22 +74,40 @@ class RealData(unittest.TestCase):
     def test_the_committed_data_is_valid(self):
         self.assertEqual(gg.validate(self.snap["levels"], self.shots, ROOT / "src" / "shots"), [])
 
-    def test_the_search_list_is_the_100_most_downloaded_demons(self):
+    def test_the_search_list_is_the_100_most_downloaded_demons_then_the_additions(self):
         levels = self.snap["levels"]
-        self.assertEqual(len(levels), 100)
-        self.assertTrue(all("Demon" in lv["difficulty"] for lv in levels))
-        downloads = [lv["downloads"] for lv in levels]
+        top = levels[:100]
+        self.assertTrue(all("Demon" in lv["difficulty"] for lv in top))
+        downloads = [lv["downloads"] for lv in top]
         self.assertEqual(downloads, sorted(downloads, reverse=True))
+        extras = json.loads((ROOT / "data" / "gg" / "extras.json").read_text(encoding="utf-8"))["levels"]
+        self.assertEqual([lv["id"] for lv in levels[100:]], [lv["id"] for lv in extras])
+        self.assertEqual(len({lv["id"] for lv in levels}), len(levels), "a level is listed twice")
 
     def test_names_carry_no_stray_spaces(self):
         for lv in self.snap["levels"]:
             self.assertEqual(lv["name"], " ".join(lv["name"].split()), lv["name"])
 
+    def excluded(self):
+        path = ROOT / "data" / "gg" / "excluded.json"
+        return set(json.loads(path.read_text(encoding="utf-8"))["slugs"]) if path.exists() else set()
+
+    def test_excluded_levels_are_never_answers_but_stay_searchable(self):
+        by_id = {lv["id"]: lv["slug"] for lv in self.snap["levels"]}
+        answers = {by_id[s["level"]] for s in self.shots}
+        for slug in self.excluded():
+            self.assertNotIn(slug, answers, slug)
+            self.assertIn(slug, by_id.values(), slug)
+
     def test_every_crop_is_a_16_9_box_inside_a_shot_that_exists(self):
+        """Crops of a level left out of the answers are kept, in case it comes back."""
         path = ROOT / "data" / "gg" / "crops.json"
         crops = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
         keys = {s["file"].rsplit(".", 1)[0] for s in self.shots}
+        excluded = self.excluded()
         for key, (x, y, size) in crops.items():
+            if key.split("/")[0] in excluded:
+                continue
             self.assertIn(key, keys, key)
             self.assertTrue(0.3 <= size <= 1, key)
             self.assertTrue(0 <= x <= 1 - size + 1e-9 and 0 <= y <= 1 - size + 1e-9, key)
@@ -114,7 +132,8 @@ class BuiltPage(unittest.TestCase):
     def test_the_page_carries_its_data(self):
         m = re.search(r'<script type="application/json" id="gg-data">(.*?)</script>', self.html, re.S)
         data = json.loads(m.group(1).replace("<\\/", "</"))
-        self.assertEqual(len(data["levels"]), 100)
+        listed = json.loads((ROOT / "data" / "gg" / "levels.json").read_text(encoding="utf-8"))["levels"]
+        self.assertEqual(len(data["levels"]), len(listed))
         self.assertGreaterEqual(len({s["l"] for s in data["shots"]}), gg.MIN_POOL)
 
     def test_the_images_are_published_where_the_page_looks(self):
@@ -161,7 +180,7 @@ class BuiltPage(unittest.TestCase):
     def test_the_page_says_it_is_not_finished(self):
         site = json.loads((ROOT / "data" / "site.json").read_text(encoding="utf-8"))["gg"]
         self.assertIn(f'class="gg-sticker" aria-hidden="true">{site["stage"]}</span>', self.html)
-        self.assertRegex(self.html, rf'v{re.escape(site["version"])} &middot; \d+ of 100 demons so far')
+        self.assertRegex(self.html, rf'v{re.escape(site["version"])} &middot; \d+ of \d+ levels so far')
 
     def test_the_cube_is_a_slider(self):
         self.assertRegex(self.html, r'class="gg-cube"[^>]*role="slider"')

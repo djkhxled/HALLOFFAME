@@ -53,7 +53,7 @@
     "title": "Games",
     "lede": "How well do you know the demonlist?",
     "cards": [
-      {"href": "/geometryguessr/", "title": "GeometryGuessr", "art": "gg", "badge": "New", "desc": "GeoGuessr for Geometry Dash. Five screenshots from the 100 most downloaded demons: name each one, then find the spot. Up to 5,000 points."},
+      {"href": "/geometryguessr/", "title": "GeometryGuessr", "art": "gg", "badge": "New", "desc": "GeoGuessr for Geometry Dash. Five screenshots from the most downloaded demons, Baylor's top 30 and more: name each one, then find the spot. Up to 5,000 points."},
       {"href": "/demondle/", "title": "Demondle", "art": "demondle", "desc": "A Wordle style game. A hidden level from the Demonlist. Six guesses, six stats. A new one every day."},
       {"href": "/game/", "title": "Name Every Extreme Demon", "art": "names", "desc": "Type a level\u2019s name and it lands on the list. All 1,621 of them, free play or against the clock."}
     ]
@@ -62,7 +62,7 @@
     "title": "GeometryGuessr",
     "stage": "Beta",
     "version": "0.1.0",
-    "kicker": "The 100 most downloaded demons",
+    "kicker": "Name the level, find the spot",
     "tagline": "One screenshot. Which demon is it, and where in the level are you?"
   },
   "records": {"endpoint": "https://hall-records.baylorperkins.workers.dev"},

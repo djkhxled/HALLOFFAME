@@ -746,6 +746,8 @@ def build_gg(site: dict, base_tpl: str) -> str:
     """
     snap, shots = gg.load(ROOT / "data" / "gg" / "levels.json", ROOT / "data" / "gg" / "shots.json")
     levels = snap["levels"]
+    ex_path = ROOT / "data" / "gg" / "excluded.json"
+    excluded = set(json.loads(ex_path.read_text(encoding="utf-8"))["slugs"]) if ex_path.exists() else set()
     errors = gg.validate(levels, shots, ROOT / "src" / "shots")
     if errors:
         raise SystemExit("geometryguessr data invalid:\n  " + "\n  ".join(errors[:10]))
@@ -778,6 +780,8 @@ def build_gg(site: dict, base_tpl: str) -> str:
             "level_count": len(levels),
             "shot_count": len(shots),
             "answer_count": len({s["level"] for s in shots}),
+            # Every level that is meant to have pictures one day: all of them but those left out.
+            "planned_count": len(levels) - len(excluded),
             "fetched_label": fetched_label,
             "data_json_html": gg.data_json(levels, shots, snap["fetched"]),
         },

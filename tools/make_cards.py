@@ -193,7 +193,7 @@ def geometryguessr():
     d.rectangle(((mx - 14) * S, (by - 9) * S, (mx + 14) * S, (by + 19) * S), fill=(168, 255, 46), outline=(0, 0, 0), width=3 * S)
     d.rectangle(((mx - 6) * S, (by - 1) * S, (mx + 6) * S, (by + 11) * S), fill=(33, 230, 255), outline=(0, 0, 0), width=2 * S)
 
-    text(img, (64, 74), "NEW GAME  \u00b7  THE 100 MOST DOWNLOADED DEMONS", font(MONO, 22), MUTED, anchor="ls")
+    text(img, (64, 74), "NEW GAME  \u00b7  NAME THE LEVEL, FIND THE SPOT", font(MONO, 22), MUTED, anchor="ls")
     title = font(HEAVY, 84)
     x = 60
     for i, ch in enumerate("GEOMETRY"):
@@ -205,7 +205,7 @@ def geometryguessr():
         x += ImageDraw.Draw(img).textlength(ch, font=title) / S
 
     cx = 780
-    steps = [("1", "NAME THE DEMON", "One screenshot."), ("2", "FIND THE SPOT", "Drag the cube."),
+    steps = [("1", "NAME THE LEVEL", "One screenshot."), ("2", "FIND THE SPOT", "Drag the cube."),
              ("3", "THREE LIVES", "How far can you get?")]
     y = 218
     for num, head, line in steps:
