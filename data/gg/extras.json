@@ -1,0 +1,370 @@
+{
+ "why": "Levels Baylor added beyond the 100 most downloaded demons: his own top 30 (those not already in the 100), levels he picked, and levels from the Impossible Levels List. Names, uploaders, downloads and ratings are from the Geometry Dash servers; the Impossible Levels List's IDs were checked against its own API.",
+ "groups": {
+  "top30": "Baylor's top 30",
+  "picked": "Baylor's picks",
+  "impossible": "Impossible Levels List"
+ },
+ "levels": [
+  {
+   "id": 93091893,
+   "name": "Deimos",
+   "creator": "ItsHybrid",
+   "downloads": 638047,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 68353244,
+   "name": "Nhelv",
+   "creator": "SrGuillester",
+   "downloads": 1126339,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 54615662,
+   "name": "The Yandere",
+   "creator": "Dorami",
+   "downloads": 7126398,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 63996127,
+   "name": "Cold Sweat",
+   "creator": "para",
+   "downloads": 1581574,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 90390075,
+   "name": "Solar Flare",
+   "creator": "Linear2",
+   "downloads": 792630,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 86018142,
+   "name": "Kyouki",
+   "creator": "Demishio",
+   "downloads": 1342530,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 144988390,
+   "name": "Antarctic Lights",
+   "creator": "declanlc",
+   "downloads": 336167,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 55274070,
+   "name": "Freedom08",
+   "creator": "Pennutoh",
+   "downloads": 3103583,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 48175126,
+   "name": "Idols",
+   "creator": "Zafkiel7",
+   "downloads": 2443672,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 33387622,
+   "name": "SubSonic",
+   "creator": "ViPriN",
+   "downloads": 10995113,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 62556400,
+   "name": "Codependence",
+   "creator": "TCTeam",
+   "downloads": 935423,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 52374843,
+   "name": "Zodiac",
+   "creator": "BIANOX",
+   "downloads": 10928879,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 48991380,
+   "name": "Maniacal Chains",
+   "creator": "LordDivinity",
+   "downloads": 77605,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 44022701,
+   "name": "Titan Complex",
+   "creator": "TCTeam",
+   "downloads": 521607,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 75206202,
+   "name": "Firework",
+   "creator": "Trick",
+   "downloads": 5550737,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 114283297,
+   "name": "andromeda",
+   "creator": "Insxne97",
+   "downloads": 1317217,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 60978746,
+   "name": "The Golden",
+   "creator": "BoBoBoBoBoBoBo",
+   "downloads": 4969491,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 62152040,
+   "name": "Ocular Miracle",
+   "creator": "Davphla",
+   "downloads": 340953,
+   "difficulty": "Unrated",
+   "group": "top30"
+  },
+  {
+   "id": 38754426,
+   "name": "Killbot",
+   "creator": "BoldStep",
+   "downloads": 3574722,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 89187968,
+   "name": "Edge of Destiny",
+   "creator": "CDMusic",
+   "downloads": 950108,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 79771070,
+   "name": "Aerial Gleam",
+   "creator": "EndLevel",
+   "downloads": 494331,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 109780665,
+   "name": "Nullscapes",
+   "creator": "ItzKiba",
+   "downloads": 5120670,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 91180835,
+   "name": "ATOMIC CANNON Mk II",
+   "creator": "LIEB",
+   "downloads": 365526,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 49291867,
+   "name": "WOW",
+   "creator": "TrusTa",
+   "downloads": 1161842,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 37456092,
+   "name": "Digital Descent",
+   "creator": "ViPriN",
+   "downloads": 6481740,
+   "difficulty": "Extreme Demon",
+   "group": "top30"
+  },
+  {
+   "id": 119550490,
+   "name": "Amethyst",
+   "creator": "iMist",
+   "downloads": 7290292,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 54953085,
+   "name": "Thinking Space",
+   "creator": "Atomic",
+   "downloads": 2990471,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 119544028,
+   "name": "Thinking Space II",
+   "creator": "CairoX",
+   "downloads": 8640865,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 127323087,
+   "name": "Society",
+   "creator": "Neomarbilan",
+   "downloads": 4439087,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 110816181,
+   "name": "BOOBAWAMBA",
+   "creator": "Akunakunn",
+   "downloads": 2104949,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 136530685,
+   "name": "Heliopolis",
+   "creator": "MindCap",
+   "downloads": 3050574,
+   "difficulty": "Unrated",
+   "group": "picked"
+  },
+  {
+   "id": 149992717,
+   "name": "GRIEF",
+   "creator": "IcEDCave",
+   "downloads": 1559381,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 87665224,
+   "name": "KOCMOC",
+   "creator": "cherryteam",
+   "downloads": 8548389,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 112313819,
+   "name": "Anathema",
+   "creator": "nikroplays",
+   "downloads": 1576217,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 60603962,
+   "name": "Low Death",
+   "creator": "KrmaL",
+   "downloads": 3313659,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 85133223,
+   "name": "poocubed",
+   "creator": "Liisp",
+   "downloads": 666570,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 120255728,
+   "name": "Sevvend Clubstep",
+   "creator": "cherryteam",
+   "downloads": 448900,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 125317359,
+   "name": "BRITNEY NO SCLEARS",
+   "creator": "wabas",
+   "downloads": 85742,
+   "difficulty": "Extreme Demon",
+   "group": "picked"
+  },
+  {
+   "id": 77508462,
+   "name": "Domba",
+   "creator": "DombaManJR",
+   "downloads": 113265,
+   "difficulty": "Unrated",
+   "group": "impossible"
+  },
+  {
+   "id": 92796375,
+   "name": "Formosa",
+   "creator": "HectorSalamanca",
+   "downloads": 61067,
+   "difficulty": "Unrated",
+   "group": "impossible"
+  },
+  {
+   "id": 141908156,
+   "name": "Open Window",
+   "creator": "0x029A",
+   "downloads": 13987,
+   "difficulty": "Unrated",
+   "group": "impossible"
+  },
+  {
+   "id": 70371046,
+   "name": "Ballistic wistfully",
+   "creator": "eightos",
+   "downloads": 78313,
+   "difficulty": "Unrated",
+   "group": "impossible"
+  },
+  {
+   "id": 142419754,
+   "name": "Carmine Bullet",
+   "creator": "ZymGaming",
+   "downloads": 42872,
+   "difficulty": "Unrated",
+   "group": "impossible"
+  },
+  {
+   "id": 76372236,
+   "name": "CYCLOLCYC",
+   "creator": "TeamPoopfish",
+   "downloads": 427402,
+   "difficulty": "Unrated",
+   "group": "impossible"
+  },
+  {
+   "id": 119675677,
+   "name": "Tax Evasion",
+   "creator": "043",
+   "downloads": 13942,
+   "difficulty": "Unrated",
+   "group": "impossible"
+  }
+ ]
+}

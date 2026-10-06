@@ -484,10 +484,10 @@
 
     el.ask.hidden = false; el.spot.hidden = true; el.reveal.hidden = true;
     el.input.value = ""; chosen = null; closeList(); el.guess.disabled = true;
-    el.hint.textContent = "Pick a name from the list. Any of the " + levels.length + " could be the answer.";
+    el.hint.textContent = "Pick a name from the list.";
     el.hint.classList.remove("is-warn");
     el.input.focus({ preventScroll: true });
-    say("Round " + (run.round + 1) + " of " + G.ROUNDS + ". Which demon is this?");
+    say("Round " + (run.round + 1) + " of " + G.ROUNDS + ". Which level is this?");
   }
 
   function guess() {
@@ -613,7 +613,7 @@
       isBest ? "New best!" : "Final score";
     countUp(el.overNamed, 0, run.named, 700, false);
     countUp(el.overScore, 0, run.score, 1200, false);
-    el.overBest.textContent = (all ? "All five demons named. " : run.named + " of " + G.ROUNDS + " named. ") +
+    el.overBest.textContent = (all ? "All five named. " : run.named + " of " + G.ROUNDS + " named. ") +
       (isBest ? "Your best game yet." :
        store.best ? "Best: " + fmt(store.best.score) + " pts · " + fmt(store.best.named) + "/" + G.ROUNDS + " named" : "");
     el.copied.textContent = "";
@@ -651,7 +651,7 @@
         h.spotPoints >= 400 ? "\ud83d\udfe9" : h.spotPoints >= 200 ? "\ud83d\udfe8" : h.spotPoints > 0 ? "\ud83d\udfe7" : "\u2b1b");
     }
     return "GeometryGuessr " + fmt(run.score) + " / " + fmt(G.ROUNDS * G.FULL) + "\n" + squares.join("") + "\n" +
-      run.named + "/" + G.ROUNDS + " demons named" + (SHARE_URL ? "\n" + SHARE_URL : "");
+      run.named + "/" + G.ROUNDS + " levels named" + (SHARE_URL ? "\n" + SHARE_URL : "");
   }
 
   el.share.addEventListener("click", function () {

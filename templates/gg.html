@@ -17,7 +17,7 @@
       </h1>
       <span class="gg-sticker" aria-hidden="true">{{ stage }}</span>
     </div>
-    <p class="gg-ver"><span class="visually-hidden">{{ stage }}, </span>v{{ version }} &middot; {{ answer_count }} of {{ level_count }} demons so far</p>
+    <p class="gg-ver"><span class="visually-hidden">{{ stage }}, </span>v{{ version }} &middot; {{ answer_count }} of {{ planned_count }} levels so far</p>
     <p class="gg-tag">{{ tagline }}</p>
 
     <button class="gg-start" type="button" data-start>
@@ -30,14 +30,14 @@
 
     <ol class="gg-steps">
       <li class="gg-step"><span class="gg-step__n" aria-hidden="true">1</span>
-        <span class="gg-step__h">Name the demon</span>
-        <span class="gg-step__t">One screenshot from one of the {{ level_count }} most downloaded demons. Name it for 500 points.</span></li>
+        <span class="gg-step__h">Name the level</span>
+        <span class="gg-step__t">One screenshot: the most downloaded demons, Baylor's top 30, and a few impossible levels. Name it for 500 points.</span></li>
       <li class="gg-step"><span class="gg-step__n" aria-hidden="true">2</span>
         <span class="gg-step__h">Find the spot</span>
         <span class="gg-step__t">Drag the cube to where in the level the shot was taken, for up to 500 more.</span></li>
       <li class="gg-step"><span class="gg-step__n" aria-hidden="true">3</span>
         <span class="gg-step__h">Five rounds</span>
-        <span class="gg-step__t">Five demons a game. A wrong name scores nothing that round. A perfect game is 5,000.</span></li>
+        <span class="gg-step__t">Five levels a game. A wrong name scores nothing that round. A perfect game is 5,000.</span></li>
     </ol>
     {{ title_board_html }}
   </section>
@@ -54,7 +54,7 @@
     <figure class="gg-frame" data-frame>
       <div class="gg-frame__pic">
         <img class="gg-shot" data-shot width="1138" height="640" decoding="async"
-             alt="A moment from one of the levels, with the player hidden. Which demon is it?">
+             alt="A moment from one of the levels, with the player hidden. Which level is it?">
         <div class="gg-flash" data-flash aria-hidden="true"></div>
         <p class="gg-stamp" data-stamp aria-hidden="true"></p>
       </div>
@@ -63,7 +63,7 @@
 
     <div class="gg-dock">
       <form class="gg-ask" data-ask autocomplete="off">
-        <label class="gg-ask__q" for="gg-input">Which demon is this?</label>
+        <label class="gg-ask__q" for="gg-input">Which level is this?</label>
         <div class="gg-ask__row">
           <div class="gg-combo">
             <input id="gg-input" class="gg-input" data-input type="text" role="combobox"
@@ -74,7 +74,7 @@
           </div>
           <button class="gg-btn gg-btn--go" type="submit" data-guess disabled>Guess</button>
         </div>
-        <p class="gg-hint" data-hint>Pick a name from the list. Any of the {{ level_count }} could be the answer.</p>
+        <p class="gg-hint" data-hint>Pick a name from the list.</p>
       </form>
 
       <div class="gg-spot" data-spot hidden>
@@ -130,8 +130,9 @@
 </div>
 
 <section class="gg-about page" aria-label="About GeometryGuessr">
-  <p>Five rounds a game, five different demons. {{ shot_count }} screenshots of {{ answer_count }} demons so far, more on the way. The search box offers all
-    {{ level_count }} of the most downloaded demons on the Geometry Dash servers as of {{ fetched_label }}, so the list
+  <p>Five rounds a game, five different levels. {{ shot_count }} screenshots of {{ answer_count }} levels so far, more on the way. The search box offers all
+    {{ level_count }} levels in the game's list (the 100 most downloaded demons on the Geometry Dash servers as of {{ fetched_label }}, then
+    Baylor's top 30, his picks, and some from the Impossible Levels List), so the list
     of names never tells you which ones have pictures yet. Screenshots taken in game by Baylor with the player and
     the HUD hidden; every level belongs to its creators, named on every reveal. Your best run and the sound setting
     are saved in this browser only.</p>

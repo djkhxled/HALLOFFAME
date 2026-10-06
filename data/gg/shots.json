@@ -271,36 +271,6 @@
    "file": "death-moon/094.webp"
   },
   {
-   "level": 341613,
-   "pct": 16,
-   "file": "xstep-v2/016.webp"
-  },
-  {
-   "level": 341613,
-   "pct": 29,
-   "file": "xstep-v2/029.webp"
-  },
-  {
-   "level": 341613,
-   "pct": 51,
-   "file": "xstep-v2/051.webp"
-  },
-  {
-   "level": 341613,
-   "pct": 59,
-   "file": "xstep-v2/059.webp"
-  },
-  {
-   "level": 341613,
-   "pct": 67,
-   "file": "xstep-v2/067.webp"
-  },
-  {
-   "level": 341613,
-   "pct": 77,
-   "file": "xstep-v2/077.webp"
-  },
-  {
    "level": 38427291,
    "pct": 4,
    "file": "extinction/004.webp"
@@ -446,36 +416,6 @@
    "file": "slaughterhouse/090.webp"
   },
   {
-   "level": 1777565,
-   "pct": 17,
-   "file": "laser-room/017.webp"
-  },
-  {
-   "level": 1777565,
-   "pct": 34,
-   "file": "laser-room/034.webp"
-  },
-  {
-   "level": 1777565,
-   "pct": 53,
-   "file": "laser-room/053.webp"
-  },
-  {
-   "level": 1777565,
-   "pct": 66,
-   "file": "laser-room/066.webp"
-  },
-  {
-   "level": 1777565,
-   "pct": 77,
-   "file": "laser-room/077.webp"
-  },
-  {
-   "level": 1777565,
-   "pct": 92,
-   "file": "laser-room/092.webp"
-  },
-  {
    "level": 26681070,
    "pct": 8,
    "file": "sonic-wave/008.webp"
@@ -534,36 +474,6 @@
    "level": 18735780,
    "pct": 83,
    "file": "dear-nostalgists/083.webp"
-  },
-  {
-   "level": 70059,
-   "pct": 7,
-   "file": "ystep/007.webp"
-  },
-  {
-   "level": 70059,
-   "pct": 17,
-   "file": "ystep/017.webp"
-  },
-  {
-   "level": 70059,
-   "pct": 54,
-   "file": "ystep/054.webp"
-  },
-  {
-   "level": 70059,
-   "pct": 65,
-   "file": "ystep/065.webp"
-  },
-  {
-   "level": 70059,
-   "pct": 75,
-   "file": "ystep/075.webp"
-  },
-  {
-   "level": 70059,
-   "pct": 88,
-   "file": "ystep/088.webp"
   },
   {
    "level": 34085027,
@@ -764,36 +674,6 @@
    "level": 23262780,
    "pct": 94,
    "file": "sakupen-hell/094.webp"
-  },
-  {
-   "level": 566659,
-   "pct": 12,
-   "file": "demon-mixed/012.webp"
-  },
-  {
-   "level": 566659,
-   "pct": 20,
-   "file": "demon-mixed/020.webp"
-  },
-  {
-   "level": 566659,
-   "pct": 53,
-   "file": "demon-mixed/053.webp"
-  },
-  {
-   "level": 566659,
-   "pct": 68,
-   "file": "demon-mixed/068.webp"
-  },
-  {
-   "level": 566659,
-   "pct": 80,
-   "file": "demon-mixed/080.webp"
-  },
-  {
-   "level": 566659,
-   "pct": 95,
-   "file": "demon-mixed/095.webp"
   },
   {
    "level": 73725400,
@@ -1421,6 +1301,36 @@
    "file": "hell/089.webp"
   },
   {
+   "level": 18834999,
+   "pct": 7,
+   "file": "verity/007.webp"
+  },
+  {
+   "level": 18834999,
+   "pct": 16,
+   "file": "verity/016.webp"
+  },
+  {
+   "level": 18834999,
+   "pct": 38,
+   "file": "verity/038.webp"
+  },
+  {
+   "level": 18834999,
+   "pct": 50,
+   "file": "verity/050.webp"
+  },
+  {
+   "level": 18834999,
+   "pct": 71,
+   "file": "verity/071.webp"
+  },
+  {
+   "level": 18834999,
+   "pct": 82,
+   "file": "verity/082.webp"
+  },
+  {
    "level": 61079355,
    "pct": 26,
    "file": "acu/026.webp"
@@ -1449,6 +1359,426 @@
    "level": 61079355,
    "pct": 82,
    "file": "acu/082.webp"
+  },
+  {
+   "level": 5155022,
+   "pct": 6,
+   "file": "acropolis/006.webp"
+  },
+  {
+   "level": 5155022,
+   "pct": 20,
+   "file": "acropolis/020.webp"
+  },
+  {
+   "level": 5155022,
+   "pct": 30,
+   "file": "acropolis/030.webp"
+  },
+  {
+   "level": 5155022,
+   "pct": 55,
+   "file": "acropolis/055.webp"
+  },
+  {
+   "level": 5155022,
+   "pct": 63,
+   "file": "acropolis/063.webp"
+  },
+  {
+   "level": 5155022,
+   "pct": 90,
+   "file": "acropolis/090.webp"
+  },
+  {
+   "level": 11402965,
+   "pct": 8,
+   "file": "forest-temple/008.webp"
+  },
+  {
+   "level": 11402965,
+   "pct": 29,
+   "file": "forest-temple/029.webp"
+  },
+  {
+   "level": 11402965,
+   "pct": 37,
+   "file": "forest-temple/037.webp"
+  },
+  {
+   "level": 11402965,
+   "pct": 57,
+   "file": "forest-temple/057.webp"
+  },
+  {
+   "level": 11402965,
+   "pct": 72,
+   "file": "forest-temple/072.webp"
+  },
+  {
+   "level": 11402965,
+   "pct": 94,
+   "file": "forest-temple/094.webp"
+  },
+  {
+   "level": 59075347,
+   "pct": 4,
+   "file": "tartarus/004.webp"
+  },
+  {
+   "level": 59075347,
+   "pct": 28,
+   "file": "tartarus/028.webp"
+  },
+  {
+   "level": 59075347,
+   "pct": 40,
+   "file": "tartarus/040.webp"
+  },
+  {
+   "level": 59075347,
+   "pct": 50,
+   "file": "tartarus/050.webp"
+  },
+  {
+   "level": 59075347,
+   "pct": 65,
+   "file": "tartarus/065.webp"
+  },
+  {
+   "level": 59075347,
+   "pct": 86,
+   "file": "tartarus/086.webp"
+  },
+  {
+   "level": 11317271,
+   "pct": 6,
+   "file": "blue-hell/006.webp"
+  },
+  {
+   "level": 11317271,
+   "pct": 20,
+   "file": "blue-hell/020.webp"
+  },
+  {
+   "level": 11317271,
+   "pct": 28,
+   "file": "blue-hell/028.webp"
+  },
+  {
+   "level": 11317271,
+   "pct": 59,
+   "file": "blue-hell/059.webp"
+  },
+  {
+   "level": 11317271,
+   "pct": 75,
+   "file": "blue-hell/075.webp"
+  },
+  {
+   "level": 11317271,
+   "pct": 87,
+   "file": "blue-hell/087.webp"
+  },
+  {
+   "level": 59626284,
+   "pct": 8,
+   "file": "future-funk-ii/008.webp"
+  },
+  {
+   "level": 59626284,
+   "pct": 18,
+   "file": "future-funk-ii/018.webp"
+  },
+  {
+   "level": 59626284,
+   "pct": 44,
+   "file": "future-funk-ii/044.webp"
+  },
+  {
+   "level": 59626284,
+   "pct": 58,
+   "file": "future-funk-ii/058.webp"
+  },
+  {
+   "level": 59626284,
+   "pct": 75,
+   "file": "future-funk-ii/075.webp"
+  },
+  {
+   "level": 59626284,
+   "pct": 94,
+   "file": "future-funk-ii/094.webp"
+  },
+  {
+   "level": 7054561,
+   "pct": 9,
+   "file": "poltergeist/009.webp"
+  },
+  {
+   "level": 7054561,
+   "pct": 32,
+   "file": "poltergeist/032.webp"
+  },
+  {
+   "level": 7054561,
+   "pct": 45,
+   "file": "poltergeist/045.webp"
+  },
+  {
+   "level": 7054561,
+   "pct": 54,
+   "file": "poltergeist/054.webp"
+  },
+  {
+   "level": 7054561,
+   "pct": 66,
+   "file": "poltergeist/066.webp"
+  },
+  {
+   "level": 7054561,
+   "pct": 79,
+   "file": "poltergeist/079.webp"
+  },
+  {
+   "level": 20077821,
+   "pct": 12,
+   "file": "red-world-rebirth/012.webp"
+  },
+  {
+   "level": 20077821,
+   "pct": 29,
+   "file": "red-world-rebirth/029.webp"
+  },
+  {
+   "level": 20077821,
+   "pct": 56,
+   "file": "red-world-rebirth/056.webp"
+  },
+  {
+   "level": 20077821,
+   "pct": 75,
+   "file": "red-world-rebirth/075.webp"
+  },
+  {
+   "level": 20077821,
+   "pct": 83,
+   "file": "red-world-rebirth/083.webp"
+  },
+  {
+   "level": 20077821,
+   "pct": 92,
+   "file": "red-world-rebirth/092.webp"
+  },
+  {
+   "level": 47620786,
+   "pct": 12,
+   "file": "crazy-ii/012.webp"
+  },
+  {
+   "level": 47620786,
+   "pct": 28,
+   "file": "crazy-ii/028.webp"
+  },
+  {
+   "level": 47620786,
+   "pct": 40,
+   "file": "crazy-ii/040.webp"
+  },
+  {
+   "level": 47620786,
+   "pct": 53,
+   "file": "crazy-ii/053.webp"
+  },
+  {
+   "level": 47620786,
+   "pct": 70,
+   "file": "crazy-ii/070.webp"
+  },
+  {
+   "level": 47620786,
+   "pct": 83,
+   "file": "crazy-ii/083.webp"
+  },
+  {
+   "level": 25147297,
+   "pct": 4,
+   "file": "hi/004.webp"
+  },
+  {
+   "level": 25147297,
+   "pct": 19,
+   "file": "hi/019.webp"
+  },
+  {
+   "level": 25147297,
+   "pct": 45,
+   "file": "hi/045.webp"
+  },
+  {
+   "level": 25147297,
+   "pct": 55,
+   "file": "hi/055.webp"
+  },
+  {
+   "level": 25147297,
+   "pct": 63,
+   "file": "hi/063.webp"
+  },
+  {
+   "level": 25147297,
+   "pct": 91,
+   "file": "hi/091.webp"
+  },
+  {
+   "level": 17924880,
+   "pct": 4,
+   "file": "lonely-travel/004.webp"
+  },
+  {
+   "level": 17924880,
+   "pct": 24,
+   "file": "lonely-travel/024.webp"
+  },
+  {
+   "level": 17924880,
+   "pct": 46,
+   "file": "lonely-travel/046.webp"
+  },
+  {
+   "level": 17924880,
+   "pct": 69,
+   "file": "lonely-travel/069.webp"
+  },
+  {
+   "level": 76962930,
+   "pct": 17,
+   "file": "sakupen-circles/017.webp"
+  },
+  {
+   "level": 76962930,
+   "pct": 30,
+   "file": "sakupen-circles/030.webp"
+  },
+  {
+   "level": 76962930,
+   "pct": 42,
+   "file": "sakupen-circles/042.webp"
+  },
+  {
+   "level": 76962930,
+   "pct": 50,
+   "file": "sakupen-circles/050.webp"
+  },
+  {
+   "level": 76962930,
+   "pct": 60,
+   "file": "sakupen-circles/060.webp"
+  },
+  {
+   "level": 76962930,
+   "pct": 91,
+   "file": "sakupen-circles/091.webp"
+  },
+  {
+   "level": 5310094,
+   "pct": 4,
+   "file": "fairydust/004.webp"
+  },
+  {
+   "level": 5310094,
+   "pct": 32,
+   "file": "fairydust/032.webp"
+  },
+  {
+   "level": 5310094,
+   "pct": 62,
+   "file": "fairydust/062.webp"
+  },
+  {
+   "level": 5310094,
+   "pct": 73,
+   "file": "fairydust/073.webp"
+  },
+  {
+   "level": 5310094,
+   "pct": 82,
+   "file": "fairydust/082.webp"
+  },
+  {
+   "level": 5310094,
+   "pct": 96,
+   "file": "fairydust/096.webp"
+  },
+  {
+   "level": 73667628,
+   "pct": 6,
+   "file": "acheron/006.webp"
+  },
+  {
+   "level": 73667628,
+   "pct": 23,
+   "file": "acheron/023.webp"
+  },
+  {
+   "level": 73667628,
+   "pct": 50,
+   "file": "acheron/050.webp"
+  },
+  {
+   "level": 73667628,
+   "pct": 63,
+   "file": "acheron/063.webp"
+  },
+  {
+   "level": 73667628,
+   "pct": 71,
+   "file": "acheron/071.webp"
+  },
+  {
+   "level": 73667628,
+   "pct": 80,
+   "file": "acheron/080.webp"
+  },
+  {
+   "level": 116174063,
+   "pct": 9,
+   "file": "every-end/009.webp"
+  },
+  {
+   "level": 116174063,
+   "pct": 20,
+   "file": "every-end/020.webp"
+  },
+  {
+   "level": 116174063,
+   "pct": 35,
+   "file": "every-end/035.webp"
+  },
+  {
+   "level": 116174063,
+   "pct": 46,
+   "file": "every-end/046.webp"
+  },
+  {
+   "level": 116174063,
+   "pct": 62,
+   "file": "every-end/062.webp"
+  },
+  {
+   "level": 116174063,
+   "pct": 91,
+   "file": "every-end/091.webp"
+  },
+  {
+   "level": 27122654,
+   "pct": 5,
+   "file": "artificial-ascent/005.webp"
+  },
+  {
+   "level": 27122654,
+   "pct": 22,
+   "file": "artificial-ascent/022.webp"
   }
  ]
 }
