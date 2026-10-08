@@ -1,6 +1,36 @@
 {
  "shots": [
   {
+   "level": 10565740,
+   "pct": 6,
+   "file": "bloodbath/006.webp"
+  },
+  {
+   "level": 10565740,
+   "pct": 20,
+   "file": "bloodbath/020.webp"
+  },
+  {
+   "level": 10565740,
+   "pct": 46,
+   "file": "bloodbath/046.webp"
+  },
+  {
+   "level": 10565740,
+   "pct": 59,
+   "file": "bloodbath/059.webp"
+  },
+  {
+   "level": 10565740,
+   "pct": 73,
+   "file": "bloodbath/073.webp"
+  },
+  {
+   "level": 10565740,
+   "pct": 85,
+   "file": "bloodbath/085.webp"
+  },
+  {
    "level": 13519,
    "pct": 16,
    "file": "the-nightmare/016.webp"
@@ -1781,6 +1811,331 @@
    "file": "artificial-ascent/022.webp"
   },
   {
+   "level": 34057654,
+   "pct": 5,
+   "file": "black-blizzard/005.webp"
+  },
+  {
+   "level": 34057654,
+   "pct": 17,
+   "file": "black-blizzard/017.webp"
+  },
+  {
+   "level": 34057654,
+   "pct": 26,
+   "file": "black-blizzard/026.webp"
+  },
+  {
+   "level": 34057654,
+   "pct": 64,
+   "file": "black-blizzard/064.webp"
+  },
+  {
+   "level": 34057654,
+   "pct": 73,
+   "file": "black-blizzard/073.webp"
+  },
+  {
+   "level": 34057654,
+   "pct": 95,
+   "file": "black-blizzard/095.webp"
+  },
+  {
+   "level": 93091893,
+   "pct": 27,
+   "file": "deimos/027.webp"
+  },
+  {
+   "level": 93091893,
+   "pct": 46,
+   "file": "deimos/046.webp"
+  },
+  {
+   "level": 93091893,
+   "pct": 55,
+   "file": "deimos/055.webp"
+  },
+  {
+   "level": 93091893,
+   "pct": 65,
+   "file": "deimos/065.webp"
+  },
+  {
+   "level": 93091893,
+   "pct": 83,
+   "file": "deimos/083.webp"
+  },
+  {
+   "level": 93091893,
+   "pct": 95,
+   "file": "deimos/095.webp"
+  },
+  {
+   "level": 68353244,
+   "pct": 10,
+   "file": "nhelv/010.webp"
+  },
+  {
+   "level": 68353244,
+   "pct": 21,
+   "file": "nhelv/021.webp"
+  },
+  {
+   "level": 68353244,
+   "pct": 30,
+   "file": "nhelv/030.webp"
+  },
+  {
+   "level": 68353244,
+   "pct": 46,
+   "file": "nhelv/046.webp"
+  },
+  {
+   "level": 68353244,
+   "pct": 55,
+   "file": "nhelv/055.webp"
+  },
+  {
+   "level": 68353244,
+   "pct": 71,
+   "file": "nhelv/071.webp"
+  },
+  {
+   "level": 54615662,
+   "pct": 4,
+   "file": "the-yandere/004.webp"
+  },
+  {
+   "level": 54615662,
+   "pct": 31,
+   "file": "the-yandere/031.webp"
+  },
+  {
+   "level": 54615662,
+   "pct": 50,
+   "file": "the-yandere/050.webp"
+  },
+  {
+   "level": 54615662,
+   "pct": 60,
+   "file": "the-yandere/060.webp"
+  },
+  {
+   "level": 54615662,
+   "pct": 70,
+   "file": "the-yandere/070.webp"
+  },
+  {
+   "level": 54615662,
+   "pct": 83,
+   "file": "the-yandere/083.webp"
+  },
+  {
+   "level": 63996127,
+   "pct": 9,
+   "file": "cold-sweat/009.webp"
+  },
+  {
+   "level": 63996127,
+   "pct": 41,
+   "file": "cold-sweat/041.webp"
+  },
+  {
+   "level": 63996127,
+   "pct": 60,
+   "file": "cold-sweat/060.webp"
+  },
+  {
+   "level": 63996127,
+   "pct": 70,
+   "file": "cold-sweat/070.webp"
+  },
+  {
+   "level": 63996127,
+   "pct": 88,
+   "file": "cold-sweat/088.webp"
+  },
+  {
+   "level": 63996127,
+   "pct": 96,
+   "file": "cold-sweat/096.webp"
+  },
+  {
+   "level": 90390075,
+   "pct": 24,
+   "file": "solar-flare/024.webp"
+  },
+  {
+   "level": 90390075,
+   "pct": 32,
+   "file": "solar-flare/032.webp"
+  },
+  {
+   "level": 90390075,
+   "pct": 43,
+   "file": "solar-flare/043.webp"
+  },
+  {
+   "level": 90390075,
+   "pct": 56,
+   "file": "solar-flare/056.webp"
+  },
+  {
+   "level": 90390075,
+   "pct": 76,
+   "file": "solar-flare/076.webp"
+  },
+  {
+   "level": 90390075,
+   "pct": 86,
+   "file": "solar-flare/086.webp"
+  },
+  {
+   "level": 86018142,
+   "pct": 7,
+   "file": "kyouki/007.webp"
+  },
+  {
+   "level": 86018142,
+   "pct": 20,
+   "file": "kyouki/020.webp"
+  },
+  {
+   "level": 86018142,
+   "pct": 39,
+   "file": "kyouki/039.webp"
+  },
+  {
+   "level": 86018142,
+   "pct": 50,
+   "file": "kyouki/050.webp"
+  },
+  {
+   "level": 86018142,
+   "pct": 60,
+   "file": "kyouki/060.webp"
+  },
+  {
+   "level": 86018142,
+   "pct": 71,
+   "file": "kyouki/071.webp"
+  },
+  {
+   "level": 144988390,
+   "pct": 5,
+   "file": "antarctic-lights/005.webp"
+  },
+  {
+   "level": 144988390,
+   "pct": 18,
+   "file": "antarctic-lights/018.webp"
+  },
+  {
+   "level": 144988390,
+   "pct": 30,
+   "file": "antarctic-lights/030.webp"
+  },
+  {
+   "level": 144988390,
+   "pct": 51,
+   "file": "antarctic-lights/051.webp"
+  },
+  {
+   "level": 144988390,
+   "pct": 64,
+   "file": "antarctic-lights/064.webp"
+  },
+  {
+   "level": 144988390,
+   "pct": 84,
+   "file": "antarctic-lights/084.webp"
+  },
+  {
+   "level": 55274070,
+   "pct": 6,
+   "file": "freedom08/006.webp"
+  },
+  {
+   "level": 55274070,
+   "pct": 15,
+   "file": "freedom08/015.webp"
+  },
+  {
+   "level": 55274070,
+   "pct": 36,
+   "file": "freedom08/036.webp"
+  },
+  {
+   "level": 55274070,
+   "pct": 58,
+   "file": "freedom08/058.webp"
+  },
+  {
+   "level": 55274070,
+   "pct": 68,
+   "file": "freedom08/068.webp"
+  },
+  {
+   "level": 62556400,
+   "pct": 12,
+   "file": "codependence/012.webp"
+  },
+  {
+   "level": 62556400,
+   "pct": 31,
+   "file": "codependence/031.webp"
+  },
+  {
+   "level": 62556400,
+   "pct": 43,
+   "file": "codependence/043.webp"
+  },
+  {
+   "level": 62556400,
+   "pct": 63,
+   "file": "codependence/063.webp"
+  },
+  {
+   "level": 62556400,
+   "pct": 85,
+   "file": "codependence/085.webp"
+  },
+  {
+   "level": 62556400,
+   "pct": 95,
+   "file": "codependence/095.webp"
+  },
+  {
+   "level": 48991380,
+   "pct": 5,
+   "file": "maniacal-chains/005.webp"
+  },
+  {
+   "level": 48991380,
+   "pct": 32,
+   "file": "maniacal-chains/032.webp"
+  },
+  {
+   "level": 48991380,
+   "pct": 49,
+   "file": "maniacal-chains/049.webp"
+  },
+  {
+   "level": 48991380,
+   "pct": 58,
+   "file": "maniacal-chains/058.webp"
+  },
+  {
+   "level": 48991380,
+   "pct": 72,
+   "file": "maniacal-chains/072.webp"
+  },
+  {
+   "level": 48991380,
+   "pct": 83,
+   "file": "maniacal-chains/083.webp"
+  },
+  {
    "level": 109780665,
    "pct": 5,
    "file": "nullscapes/005.webp"
@@ -1809,6 +2164,36 @@
    "level": 109780665,
    "pct": 86,
    "file": "nullscapes/086.webp"
+  },
+  {
+   "level": 91180835,
+   "pct": 10,
+   "file": "atomic-cannon-mk-ii/010.webp"
+  },
+  {
+   "level": 91180835,
+   "pct": 44,
+   "file": "atomic-cannon-mk-ii/044.webp"
+  },
+  {
+   "level": 91180835,
+   "pct": 53,
+   "file": "atomic-cannon-mk-ii/053.webp"
+  },
+  {
+   "level": 91180835,
+   "pct": 63,
+   "file": "atomic-cannon-mk-ii/063.webp"
+  },
+  {
+   "level": 91180835,
+   "pct": 82,
+   "file": "atomic-cannon-mk-ii/082.webp"
+  },
+  {
+   "level": 91180835,
+   "pct": 96,
+   "file": "atomic-cannon-mk-ii/096.webp"
   },
   {
    "level": 119550490,
@@ -2154,6 +2539,151 @@
    "level": 77508462,
    "pct": 93,
    "file": "domba/093.webp"
+  },
+  {
+   "level": 92796375,
+   "pct": 17,
+   "file": "formosa/017.webp"
+  },
+  {
+   "level": 92796375,
+   "pct": 32,
+   "file": "formosa/032.webp"
+  },
+  {
+   "level": 92796375,
+   "pct": 45,
+   "file": "formosa/045.webp"
+  },
+  {
+   "level": 92796375,
+   "pct": 68,
+   "file": "formosa/068.webp"
+  },
+  {
+   "level": 92796375,
+   "pct": 79,
+   "file": "formosa/079.webp"
+  },
+  {
+   "level": 141908156,
+   "pct": 4,
+   "file": "open-window/004.webp"
+  },
+  {
+   "level": 141908156,
+   "pct": 29,
+   "file": "open-window/029.webp"
+  },
+  {
+   "level": 141908156,
+   "pct": 44,
+   "file": "open-window/044.webp"
+  },
+  {
+   "level": 141908156,
+   "pct": 60,
+   "file": "open-window/060.webp"
+  },
+  {
+   "level": 141908156,
+   "pct": 84,
+   "file": "open-window/084.webp"
+  },
+  {
+   "level": 141908156,
+   "pct": 96,
+   "file": "open-window/096.webp"
+  },
+  {
+   "level": 70371046,
+   "pct": 7,
+   "file": "ballistic-wistfully/007.webp"
+  },
+  {
+   "level": 70371046,
+   "pct": 22,
+   "file": "ballistic-wistfully/022.webp"
+  },
+  {
+   "level": 70371046,
+   "pct": 42,
+   "file": "ballistic-wistfully/042.webp"
+  },
+  {
+   "level": 70371046,
+   "pct": 58,
+   "file": "ballistic-wistfully/058.webp"
+  },
+  {
+   "level": 70371046,
+   "pct": 81,
+   "file": "ballistic-wistfully/081.webp"
+  },
+  {
+   "level": 70371046,
+   "pct": 90,
+   "file": "ballistic-wistfully/090.webp"
+  },
+  {
+   "level": 142419754,
+   "pct": 14,
+   "file": "carmine-bullet/014.webp"
+  },
+  {
+   "level": 142419754,
+   "pct": 25,
+   "file": "carmine-bullet/025.webp"
+  },
+  {
+   "level": 142419754,
+   "pct": 44,
+   "file": "carmine-bullet/044.webp"
+  },
+  {
+   "level": 142419754,
+   "pct": 52,
+   "file": "carmine-bullet/052.webp"
+  },
+  {
+   "level": 142419754,
+   "pct": 75,
+   "file": "carmine-bullet/075.webp"
+  },
+  {
+   "level": 142419754,
+   "pct": 84,
+   "file": "carmine-bullet/084.webp"
+  },
+  {
+   "level": 119675677,
+   "pct": 4,
+   "file": "tax-evasion/004.webp"
+  },
+  {
+   "level": 119675677,
+   "pct": 32,
+   "file": "tax-evasion/032.webp"
+  },
+  {
+   "level": 119675677,
+   "pct": 45,
+   "file": "tax-evasion/045.webp"
+  },
+  {
+   "level": 119675677,
+   "pct": 68,
+   "file": "tax-evasion/068.webp"
+  },
+  {
+   "level": 119675677,
+   "pct": 87,
+   "file": "tax-evasion/087.webp"
+  },
+  {
+   "level": 119675677,
+   "pct": 96,
+   "file": "tax-evasion/096.webp"
   }
  ]
 }
