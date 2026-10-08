@@ -43,6 +43,8 @@
   button:hover { filter: brightness(1.2); }
   button.go { background: linear-gradient(180deg, #c6ff5a, #5fc400); color: #102000; border-color: #000; font-size: 1rem; padding: .8rem 1rem; flex: 1; }
   button.small { padding: .45rem .6rem; font-size: .8rem; }
+  button.bad { background: #5a1427; border-color: #ff3b5c; color: #ffd6de; flex: 1; }
+  .status button { margin-left: .5rem; padding: .25rem .55rem; font-size: .8rem; }
   input[type=range] { width: 100%; accent-color: var(--cyan); }
   .size { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); }
   .size b { color: var(--ink); }
@@ -84,8 +86,9 @@
     </div>
     <div class="card">
       <div class="row"><button class="go" id="save">Save &amp; next &#9166;</button></div>
+      <div class="row"><button class="bad" id="reject">Get rid of it &#10005;</button></div>
       <div class="row"><button id="back">&#8592; Back</button><button id="skip">Skip</button><button id="next-un">Next uncropped</button><button id="clear">Uncrop</button></div>
-      <div class="status" id="status" role="status"></div>
+      <div class="status" id="status" role="status"><span id="statusText"></span><button id="undo" hidden>Undo</button></div>
     </div>
     <div class="card">
       <h2>Keys</h2>
@@ -95,6 +98,7 @@
         <li><kbd>&larr;&uarr;&rarr;&darr;</kbd> nudge (<kbd>shift</kbd> for more)</li>
         <li><kbd>Enter</kbd> save &amp; next &middot; <kbd>Backspace</kbd> back</li>
         <li><kbd>W</kbd> whole shot &middot; <kbd>U</kbd> next uncropped</li>
+        <li><kbd>X</kbd> get rid of the shot (it leaves the game; Undo brings it back)</li>
       </ul>
     </div>
   </aside>
@@ -104,7 +108,9 @@
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
   var stage = $("stage"), img = $("img"), boxEl = $("box"), preview = $("preview"), pctx = preview.getContext("2d");
-  var sizeInput = $("size"), sizeLabel = $("sizeLabel"), status = $("status"), jump = $("jump");
+  var sizeInput = $("size"), sizeLabel = $("sizeLabel"), jump = $("jump"), undoBtn = $("undo");
+  var lastGone = null;   // { shot, at, crop } for Undo
+  function say(text, undoable) { $("statusText").textContent = text; undoBtn.hidden = !undoable; }
   var shots = [], crops = {}, i = 0, box = { x: 0.125, y: 0.125, s: 0.75 }, sticky = 0.75, busy = false;
 
   function clamp() {
@@ -169,14 +175,58 @@
     post(crop).then(function (r) {
       if (!r.ok) throw new Error(r.error || "not saved");
       crops[shots[i].key] = crop; sticky = box.s;
-      status.textContent = "Saved " + shots[i].name + " " + shots[i].pct + "%";
+      say("Saved " + shots[i].name + " " + shots[i].pct + "%");
       show(i + 1);
-    }).catch(function (e) { status.textContent = "Not saved: " + e.message; })
+    }).catch(function (e) { say("Not saved: " + e.message); })
+      .then(function () { busy = false; });
+  }
+
+  function fillJump() {
+    jump.textContent = "";
+    shots.forEach(function (s, k) { var o = document.createElement("option"); o.value = String(k); jump.appendChild(o); });
+  }
+
+  function reject() {
+    if (busy || !shots[i]) return;
+    busy = true;
+    var shot = shots[i];
+    fetch("/api/reject", { method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ key: shot.key }) }).then(function (r) { return r.json(); }).then(function (r) {
+      if (!r.ok) throw new Error(r.error || "not moved");
+      lastGone = { shot: shot, at: i, crop: r.crop };
+      delete crops[shot.key];
+      shots.splice(i, 1);
+      fillJump();
+      say("Got rid of " + shot.name + " " + shot.pct + "%.", true);
+      show(Math.min(i, shots.length));
+    }).catch(function (e) { say("Not removed: " + e.message); })
+      .then(function () { busy = false; });
+  }
+
+  function undo() {
+    if (!lastGone || busy) return;
+    busy = true;
+    var g = lastGone;
+    fetch("/api/restore", { method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ key: g.shot.key }) }).then(function (r) { return r.json(); }).then(function (r) {
+      if (!r.ok) throw new Error(r.error || "not restored");
+      shots.splice(g.at, 0, g.shot);
+      fillJump();
+      lastGone = null;
+      if (g.crop) {
+        crops[g.shot.key] = g.crop;
+        return fetch("/api/crop", { method: "POST", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ key: g.shot.key, crop: g.crop }) });
+      }
+    }).then(function () {
+      say("Brought back " + g.shot.name + " " + g.shot.pct + "%.");
+      if (document.querySelector(".done")) location.reload(); else show(g.at);
+    }).catch(function (e) { say("Not restored: " + e.message); })
       .then(function () { busy = false; });
   }
 
   function clearCrop() {
-    post(null).then(function () { delete crops[shots[i].key]; status.textContent = "Uncropped"; show(i); });
+    post(null).then(function () { delete crops[shots[i].key]; say("Uncropped"); show(i); });
   }
 
   function nextUncropped() {
@@ -184,7 +234,7 @@
       var j = (i + k) % shots.length;
       if (!crops[shots[j].key]) return show(j);
     }
-    status.textContent = "Every shot has a crop.";
+    say("Every shot has a crop.");
   }
 
   /* Pointer: drag the box, click elsewhere to centre it there */
@@ -223,6 +273,8 @@
   $("skip").addEventListener("click", function () { show(i + 1); });
   $("next-un").addEventListener("click", nextUncropped);
   $("clear").addEventListener("click", clearCrop);
+  $("reject").addEventListener("click", reject);
+  undoBtn.addEventListener("click", undo);
   jump.addEventListener("change", function () { show(Number(jump.value)); jump.blur(); });
 
   document.addEventListener("keydown", function (e) {
@@ -238,13 +290,14 @@
     else if (k === "=" || k === "+") resize(box.s - 0.02);
     else if (k === "w" || k === "W") resize(1);
     else if (k === "u" || k === "U") nextUncropped();
+    else if (k === "x" || k === "X" || k === "Delete") reject();
     else return;
     e.preventDefault();
   });
 
   fetch("/api/state").then(function (r) { return r.json(); }).then(function (data) {
     shots = data.shots; crops = data.crops || {};
-    shots.forEach(function (s, k) { var o = document.createElement("option"); o.value = String(k); jump.appendChild(o); });
+    fillJump();
     var first = shots.findIndex(function (s) { return !crops[s.key]; });
     show(first < 0 ? 0 : first);
   });

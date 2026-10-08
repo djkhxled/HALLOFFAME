@@ -12,6 +12,10 @@ stop and pick up where you left off. Then:
 
 which cuts each shot to its box. A shot with no crop is published whole.
 
+"Get rid of it" (or X) takes a shot out of the game: its PNG moves to
+shots-raw/rejected/ and its crop is forgotten; nothing is deleted, and Undo moves it
+straight back.
+
 A crop is [x, y, size], fractions of the frame: the box's left and top edges, and its
 width as a share of the frame's width. The box keeps the frame's own 16:9 shape, so
 the same number is its share of the height. Local only: it listens on 127.0.0.1.
@@ -27,6 +31,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CAPTURE = pathlib.Path.home() / "Documents" / "Claude" / "geometryguessr-capture" / "shots-raw"
+REJECTED = CAPTURE / "rejected"
 CROPS = ROOT / "data" / "gg" / "crops.json"
 PAGE = ROOT / "tools" / "cropper.html"
 RAW_NAME = re.compile(r"^[a-z0-9-]+__\d{3}\.png$")
@@ -93,7 +98,7 @@ class Handler(BaseHTTPRequestHandler):
         self.json(404, {"error": "not found"})
 
     def do_POST(self):
-        if self.path != "/api/crop":
+        if self.path not in ("/api/crop", "/api/reject", "/api/restore"):
             return self.json(404, {"error": "not found"})
         try:
             body = json.loads(self.rfile.read(int(self.headers.get("Content-Length") or 0)) or b"{}")
@@ -102,6 +107,8 @@ class Handler(BaseHTTPRequestHandler):
         key, crop = body.get("key"), body.get("crop")
         if not isinstance(key, str) or not KEY.match(key):
             return self.json(400, {"error": "bad key"})
+        if self.path in ("/api/reject", "/api/restore"):
+            return self.move(key, self.path == "/api/reject")
         if crop is not None and not valid(crop):
             return self.json(400, {"error": "bad crop"})
         with self.lock:
@@ -112,6 +119,25 @@ class Handler(BaseHTTPRequestHandler):
                 crops[key] = [round(v, 4) for v in crop]
             save_crops(crops)
         self.json(200, {"ok": True, "cropped": len(crops)})
+
+
+    def move(self, key: str, reject: bool) -> None:
+        """Out of the game into rejected/, or back again. Moves, never deletes."""
+        slug, pct = key.split("/")
+        name = f"{slug}__{pct}.png"
+        src, dst = (CAPTURE / name, REJECTED / name) if reject else (REJECTED / name, CAPTURE / name)
+        if not src.is_file():
+            return self.json(404, {"error": "no such shot"})
+        if dst.exists():
+            return self.json(409, {"error": "already there"})
+        with self.lock:
+            REJECTED.mkdir(exist_ok=True)
+            src.replace(dst)
+            crops = load_crops()
+            had = crops.pop(key, None) if reject else None
+            if reject:
+                save_crops(crops)
+        self.json(200, {"ok": True, "crop": had})
 
 
 def main():
