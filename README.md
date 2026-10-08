@@ -177,7 +177,8 @@ percentages. After a capture session:
 
 To make shots harder, crop them first: `python3 tools/crop_shots.py` opens a cropper in the
 browser (drag a 16:9 box, Enter saves and moves on; crops go to `data/gg/crops.json` as you
-go). `prepare_shots.py` converts the PNGs (cut to their crops) to WebP under `src/shots/` and rewrites `data/gg/levels.json`
+go). "Get rid of it" (or X) takes a shot out of the game by moving its PNG to
+`shots-raw/rejected/`; Undo puts it back. `prepare_shots.py` converts the PNGs (cut to their crops) to WebP under `src/shots/` and rewrites `data/gg/levels.json`
 and `data/gg/shots.json`. Like `make_cards.py` it needs Pillow; the build does not. The
 build fails if a shot's file is missing, a percent is outside 3-97, or fewer than five
 levels have pictures.
