@@ -91,7 +91,7 @@ Rewrite `why` in your own words, then set `draftedByClaude` to `false`. The
 ## The game
 
 `/game/` is a name-every-level quiz over the whole AREDL extreme demon list
-(1,621 levels as of the last snapshot).
+(1,630 levels as of the last snapshot).
 
 ```bash
 python3 tools/fetch_aredl.py   # refresh data/game/aredl.json, then rebuild

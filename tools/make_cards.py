@@ -158,7 +158,7 @@ def game():
             named = rnd.random() < 0.46
             d.rounded_rectangle((x0, y0, x0 + sw * S, y0 + sh * S), radius=5 * S,
                                 fill=(46, 104, 168) if named else (26, 29, 40))
-    title_block(img, ["NAME", "EVERY", "EXTREME", "DEMON"], 88, 168, eyebrow="1,621 LEVELS ON THE LIST",
+    title_block(img, ["NAME", "EVERY", "EXTREME", "DEMON"], 88, 168, eyebrow="1,630 LEVELS ON THE LIST",
                 subs=["Type them in. Beat the clock."])
     footer(img)
     finish(img, "game")
