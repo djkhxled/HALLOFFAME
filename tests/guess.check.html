@@ -83,6 +83,17 @@
     eq(G.judge(L({c: 20}), L({c: 25})).creators.state, "close");
     eq(G.judge(L({c: 19}), L({c: 25})).creators.state, "miss"); });
 
+  // ---- creators the guess shares with the answer (shown green) ----
+  t("sharedCreators lists the guess's creators who also made the answer, in the guess's order", function () {
+    eq(G.sharedCreators(L({cn: ["Zenn", "Cersia", "Nexel"]}), L({cn: ["Nexel", "Bob", "Zenn"]})), ["Zenn", "Nexel"]); });
+  t("sharedCreators ignores case and group tags: [SKWAD] Cersia is Cersia", function () {
+    eq(G.sharedCreators(L({cn: ["[SKWAD] Cersia", "VIPRIN"]}), L({cn: ["cersia", "[1319] ViPriN"]})), ["[SKWAD] Cersia", "VIPRIN"]); });
+  t("sharedCreators is empty when no one overlaps, or a list is missing", function () {
+    eq(G.sharedCreators(L({cn: ["A"]}), L({cn: ["B"]})), []);
+    eq(G.sharedCreators(L({cn: ["A"]}), L({cn: undefined})), []); });
+  t("sharedCreators does not count a name twice", function () {
+    eq(G.sharedCreators(L({cn: ["Zenn", "[1319] Zenn"]}), L({cn: ["Zenn"]})), ["Zenn"]); });
+
   // ---- win ----
   t("all exact is a win", function () { eq(G.isWin(G.judge(L(), L())), true); });
   t("one miss is not a win", function () { eq(G.isWin(G.judge(L({r: 1}), L())), false); });

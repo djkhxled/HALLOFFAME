@@ -129,23 +129,41 @@
     return String(lv.c);
   }
 
-  function buildCell(key, lv, verdict) {
+  // Creators of the guess who also made the answer: green and ticked in the list, and
+  // counted on the cell ("✓2") so there's a reason to open it. Not on the winning row,
+  // where every name would be.
+  function creditsCell(lv, a) {
+    var shared = lv.id === a.id ? [] : G.sharedCreators(lv, a);
+    var both = {};
+    shared.forEach(function (n) { both[n] = true; });
+    var id = "gtip" + (++tipSeq);
+    var b = el("button", "credit");
+    b.type = "button";
+    b.setAttribute("aria-describedby", id);
+    b.appendChild(el("span", "credit__lead", cellValue("creators", lv)));
+    if (shared.length) b.appendChild(el("span", "credit__both", "✓" + shared.length));
+    var tip = el("span", "credit__all");
+    tip.id = id; tip.setAttribute("role", "tooltip");
+    var head = el("span", "credit__head", "All " + lv.c + " credited");
+    if (shared.length) head.appendChild(el("span", "credit__headboth", " · " + shared.length + " also made the answer"));
+    tip.appendChild(head);
+    lv.cn.forEach(function (n, k) {
+      if (k) tip.appendChild(document.createTextNode(", "));
+      tip.appendChild(both[n] ? el("span", "credit__name--both", "✓ " + n) : document.createTextNode(n));
+    });
+    b.appendChild(tip);
+    return { node: b, shared: shared.length };
+  }
+
+  function buildCell(key, lv, verdict, a) {
     var li = el("li", "gcell gcell--" + verdict.state);
     li.setAttribute("data-stat", key);
     li.appendChild(el("span", "gcell__head", HEAD[key]));
-    var v = el("span", "gcell__v");
+    var v = el("span", "gcell__v"), shared = 0;
     if (key === "creators") {
-      var id = "gtip" + (++tipSeq);
-      var b = el("button", "credit");
-      b.type = "button";
-      b.setAttribute("aria-describedby", id);
-      b.appendChild(el("span", "credit__lead", cellValue(key, lv)));
-      var tip = el("span", "credit__all");
-      tip.id = id; tip.setAttribute("role", "tooltip");
-      tip.appendChild(el("span", "credit__head", "All " + lv.c + " credited"));
-      tip.appendChild(document.createTextNode(lv.cn.join(", ")));
-      b.appendChild(tip);
-      v.appendChild(b);
+      var credits = creditsCell(lv, a);
+      v.appendChild(credits.node);
+      shared = credits.shared;
     } else {
       v.textContent = cellValue(key, lv);
     }
@@ -153,17 +171,18 @@
     li.appendChild(el("span", "gcell__g", GLYPH[verdict.state] + " " + ARROW[verdict.arrow]));
     li.appendChild(el("span", "visually-hidden",
       HEAD[key] + " " + cellValue(key, lv) + ": " + WORD[verdict.state] +
-      (verdict.arrow !== "none" ? ", " + ARROWWORD[key][verdict.arrow] : "")));
+      (verdict.arrow !== "none" ? ", " + ARROWWORD[key][verdict.arrow] : "") +
+      (shared ? ", " + shared + " of them also made the answer" : "")));
     return li;
   }
 
-  function buildRow(lv, res) {
+  function buildRow(lv, res, a) {
     var row = el("li", "grow");
     var name = el("div", "grow__name");
     name.appendChild(document.createTextNode(lv.n));
     name.appendChild(el("span", "grow__rank", "#" + lv.r));
     row.appendChild(name);
-    G.STATS.forEach(function (k) { row.appendChild(buildCell(k, lv, res[k])); });
+    G.STATS.forEach(function (k) { row.appendChild(buildCell(k, lv, res[k], a)); });
     return row;
   }
 
@@ -180,7 +199,7 @@
     r.guesses.forEach(function (id, i) {
       var lv = byId[id];
       if (!lv) return;
-      var row = buildRow(lv, G.judge(lv, a));
+      var row = buildRow(lv, G.judge(lv, a), a);
       board.appendChild(row);
       if (animateLast && i === r.guesses.length - 1) {
         Array.prototype.forEach.call(row.querySelectorAll(".gcell"), function (c, k) {
