@@ -783,7 +783,7 @@ def build_gg(site: dict, base_tpl: str) -> str:
             # Every level that is meant to have pictures one day: all of them but those left out.
             "planned_count": len(levels) - len(excluded),
             "fetched_label": fetched_label,
-            "data_json_html": gg.data_json(levels, shots, snap["fetched"]),
+            "data_json_html": gg.data_json(levels, shots, snap["fetched"], ROOT / "src" / "shots"),
         },
     )
     return render.fill(

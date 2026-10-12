@@ -65,6 +65,17 @@ class Data(unittest.TestCase):
         self.assertEqual(set(data["levels"][0]), {"id", "n", "c", "d"})
         self.assertEqual(set(data["shots"][0]), {"l", "p", "f"})
 
+    def test_a_recropped_image_gets_a_new_address(self):
+        # same file name, new picture: browsers and the CDN must not keep showing the old one
+        def address():
+            return json.loads(gg.data_json(self.levels, self.shots, "2026-10-03", self.tmp))["shots"][0]["f"]
+        before = address()
+        self.assertTrue(before.startswith("l1/040.webp?v="), before)
+        self.assertEqual(address(), before)
+        (self.tmp / "l1" / "040.webp").write_bytes(b"recropped")
+        self.assertNotEqual(address(), before)
+        self.assertTrue(address().startswith("l1/040.webp?v="))
+
 
 class RealData(unittest.TestCase):
     @classmethod
@@ -141,7 +152,10 @@ class BuiltPage(unittest.TestCase):
         self.assertEqual(base, "../assets/shots/")
         m = re.search(r'id="gg-data">(.*?)</script>', self.html, re.S)
         first = json.loads(m.group(1).replace("<\\/", "</"))["shots"][0]["f"]
-        self.assertTrue((DOCS / "assets" / "shots" / first).is_file())
+        path, _, version = first.partition("?v=")
+        self.assertTrue((DOCS / "assets" / "shots" / path).is_file())
+        # the fingerprint is of the picture actually published, so a recrop shows at once
+        self.assertEqual(gg.versioned(path, DOCS / "assets" / "shots"), first)
 
     def test_the_games_tab_is_current(self):
         nav = re.search(r'<nav class="topnav".*?</nav>', self.html, re.S).group(0)

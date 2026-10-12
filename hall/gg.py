@@ -8,6 +8,7 @@ with no screenshot is still searchable (a decoy), so the list of names never giv
 answer pool away. Nothing here is fetched by a visitor's browser: it is embedded in
 the page at build time.
 """
+import hashlib
 import json
 import pathlib
 
@@ -49,14 +50,23 @@ def validate(levels: list, shots: list, shots_dir: pathlib.Path) -> list:
     return errors
 
 
-def data_json(levels: list, shots: list, fetched: str) -> str:
+def versioned(file: str, shots_dir: pathlib.Path) -> str:
+    """The file's address with a fingerprint of its bytes: a recropped shot keeps its
+    name, so without this browsers (and GitHub Pages' cache) go on showing the old one."""
+    digest = hashlib.sha1((shots_dir / file).read_bytes()).hexdigest()[:8]
+    return f"{file}?v={digest}"
+
+
+def data_json(levels: list, shots: list, fetched: str, shots_dir: pathlib.Path | None = None) -> str:
     """The page's data, short keys: levels n(ame) c(reator) d(ownloads) and
-    shots l(evel) p(ercent) f(ile). Safe inside a <script> element."""
+    shots l(evel) p(ercent) f(ile). With shots_dir, each f(ile) carries a fingerprint
+    of the image (see versioned). Safe inside a <script> element."""
     data = {
         "fetched": fetched,
         "levels": [{"id": lv["id"], "n": lv["name"], "c": lv["creator"], "d": lv["downloads"]}
                    for lv in levels],
-        "shots": [{"l": s["level"], "p": s["pct"], "f": s["file"]} for s in shots],
+        "shots": [{"l": s["level"], "p": s["pct"],
+                   "f": versioned(s["file"], shots_dir) if shots_dir else s["file"]} for s in shots],
     }
     return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
