@@ -3,10 +3,12 @@
     python3 tools/fetch_demonlist.py [--launch YYYY-MM-DD] [--today YYYY-MM-DD]
 
 Reads Pointercrate (the top 150, creators, and each level's page for its
-"Level Length") and AREDL (verifications, version tags). A length is, in order:
-data/guess/overrides.json, the Pointercrate level page, then a wiki time from
-data/guess/wiki_lengths.json for the rare level whose page shows none. A level
-with none of those is held out and listed in pending.json. Anything else it
+"Level Length") and AREDL (verifications, version tags). data/guess/overrides.json
+corrects a year, or gives a version AREDL has not tagged yet, each with its reason.
+A length is, in order: data/guess/overrides.json, the Pointercrate level page, then a
+wiki time from data/guess/wiki_lengths.json for the rare level whose page shows none. A level
+with none of those, or with no creators recorded yet, is held out and listed in
+pending.json. Anything else it
 cannot fully derive stops the run with the level's name.
 """
 import argparse
@@ -78,9 +80,15 @@ def main() -> int:
             pc = get(f"{PC}/demons/{p['id']}/")["data"]
             creators = guess.dedupe_names([c["name"] for c in pc["creators"]])
             ov = overrides.get(str(lid), {})
+            # A newly placed level can be listed before its creators are entered. The game
+            # shows them as a clue, so it waits rather than guess (solo, or a collab?).
+            if not creators:
+                pending.append({"levelId": lid, "name": name, "rank": p["position"], "missing": "creators"})
+                print(f"  {p['position']:>3} {name}: no creators recorded yet, held out", file=sys.stderr)
+                continue
 
             year = ov.get("year") or guess.verification_year(detail.get("verifications", []))
-            version = guess.version_from_tags(a["tags"])
+            version = ov.get("version") or guess.version_from_tags(a["tags"])
 
             # A published length only (see the spec): an override, Pointercrate's
             # own page for the level, or a wiki time. Nothing is computed or guessed.
@@ -92,7 +100,7 @@ def main() -> int:
                 if seconds is None and str(lid) in wiki:
                     seconds, source = wiki[str(lid)]["seconds"], wiki[str(lid)]["source"]
             if seconds is None:
-                pending.append({"levelId": lid, "name": name, "rank": p["position"]})
+                pending.append({"levelId": lid, "name": name, "rank": p["position"], "missing": "length"})
                 print(f"  {p['position']:>3} {name}: no published length, held out", file=sys.stderr)
                 continue
             peak = min(p["position"],
@@ -126,8 +134,8 @@ def main() -> int:
     (DATA / "demonlist.json").write_text(json.dumps(snapshot, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     (DATA / "pending.json").write_text(json.dumps(
         {"fetched": today.isoformat(),
-         "note": "Levels in the top 150 held out because no published length was found. Add a confirmed "
-                 "value to overrides.json to admit a level.",
+         "note": "Levels in the top 150 held out until the lists record what the game shows: a published "
+                 "length (or a confirmed one in overrides.json), and the creators. A refresh admits them.",
          "levels": pending}, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
     sched_path = DATA / "schedule.json"

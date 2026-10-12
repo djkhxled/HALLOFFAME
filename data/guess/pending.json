@@ -1,5 +1,12 @@
 {
- "fetched": "2026-10-01",
- "note": "Levels in the top 150 held out because no published length was found. Add a confirmed value to overrides.json to admit a level.",
- "levels": []
+ "fetched": "2026-10-12",
+ "note": "Levels in the top 150 held out until the lists record what the game shows: a published length (or a confirmed one in overrides.json), and the creators. A refresh admits them.",
+ "levels": [
+  {
+   "levelId": 123674931,
+   "name": "Breakcore",
+   "rank": 132,
+   "missing": "creators"
+  }
+ ]
 }
