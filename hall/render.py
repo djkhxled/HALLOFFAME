@@ -731,3 +731,20 @@ def hero_cta_html(games: dict, href: str = "#play") -> str:
         '<span class="herocta__text"><span class="herocta__big">Play the games</span>'
         f'<span class="herocta__small">{small}</span></span></a>'
     )
+
+
+def wip_html(copy: dict) -> str:
+    """The "still unfinished" notice on the list and the level pages, opened by
+    src/js/wip.js. It is closed in the markup, so a visitor without JavaScript is
+    never shown a box, and its button is a dialog form, so it shuts without any."""
+    paras = "".join(f"<p>{esc(p)}</p>" for p in copy["paras"])
+    return (
+        '<dialog class="wip" data-wip aria-labelledby="wip-h" aria-describedby="wip-d">'
+        f'<p class="wip__kicker">{esc(copy["kicker"])}</p>'
+        f'<h2 id="wip-h" class="wip__title">{esc(copy["title"])}</h2>'
+        f'<div id="wip-d" class="wip__body">{paras}'
+        f'<p class="wip__sign">&mdash; {esc(copy["sign"])}</p></div>'
+        '<form method="dialog" class="wip__actions">'
+        f'<button class="wip__btn" type="submit">{esc(copy["button"])}</button></form>'
+        "</dialog>"
+    )

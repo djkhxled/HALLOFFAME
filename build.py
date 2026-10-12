@@ -173,6 +173,11 @@ def spell(n: int) -> str:
     return f"{word}-{ONES[rest]}" if rest else word
 
 
+def wip_foot(site: dict) -> str:
+    """The list and its level pages say they are unfinished on arrival (the games don't)."""
+    return render.wip_html(site["wip"]) + '<script src="/assets/js/wip.js" defer></script>'
+
+
 def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
                 level_tpl: str, total: int) -> str:
     slug = level["slug"]
@@ -280,7 +285,7 @@ def build_level(level: dict, site: dict, prev, nxt, base_tpl: str,
                 f'<span class="attempt__rank">#{level["rank"]}</span>'
             ),
             "signature": theme.get("signature") or "static",
-            "foot_extra_html": "",
+            "foot_extra_html": wip_foot(site),
             "texture_class": texture_class(theme),
             "title": f'{level["name"]} — #{level["rank"]} · {site["title"]}',
             "og_title": f'{level["name"]} — #{level["rank"]} · {site["title"]}',
@@ -387,7 +392,7 @@ def build_index(levels: list[dict], site: dict, base_tpl: str, index_tpl: str) -
             "chrome_meta_html": render.chrome_html(DEFAULT_FIELD),
             "attempt_label_html": '<span class="attempt__rank">30&rarr;1</span>',
             "signature": "static",
-            "foot_extra_html": "",
+            "foot_extra_html": wip_foot(site),
             "texture_class": "texture texture--starfield",
             "title": f"The List \u2014 {site['title']}",
             "og_title": f"The List \u2014 {site['title']}",

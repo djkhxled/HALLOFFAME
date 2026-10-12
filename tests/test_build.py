@@ -461,3 +461,46 @@ class BrowserChrome(unittest.TestCase):
                  if re.search(r"color-scheme:\s*light", s)]
         self.assertEqual(light, ["levels/nhelv/index.html"],
                          "the set of light pages changed")
+
+
+class WorkInProgressNotice(unittest.TestCase):
+    """The list is unfinished and much of its writing is still AI, so the list and
+    every level page say so on arrival (src/js/wip.js). The games don't."""
+
+    @classmethod
+    def setUpClass(cls):
+        subprocess.run(["python3", "build.py"], cwd=ROOT, check=True, capture_output=True)
+        cls.list = (DOCS / "list" / "index.html").read_text(encoding="utf-8")
+        cls.levels = {d.name: (d / "index.html").read_text(encoding="utf-8")
+                      for d in (DOCS / "levels").iterdir() if d.is_dir()}
+
+    def dialog(self, page):
+        return re.search(r"<dialog[^>]*data-wip.*?</dialog>", page, re.S).group(0)
+
+    def test_the_list_and_every_level_page_carry_it(self):
+        for name, page in [("list", self.list)] + sorted(self.levels.items()):
+            self.assertIn("data-wip", page, name)
+            self.assertRegex(page, r'<script src="[./]*assets/js/wip\.js(\?v=\w+)?" defer>', name)
+
+    def test_the_games_do_not(self):
+        for page in ("index.html", "geometryguessr/index.html", "demondle/index.html", "game/index.html"):
+            self.assertNotIn("data-wip", (DOCS / page).read_text(encoding="utf-8"), page)
+
+    def test_it_is_closed_in_the_markup_and_closes_without_script(self):
+        """Without JavaScript it never opens; if it is open, its button shuts it."""
+        dialog = self.dialog(self.list)
+        self.assertNotRegex(dialog.split(">", 1)[0], r"\sopen[\s>=]")
+        self.assertIn('method="dialog"', dialog)
+
+    def test_it_says_what_baylor_asked(self):
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", self.dialog(self.list)))
+        for words in ("unfinished", "descriptions could be wrong", "AI", "already know"):
+            self.assertIn(words, text)
+
+    def test_it_stores_nothing_and_sends_nothing(self):
+        """The privacy page promises only the games write to browser storage."""
+        code = (ROOT / "src" / "js" / "wip.js").read_text(encoding="utf-8")
+        code = re.sub(r"/\*.*?\*/", "", code, flags=re.S)
+        for bad in ("localStorage", "sessionStorage", "indexedDB", "document.cookie",
+                    "fetch(", "XMLHttpRequest", "sendBeacon"):
+            self.assertNotIn(bad, code)

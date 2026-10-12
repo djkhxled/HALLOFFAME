@@ -1893,3 +1893,112 @@ a.countdown__hit:focus-visible .countdown__mark {
 .listnote__text { margin: 0; color: var(--muted); flex: 1 1 22rem; }
 .listnote__go { font: 600 var(--step--2) var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
 .listnote__go::after { content: " \2192"; }
+
+/* The "still unfinished" notice on the list and the level pages (src/js/wip.js).
+   Its own fixed colours, not the page's: level pages repaint --field and --ink (Nhelv
+   is white), and this should read as the site talking, not the level. */
+.wip {
+  --wip-amber: #ffc53d;
+  --wip-ground: #0c0d13;
+  --wip-ink: #f2f2f4;
+  --wip-muted: #a3a6b4;
+  width: min(38rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 0 var(--space-6) var(--space-6);
+  color: var(--wip-ink);
+  background: var(--wip-ground);
+  border: 2px solid var(--wip-amber);
+  border-radius: 6px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.6), 0 0 0 6px color-mix(in srgb, var(--wip-amber) 18%, transparent);
+  color-scheme: dark;
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  animation: wip-in 0.5s var(--ease) both;
+}
+
+/* A hazard stripe across the top: under construction. */
+.wip::before {
+  content: "";
+  display: block;
+  height: 0.7rem;
+  margin: 0 calc(-1 * var(--space-6)) var(--space-5);
+  background: repeating-linear-gradient(135deg, var(--wip-amber) 0 0.85rem, #111 0.85rem 1.7rem);
+}
+
+.wip:focus { outline: none; }
+
+.wip::backdrop {
+  background: color-mix(in srgb, #06070b 62%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  animation: wip-fade 0.5s ease both;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .wip::backdrop { background: color-mix(in srgb, #06070b 93%, transparent); }
+}
+
+html:has(.wip[open]) { overflow: hidden; }
+
+@keyframes wip-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes wip-in {
+  from { opacity: 0; transform: translateY(0.9rem) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.wip__kicker {
+  margin: 0 0 var(--space-3);
+  font: 600 var(--step--2) / 1.4 "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--wip-amber);
+}
+
+.wip__title {
+  margin: 0 0 var(--space-4);
+  font: 900 clamp(1.9rem, 1.4rem + 2.6vw, 3rem) / 1.02 "Archivo", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--wip-ink);
+}
+
+.wip__body p {
+  margin: 0 0 var(--space-3);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--wip-ink);
+}
+
+.wip__body .wip__sign {
+  margin-top: var(--space-4);
+  font: var(--step--1) / 1.4 "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color: var(--wip-muted);
+}
+
+.wip__actions { margin: var(--space-5) 0 0; }
+
+.wip__btn {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font: 700 var(--step-0) / 1 "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111;
+  background: var(--wip-amber);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.wip__btn:hover { background: color-mix(in srgb, var(--wip-amber) 85%, #fff); }
+.wip__btn:focus-visible { outline: 2px solid var(--wip-ink); outline-offset: 3px; }
+
+@media (max-width: 44rem) {
+  .wip { padding: 0 var(--space-5) var(--space-5); }
+  .wip::before { margin: 0 calc(-1 * var(--space-5)) var(--space-4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wip,
+  .wip::backdrop { animation: none; }
+}

@@ -35,6 +35,24 @@
     };
   }
 
+  // The lists print a creator with their group tag ("[SKWAD] Cersia"), and tags change;
+  // the same person is the same person with or without one.
+  function personKey(name) {
+    return String(name).replace(/^\s*(\[[^\]]*\]\s*)+/, "").trim().toLowerCase();
+  }
+
+  // The guess's creators who also made the answer, in the guess's order, each person once.
+  function sharedCreators(guess, answer) {
+    var theirs = {}, seen = {};
+    (answer.cn || []).forEach(function (n) { theirs[personKey(n)] = true; });
+    return (guess.cn || []).filter(function (n) {
+      var k = personKey(n);
+      if (!theirs[k] || seen[k]) return false;
+      seen[k] = true;
+      return true;
+    });
+  }
+
   function isWin(result) {
     return STATS.every(function (k) { return result[k].state === "exact"; });
   }
@@ -169,6 +187,7 @@
 
   var api = {
     VERSIONS: VERSIONS, MAX_GUESSES: MAX_GUESSES, STATS: STATS, judge: judge, isWin: isWin,
+    sharedCreators: sharedCreators,
     fmtTime: fmtTime, isoDate: isoDate, dayNumber: dayNumber, dailyAnswerId: dailyAnswerId,
     pickInfinite: pickInfinite, newRound: newRound, addGuess: addGuess, emptyStats: emptyStats,
     recordResult: recordResult, currentStreak: currentStreak, shareText: shareText,
